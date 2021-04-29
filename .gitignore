@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+.history/
+.pdm.toml
+.vscode/
+cdk.json
+cdk.out/
