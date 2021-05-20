@@ -1,12 +1,12 @@
 [[package]]
 name = "attrs"
-sections = ["default"]
+sections = ["cdk"]
 version = "20.3.0"
 summary = "Classes Without Boilerplate"
 
 [[package]]
 name = "aws-cdk.assets"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "This module is deprecated. All types are now available under the core module"
 dependencies = [
@@ -19,7 +19,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-apigateway"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::ApiGateway"
 dependencies = [
@@ -42,7 +42,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-applicationautoscaling"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::ApplicationAutoScaling"
 dependencies = [
@@ -57,7 +57,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-autoscaling"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::AutoScaling"
 dependencies = [
@@ -76,7 +76,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-autoscaling-common"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "Common implementation package for @aws-cdk/aws-autoscaling and @aws-cdk/aws-applicationautoscaling"
 dependencies = [
@@ -89,7 +89,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-autoscaling-hooktargets"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "Lifecycle hook for AWS AutoScaling"
 dependencies = [
@@ -108,7 +108,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-certificatemanager"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::CertificateManager"
 dependencies = [
@@ -123,7 +123,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-cloudformation"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::CloudFormation"
 dependencies = [
@@ -140,7 +140,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-cloudfront"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::CloudFront"
 dependencies = [
@@ -160,7 +160,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-cloudwatch"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::CloudWatch"
 dependencies = [
@@ -173,7 +173,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-codebuild"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::CodeBuild"
 dependencies = [
@@ -199,7 +199,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-codecommit"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::CodeCommit"
 dependencies = [
@@ -213,7 +213,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-codeguruprofiler"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::CodeGuruProfiler"
 dependencies = [
@@ -226,7 +226,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-codepipeline"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "Better interface to AWS Code Pipeline"
 dependencies = [
@@ -242,7 +242,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-cognito"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::Cognito"
 dependencies = [
@@ -258,7 +258,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-dynamodb"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::DynamoDB"
 dependencies = [
@@ -276,7 +276,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-ec2"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::EC2"
 dependencies = [
@@ -298,7 +298,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-ecr"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::ECR"
 dependencies = [
@@ -312,7 +312,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-ecr-assets"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "Docker image assets deployed to ECR"
 dependencies = [
@@ -329,7 +329,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-ecs"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::ECS"
 dependencies = [
@@ -365,7 +365,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-efs"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::EFS"
 dependencies = [
@@ -381,7 +381,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-eks"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::EKS"
 dependencies = [
@@ -402,7 +402,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-elasticloadbalancing"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::ElasticLoadBalancing"
 dependencies = [
@@ -415,7 +415,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-elasticloadbalancingv2"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::ElasticLoadBalancingV2"
 dependencies = [
@@ -436,7 +436,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-events"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "Amazon EventBridge Construct Library"
 dependencies = [
@@ -449,7 +449,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-events-targets"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "Event targets for Amazon EventBridge"
 dependencies = [
@@ -478,7 +478,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-globalaccelerator"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::GlobalAccelerator"
 dependencies = [
@@ -492,7 +492,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-iam"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "CDK routines for easily assigning correct and minimal IAM permissions"
 dependencies = [
@@ -505,7 +505,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-kinesis"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::Kinesis"
 dependencies = [
@@ -521,7 +521,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-kinesisfirehose"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::KinesisFirehose"
 dependencies = [
@@ -533,7 +533,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-kms"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::KMS"
 dependencies = [
@@ -547,7 +547,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-lambda"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::Lambda"
 dependencies = [
@@ -575,7 +575,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-lambda-python"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS Lambda in Python"
 dependencies = [
@@ -589,7 +589,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-logs"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::Logs"
 dependencies = [
@@ -605,7 +605,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-route53"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::Route53"
 dependencies = [
@@ -622,7 +622,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-route53-targets"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS Route53 Alias Targets"
 dependencies = [
@@ -645,7 +645,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-s3"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::S3"
 dependencies = [
@@ -661,7 +661,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-s3-assets"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "Deploy local files and directories to S3"
 dependencies = [
@@ -678,7 +678,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-sam"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for the AWS Serverless Application Model (SAM) resources"
 dependencies = [
@@ -690,7 +690,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-secretsmanager"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::SecretsManager"
 dependencies = [
@@ -708,7 +708,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-servicediscovery"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::ServiceDiscovery"
 dependencies = [
@@ -723,7 +723,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-signer"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::Signer"
 dependencies = [
@@ -735,7 +735,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-sns"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::SNS"
 dependencies = [
@@ -752,7 +752,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-sns-subscriptions"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "CDK Subscription Constructs for AWS SNS"
 dependencies = [
@@ -768,7 +768,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-sqs"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::SQS"
 dependencies = [
@@ -783,7 +783,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-ssm"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::SSM"
 dependencies = [
@@ -798,7 +798,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-stepfunctions"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::StepFunctions"
 dependencies = [
@@ -815,7 +815,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-stepfunctions-tasks"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "Task integrations for AWS StepFunctions"
 dependencies = [
@@ -843,7 +843,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.cloud-assembly-schema"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "Cloud Assembly Schema"
 dependencies = [
@@ -853,7 +853,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.core"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "AWS Cloud Development Kit Core Library"
 dependencies = [
@@ -867,7 +867,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.custom-resources"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "Constructs for implementing CDK custom resources"
 dependencies = [
@@ -885,7 +885,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.cx-api"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "Cloud executable protocol"
 dependencies = [
@@ -896,7 +896,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.lambda-layer-awscli"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "An AWS Lambda layer that contains the AWS CLI"
 dependencies = [
@@ -909,7 +909,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.lambda-layer-kubectl"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "An AWS Lambda layer that contains the `kubectl` and `helm`"
 dependencies = [
@@ -922,7 +922,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.region-info"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.105.0"
 summary = "AWS region information, such as service principal names"
 dependencies = [
@@ -932,7 +932,7 @@ dependencies = [
 
 [[package]]
 name = "cattrs"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.5.0"
 marker = "python_version >= '3.7'"
 summary = "Composable complex class support for attrs and dataclasses."
@@ -949,7 +949,7 @@ summary = "Cross-platform colored terminal text."
 
 [[package]]
 name = "constructs"
-sections = ["default"]
+sections = ["cdk"]
 version = "3.3.75"
 summary = "A programming model for composable configuration"
 dependencies = [
@@ -959,7 +959,7 @@ dependencies = [
 
 [[package]]
 name = "jsii"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.29.0"
 summary = "Python client for jsii runtime"
 dependencies = [
@@ -990,13 +990,13 @@ dependencies = [
 
 [[package]]
 name = "publication"
-sections = ["default"]
+sections = ["cdk"]
 version = "0.0.3"
 summary = "Publication helps you maintain public-api-friendly modules by preventing unintentional access to private implementation details via introspection."
 
 [[package]]
 name = "python-dateutil"
-sections = ["default"]
+sections = ["cdk"]
 version = "2.8.1"
 summary = "Extensions to the standard Python datetime module"
 dependencies = [
@@ -1005,7 +1005,7 @@ dependencies = [
 
 [[package]]
 name = "six"
-sections = ["default"]
+sections = ["cdk"]
 version = "1.16.0"
 summary = "Python 2 and 3 compatibility utilities"
 
@@ -1017,7 +1017,7 @@ summary = "Python Library for Tom's Obvious, Minimal Language"
 
 [[package]]
 name = "typing-extensions"
-sections = ["default"]
+sections = ["cdk"]
 version = "3.10.0.0"
 summary = "Backported and Experimental Type Hints for Python 3.5+"
 
@@ -1030,7 +1030,7 @@ summary = "A small Python utility to set file creation time on Windows"
 
 [metadata]
 lock_version = "2"
-content_hash = "sha256:26db53ea35cacc014e893a75aa1395e8258228b46439f14021fbfbadb30e764e"
+content_hash = "sha256:6a18bbde3aacb5dbd6b8a50562ce2d63b822b9fbd3dff8420fab9be67e472011"
 
 [metadata.files]
 "attrs 20.3.0" = [
