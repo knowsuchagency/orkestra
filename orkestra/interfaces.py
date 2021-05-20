@@ -1,8 +1,6 @@
 import abc
 import typing
-from typing import Protocol, TypeVar, runtime_checkable
-
-T = TypeVar("T")
+from typing import Protocol, runtime_checkable
 
 
 @runtime_checkable

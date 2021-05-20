@@ -9,30 +9,13 @@ from aws_cdk import aws_lambda, aws_lambda_python
 from aws_cdk import aws_stepfunctions as sfn
 from aws_cdk import aws_stepfunctions_tasks as sfn_tasks
 
-# from composer.schedule import schedule
-from orkestra.constructs import Composer, LambdaInvoke
+from orkestra.constructs import LambdaInvoke
 from lambdas.foo import hello, bye, double, do
 
 
-
-class ComposedConstruct(cdk.Construct):
+class RegularConstruct(cdk.Construct):
     def __init__(self, scope, id, **kwargs):
         super().__init__(scope, id, **kwargs)
-
-        definition = hello.task(self) >> bye.task(self) >> double.task(self)
-
-        state_machine = sfn.StateMachine(
-            self,
-            'composed_sfn_2',
-            definition=definition,
-            tracing_enabled=True,
-            state_machine_name='example_composed_2'
-        )
-
-
-class ExampleStack(cdk.Stack):
-    def __init__(self, scope, *args, **kwargs):
-        super().__init__(scope, *args, **kwargs)
 
         lambda_fn = aws_lambda_python.PythonFunction(
             self,
@@ -60,7 +43,20 @@ class ExampleStack(cdk.Stack):
             "exampleStateMachine",
             definition=definition,
             tracing_enabled=True,
-            state_machine_name='example_state_machine'
+            state_machine_name="example_state_machine",
+        )
+
+
+class SlightlyMoreComposed(cdk.Construct):
+    def __init__(self, scope, id, **kwargs):
+        super().__init__(scope, id, **kwargs)
+
+        lambda_fn = aws_lambda_python.PythonFunction(
+            self,
+            "exampleFunction2",
+            entry="lambdas/",
+            runtime=aws_lambda.Runtime.PYTHON_3_8,
+            tracing=aws_lambda.Tracing.ACTIVE,
         )
 
         definition_2 = LambdaInvoke(
@@ -79,27 +75,75 @@ class ExampleStack(cdk.Stack):
             "exampleStateMachine2",
             definition=definition_2,
             tracing_enabled=True,
-            state_machine_name='example_composed_state_machine'
+            state_machine_name="example_composed_state_machine",
         )
 
-        interval_rule = eventbridge.Rule(
+
+class ComposedConstruct(cdk.Construct):
+    def __init__(self, scope, id, **kwargs):
+        super().__init__(scope, id, **kwargs)
+
+        definition = (
+            hello.task(self) >> bye.task(self) >> double.task(self) >> do.task(self)
+        )
+
+        state_machine = sfn.StateMachine(
             self,
-            "exampleRule",
-            description="example interval rule",
-            schedule=eventbridge.Schedule.cron(),
+            "composed_sfn_2",
+            definition=definition,
+            tracing_enabled=True,
+            state_machine_name="example_composed_2",
         )
 
-        interval_rule.add_target(
-            eventbridge_targets.SfnStateMachine(machine=state_machine)
+
+class MoreComposed(cdk.Construct):
+    def __init__(self, scope, id, **kwargs):
+        super().__init__(scope, id, **kwargs)
+
+        state_machine = sfn.StateMachine(
+            self,
+            "composed_sfn_3",
+            definition=hello.definition(self),
+            tracing_enabled=True,
+            state_machine_name="example_composed_3",
         )
 
-        composer = Composer(self, "exampleComposer", hello)
+class UltraComposed(cdk.Construct):
+    def __init__(self, scope, id, **kwargs):
+        super().__init__(scope, id, **kwargs)
 
-        interval_rule.add_target(
-            eventbridge_targets.SfnStateMachine(machine=composer.state_machine)
-        )
+        hello.state_machine(self)
 
-        ComposedConstruct(self, 'veryComposed')
+class ScheduledSfn(cdk.Construct):
+    def __init__(self, scope, id, **kwargs):
+        super().__init__(scope, id, **kwargs)
+
+        hello.schedule(self)
+
+class ScheduledLambda(cdk.Construct):
+    def __init__(self, scope, id, **kwargs):
+        super().__init__(scope, id, **kwargs)
+
+        do.schedule(self)
+class ExampleStack(cdk.Stack):
+    def __init__(self, scope, *args, **kwargs):
+        super().__init__(scope, *args, **kwargs)
+
+        RegularConstruct(self, "regularConstruct")
+
+        SlightlyMoreComposed(self, "almostComposed")
+
+        ComposedConstruct(self, "composed")
+
+        MoreComposed(self, 'moreComposed')
+
+        UltraComposed(self, 'ultraComposed')
+
+        ScheduledLambda(self, 'scheduledLambda')
+
+        ScheduledSfn(self, 'scheduledSFN')
+
+        
 
 
 app = cdk.App()

@@ -1,13 +1,9 @@
-import inspect
-
-def rshift(self, right):
-    return self.next(right)
+from orkestra.utils import make_composable, rshift
 
 
 class ComposableMixin:
-    """Make a Nextable a Composable."""
-
     def __rshift__(self, right):
         result = rshift(self, right)
-        right.__class__.__rshift__ = result.__class__.__rshift__ = rshift
+        make_composable(right)
+        make_composable(result)
         return result

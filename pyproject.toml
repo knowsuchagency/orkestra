@@ -30,8 +30,18 @@ build-backend = "pdm.pep517.api"
 _.env_file = ".env"
 
 synth = "cdk synth"
-deploy = "cdk deploy --verbose"
-destroy = "cdk destroy"
+
+deploy.shell = """
+set -ex
+cdk deploy --verbose --require-approval=never
+klaxon --title orkestra --subtitle deployed
+"""
+
+destroy.shell = """
+set -ex
+cdk destroy --force
+klaxon --title orkestra --subtitle destroyed
+"""
 
 test-publish = "twine upload --repository testpypi dist/*"
 
@@ -50,4 +60,5 @@ pdm run publish
 [tool.pdm.dev-dependencies]
 dev = [
     "loguru~=0.5",
+    "klaxon"
 ]

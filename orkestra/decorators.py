@@ -1,10 +1,16 @@
 from pathlib import Path
 from typing import *
+from random import Random
+import string
 
 from orkestra.interfaces import ComposableAdjacencyList
 
 OptionalFn = Optional[Union[Callable, List[Callable]]]
 
+random = Random(0)
+
+def sample(k=4):
+    return random.sample(string.hexdigits, k)
 
 class Compose:
     def __init__(self, func: OptionalFn = None, context=False, **metadata):
@@ -63,7 +69,7 @@ class Compose:
 
         from aws_cdk import aws_lambda, aws_lambda_python
 
-        id = id or f"{self.func.__name__}_fn"
+        id = id or f"{self.func.__name__}_fn_{sample()}"
         tracing = tracing or aws_lambda.Tracing.ACTIVE
         runtime = runtime or aws_lambda.Runtime.PYTHON_3_8
 
@@ -84,8 +90,8 @@ class Compose:
         )
 
     def task(self, scope, id=None, payload_response_only=True, **kwargs):
+
         from orkestra.constructs import LambdaInvoke
-        from aws_cdk import aws_stepfunctions_tasks as sfn_tasks
 
         id = id or self.func.__name__
 
@@ -104,5 +110,101 @@ class Compose:
             **keyword_args,
         )
 
+    def definition(
+        self,
+        scope,
+        definition=None,
+    ):
+        from aws_cdk import aws_stepfunctions as sfn
 
-compose: ComposableAdjacencyList = Compose
+        if isinstance(self.func, list):
+
+            task = sfn.Parallel(
+                scope, "parallelize {}".format([c.func.__name__ for c in self.func])
+            )
+
+            for c in self.func:
+                task.branch(c.task(scope))
+
+        else:
+
+            task = self.task(scope)
+
+        definition = task if definition is None else definition.next(task)
+
+        if self.downstream:
+            for c in self.downstream:
+                c.definition(scope, definition=definition)
+
+        return definition
+
+    def state_machine(
+        self, scope, id=None, tracing_enabled=True, state_machine_name=None, **kwargs
+    ):
+
+        from aws_cdk import aws_stepfunctions as sfn
+
+        id = id or f"{self.func.__name__}_sfn_{sample()}"
+
+        return sfn.StateMachine(
+            scope,
+            id,
+            definition=self.definition(scope),
+            tracing_enabled=tracing_enabled,
+            state_machine_name=state_machine_name,
+            **kwargs,
+        )
+
+    def schedule(
+        self,
+        scope,
+        id=None,
+        expression: Optional[str] = None,
+        day: Optional[str] = None,
+        hour: Optional[str] = None,
+        minute: Optional[str] = None,
+        month: Optional[str] = None,
+        week_day: Optional[str] = None,
+        year: Optional[str] = None,
+        **kwargs,
+    ):
+        from aws_cdk import aws_events as eventbridge
+        from aws_cdk import aws_events_targets as eventbridge_targets
+
+        id = id or f"{self.func.__name__}_sched_{sample()}"
+
+        if expression is not None:
+            schedule = eventbridge.Schedule.expression(expression)
+        else:
+            schedule = eventbridge.Schedule.cron(
+                day=day,
+                hour=hour,
+                minute=minute,
+                month=month,
+                week_day=week_day,
+                year=year,
+            )
+
+        rule = eventbridge.Rule(
+            scope,
+            id,
+            schedule=schedule,
+        )
+
+        if not self.downstream:
+            fn = self.aws_lambda(scope)
+            target = eventbridge_targets.LambdaFunction(
+                handler=fn
+            )
+        else:
+            state_machine = self.state_machine(scope)
+            target = eventbridge_targets.SfnStateMachine(
+                machine=state_machine
+            )
+
+        rule.add_target(target)
+
+        return rule
+
+
+compose = Compose
