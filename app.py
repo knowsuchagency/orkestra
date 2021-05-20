@@ -9,8 +9,8 @@ from aws_cdk import aws_lambda, aws_lambda_python
 from aws_cdk import aws_stepfunctions as sfn
 from aws_cdk import aws_stepfunctions_tasks as sfn_tasks
 
-from orkestra.constructs import LambdaInvoke
 from lambdas.foo import hello, bye, double, do
+from orkestra import orkestrate
 
 
 class RegularConstruct(cdk.Construct):
@@ -59,15 +59,25 @@ class SlightlyMoreComposed(cdk.Construct):
             tracing=aws_lambda.Tracing.ACTIVE,
         )
 
-        definition_2 = LambdaInvoke(
-            self,
-            "exampleLambdaTask3",
-            lambda_function=lambda_fn,
-            payload_response_only=True,
-        ) >> LambdaInvoke(
-            self,
-            "exampleLambdaTask4",
-            lambda_function=lambda_fn,
+        definition_2 = (
+            orkestrate(
+                sfn_tasks.LambdaInvoke(
+                    self,
+                    "exampleLambdaTask3",
+                    lambda_function=lambda_fn,
+                    payload_response_only=True,
+                )
+            )
+            >> sfn_tasks.LambdaInvoke(
+                self,
+                "exampleLambdaTask4",
+                lambda_function=lambda_fn,
+            )
+            >> sfn_tasks.LambdaInvoke(
+                self,
+                "exampleLambdaTask5",
+                lambda_function=lambda_fn,
+            )
         )
 
         state_machine_2 = sfn.StateMachine(
@@ -108,11 +118,13 @@ class MoreComposed(cdk.Construct):
             state_machine_name="example_composed_3",
         )
 
+
 class UltraComposed(cdk.Construct):
     def __init__(self, scope, id, **kwargs):
         super().__init__(scope, id, **kwargs)
 
         hello.state_machine(self)
+
 
 class ScheduledSfn(cdk.Construct):
     def __init__(self, scope, id, **kwargs):
@@ -120,11 +132,14 @@ class ScheduledSfn(cdk.Construct):
 
         hello.schedule(self)
 
+
 class ScheduledLambda(cdk.Construct):
     def __init__(self, scope, id, **kwargs):
         super().__init__(scope, id, **kwargs)
 
         do.schedule(self)
+
+
 class ExampleStack(cdk.Stack):
     def __init__(self, scope, *args, **kwargs):
         super().__init__(scope, *args, **kwargs)
@@ -135,15 +150,13 @@ class ExampleStack(cdk.Stack):
 
         ComposedConstruct(self, "composed")
 
-        MoreComposed(self, 'moreComposed')
+        MoreComposed(self, "moreComposed")
 
-        UltraComposed(self, 'ultraComposed')
+        UltraComposed(self, "ultraComposed")
 
-        ScheduledLambda(self, 'scheduledLambda')
+        ScheduledLambda(self, "scheduledLambda")
 
-        ScheduledSfn(self, 'scheduledSFN')
-
-        
+        ScheduledSfn(self, "scheduledSFN")
 
 
 app = cdk.App()
