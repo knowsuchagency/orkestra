@@ -32,11 +32,4 @@ def derp():
     result = 1 / 0
     return result
 
-# print(hello('event'))
-
-# hello >> bye >> double
-
-# bye >> do
-
-
-hello >> [bye, double, derp]  >> do
+hello >> (bye, double, derp)  >> do

@@ -10,6 +10,7 @@ from aws_cdk import aws_stepfunctions as sfn
 from aws_cdk import aws_stepfunctions_tasks as sfn_tasks
 
 from lambdas.foo import hello, bye, double, do
+from lambdas.bar import hello as resilient_hello
 from orkestra import orkestrate
 
 
@@ -140,6 +141,13 @@ class ScheduledLambda(cdk.Construct):
         do.schedule(self)
 
 
+class ResilientScheduledSfn(cdk.Construct):
+    def __init__(self, scope, id, **kwargs):
+        super().__init__(scope, id, **kwargs)
+
+        resilient_hello.schedule(self)
+
+
 class ExampleStack(cdk.Stack):
     def __init__(self, scope, *args, **kwargs):
         super().__init__(scope, *args, **kwargs)
@@ -157,6 +165,8 @@ class ExampleStack(cdk.Stack):
         ScheduledLambda(self, "scheduledLambda")
 
         ScheduledSfn(self, "scheduledSFN")
+
+        ResilientScheduledSfn(self, "resilientScheduledSfn")
 
 
 app = cdk.App()

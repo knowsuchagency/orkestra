@@ -6,23 +6,31 @@ import string
 from orkestra.interfaces import ComposableAdjacencyList
 from orkestra.utils import orkestrate
 
-OptionalFn = Optional[Union[Callable, List[Callable]]]
+OptionalFn = Optional[Union[Callable, Iterable[Callable]]]
 
 random = Random(0)
 
 
 def sample(k=4):
-    return random.sample(string.hexdigits, k)
+    return "".join(random.sample(string.hexdigits, k))
 
 
 class Compose:
-    def __init__(self, func: OptionalFn = None, context=False, **metadata):
+    def __init__(
+        self,
+        func: OptionalFn = None,
+        context=False,
+        **aws_lambda_constructor_kwargs,
+    ):
+
         self.func = func
         self.downstream = []
-        self.metadata = metadata
+
         self.context = context
 
-        if func and not isinstance(func, list):
+        self.aws_lambda_constructor_kwargs = aws_lambda_constructor_kwargs
+
+        if func and not isinstance(func, (list, tuple)):
 
             module = func.__module__.split(".")
 
@@ -32,7 +40,7 @@ class Compose:
 
     def __call__(self, event_or_func, context=None):
 
-        if isinstance(self.func, list):
+        if isinstance(self.func, (list, tuple)):
             raise TypeError("can't call a list of functions")
 
         if self.func is not None:
@@ -43,11 +51,13 @@ class Compose:
                 return self.func(event)
         else:
             func = event_or_func
-            return self.__class__(func)
+            return Compose(
+                func=func, context=context, **self.aws_lambda_constructor_kwargs
+            )
 
     def __repr__(self) -> str:
 
-        if isinstance(self.func, list):
+        if isinstance(self.func, (list, tuple)):
             func = repr(self.func)
         else:
             func = self.func.__name__ if self.func is not None else None
@@ -55,7 +65,7 @@ class Compose:
         return (
             "Task("
             f"func={func}, "
-            f"metadata={self.metadata}, "
+            f"aws_lambda_constructor_kwargs={self.aws_lambda_constructor_kwargs}, "
             f"len_downstream={len(self.downstream)}"
             ")"
         )
@@ -64,7 +74,7 @@ class Compose:
         self,
         right: Union[ComposableAdjacencyList, List[ComposableAdjacencyList]],
     ):
-        right = Compose(func=right) if isinstance(right, list) else right
+        right = Compose(func=right) if isinstance(right, (list, tuple)) else right
         self.downstream.append(right)
         return right
 
@@ -97,6 +107,8 @@ class Compose:
         )
 
         keyword_args.update(kwargs)
+
+        keyword_args.update(composable.aws_lambda_constructor_kwargs)
 
         return aws_lambda_python.PythonFunction(
             scope,
@@ -138,7 +150,7 @@ class Compose:
         from aws_cdk import aws_stepfunctions_tasks as sfn_tasks
         from aws_cdk import aws_stepfunctions as sfn
 
-        if not isinstance(self.func, list):
+        if not isinstance(self.func, (list, tuple)):
 
             id = id or self.func.__name__
 
@@ -168,6 +180,14 @@ class Compose:
                 scope, "parallelize {}".format([c.func.__name__ for c in self.func])
             )
 
+            # TODO: remove pass for catch when done testing
+
+            # capture_errors = sfn.Pass(scope, f"handle_errors")
+
+            # task.add_catch(capture_errors)
+
+            # capture_errors.next(sfn.Fail(scope, "Fail"))
+
             for fn in self.func:
 
                 lambda_fn = fn.aws_lambda(scope)
@@ -184,6 +204,10 @@ class Compose:
                     fn.func.__name__,
                     **keyword_args,
                 )
+
+                if isinstance(self.func, tuple):
+
+                    branch.add_catch(sfn.Pass(scope, f"{fn.func.__name__}_failed"))
 
                 task.branch(branch)
 

@@ -1,2 +1,2 @@
 loguru
-orkestra>=0.1.4
+orkestra>=0.1.5
