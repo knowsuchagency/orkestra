@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os
 
+
 from aws_cdk import core as cdk
 from aws_cdk import aws_events as eventbridge
 from aws_cdk import aws_events_targets as eventbridge_targets
@@ -9,8 +10,24 @@ from aws_cdk import aws_stepfunctions as sfn
 from aws_cdk import aws_stepfunctions_tasks as sfn_tasks
 
 # from composer.schedule import schedule
-from composer.constructs import Composer
-from lambdas.foo import hello
+from orkestra.constructs import Composer, LambdaInvoke
+from lambdas.foo import hello, bye, double, do
+
+
+
+class ComposedConstruct(cdk.Construct):
+    def __init__(self, scope, id, **kwargs):
+        super().__init__(scope, id, **kwargs)
+
+        definition = hello.task(self) >> bye.task(self) >> double.task(self)
+
+        state_machine = sfn.StateMachine(
+            self,
+            'composed_sfn_2',
+            definition=definition,
+            tracing_enabled=True,
+            state_machine_name='example_composed_2'
+        )
 
 
 class ExampleStack(cdk.Stack):
@@ -39,7 +56,30 @@ class ExampleStack(cdk.Stack):
         )
 
         state_machine = sfn.StateMachine(
-            self, "exampleStateMachine", definition=definition, tracing_enabled=True
+            self,
+            "exampleStateMachine",
+            definition=definition,
+            tracing_enabled=True,
+            state_machine_name='example_state_machine'
+        )
+
+        definition_2 = LambdaInvoke(
+            self,
+            "exampleLambdaTask3",
+            lambda_function=lambda_fn,
+            payload_response_only=True,
+        ) >> LambdaInvoke(
+            self,
+            "exampleLambdaTask4",
+            lambda_function=lambda_fn,
+        )
+
+        state_machine_2 = sfn.StateMachine(
+            self,
+            "exampleStateMachine2",
+            definition=definition_2,
+            tracing_enabled=True,
+            state_machine_name='example_composed_state_machine'
         )
 
         interval_rule = eventbridge.Rule(
@@ -56,15 +96,13 @@ class ExampleStack(cdk.Stack):
         composer = Composer(self, "exampleComposer", hello)
 
         interval_rule.add_target(
-            eventbridge_targets.SfnStateMachine(
-                machine=composer.state_machine
-            )
+            eventbridge_targets.SfnStateMachine(machine=composer.state_machine)
         )
 
+        ComposedConstruct(self, 'veryComposed')
 
 
 app = cdk.App()
-
 
 
 ExampleStack(

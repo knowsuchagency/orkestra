@@ -1,7 +1,7 @@
 [project]
-name = "composer"
-version = "0.1.0"
-description = ""
+name = "orkestra"
+version = "0.1.4"
+description = "For orchestration using AWS Step Functions"
 authors = [
     {name = "Stephan Fitzpatrick", email = "knowsuchagency@gmail.com"},
 ]
@@ -15,9 +15,12 @@ dependencies = [
 requires-python = ">=3.8"
 dynamic = ["classifiers"]
 license = {text = "MIT"}
+keywords = ["orchestration", "aws", "cloud"]
+
 
 [project.urls]
-homepage = ""
+homepage = "https://github.com/knowsuchagency/composer"
+Repository = "https://github.com/knowsuchagency/composer"
 
 [build-system]
 requires = ["pdm-pep517"]
@@ -29,6 +32,20 @@ _.env_file = ".env"
 synth = "cdk synth"
 deploy = "cdk deploy --verbose"
 destroy = "cdk destroy"
+
+test-publish = "twine upload --repository testpypi dist/*"
+
+publish.shell = """
+
+twine upload dist/*
+"""
+
+pub.shell = """
+set -x
+pdm build
+pdm run test-publish
+pdm run publish
+"""
 
 [tool.pdm.dev-dependencies]
 dev = [

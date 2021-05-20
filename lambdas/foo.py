@@ -1,11 +1,11 @@
 """
 TODO: turn this into a test suite
 """
-from composer import compose
+from orkestra import compose
 
-@compose(foo="bar")
+@compose(x='y')
 def hello(event):
-    return {"hello": event}
+    return {"event": event}
 
 @compose
 def bye(name):
@@ -19,16 +19,11 @@ def double(n):
 def do(_):
     return {}
 
-# print(type(hello))
+# print(hello('event'))
 
-# print(hello("event"))
+# hello >> bye >> double
 
-# print(f"{hello.metadata = }")
+# bye >> do
 
-hello >> bye >> double
 
-bye >> do
-
-# print(hello)
-
-# print(f"{hello.func.__module__ = }")
+hello >> [bye, double]  >> do

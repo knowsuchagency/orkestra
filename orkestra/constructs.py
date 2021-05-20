@@ -1,20 +1,30 @@
 import os
 from pathlib import Path
 from typing import *
+import random
+import string
 
 from aws_cdk import core as cdk
 from aws_cdk import aws_lambda, aws_lambda_python
 from aws_cdk import aws_stepfunctions as sfn
 from aws_cdk import aws_stepfunctions_tasks as sfn_tasks
 
-from composer import compose
+from orkestra import compose
+from orkestra.mixins import ComposableMixin
+from orkestra.utils import extend_instance, make_composable
+
+random.seed(0)
+
 
 Definition = sfn.IChainable
 
 
-@runtime_checkable
-class ComposerInterface(Protocol):
-    state_machine: sfn.StateMachine
+class LambdaInvoke(sfn_tasks.LambdaInvoke, ComposableMixin):
+    ...
+
+class Chain(sfn.Chain, ComposableMixin):
+    ...
+
 
 
 class Composer(cdk.Construct):
@@ -26,21 +36,6 @@ class Composer(cdk.Construct):
         state_machine_name=None,
     ) -> None:
         super().__init__(scope, id)
-
-        # fn = self.render_fn(start)
-
-        # definition = self.render_sfn_lambda_task(
-        #     fn,
-        #     start.func.__name__ + "_task",
-        # )
-
-        # for composed in start.downstream:
-        #     fn = self.render_fn(composed)
-        #     task = self.render_sfn_lambda_task(
-        #         fn,
-        #         composed.func.__name__ + "_task",
-        #     )
-        #     definition = definition.next(task)
 
         self.state_machine = sfn.StateMachine(
             self,
@@ -77,11 +72,17 @@ class Composer(cdk.Construct):
 
     def render_sfn_lambda_task(
         self,
-        fn: aws_lambda_python.PythonFunction,
+        fn: Union[compose, aws_lambda_python.PythonFunction],
         id=None,
         payload_response_only=True,
         **kwargs,
     ):
+
+        fn = (
+            self.render_fn(fn)
+            if not isinstance(fn, aws_lambda_python.PythonFunction)
+            else fn
+        )
 
         keyword_args = dict(
             lambda_function=fn,
@@ -97,13 +98,25 @@ class Composer(cdk.Construct):
         )
 
     def render_definition(self, composed: compose, definition=None) -> Definition:
+        def render_task(c: compose):
 
-        fn = self.render_fn(composed)
-        
-        task = self.render_sfn_lambda_task(
-            fn,
-            composed.func.__name__ + "_task",
-        )
+            return self.render_sfn_lambda_task(
+                c,
+                c.func.__name__ + "_task",
+            )
+
+        if isinstance(composed.func, list):
+
+            task = sfn.Parallel(
+                self, "parallelize {}".format([c.func.__name__ for c in composed.func])
+            )
+
+            for c in composed.func:
+                task.branch(render_task(c))
+
+        else:
+
+            task = render_task(composed)
 
         if definition is None:
             definition = task
