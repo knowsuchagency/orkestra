@@ -22,8 +22,8 @@ def generate_person(event: dict, context):
     name = event.get("name", "sam")
     age = event.get("age", random.randrange(100))
     person = Person(
-        name,
-        age,
+        name=name,
+        age=age,
     )
     return person.dict()
 
