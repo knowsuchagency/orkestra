@@ -12,7 +12,7 @@ from aws_cdk import aws_stepfunctions_tasks as sfn_tasks
 
 from lambdas.foo import hello, bye, double, do
 from lambdas.bar import hello as resilient_hello
-from orkestra import orkestrate
+from orkestra import coerce
 
 random = Random(0)
 
@@ -69,7 +69,7 @@ class SlightlyMoreComposed(cdk.Construct):
         )
 
         definition_2 = (
-            orkestrate(
+            coerce(
                 sfn_tasks.LambdaInvoke(
                     self,
                     id_("example_lambda_task"),

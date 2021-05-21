@@ -1,2 +1,2 @@
 from orkestra.decorators import compose
-from orkestra.utils import make_composable, orkestrate
+from orkestra.utils import make_composable, coerce

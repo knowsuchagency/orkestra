@@ -4,7 +4,7 @@ from random import Random
 from typing import *
 
 from orkestra.interfaces import ComposableAdjacencyList
-from orkestra.utils import orkestrate
+from orkestra.utils import coerce
 
 OptionalFn = Optional[Union[Callable, Iterable[Callable]]]
 
@@ -166,7 +166,7 @@ class Compose:
 
             keyword_args.update(kwargs)
 
-            return orkestrate(
+            return coerce(
                 sfn_tasks.LambdaInvoke(
                     scope,
                     id,
@@ -203,7 +203,7 @@ class Compose:
 
                 task.branch(branch)
 
-            return orkestrate(task)
+            return coerce(task)
 
     def definition(
         self,
