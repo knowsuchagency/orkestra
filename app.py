@@ -11,6 +11,8 @@ from aws_cdk import core as cdk
 
 from lambdas.bar import hello as resilient_hello
 from lambdas.foo import bye, do, double, hello
+from lambdas.index import no_context_logger
+from lambdas.validation import generate_person
 from orkestra import coerce
 
 random = Random(0)
@@ -24,6 +26,8 @@ def id_(s: str):
 class RegularConstruct(cdk.Construct):
     def __init__(self, scope, id, **kwargs):
         super().__init__(scope, id, **kwargs)
+
+        no_context_logger_lambda = no_context_logger.aws_lambda(self)
 
         lambda_fn = aws_lambda_python.PythonFunction(
             self,
@@ -165,6 +169,16 @@ class ResilientScheduledSfn(cdk.Construct):
         )
 
 
+class ScheduledValidation(cdk.Construct):
+    def __init__(self, scope, id, **kwargs):
+        super().__init__(scope, id, **kwargs)
+
+        generate_person.schedule(
+            self,
+            state_machine_name="scheduled_validation_example",
+        )
+
+
 class ExampleStack(cdk.Stack):
     def __init__(self, scope, *args, **kwargs):
         super().__init__(scope, *args, **kwargs)
@@ -184,6 +198,8 @@ class ExampleStack(cdk.Stack):
         ScheduledSfn(self, "scheduled_sfn")
 
         ResilientScheduledSfn(self, "resilient_scheduled_sfn")
+
+        ScheduledValidation(self, "scheduled_validation")
 
 
 app = cdk.App()

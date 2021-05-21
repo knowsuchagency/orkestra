@@ -9,7 +9,7 @@ keywords = ["orchestration", "aws", "cloud"]
 license = {text = "MIT"}
 name = "orkestra"
 requires-python = ">=3.8"
-version = "0.2.0"
+version = "0.2.4"
 
 [project.urls]
 Repository = "https://github.com/knowsuchagency/orkestra"
@@ -22,6 +22,12 @@ cdk = [
   "aws-cdk.aws_events_targets",
   "aws-cdk.aws_lambda_python",
   "aws-cdk.aws_stepfunctions_tasks",
+]
+powertools = [
+  "aws-lambda-powertools[pydantic]",
+  # email is a required dependency
+  # of powertools[pydantic]
+  "pydantic[email]"
 ]
 
 [build-system]
@@ -76,6 +82,7 @@ twine upload dist/*
 
 pub.shell = """
 set -x
+pdm run format
 pdm build
 pdm run test-publish
 pdm run publish
@@ -87,4 +94,5 @@ dev = [
     "klaxon",
     "pre-commit~=2.12",
     "black~=21.5b1",
+    "aws-lambda-powertools~=1.16",
 ]
