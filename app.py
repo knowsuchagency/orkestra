@@ -67,31 +67,33 @@ class SlightlyMoreComposed(cdk.Construct):
             tracing=aws_lambda.Tracing.ACTIVE,
         )
 
-        definition_2 = (
-            coerce(
-                sfn_tasks.LambdaInvoke(
-                    self,
-                    id_("example_lambda_task"),
-                    lambda_function=lambda_fn,
-                    payload_response_only=True,
-                )
-            )
-            >> sfn_tasks.LambdaInvoke(
+        task_1 = coerce(
+            sfn_tasks.LambdaInvoke(
                 self,
                 id_("example_lambda_task"),
                 lambda_function=lambda_fn,
-            )
-            >> sfn_tasks.LambdaInvoke(
-                self,
-                id_("example_lambda_task"),
-                lambda_function=lambda_fn,
+                payload_response_only=True,
             )
         )
 
-        state_machine_2 = sfn.StateMachine(
+        task_2 = sfn_tasks.LambdaInvoke(
+            self,
+            id_("example_lambda_task"),
+            lambda_function=lambda_fn,
+        )
+
+        task_3 = sfn_tasks.LambdaInvoke(
+            self,
+            id_("example_lambda_task"),
+            lambda_function=lambda_fn,
+        )
+
+        definition = task_1 >> task_2 >> task_3
+
+        sfn.StateMachine(
             self,
             id_("example_state_machine"),
-            definition=definition_2,
+            definition=definition,
             tracing_enabled=True,
             state_machine_name="example_composed_state_machine",
         )
