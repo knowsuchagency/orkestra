@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os
-
+from random import Random
+import string
 
 from aws_cdk import core as cdk
 from aws_cdk import aws_events as eventbridge
@@ -13,6 +14,13 @@ from lambdas.foo import hello, bye, double, do
 from lambdas.bar import hello as resilient_hello
 from orkestra import orkestrate
 
+random = Random(0)
+
+
+def id_(s: str):
+    unique_postfix = "".join(random.sample(string.hexdigits, 4))
+    return f"s_{unique_postfix}"
+
 
 class RegularConstruct(cdk.Construct):
     def __init__(self, scope, id, **kwargs):
@@ -20,7 +28,7 @@ class RegularConstruct(cdk.Construct):
 
         lambda_fn = aws_lambda_python.PythonFunction(
             self,
-            "exampleFunction",
+            id_("example_function"),
             entry="lambdas/",
             runtime=aws_lambda.Runtime.PYTHON_3_8,
             tracing=aws_lambda.Tracing.ACTIVE,
@@ -28,20 +36,20 @@ class RegularConstruct(cdk.Construct):
 
         definition = sfn_tasks.LambdaInvoke(
             self,
-            "exampleLambdaTask",
+            id_("example_task"),
             lambda_function=lambda_fn,
             payload_response_only=True,
         ).next(
             sfn_tasks.LambdaInvoke(
                 self,
-                "exampleLambdaTask2",
+                id_("example_task"),
                 lambda_function=lambda_fn,
             )
         )
 
         state_machine = sfn.StateMachine(
             self,
-            "exampleStateMachine",
+            id_("example_state_machine"),
             definition=definition,
             tracing_enabled=True,
             state_machine_name="example_state_machine",
@@ -54,7 +62,7 @@ class SlightlyMoreComposed(cdk.Construct):
 
         lambda_fn = aws_lambda_python.PythonFunction(
             self,
-            "exampleFunction2",
+            id_("example_function"),
             entry="lambdas/",
             runtime=aws_lambda.Runtime.PYTHON_3_8,
             tracing=aws_lambda.Tracing.ACTIVE,
@@ -64,26 +72,26 @@ class SlightlyMoreComposed(cdk.Construct):
             orkestrate(
                 sfn_tasks.LambdaInvoke(
                     self,
-                    "exampleLambdaTask3",
+                    id_("example_lambda_task"),
                     lambda_function=lambda_fn,
                     payload_response_only=True,
                 )
             )
             >> sfn_tasks.LambdaInvoke(
                 self,
-                "exampleLambdaTask4",
+                id_("example_lambda_task"),
                 lambda_function=lambda_fn,
             )
             >> sfn_tasks.LambdaInvoke(
                 self,
-                "exampleLambdaTask5",
+                id_("example_lambda_task"),
                 lambda_function=lambda_fn,
             )
         )
 
         state_machine_2 = sfn.StateMachine(
             self,
-            "exampleStateMachine2",
+            id_("example_state_machine"),
             definition=definition_2,
             tracing_enabled=True,
             state_machine_name="example_composed_state_machine",
@@ -100,10 +108,10 @@ class ComposedConstruct(cdk.Construct):
 
         state_machine = sfn.StateMachine(
             self,
-            "composed_sfn_2",
+            id_("composed_sfn"),
             definition=definition,
             tracing_enabled=True,
-            state_machine_name="example_composed_2",
+            state_machine_name="simple_composition",
         )
 
 
@@ -113,10 +121,10 @@ class MoreComposed(cdk.Construct):
 
         state_machine = sfn.StateMachine(
             self,
-            "composed_sfn_3",
+            id_("composed_sfn"),
             definition=hello.definition(self),
             tracing_enabled=True,
-            state_machine_name="example_composed_3",
+            state_machine_name="composed_from_definition",
         )
 
 
@@ -124,7 +132,9 @@ class UltraComposed(cdk.Construct):
     def __init__(self, scope, id, **kwargs):
         super().__init__(scope, id, **kwargs)
 
-        hello.state_machine(self)
+        hello.state_machine(
+            self, state_machine_name="composed_from_state_machine_method"
+        )
 
 
 class ScheduledSfn(cdk.Construct):
@@ -145,28 +155,31 @@ class ResilientScheduledSfn(cdk.Construct):
     def __init__(self, scope, id, **kwargs):
         super().__init__(scope, id, **kwargs)
 
-        resilient_hello.schedule(self)
+        resilient_hello.schedule(
+            self,
+            state_machine_name="scheduled_resilient_parallel_example",
+        )
 
 
 class ExampleStack(cdk.Stack):
     def __init__(self, scope, *args, **kwargs):
         super().__init__(scope, *args, **kwargs)
 
-        RegularConstruct(self, "regularConstruct")
+        RegularConstruct(self, "regular_construct")
 
-        SlightlyMoreComposed(self, "almostComposed")
+        SlightlyMoreComposed(self, "slightly_composed")
 
         ComposedConstruct(self, "composed")
 
-        MoreComposed(self, "moreComposed")
+        MoreComposed(self, "more_composed")
 
-        UltraComposed(self, "ultraComposed")
+        UltraComposed(self, "ultra_composed")
 
-        ScheduledLambda(self, "scheduledLambda")
+        ScheduledLambda(self, "scheduled_lambda")
 
-        ScheduledSfn(self, "scheduledSFN")
+        ScheduledSfn(self, "scheduled_sfn")
 
-        ResilientScheduledSfn(self, "resilientScheduledSfn")
+        ResilientScheduledSfn(self, "resilient_scheduled_sfn")
 
 
 app = cdk.App()
@@ -174,7 +187,7 @@ app = cdk.App()
 
 ExampleStack(
     app,
-    "ExampleComposerStack",
+    "ExampleOrkestraStack",
     # If you don't specify 'env', this stack will be environment-agnostic.
     # Account/Region-dependent features and context lookups will not work,
     # but a single synthesized template can be deployed anywhere.

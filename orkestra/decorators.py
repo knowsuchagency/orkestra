@@ -1,7 +1,7 @@
-from pathlib import Path
-from typing import *
-from random import Random
 import string
+from pathlib import Path
+from random import Random
+from typing import *
 
 from orkestra.interfaces import ComposableAdjacencyList
 from orkestra.utils import orkestrate
@@ -147,8 +147,8 @@ class Compose:
         **kwargs,
     ):
 
-        from aws_cdk import aws_stepfunctions_tasks as sfn_tasks
         from aws_cdk import aws_stepfunctions as sfn
+        from aws_cdk import aws_stepfunctions_tasks as sfn_tasks
 
         if not isinstance(self.func, (list, tuple)):
 
@@ -179,14 +179,6 @@ class Compose:
             task = sfn.Parallel(
                 scope, "parallelize {}".format([c.func.__name__ for c in self.func])
             )
-
-            # TODO: remove pass for catch when done testing
-
-            # capture_errors = sfn.Pass(scope, f"handle_errors")
-
-            # task.add_catch(capture_errors)
-
-            # capture_errors.next(sfn.Fail(scope, "Fail"))
 
             for fn in self.func:
 
@@ -230,7 +222,12 @@ class Compose:
         return definition
 
     def state_machine(
-        self, scope, id=None, tracing_enabled=True, state_machine_name=None, **kwargs
+        self,
+        scope,
+        id=None,
+        tracing_enabled=True,
+        state_machine_name=None,
+        **kwargs,
     ):
 
         from aws_cdk import aws_stepfunctions as sfn
@@ -258,6 +255,7 @@ class Compose:
         week_day: Optional[str] = None,
         year: Optional[str] = None,
         function_name=None,
+        state_machine_name=None,
         dead_letter_queue_enabled=True,
         **kwargs,
     ):
@@ -293,7 +291,10 @@ class Compose:
             )
             target = eventbridge_targets.LambdaFunction(handler=fn)
         else:
-            state_machine = self.state_machine(scope)
+            state_machine = self.state_machine(
+                scope,
+                state_machine_name=state_machine_name,
+            )
             target = eventbridge_targets.SfnStateMachine(machine=state_machine)
 
         rule.add_target(target)
