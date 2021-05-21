@@ -12,8 +12,8 @@ requires-python = ">=3.8"
 version = "0.2.0"
 
 [project.urls]
-Repository = "https://github.com/knowsuchagency/composer"
-homepage = "https://github.com/knowsuchagency/composer"
+Repository = "https://github.com/knowsuchagency/orkestra"
+homepage = "https://github.com/knowsuchagency/orkestra"
 
 [project.optional-dependencies]
 cdk = [
