@@ -19,24 +19,11 @@ class Compose:
     def __init__(
         self,
         func: OptionalFn = None,
-        id=None,
-        function_name=None,
-        tracing=None,
-        runtime=None,
-        dead_letter_queue_enabled=True,
         **aws_lambda_constructor_kwargs,
     ):
 
         self.func = func
         self.downstream = []
-
-        aws_lambda_constructor_kwargs.update(
-            id=id,
-            function_name=function_name,
-            tracing=tracing,
-            runtime=runtime,
-            dead_letter_queue_enabled=dead_letter_queue_enabled,
-        )
 
         self.aws_lambda_constructor_kwargs = aws_lambda_constructor_kwargs
 
@@ -119,9 +106,7 @@ class Compose:
 
         keyword_args.update(composable.aws_lambda_constructor_kwargs)
 
-        popped_id = keyword_args.pop("id")
-
-        id = id or popped_id or f"{composable.func.__name__}_fn_{sample()}"
+        id = id or f"{composable.func.__name__}_fn_{sample()}"
 
         return aws_lambda_python.PythonFunction(
             scope,
