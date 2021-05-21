@@ -83,7 +83,7 @@ class Compose:
         function_name=None,
         tracing=None,
         runtime=None,
-        dead_letter_queue_enabled=True,
+        dead_letter_queue_enabled=False,
         **kwargs,
     ):
 
@@ -121,7 +121,7 @@ class Compose:
         function_name=None,
         tracing=None,
         runtime=None,
-        dead_letter_queue_enabled=True,
+        dead_letter_queue_enabled=False,
         **kwargs,
     ):
 
@@ -257,7 +257,7 @@ class Compose:
         year: Optional[str] = None,
         function_name=None,
         state_machine_name=None,
-        dead_letter_queue_enabled=True,
+        dead_letter_queue_enabled=False,
         **kwargs,
     ):
         from aws_cdk import aws_events as eventbridge
