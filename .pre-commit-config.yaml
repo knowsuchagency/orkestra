@@ -1,0 +1,38 @@
+repos:
+  - repo: git://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+      - id: check-merge-conflict
+      - id: check-json
+      - id: check-yaml
+      - id: sort-simple-yaml
+      - id: end-of-file-fixer
+        types: [non-executable, file, text]
+        exclude: ^site
+      - id: trailing-whitespace
+        exclude: ^site
+        types: [non-executable, file, text]
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.6.3
+    hooks:
+      - id: isort
+        name: isort (python)
+      - id: isort
+        name: isort (cython)
+        types: [cython]
+      - id: isort
+        name: isort (pyi)
+        types: [pyi]
+
+  - repo: https://github.com/psf/black
+    rev: 21.5b1 # Replace by any tag/version: https://github.com/psf/black/tags
+    hooks:
+      - id: black
+        language_version: python3 # Should be a command that runs python3.6+
+
+  - repo: https://github.com/hadialqattan/pycln
+    rev: v0.0.2 # Possible releases: https://github.com/hadialqattan/pycln/tags
+    hooks:
+      - id: pycln
+        # args: [--config=pyproject.toml]

@@ -52,7 +52,9 @@ class Compose:
         else:
             func = event_or_func
             return Compose(
-                func=func, context=context, **self.aws_lambda_constructor_kwargs
+                func=func,
+                context=context,
+                **self.aws_lambda_constructor_kwargs,
             )
 
     def __repr__(self) -> str:
@@ -74,7 +76,9 @@ class Compose:
         self,
         right: Union[ComposableAdjacencyList, List[ComposableAdjacencyList]],
     ):
-        right = Compose(func=right) if isinstance(right, (list, tuple)) else right
+        right = (
+            Compose(func=right) if isinstance(right, (list, tuple)) else right
+        )
         self.downstream.append(right)
         return right
 
@@ -177,7 +181,8 @@ class Compose:
         else:
 
             task = sfn.Parallel(
-                scope, "parallelize {}".format([c.func.__name__ for c in self.func])
+                scope,
+                "parallelize {}".format([c.func.__name__ for c in self.func]),
             )
 
             for fn in self.func:
@@ -199,7 +204,9 @@ class Compose:
 
                 if isinstance(self.func, tuple):
 
-                    branch.add_catch(sfn.Pass(scope, f"{fn.func.__name__}_failed"))
+                    branch.add_catch(
+                        sfn.Pass(scope, f"{fn.func.__name__}_failed")
+                    )
 
                 task.branch(branch)
 

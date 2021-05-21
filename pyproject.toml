@@ -28,8 +28,30 @@ cdk = [
 build-backend = "pdm.pep517.api"
 requires = ["pdm-pep517"]
 
+[tool.black]
+line-length = 79
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | \.history
+  | _build
+  | buck-out
+  | build
+  | dist
+  | __pypackages__
+  | cdk.out
+)/
+'''
+
 [tool.pdm.scripts]
 _.env_file = ".env"
+
+format = "black ./"
 
 synth = "cdk synth"
 
@@ -61,6 +83,8 @@ pdm run publish
 
 [tool.pdm.dev-dependencies]
 dev = [
-  "loguru~=0.5",
-  "klaxon",
+    "loguru~=0.5",
+    "klaxon",
+    "pre-commit~=2.12",
+    "black~=21.5b1",
 ]

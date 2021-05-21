@@ -14,4 +14,5 @@ def make_composable(obj: T) -> T:
     obj.__class__.__rshift__ = rshift
     return obj
 
+
 coerce = make_composable

@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
-import os
-from random import Random
 import string
+from random import Random
 
-from aws_cdk import core as cdk
 from aws_cdk import aws_events as eventbridge
 from aws_cdk import aws_events_targets as eventbridge_targets
 from aws_cdk import aws_lambda, aws_lambda_python
 from aws_cdk import aws_stepfunctions as sfn
 from aws_cdk import aws_stepfunctions_tasks as sfn_tasks
+from aws_cdk import core as cdk
 
-from lambdas.foo import hello, bye, double, do
 from lambdas.bar import hello as resilient_hello
+from lambdas.foo import bye, do, double, hello
 from orkestra import coerce
 
 random = Random(0)
@@ -103,7 +102,10 @@ class ComposedConstruct(cdk.Construct):
         super().__init__(scope, id, **kwargs)
 
         definition = (
-            hello.task(self) >> bye.task(self) >> double.task(self) >> do.task(self)
+            hello.task(self)
+            >> bye.task(self)
+            >> double.task(self)
+            >> do.task(self)
         )
 
         state_machine = sfn.StateMachine(
