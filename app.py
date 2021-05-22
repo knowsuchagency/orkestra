@@ -2,22 +2,17 @@
 import string
 from random import Random
 
-from aws_cdk import aws_events as eventbridge
-from aws_cdk import aws_events_targets as eventbridge_targets
-from aws_cdk import aws_lambda, aws_lambda_python
-from aws_cdk import aws_stepfunctions as sfn
-from aws_cdk import aws_stepfunctions_tasks as sfn_tasks
 from aws_cdk import core as cdk
 
 from examples.orchestration import (
-    generate_numbers,
+    generate_floats,
+    generate_ints,
     make_person,
     random_food,
     random_int,
 )
 from examples.powertools import generate_person
 from examples.single_lambda import handler
-from orkestra import coerce, compose
 
 random = Random(0)
 
@@ -70,7 +65,11 @@ class Airflowish(cdk.Stack):
 
         # every minute
 
-        generate_numbers.schedule(self, state_machine_name="map_job_example")
+        generate_ints.schedule(self, state_machine_name="map_job_example")
+
+        generate_floats.schedule(
+            self, state_machine_name="parallel_map_jobs_example"
+        )
 
 
 class Powertools(cdk.Stack):

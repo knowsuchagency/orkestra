@@ -1,5 +1,4 @@
 # Orkestra
 
-Cloud worklows made simple.
-
+The elegance of Airflow + the power of AWS
 ## Getting Started

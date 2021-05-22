@@ -70,14 +70,25 @@ def random_error(event, context):
 
 
 @compose
-def generate_numbers(event, context):
+def generate_ints(event, context):
     return [random.randrange(100) for _ in range(10)]
 
 
 @map_job
 @compose
-def halve(n: int, context):
+def halve(n, context):
     return n / 2
+
+
+@compose
+def generate_floats(event, context):
+    return [float(n) for n in range(10)]
+
+
+@compose
+@map_job(comment="double")
+def double(n, context):
+    return n * 2
 
 
 make_person >> greet >> noop
@@ -92,4 +103,6 @@ random_int >> [random_shape, random_animal] >> noop
 
 random_food >> (random_animal, random_error) >> noop
 
-generate_numbers >> halve
+generate_ints >> halve
+
+generate_floats >> (halve, double)

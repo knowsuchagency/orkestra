@@ -35,4 +35,4 @@ repos:
     rev: v0.0.2 # Possible releases: https://github.com/hadialqattan/pycln/tags
     hooks:
       - id: pycln
-        # args: [--config=pyproject.toml]
+        args: [--config=pyproject.toml]
