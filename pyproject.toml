@@ -38,7 +38,6 @@ requires = ["pdm-pep517"]
 
 [tool.isort]
 profile = "black"
-multi_line_output = 3
 
 [tool.black]
 line-length = 79

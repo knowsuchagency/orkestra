@@ -103,6 +103,4 @@ random_int >> [random_shape, random_animal] >> noop
 
 random_food >> (random_animal, random_error) >> noop
 
-generate_ints >> halve
-
-generate_floats >> (halve, double)
+generate_ints >> halve >> generate_floats >> double

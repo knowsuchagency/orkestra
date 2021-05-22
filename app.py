@@ -5,7 +5,6 @@ from random import Random
 from aws_cdk import core as cdk
 
 from examples.orchestration import (
-    generate_floats,
     generate_ints,
     make_person,
     random_food,
@@ -66,10 +65,6 @@ class Airflowish(cdk.Stack):
         # every minute
 
         generate_ints.schedule(self, state_machine_name="map_job_example")
-
-        generate_floats.schedule(
-            self, state_machine_name="parallel_map_jobs_example"
-        )
 
 
 class Powertools(cdk.Stack):
