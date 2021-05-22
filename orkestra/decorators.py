@@ -1,4 +1,5 @@
 import string
+from collections import defaultdict
 from pathlib import Path
 from random import Random
 from typing import *
@@ -10,9 +11,22 @@ OptionalFn = Optional[Union[Callable, Iterable[Callable]]]
 
 random = Random(0)
 
+_id_map = defaultdict(lambda: 1)
+
 
 def _sample(k=4):
     return "".join(random.sample(string.hexdigits, k))
+
+
+def _incremental_id(id):
+
+    mapped = _id_map[id]
+
+    result = id if mapped == 1 else f"{id}{mapped}"
+
+    _id_map[id] += 1
+
+    return result
 
 
 class Compose:
@@ -150,7 +164,7 @@ class Compose:
 
         if self.is_map_job:
 
-            id = id or self.func.__name__
+            id = id or _incremental_id(self.func.__name__)
 
             map_kwargs = dict(id=id)
 
@@ -180,7 +194,7 @@ class Compose:
 
         elif not isinstance(self.func, (list, tuple)):
 
-            id = id or self.func.__name__
+            id = id or _incremental_id(self.func.__name__)
 
             lambda_fn = self.aws_lambda(
                 scope,
@@ -222,7 +236,7 @@ class Compose:
 
                 branch = sfn_tasks.LambdaInvoke(
                     scope,
-                    fn.func.__name__,
+                    _incremental_id(fn.func.__name__),
                     **keyword_args,
                 )
 
