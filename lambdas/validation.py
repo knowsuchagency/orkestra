@@ -10,7 +10,7 @@ from aws_lambda_powertools.utilities.parser import event_parser
 from aws_lambda_powertools.utilities.typing import LambdaContext
 from pydantic import BaseModel
 
-from orkestra import compose
+from orkestra import compose, map_job
 
 SERVICE_NAME = "validation_example"
 
@@ -88,11 +88,12 @@ def generate_numbers(event: list, context: LambdaContext) -> List[int]:
     return [r.randrange(100) for _ in range(1, r.randrange(1, 100))]
 
 
-@compose(map_job=True)
+@map_job(comment="halve the numbers")
+@compose
 @tracer.capture_lambda_handler
 @logger.inject_lambda_context(log_event=True)
-def double(event: int, _):
-    return event * 2
+def halve(event: int, _):
+    return event / 2
 
 
-generate_person >> (greet_person, dismiss_person) >> generate_numbers >> double
+generate_person >> (greet_person, dismiss_person) >> generate_numbers >> halve

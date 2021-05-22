@@ -11,7 +11,7 @@ OptionalFn = Optional[Union[Callable, Iterable[Callable]]]
 random = Random(0)
 
 
-def sample(k=4):
+def _sample(k=4):
     return "".join(random.sample(string.hexdigits, k))
 
 
@@ -19,13 +19,14 @@ class Compose:
     def __init__(
         self,
         func: OptionalFn = None,
-        map_job=False,
         **aws_lambda_constructor_kwargs,
     ):
 
         self.func = func
-        self.map_job = map_job
         self.downstream = []
+
+        self.is_map_job = False
+        self.map_constructor_kwargs = {}
 
         self.aws_lambda_constructor_kwargs = aws_lambda_constructor_kwargs
 
@@ -49,7 +50,7 @@ class Compose:
             func = event_or_func
             return Compose(
                 func=func,
-                map_job=self.map_job,
+                map_job=self.is_map_job,
                 **self.aws_lambda_constructor_kwargs,
             )
 
@@ -106,7 +107,7 @@ class Compose:
 
         keyword_args.update(composable.aws_lambda_constructor_kwargs)
 
-        id = id or f"{composable.func.__name__}_fn_{sample()}"
+        id = id or f"{composable.func.__name__}_fn_{_sample()}"
 
         return aws_lambda_python.PythonFunction(
             scope,
@@ -152,7 +153,11 @@ class Compose:
 
             id = id or self.func.__name__
 
-            task = sfn.Map(scope, id)
+            map_kwargs = dict(id=id)
+
+            map_kwargs.update(self.map_constructor_kwargs)
+
+            task = sfn.Map(scope, **map_kwargs)
 
             lambda_fn = self.aws_lambda(
                 scope,
@@ -259,7 +264,7 @@ class Compose:
 
         from aws_cdk import aws_stepfunctions as sfn
 
-        id = id or f"{self.func.__name__}_sfn_{sample()}"
+        id = id or f"{self.func.__name__}_sfn_{_sample()}"
 
         return sfn.StateMachine(
             scope,
@@ -289,7 +294,7 @@ class Compose:
         from aws_cdk import aws_events as eventbridge
         from aws_cdk import aws_events_targets as eventbridge_targets
 
-        id = id or f"{self.func.__name__}_sched_{sample()}"
+        id = id or f"{self.func.__name__}_sched_{_sample()}"
 
         if expression is not None:
             schedule = eventbridge.Schedule.expression(expression)
@@ -327,6 +332,15 @@ class Compose:
         rule.add_target(target)
 
         return rule
+
+
+def map_job(**kwargs):
+    def decorator(composed: Compose):
+        composed.is_map_job = True
+        composed.map_constructor_kwargs = kwargs
+        return composed
+
+    return map_job
 
 
 compose = Compose
