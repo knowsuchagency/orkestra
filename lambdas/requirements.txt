@@ -2,4 +2,4 @@ aws-lambda-powertools[pydantic]==1.16.0
 pydantic[email]
 loguru
 # orkestra>=0.2.4
-git+https://github.com/knowsuchagency/orkestra.git@feature/map-jobs-2#egg=orkestra
+git+https://github.com/knowsuchagency/orkestra.git@main#egg=orkestra
