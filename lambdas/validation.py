@@ -88,4 +88,11 @@ def generate_numbers(event: list, context: LambdaContext) -> List[int]:
     return [r.randrange(100) for _ in range(1, r.randrange(1, 100))]
 
 
-generate_person >> (greet_person, dismiss_person) >> generate_numbers
+@compose(map_job=True)
+@tracer.capture_lambda_handler
+@logger.inject_lambda_context(log_event=True)
+def double(event: int, _):
+    return event * 2
+
+
+generate_person >> (greet_person, dismiss_person) >> generate_numbers >> double

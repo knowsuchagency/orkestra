@@ -19,10 +19,12 @@ class Compose:
     def __init__(
         self,
         func: OptionalFn = None,
+        map_job=False,
         **aws_lambda_constructor_kwargs,
     ):
 
         self.func = func
+        self.map_job = map_job
         self.downstream = []
 
         self.aws_lambda_constructor_kwargs = aws_lambda_constructor_kwargs
@@ -47,6 +49,7 @@ class Compose:
             func = event_or_func
             return Compose(
                 func=func,
+                map_job=self.map_job,
                 **self.aws_lambda_constructor_kwargs,
             )
 
@@ -65,10 +68,7 @@ class Compose:
             ")"
         )
 
-    def __rshift__(
-        self,
-        right: Union[ComposableAdjacencyList, List[ComposableAdjacencyList]],
-    ):
+    def __rshift__(self, right):
         right = (
             Compose(func=right) if isinstance(right, (list, tuple)) else right
         )
@@ -148,9 +148,33 @@ class Compose:
         from aws_cdk import aws_stepfunctions as sfn
         from aws_cdk import aws_stepfunctions_tasks as sfn_tasks
 
-        if not isinstance(self.func, (list, tuple)):
+        id = id or self.func.__name__
 
-            id = id or self.func.__name__
+        if self.map_job:
+
+            task = sfn.Map(scope, id)
+
+            lambda_fn = self.aws_lambda(
+                scope,
+                function_name=function_name,
+            )
+
+            keyword_args = dict(
+                lambda_function=lambda_fn,
+                payload_response_only=payload_response_only,
+            )
+
+            invoke_lambda = sfn_tasks.LambdaInvoke(
+                scope,
+                f"invoke_{id}",
+                **keyword_args,
+            )
+
+            map.iterator(invoke_lambda)
+
+            return coerce(task)
+
+        elif not isinstance(self.func, (list, tuple)):
 
             lambda_fn = self.aws_lambda(
                 scope,
