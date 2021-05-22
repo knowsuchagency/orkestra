@@ -148,9 +148,9 @@ class Compose:
         from aws_cdk import aws_stepfunctions as sfn
         from aws_cdk import aws_stepfunctions_tasks as sfn_tasks
 
-        id = id or self.func.__name__
-
         if self.map_job:
+
+            id = id or self.func.__name__
 
             task = sfn.Map(scope, id)
 
@@ -170,11 +170,13 @@ class Compose:
                 **keyword_args,
             )
 
-            map.iterator(invoke_lambda)
+            task.iterator(invoke_lambda)
 
             return coerce(task)
 
         elif not isinstance(self.func, (list, tuple)):
+
+            id = id or self.func.__name__
 
             lambda_fn = self.aws_lambda(
                 scope,

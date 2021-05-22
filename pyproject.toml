@@ -63,6 +63,7 @@ synth = "cdk synth"
 
 deploy.shell = """
 set -ex
+pdm run format
 cdk deploy --verbose --require-approval=never
 klaxon --title orkestra --subtitle deployed
 """
