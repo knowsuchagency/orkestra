@@ -1,0 +1,2 @@
+orkestra[powertools]>=0.3.0
+# git+https://github.com/knowsuchagency/orkestra.git@main#egg=orkestra[powertools]

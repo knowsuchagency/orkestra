@@ -15,6 +15,7 @@ readme = "README.md"
 [project.urls]
 Repository = "https://github.com/knowsuchagency/orkestra"
 homepage = "https://github.com/knowsuchagency/orkestra"
+Documentation = "https://knowsuchagency.github.io/orkestra/"
 
 [project.optional-dependencies]
 cdk = [

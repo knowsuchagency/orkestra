@@ -96,4 +96,4 @@ def halve(event: int, _):
     return event / 2
 
 
-generate_person >> (greet_person, dismiss_person) >> generate_numbers >> halve
+generate_person >> [greet_person, dismiss_person] >> generate_numbers >> halve
