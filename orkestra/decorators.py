@@ -50,7 +50,6 @@ class Compose:
             func = event_or_func
             return Compose(
                 func=func,
-                map_job=self.is_map_job,
                 **self.aws_lambda_constructor_kwargs,
             )
 
@@ -149,7 +148,7 @@ class Compose:
         from aws_cdk import aws_stepfunctions as sfn
         from aws_cdk import aws_stepfunctions_tasks as sfn_tasks
 
-        if self.map_job:
+        if self.is_map_job:
 
             id = id or self.func.__name__
 
