@@ -20,6 +20,7 @@ def make_person(event, context) -> Person:
 def greet(person: Person, context) -> Person:
     name = person["name"]
     print(f"Hello, {name}")
+    return person
 
 
 @compose
