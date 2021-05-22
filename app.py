@@ -9,7 +9,7 @@ from aws_cdk import aws_stepfunctions as sfn
 from aws_cdk import aws_stepfunctions_tasks as sfn_tasks
 from aws_cdk import core as cdk
 
-from examples.orchestration import make_person
+from examples.airflowish import make_person, random_food, say_hello
 from examples.powertools import generate_person
 from examples.single_lambda import handler
 from orkestra import coerce, compose
@@ -35,7 +35,27 @@ class Airflowish(cdk.Stack):
 
         super().__init__(scope, id, **kwargs)
 
-        make_person.schedule(self, expression="rate(5 minutes)")
+        make_person.schedule(
+            self,
+            expression="rate(5 minutes)",
+            state_machine_name="simple_chain_example",
+        )
+
+        # every day at 12 UTC
+
+        say_hello.schedule(
+            self,
+            expression="cron(0 12 * * ? *)",
+            state_machine_name="simple_parallism_example",
+        )
+
+        # top of every hour
+
+        random_food.schedule(
+            self,
+            minute="0",
+            state_machine_name="resilient_parallelism_example",
+        )
 
 
 class Powertools(cdk.Stack):

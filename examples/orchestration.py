@@ -1,32 +1,14 @@
 import random
-from typing import TypedDict
-
-from orkestra import compose
+import string
 
 
-class Person(TypedDict):
-    name: str
-    age: int
+def random_string(event, context):
+    return random.sample(string.hexdigits, 4)
 
 
-@compose
-def make_person(event, context) -> Person:
-    name = random.choice(["Sam", "Alex", "Jay"])
-    age = random.randrange(1, 100)
-    return {"name": name, "age": age}
+def random_int(event, context):
+    return random.randrange(100)
 
 
-@compose
-def greet(person: Person, context) -> Person:
-    name = person["name"]
-    print(f"Hello, {name}")
-    return person
-
-
-@compose
-def dismiss(person: Person, context):
-    name = person["name"]
-    print(f"Goodbye, {name}")
-
-
-make_person >> greet >> dismiss
+def random_float(event, context):
+    return random.randrange(101, 9999) / 100

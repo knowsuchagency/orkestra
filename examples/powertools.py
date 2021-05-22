@@ -1,7 +1,7 @@
+import os
 import random
 import time
 from contextlib import contextmanager
-from dataclasses import dataclass
 from typing import *
 from typing import TypedDict
 
@@ -14,6 +14,8 @@ from orkestra import compose, map_job
 
 SERVICE_NAME = "validation_example"
 
+os.environ.setdefault("POWERTOOLS_SERVICE_NAME", SERVICE_NAME)
+
 
 class Person(BaseModel):
     name: str
@@ -25,19 +27,9 @@ class PersonDict(TypedDict):
     age: str
 
 
-@dataclass
-class DummyContext:
-    function_name: str = "test"
-    memory_limit_in_mb: int = 128
-    invoked_function_arn: str = (
-        "arn:aws:lambda:eu-west-1:809313241:function:test"
-    )
-    aws_request_id: str = "52fdfc07-2182-154f-163f-5f0f9a621d72"
+tracer = Tracer()
 
-
-tracer = Tracer(service=SERVICE_NAME)
-
-logger = Logger(service=SERVICE_NAME)
+logger = Logger()
 
 
 @tracer.capture_method
@@ -96,4 +88,4 @@ def halve(event: int, _):
     return event / 2
 
 
-generate_person >> [greet_person, dismiss_person] >> generate_numbers >> halve
+generate_person >> (greet_person, dismiss_person) >> generate_numbers >> halve
