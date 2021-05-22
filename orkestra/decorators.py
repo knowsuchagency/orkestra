@@ -4,7 +4,6 @@ from pathlib import Path
 from random import Random
 from typing import *
 
-from orkestra.interfaces import ComposableAdjacencyList
 from orkestra.utils import coerce
 
 OptionalFn = Optional[Union[Callable, Iterable[Callable]]]
@@ -347,13 +346,16 @@ class Compose:
         return rule
 
 
-def map_job(**kwargs):
+def map_job(decorated=None, **kwargs):
     def decorator(composed: Compose):
         composed.is_map_job = True
         composed.map_constructor_kwargs = kwargs
         return composed
 
-    return decorator
+    if decorated is not None:
+        return decorator(decorated)
+    else:
+        return decorator
 
 
 compose = Compose

@@ -9,7 +9,12 @@ from aws_cdk import aws_stepfunctions as sfn
 from aws_cdk import aws_stepfunctions_tasks as sfn_tasks
 from aws_cdk import core as cdk
 
-from examples.airflowish import make_person, random_food, say_hello
+from examples.orchestration import (
+    generate_numbers,
+    make_person,
+    random_food,
+    random_int,
+)
 from examples.powertools import generate_person
 from examples.single_lambda import handler
 from orkestra import coerce, compose
@@ -23,6 +28,8 @@ def id_(s: str):
 
 
 class SingleLambda(cdk.Stack):
+    """Single lambda deployment example."""
+
     def __init__(self, scope, id, **kwargs):
 
         super().__init__(scope, id, **kwargs)
@@ -31,6 +38,10 @@ class SingleLambda(cdk.Stack):
 
 
 class Airflowish(cdk.Stack):
+    """
+    In this stack, composition happens in the same module in which the functions are defined, like airflow.
+    """
+
     def __init__(self, scope, id, **kwargs):
 
         super().__init__(scope, id, **kwargs)
@@ -43,7 +54,7 @@ class Airflowish(cdk.Stack):
 
         # every day at 12 UTC
 
-        say_hello.schedule(
+        random_int.schedule(
             self,
             expression="cron(0 12 * * ? *)",
             state_machine_name="simple_parallism_example",
@@ -56,6 +67,10 @@ class Airflowish(cdk.Stack):
             minute="0",
             state_machine_name="resilient_parallelism_example",
         )
+
+        # every minute
+
+        generate_numbers.schedule(self, state_machine_name="map_job_example")
 
 
 class Powertools(cdk.Stack):

@@ -75,9 +75,7 @@ def dismiss_person(person: Person, context: LambdaContext) -> int:
 @tracer.capture_lambda_handler
 @logger.inject_lambda_context(log_event=True)
 def generate_numbers(event: list, context: LambdaContext) -> List[int]:
-    logger.info("collating", extra={"extra": {"event": event}})
-    r = random.Random("".join(map(str, event)))
-    return [r.randrange(100) for _ in range(1, r.randrange(1, 100))]
+    return [random.randrange(100) for _ in range(50)]
 
 
 @map_job(comment="halve the numbers")
