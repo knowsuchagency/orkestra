@@ -1,0 +1,46 @@
+site_name: Orkestra
+
+repo_url: https://github.com/knowsuchagency/orkestra
+
+theme:
+  name: material
+  custom_dir: docs/theme
+  palette:
+    scheme: dracula
+    primary: deep purple
+    accent: deep purple
+  font:
+    text: Roboto
+    code: Roboto Mono
+  logo: assets/ork_light.svg
+  favicon: assets/ork_light.svg
+  features:
+    - navigation.tabs
+
+nav:
+  - Home: home.md
+
+
+markdown_extensions:
+  - toc:
+      permalink: "#"
+  - pymdownx.highlight:
+      linenums: true
+  - pymdownx.magiclink:
+      repo_url_shortener: true
+      repo_url_shorthand: true
+      hide_protocol: true
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.saneheaders
+  - pymdownx.tabbed
+  - pymdownx.mark
+  - pymdownx.tilde
+  - admonition
+  - tables
+
+extra_css:
+  - assets/pymdownx-extras/extra-7a1297c0a9.css
+
+plugins:
+  - search

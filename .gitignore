@@ -132,3 +132,4 @@ dmypy.json
 .pdm.toml
 .vscode/
 cdk.out/
+.DS_Store
