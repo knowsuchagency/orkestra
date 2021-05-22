@@ -18,7 +18,7 @@ theme:
     - navigation.tabs
 
 nav:
-  - Home: home.md
+  - Home: index.md
 
 
 markdown_extensions:
