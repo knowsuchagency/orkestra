@@ -340,7 +340,7 @@ def map_job(**kwargs):
         composed.map_constructor_kwargs = kwargs
         return composed
 
-    return map_job
+    return decorator
 
 
 compose = Compose
