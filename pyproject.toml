@@ -9,7 +9,7 @@ keywords = ["orchestration", "aws", "cloud"]
 license = {text = "MIT"}
 name = "orkestra"
 requires-python = ">=3.8"
-version = "0.3.4"
+version = "0.3.5"
 readme = "README.md"
 
 [project.urls]
@@ -93,6 +93,11 @@ _.env_file = ".env"
 format = "black ./"
 
 synth = "cdk synth"
+
+build.shell = """
+set -ex
+cp -R orkestra examples/orkestra
+"""
 
 deploy.shell = """
 set -ex

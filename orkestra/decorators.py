@@ -75,6 +75,7 @@ class Compose:
             func = event_or_func
             return Compose(
                 func=func,
+                timeout=self.timeout,
                 **self.aws_lambda_constructor_kwargs,
             )
 

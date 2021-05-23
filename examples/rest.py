@@ -48,6 +48,9 @@ def process_order(order: Order, context):
     return order
 
 
+input_order >> process_order
+
+
 @app.put("/order/{id}", response_model=OrderResponse)
 def order(id: str) -> OrderResponse:
     client = boto3.client("stepfunctions")

@@ -5,10 +5,10 @@ from enum import Enum
 from operator import methodcaller
 from typing import Protocol, runtime_checkable, Union
 
-Numeric = Union[int, float]
+Number = Union[int, float]
 
 
-class Metric(Enum):
+class DurationMetric(Enum):
     days = "days"
     hours = "hours"
     millis = "millis"
@@ -18,8 +18,8 @@ class Metric(Enum):
 
 @dataclass
 class Duration:
-    unit: Metric
-    amount: Numeric
+    unit: DurationMetric
+    amount: Number
 
     @property
     def construct(self):
@@ -30,24 +30,24 @@ class Duration:
         return f(cdk.Duration)
 
     @classmethod
-    def days(cls, amount: Numeric):
-        return cls(unit=Metric.days, amount=amount)
+    def days(cls, amount: Number):
+        return cls(unit=DurationMetric.days, amount=amount)
 
     @classmethod
-    def hours(cls, amount: Numeric):
-        return cls(unit=Metric.hours, amount=amount)
+    def hours(cls, amount: Number):
+        return cls(unit=DurationMetric.hours, amount=amount)
 
     @classmethod
-    def millis(cls, amount: Numeric):
-        return cls(unit=Metric.millis, amount=amount)
+    def millis(cls, amount: Number):
+        return cls(unit=DurationMetric.millis, amount=amount)
 
     @classmethod
-    def minutes(cls, amount: Numeric):
-        return cls(unit=Metric.minutes, amount=amount)
+    def minutes(cls, amount: Number):
+        return cls(unit=DurationMetric.minutes, amount=amount)
 
     @classmethod
-    def seconds(cls, amount: Numeric):
-        return cls(unit=Metric.seconds, amount=amount)
+    def seconds(cls, amount: Number):
+        return cls(unit=DurationMetric.seconds, amount=amount)
 
 
 @runtime_checkable
