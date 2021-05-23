@@ -67,6 +67,9 @@ dev = [
     "black~=21.5b1",
     "aws-lambda-powertools~=1.16",
 ]
+test = [
+    "pytest~=6.2",
+]
 
 [tool.pdm.scripts]
 _.env_file = ".env"
@@ -104,3 +107,5 @@ pdm run publish
 """
 
 docs = "mkdocs serve"
+
+test = "pytest tests/"

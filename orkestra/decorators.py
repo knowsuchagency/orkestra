@@ -189,8 +189,6 @@ class Compose:
 
             task.iterator(invoke_lambda)
 
-            return coerce(task)
-
         elif not isinstance(self.func, (list, tuple)):
 
             id = id or _incremental_id(self.func.__name__)
@@ -207,12 +205,10 @@ class Compose:
 
             keyword_args.update(kwargs)
 
-            return coerce(
-                sfn_tasks.LambdaInvoke(
-                    scope,
-                    id,
-                    **keyword_args,
-                )
+            task = sfn_tasks.LambdaInvoke(
+                scope,
+                id,
+                **keyword_args,
             )
 
         else:
@@ -247,7 +243,7 @@ class Compose:
 
                 task.branch(branch)
 
-            return coerce(task)
+        return coerce(task)
 
     def definition(
         self,

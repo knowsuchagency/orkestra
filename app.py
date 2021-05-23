@@ -9,9 +9,16 @@ from examples.orchestration import (
     make_person,
     random_food,
     random_int,
+    random_shape,
+    random_animal,
 )
 from examples.powertools import generate_person
 from examples.single_lambda import handler
+
+from orkestra import coerce
+from aws_cdk import aws_stepfunctions_tasks as sfn_tasks
+
+from aws_cdk import aws_stepfunctions as sfn
 
 random = Random(0)
 
@@ -28,7 +35,11 @@ class SingleLambda(cdk.Stack):
 
         super().__init__(scope, id, **kwargs)
 
-        fn = handler.aws_lambda(self)
+        handler.aws_lambda(self)
+
+        handler.state_machine(
+            self, state_machine_name="simple_state_machine_example"
+        )
 
 
 class Airflowish(cdk.Stack):
@@ -67,6 +78,47 @@ class Airflowish(cdk.Stack):
         generate_ints.schedule(self, state_machine_name="map_job_example")
 
 
+class CdkComposition(cdk.Stack):
+    def __init__(self, scope, id, **kwargs):
+        super().__init__(scope, id, **kwargs)
+
+        make_person.state_machine(
+            self, state_machine_name="non_scheduled_simple_chain_example"
+        )
+
+        task_composition_def = (
+            random_int.task(self)
+            >> random_shape.task(self)
+            >> random_animal.task(self)
+        )
+
+        sfn.StateMachine(
+            self,
+            "composed_task_sfn",
+            definition=task_composition_def,
+            state_machine_name="cdk_task_composition_example",
+        )
+
+        wait_1 = sfn.Wait(
+            self,
+            "wait1",
+            time=sfn.WaitTime.duration(cdk.Duration.seconds(1)),
+        )
+
+        simple_coercion_def = (
+            coerce(wait_1)
+            >> random_int.task(self)
+            >> sfn.Succeed(self, "great_success")
+        )
+
+        sfn.StateMachine(
+            self,
+            "simple_coercion_sfn",
+            definition=simple_coercion_def,
+            state_machine_name="simple_coercion_example",
+        )
+
+
 class Powertools(cdk.Stack):
     def __init__(self, scope, id, **kwargs):
         super().__init__(scope, id, **kwargs)
@@ -79,11 +131,20 @@ class Powertools(cdk.Stack):
 
 app = cdk.App()
 
-Powertools(app, "powertools")
 
-SingleLambda(app, "singleLambda")
+def synth(app=app):
 
-Airflowish(app, "airflowish")
+    Powertools(app, "powertools")
+
+    SingleLambda(app, "singleLambda")
+
+    Airflowish(app, "airflowish")
+
+    CdkComposition(app, "cdkComposition")
+
+    app.synth()
 
 
-app.synth()
+if __name__ == "__main__":
+
+    synth()
