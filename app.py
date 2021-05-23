@@ -2,6 +2,8 @@
 import string
 from random import Random
 
+from aws_cdk import aws_lambda_python
+from aws_cdk import aws_stepfunctions as sfn
 from aws_cdk import core as cdk
 
 from examples.orchestration import (
@@ -13,12 +15,10 @@ from examples.orchestration import (
     random_animal,
 )
 from examples.powertools import generate_person
+from examples.rest import handler, input_order
 from examples.single_lambda import handler
-
-from orkestra import coerce
-from aws_cdk import aws_stepfunctions_tasks as sfn_tasks
-
-from aws_cdk import aws_stepfunctions as sfn
+from orkestra import coerce, compose
+from aws_cdk import aws_apigateway as apigw
 
 random = Random(0)
 
@@ -129,6 +129,31 @@ class Powertools(cdk.Stack):
         )
 
 
+class RestExample(cdk.Stack):
+    def __init__(self, scope, id, **kwargs):
+
+        super().__init__(scope, id, **kwargs)
+
+        state_machine: sfn.StateMachine
+
+        state_machine = input_order.state_machine(
+            self,
+            state_machine_name="process_order_example",
+        )
+
+        fn = aws_lambda_python.PythonFunction(
+            self,
+            "example_api_handler",
+            entry="./examples/",
+            index="rest.py",
+            environment={"STATE_MACHINE_ARN": state_machine.state_machine_arn},
+        )
+
+        state_machine.grant_execution(fn)
+
+        api = apigw.LambdaRestApi(self, "example_api", handler=fn)
+
+
 app = cdk.App()
 
 
@@ -141,6 +166,8 @@ def synth(app=app):
     Airflowish(app, "airflowish")
 
     CdkComposition(app, "cdkComposition")
+
+    RestExample(app, "rest")
 
     app.synth()
 

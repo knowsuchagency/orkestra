@@ -13,13 +13,13 @@ summary = "Atomic file writes."
 
 [[package]]
 name = "attrs"
-sections = ["cdk", "test"]
+sections = ["cdk", "dev", "test"]
 version = "20.3.0"
 summary = "Classes Without Boilerplate"
 
 [[package]]
 name = "aws-cdk.assets"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "This module is deprecated. All types are now available under the core module"
 dependencies = [
@@ -32,7 +32,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-apigateway"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::ApiGateway"
 dependencies = [
@@ -55,7 +55,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-applicationautoscaling"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::ApplicationAutoScaling"
 dependencies = [
@@ -89,7 +89,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-autoscaling-common"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "Common implementation package for @aws-cdk/aws-autoscaling and @aws-cdk/aws-applicationautoscaling"
 dependencies = [
@@ -121,7 +121,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-certificatemanager"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::CertificateManager"
 dependencies = [
@@ -136,7 +136,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-cloudformation"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::CloudFormation"
 dependencies = [
@@ -173,7 +173,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-cloudwatch"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::CloudWatch"
 dependencies = [
@@ -226,7 +226,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-codeguruprofiler"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::CodeGuruProfiler"
 dependencies = [
@@ -255,7 +255,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-cognito"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::Cognito"
 dependencies = [
@@ -289,7 +289,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-ec2"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::EC2"
 dependencies = [
@@ -311,7 +311,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-ecr"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::ECR"
 dependencies = [
@@ -325,7 +325,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-ecr-assets"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "Docker image assets deployed to ECR"
 dependencies = [
@@ -378,7 +378,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-efs"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::EFS"
 dependencies = [
@@ -428,7 +428,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-elasticloadbalancingv2"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::ElasticLoadBalancingV2"
 dependencies = [
@@ -449,7 +449,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-events"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "Amazon EventBridge Construct Library"
 dependencies = [
@@ -505,7 +505,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-iam"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "CDK routines for easily assigning correct and minimal IAM permissions"
 dependencies = [
@@ -546,7 +546,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-kms"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::KMS"
 dependencies = [
@@ -560,7 +560,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-lambda"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::Lambda"
 dependencies = [
@@ -602,7 +602,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-logs"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::Logs"
 dependencies = [
@@ -618,7 +618,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-route53"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::Route53"
 dependencies = [
@@ -658,7 +658,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-s3"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::S3"
 dependencies = [
@@ -674,7 +674,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-s3-assets"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "Deploy local files and directories to S3"
 dependencies = [
@@ -736,7 +736,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-signer"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::Signer"
 dependencies = [
@@ -748,7 +748,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-sns"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::SNS"
 dependencies = [
@@ -781,7 +781,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-sqs"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::SQS"
 dependencies = [
@@ -796,7 +796,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-ssm"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "The CDK Construct Library for AWS::SSM"
 dependencies = [
@@ -856,7 +856,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.cloud-assembly-schema"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "Cloud Assembly Schema"
 dependencies = [
@@ -866,7 +866,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.core"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "AWS Cloud Development Kit Core Library"
 dependencies = [
@@ -880,7 +880,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.custom-resources"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "Constructs for implementing CDK custom resources"
 dependencies = [
@@ -898,7 +898,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.cx-api"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "Cloud executable protocol"
 dependencies = [
@@ -935,7 +935,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.region-info"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.105.0"
 summary = "AWS region information, such as service principal names"
 dependencies = [
@@ -1020,7 +1020,7 @@ dependencies = [
 
 [[package]]
 name = "cattrs"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.5.0"
 marker = "python_version >= '3.7'"
 summary = "Composable complex class support for attrs and dataclasses."
@@ -1052,7 +1052,7 @@ summary = "Cross-platform colored terminal text."
 
 [[package]]
 name = "constructs"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "3.3.75"
 summary = "A programming model for composable configuration"
 dependencies = [
@@ -1080,6 +1080,16 @@ summary = "A robust email syntax and deliverability validation library for Pytho
 dependencies = [
     "idna>=2.0.0",
     "dnspython>=1.15.0",
+]
+
+[[package]]
+name = "fastapi"
+sections = ["dev"]
+version = "0.65.1"
+summary = "FastAPI framework, high performance, easy to learn, fast to code, ready for production"
+dependencies = [
+    "starlette==0.14.2",
+    "pydantic!=1.7,!=1.7.1,!=1.7.2,!=1.7.3,!=1.8,!=1.8.1,<2.0.0,>=1.6.2",
 ]
 
 [[package]]
@@ -1137,11 +1147,12 @@ summary = "JSON Matching Expressions"
 name = "joblib"
 sections = ["dev"]
 version = "1.0.1"
+marker = "python_version >= '2.8'"
 summary = "Lightweight pipelining with Python functions"
 
 [[package]]
 name = "jsii"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.29.0"
 summary = "Python client for jsii runtime"
 dependencies = [
@@ -1191,6 +1202,15 @@ dependencies = [
     "six>=1.11.0",
     "nltk>=3.2.5; python_version > \"2.7\"",
     "lunr==0.5.8",
+]
+
+[[package]]
+name = "mangum"
+sections = ["dev"]
+version = "0.11.0"
+summary = "AWS Lambda & API Gateway support for ASGI"
+dependencies = [
+    "typing-extensions",
 ]
 
 [[package]]
@@ -1304,7 +1324,7 @@ dependencies = [
 
 [[package]]
 name = "publication"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "0.0.3"
 summary = "Publication helps you maintain public-api-friendly modules by preventing unintentional access to private implementation details via introspection."
 
@@ -1316,7 +1336,7 @@ summary = "library with cross-python path, ini-parsing, io, code, log facilities
 
 [[package]]
 name = "pydantic"
-sections = ["powertools"]
+sections = ["dev", "powertools"]
 version = "1.8.2"
 summary = "Data validation and settings management using python 3.6 type hinting"
 dependencies = [
@@ -1382,6 +1402,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "python-dotenv"
+sections = ["dev"]
+version = "0.17.1"
+summary = "Read key-value pairs from a .env file and set them as environment variables"
+
+[[package]]
 name = "pyyaml"
 sections = ["dev"]
 version = "5.4.1"
@@ -1409,6 +1435,12 @@ version = "1.16.0"
 summary = "Python 2 and 3 compatibility utilities"
 
 [[package]]
+name = "starlette"
+sections = ["dev"]
+version = "0.14.2"
+summary = "The little ASGI library that shines."
+
+[[package]]
 name = "toml"
 sections = ["dev", "test"]
 version = "0.10.2"
@@ -1424,11 +1456,12 @@ summary = "Tornado is a Python web framework and asynchronous networking library
 name = "tqdm"
 sections = ["dev"]
 version = "4.60.0"
+marker = "python_version >= '2.8'"
 summary = "Fast, Extensible Progress Meter"
 
 [[package]]
 name = "typing-extensions"
-sections = ["cdk", "powertools"]
+sections = ["cdk", "dev", "powertools"]
 version = "3.10.0.0"
 summary = "Backported and Experimental Type Hints for Python 3.5+"
 
@@ -1458,7 +1491,7 @@ summary = "Module for decorators, wrappers and monkey patching."
 
 [metadata]
 lock_version = "2"
-content_hash = "sha256:481c7fa4103ef2bb0fc27301c619deb842f7327ba9e6e59783133aa111919e84"
+content_hash = "sha256:08723214e93dab119e5a5767947f174b1c892e6f4efe69b283070dfa8bd23bdd"
 
 [metadata.files]
 "appdirs 1.4.4" = [
@@ -1749,6 +1782,10 @@ content_hash = "sha256:481c7fa4103ef2bb0fc27301c619deb842f7327ba9e6e59783133aa11
     {file = "email_validator-1.1.2-py2.py3-none-any.whl", hash = "sha256:094b1d1c60d790649989d38d34f69e1ef07792366277a2cf88684d03495d018f"},
     {file = "email-validator-1.1.2.tar.gz", hash = "sha256:1a13bd6050d1db4475f13e444e169b6fe872434922d38968c67cea9568cce2f0"},
 ]
+"fastapi 0.65.1" = [
+    {file = "fastapi-0.65.1-py3-none-any.whl", hash = "sha256:7619282fbce0ec53c7dfa3fa262280c00ace9f6d772cfd06e4ab219dce66985e"},
+    {file = "fastapi-0.65.1.tar.gz", hash = "sha256:478b7e0cbb52c9913b9903d88ae14195cb8a479c4596e0b2f2238d317840a7dc"},
+]
 "fastjsonschema 2.15.1" = [
     {file = "fastjsonschema-2.15.1-py3-none-any.whl", hash = "sha256:fa2f4bb1e31419c5eb1150f2e0545921712c10c34165b86d33f08f5562ad4b85"},
     {file = "fastjsonschema-2.15.1.tar.gz", hash = "sha256:671f36d225b3493629b5e789428660109528f373cf4b8a22bac6fa2f8191c2d2"},
@@ -1802,6 +1839,10 @@ content_hash = "sha256:481c7fa4103ef2bb0fc27301c619deb842f7327ba9e6e59783133aa11
 "lunr[languages] 0.5.8" = [
     {file = "lunr-0.5.8-py2.py3-none-any.whl", hash = "sha256:aab3f489c4d4fab4c1294a257a30fec397db56f0a50273218ccc3efdbf01d6ca"},
     {file = "lunr-0.5.8.tar.gz", hash = "sha256:c4fb063b98eff775dd638b3df380008ae85e6cb1d1a24d1cd81a10ef6391c26e"},
+]
+"mangum 0.11.0" = [
+    {file = "mangum-0.11.0-py3-none-any.whl", hash = "sha256:516309ba6d3d62c8fa8371d2779fc41e4f3dc1df91967e83e97db027e56dba1d"},
+    {file = "mangum-0.11.0.tar.gz", hash = "sha256:4b8e69030ba2182d4ce089620ee5c5b6075ae3cc5cedb00ab1d3db264231980e"},
 ]
 "markdown 3.3.4" = [
     {file = "Markdown-3.3.4-py3-none-any.whl", hash = "sha256:96c3ba1261de2f7547b46a00ea8463832c921d3f9d6aba3f255a6f71386db20c"},
@@ -1959,6 +2000,10 @@ content_hash = "sha256:481c7fa4103ef2bb0fc27301c619deb842f7327ba9e6e59783133aa11
     {file = "python_dateutil-2.8.1-py2.py3-none-any.whl", hash = "sha256:75bb3f31ea686f1197762692a9ee6a7550b59fc6ca3a1f4b5d7e32fb98e2da2a"},
     {file = "python-dateutil-2.8.1.tar.gz", hash = "sha256:73ebfe9dbf22e832286dafa60473e4cd239f8592f699aa5adaf10050e6e1823c"},
 ]
+"python-dotenv 0.17.1" = [
+    {file = "python_dotenv-0.17.1-py2.py3-none-any.whl", hash = "sha256:00aa34e92d992e9f8383730816359647f358f4a3be1ba45e5a5cefd27ee91544"},
+    {file = "python-dotenv-0.17.1.tar.gz", hash = "sha256:b1ae5e9643d5ed987fc57cc2583021e38db531946518130777734f9589b3141f"},
+]
 "pyyaml 5.4.1" = [
     {file = "PyYAML-5.4.1-cp27-cp27m-macosx_10_9_x86_64.whl", hash = "sha256:3b2b1824fe7112845700f815ff6a489360226a5609b96ec2190a45e62a9fc922"},
     {file = "PyYAML-5.4.1-cp27-cp27m-win32.whl", hash = "sha256:129def1b7c1bf22faffd67b8f3724645203b79d8f4cc81f674654d9902cb4393"},
@@ -2040,6 +2085,10 @@ content_hash = "sha256:481c7fa4103ef2bb0fc27301c619deb842f7327ba9e6e59783133aa11
 "six 1.16.0" = [
     {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
     {file = "six-1.16.0.tar.gz", hash = "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"},
+]
+"starlette 0.14.2" = [
+    {file = "starlette-0.14.2-py3-none-any.whl", hash = "sha256:3c8e48e52736b3161e34c9f0e8153b4f32ec5d8995a3ee1d59410d92f75162ed"},
+    {file = "starlette-0.14.2.tar.gz", hash = "sha256:7d49f4a27f8742262ef1470608c59ddbc66baf37c148e938c7038e6bc7a998aa"},
 ]
 "toml 0.10.2" = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},

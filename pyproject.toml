@@ -24,6 +24,7 @@ cdk = [
   "aws-cdk.aws_events_targets",
   "aws-cdk.aws_lambda_python",
   "aws-cdk.aws_stepfunctions_tasks",
+
 ]
 powertools = [
   "aws-lambda-powertools[pydantic]",
@@ -66,6 +67,12 @@ dev = [
     "pre-commit~=2.12",
     "black~=21.5b1",
     "aws-lambda-powertools~=1.16",
+    "aws-cdk.aws_apigateway",
+    "mangum",
+    "fastapi",
+    "uvicorn",
+    "boto3",
+    "python-dotenv",
 ]
 test = [
     "pytest~=6.2",
