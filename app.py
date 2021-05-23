@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import os
 import string
 from random import Random
 
@@ -17,15 +18,17 @@ from examples.orchestration import (
 from examples.powertools import generate_person
 from examples.rest import handler, input_order
 from examples.single_lambda import handler
-from orkestra import coerce, compose
+from orkestra import coerce
 from aws_cdk import aws_apigateway as apigw
+from aws_cdk import aws_lambda
+
 
 random = Random(0)
 
 
 def id_(s: str):
     unique_postfix = "".join(random.sample(string.hexdigits, 4))
-    return f"s_{unique_postfix}"
+    return f"{s}_{unique_postfix}"
 
 
 class SingleLambda(cdk.Stack):
@@ -141,17 +144,36 @@ class RestExample(cdk.Stack):
             state_machine_name="process_order_example",
         )
 
+        cdk.CfnOutput(
+            self,
+            "rest_invoked_sfn",
+            value=state_machine.state_machine_arn,
+        )
+
+        stage_name = os.environ["ENVIRONMENT"]
+
         fn = aws_lambda_python.PythonFunction(
             self,
             "example_api_handler",
             entry="./examples/",
             index="rest.py",
-            environment={"STATE_MACHINE_ARN": state_machine.state_machine_arn},
+            runtime=aws_lambda.Runtime.PYTHON_3_8,
+            environment={
+                "STATE_MACHINE_ARN": state_machine.state_machine_arn,
+                "ROOT_PATH": stage_name,
+            },
         )
 
-        state_machine.grant_execution(fn)
+        state_machine.grant_start_execution(fn)
 
-        api = apigw.LambdaRestApi(self, "example_api", handler=fn)
+        api = apigw.LambdaRestApi(
+            self,
+            "example_api",
+            handler=fn,
+            deploy_options=apigw.StageOptions(stage_name=stage_name),
+        )
+
+        fn.add_environment("ROOT_PATH", stage_name)
 
 
 app = cdk.App()

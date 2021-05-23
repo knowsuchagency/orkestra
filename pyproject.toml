@@ -9,7 +9,7 @@ keywords = ["orchestration", "aws", "cloud"]
 license = {text = "MIT"}
 name = "orkestra"
 requires-python = ">=3.8"
-version = "0.3.3"
+version = "0.3.4"
 readme = "README.md"
 
 [project.urls]
@@ -125,3 +125,5 @@ pdm run publish
 docs = "mkdocs serve"
 
 test = "pytest tests/"
+
+api = "uvicorn examples.rest:app --reload"

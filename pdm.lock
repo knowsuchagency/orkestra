@@ -968,7 +968,7 @@ dependencies = [
     "fastjsonschema<3.0.0,>=2.14.5",
     "jmespath<0.11.0,>=0.10.0",
     "pydantic<2.0.0,>=1.8.1",
-    "aws-lambda-powertools==1.16.0",
+    "aws-lambda-powertools",
 ]
 
 [[package]]
@@ -999,10 +999,10 @@ dependencies = [
 [[package]]
 name = "boto3"
 sections = ["dev", "powertools"]
-version = "1.17.77"
+version = "1.17.78"
 summary = "The AWS SDK for Python"
 dependencies = [
-    "botocore<1.21.0,>=1.20.77",
+    "botocore<1.21.0,>=1.20.78",
     "jmespath<1.0.0,>=0.7.1",
     "s3transfer<0.5.0,>=0.4.0",
 ]
@@ -1010,7 +1010,7 @@ dependencies = [
 [[package]]
 name = "botocore"
 sections = ["dev", "powertools"]
-version = "1.20.77"
+version = "1.20.78"
 summary = "Low-level, data-driven core of boto 3."
 dependencies = [
     "jmespath<1.0.0,>=0.7.1",
@@ -1037,11 +1037,8 @@ summary = "Validate configuration and produce human readable error messages."
 [[package]]
 name = "click"
 sections = ["dev"]
-version = "8.0.1"
+version = "7.1.2"
 summary = "Composable command line interface toolkit"
-dependencies = [
-    "colorama; platform_system == \"Windows\"",
-]
 
 [[package]]
 name = "colorama"
@@ -1111,9 +1108,15 @@ version = "0.18.2"
 summary = "Clean single-source support for Python 3 and 2"
 
 [[package]]
+name = "h11"
+sections = ["dev"]
+version = "0.12.0"
+summary = "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1"
+
+[[package]]
 name = "identify"
 sections = ["dev"]
-version = "2.2.4"
+version = "2.2.5"
 summary = "File identification library for Python"
 
 [[package]]
@@ -1147,7 +1150,6 @@ summary = "JSON Matching Expressions"
 name = "joblib"
 sections = ["dev"]
 version = "1.0.1"
-marker = "python_version >= '2.8'"
 summary = "Lightweight pipelining with Python functions"
 
 [[package]]
@@ -1311,7 +1313,7 @@ summary = "plugin and hook calling mechanisms for python"
 [[package]]
 name = "pre-commit"
 sections = ["dev"]
-version = "2.12.1"
+version = "2.13.0"
 summary = "A framework for managing and maintaining multi-language pre-commit hooks."
 dependencies = [
     "cfgv>=2.0.0",
@@ -1352,7 +1354,7 @@ summary = "Data validation and settings management using python 3.6 type hinting
 dependencies = [
     "typing-extensions>=3.7.4.3",
     "email-validator>=1.0.3",
-    "pydantic==1.8.2",
+    "pydantic",
 ]
 
 [[package]]
@@ -1456,7 +1458,6 @@ summary = "Tornado is a Python web framework and asynchronous networking library
 name = "tqdm"
 sections = ["dev"]
 version = "4.60.0"
-marker = "python_version >= '2.8'"
 summary = "Fast, Extensible Progress Meter"
 
 [[package]]
@@ -1470,6 +1471,16 @@ name = "urllib3"
 sections = ["dev", "powertools"]
 version = "1.26.4"
 summary = "HTTP library with thread-safe connection pooling, file post, and more."
+
+[[package]]
+name = "uvicorn"
+sections = ["dev"]
+version = "0.13.4"
+summary = "The lightning-fast ASGI server."
+dependencies = [
+    "click==7.*",
+    "h11>=0.8",
+]
 
 [[package]]
 name = "virtualenv"
@@ -1491,7 +1502,7 @@ summary = "Module for decorators, wrappers and monkey patching."
 
 [metadata]
 lock_version = "2"
-content_hash = "sha256:08723214e93dab119e5a5767947f174b1c892e6f4efe69b283070dfa8bd23bdd"
+content_hash = "sha256:d7ba45982a113e9e8dae9948fe3bdaff47d498ee54fe981cdd70ae6b6fa90a46"
 
 [metadata.files]
 "appdirs 1.4.4" = [
@@ -1742,13 +1753,13 @@ content_hash = "sha256:08723214e93dab119e5a5767947f174b1c892e6f4efe69b283070dfa8
     {file = "black-21.5b1-py3-none-any.whl", hash = "sha256:8a60071a0043876a4ae96e6c69bd3a127dad2c1ca7c8083573eb82f92705d008"},
     {file = "black-21.5b1.tar.gz", hash = "sha256:23695358dbcb3deafe7f0a3ad89feee5999a46be5fec21f4f1d108be0bcdb3b1"},
 ]
-"boto3 1.17.77" = [
-    {file = "boto3-1.17.77-py2.py3-none-any.whl", hash = "sha256:b434170484348b870e3624069ca577d38e52ace0229d0619d8368454bb66ad3b"},
-    {file = "boto3-1.17.77.tar.gz", hash = "sha256:02835bcad77a5fda1fc376a824323779301ddf88f04a0ac16044d980f350c4a3"},
+"boto3 1.17.78" = [
+    {file = "boto3-1.17.78-py2.py3-none-any.whl", hash = "sha256:1a87855123df1f18081a5fb8c1abde28d0096a03f6f3ebb06bcfb77cdffdae5e"},
+    {file = "boto3-1.17.78.tar.gz", hash = "sha256:2a5caee63d45fbdcc85e710c7f4146112f5d10b22fd0176643d2f2914cce54df"},
 ]
-"botocore 1.20.77" = [
-    {file = "botocore-1.20.77-py2.py3-none-any.whl", hash = "sha256:466ab5eac5e5735d573e83e84194585cac4e804d2b91b7bbe0351bcaff10df32"},
-    {file = "botocore-1.20.77.tar.gz", hash = "sha256:b2a71043378687dc891997669830e8b61eaea656981059dbd4898825659df639"},
+"botocore 1.20.78" = [
+    {file = "botocore-1.20.78-py2.py3-none-any.whl", hash = "sha256:37105b9434d73f9c4d4960ee54c8eb129120f4c6681eb16edf483f03c5e2326d"},
+    {file = "botocore-1.20.78.tar.gz", hash = "sha256:e74775f9e64e975787d76390fc5ac5aba875d726bb9ece3b7bd900205b430389"},
 ]
 "cattrs 1.5.0" = [
     {file = "cattrs-1.5.0-py3-none-any.whl", hash = "sha256:277d12740b45e46318b41c3b2e4a3bc067a7b9971cf61f0e96497598ad83f282"},
@@ -1758,9 +1769,9 @@ content_hash = "sha256:08723214e93dab119e5a5767947f174b1c892e6f4efe69b283070dfa8
     {file = "cfgv-3.3.0-py2.py3-none-any.whl", hash = "sha256:b449c9c6118fe8cca7fa5e00b9ec60ba08145d281d52164230a69211c5d597a1"},
     {file = "cfgv-3.3.0.tar.gz", hash = "sha256:9e600479b3b99e8af981ecdfc80a0296104ee610cab48a5ae4ffd0b668650eb1"},
 ]
-"click 8.0.1" = [
-    {file = "click-8.0.1-py3-none-any.whl", hash = "sha256:fba402a4a47334742d782209a7c79bc448911afe1149d07bdabdf480b3e2f4b6"},
-    {file = "click-8.0.1.tar.gz", hash = "sha256:8c04c11192119b1ef78ea049e0a6f0463e4c48ef00a30160c704337586f3ad7a"},
+"click 7.1.2" = [
+    {file = "click-7.1.2-py2.py3-none-any.whl", hash = "sha256:dacca89f4bfadd5de3d7489b7c8a566eee0d3676333fbb50030263894c38c0dc"},
+    {file = "click-7.1.2.tar.gz", hash = "sha256:d2b5255c7c6349bc1bd1e59e08cd12acbbd63ce649f2588755783aa94dfb6b1a"},
 ]
 "colorama 0.4.4" = [
     {file = "colorama-0.4.4-py2.py3-none-any.whl", hash = "sha256:9f47eda37229f68eee03b24b9748937c7dc3868f906e8ba69fbcbdd3bc5dc3e2"},
@@ -1797,9 +1808,13 @@ content_hash = "sha256:08723214e93dab119e5a5767947f174b1c892e6f4efe69b283070dfa8
 "future 0.18.2" = [
     {file = "future-0.18.2.tar.gz", hash = "sha256:b1bead90b70cf6ec3f0710ae53a525360fa360d306a86583adc6bf83a4db537d"},
 ]
-"identify 2.2.4" = [
-    {file = "identify-2.2.4-py2.py3-none-any.whl", hash = "sha256:ad9f3fa0c2316618dc4d840f627d474ab6de106392a4f00221820200f490f5a8"},
-    {file = "identify-2.2.4.tar.gz", hash = "sha256:9bcc312d4e2fa96c7abebcdfb1119563b511b5e3985ac52f60d9116277865b2e"},
+"h11 0.12.0" = [
+    {file = "h11-0.12.0-py3-none-any.whl", hash = "sha256:36a3cb8c0a032f56e2da7084577878a035d3b61d104230d4bd49c0c6b555a9c6"},
+    {file = "h11-0.12.0.tar.gz", hash = "sha256:47222cb6067e4a307d535814917cd98fd0a57b6788ce715755fa2b6c28b56042"},
+]
+"identify 2.2.5" = [
+    {file = "identify-2.2.5-py2.py3-none-any.whl", hash = "sha256:9c3ab58543c03bd794a1735e4552ef6dec49ec32053278130d525f0982447d47"},
+    {file = "identify-2.2.5.tar.gz", hash = "sha256:bc1705694253763a3160b943316867792ec00ba7a0ee40b46e20aebaf4e0c46a"},
 ]
 "idna 3.1" = [
     {file = "idna-3.1-py3-none-any.whl", hash = "sha256:5205d03e7bcbb919cc9c19885f9920d622ca52448306f2377daede5cf3faac16"},
@@ -1920,9 +1935,9 @@ content_hash = "sha256:08723214e93dab119e5a5767947f174b1c892e6f4efe69b283070dfa8
     {file = "pluggy-0.13.1-py2.py3-none-any.whl", hash = "sha256:966c145cd83c96502c3c3868f50408687b38434af77734af1e9ca461a4081d2d"},
     {file = "pluggy-0.13.1.tar.gz", hash = "sha256:15b2acde666561e1298d71b523007ed7364de07029219b604cf808bfa1c765b0"},
 ]
-"pre-commit 2.12.1" = [
-    {file = "pre_commit-2.12.1-py2.py3-none-any.whl", hash = "sha256:70c5ec1f30406250b706eda35e868b87e3e4ba099af8787e3e8b4b01e84f4712"},
-    {file = "pre_commit-2.12.1.tar.gz", hash = "sha256:900d3c7e1bf4cf0374bb2893c24c23304952181405b4d88c9c40b72bda1bb8a9"},
+"pre-commit 2.13.0" = [
+    {file = "pre_commit-2.13.0-py2.py3-none-any.whl", hash = "sha256:b679d0fddd5b9d6d98783ae5f10fd0c4c59954f375b70a58cbe1ce9bcf9809a4"},
+    {file = "pre_commit-2.13.0.tar.gz", hash = "sha256:764972c60693dc668ba8e86eb29654ec3144501310f7198742a767bec385a378"},
 ]
 "publication 0.0.3" = [
     {file = "publication-0.0.3-py2.py3-none-any.whl", hash = "sha256:0248885351febc11d8a1098d5c8e3ab2dabcf3e8c0c96db1e17ecd12b53afbe6"},
@@ -2149,6 +2164,10 @@ content_hash = "sha256:08723214e93dab119e5a5767947f174b1c892e6f4efe69b283070dfa8
 "urllib3 1.26.4" = [
     {file = "urllib3-1.26.4-py2.py3-none-any.whl", hash = "sha256:2f4da4594db7e1e110a944bb1b551fdf4e6c136ad42e4234131391e21eb5b0df"},
     {file = "urllib3-1.26.4.tar.gz", hash = "sha256:e7b021f7241115872f92f43c6508082facffbd1c048e3c6e2bb9c2a157e28937"},
+]
+"uvicorn 0.13.4" = [
+    {file = "uvicorn-0.13.4-py3-none-any.whl", hash = "sha256:7587f7b08bd1efd2b9bad809a3d333e972f1d11af8a5e52a9371ee3a5de71524"},
+    {file = "uvicorn-0.13.4.tar.gz", hash = "sha256:3292251b3c7978e8e4a7868f4baf7f7f7bb7e40c759ecc125c37e99cdea34202"},
 ]
 "virtualenv 20.4.6" = [
     {file = "virtualenv-20.4.6-py2.py3-none-any.whl", hash = "sha256:307a555cf21e1550885c82120eccaf5acedf42978fd362d32ba8410f9593f543"},

@@ -5,6 +5,7 @@ from random import Random
 from typing import *
 
 from orkestra.utils import coerce
+from orkestra.interfaces import Duration
 
 OptionalFn = Optional[Union[Callable, Iterable[Callable]]]
 
@@ -32,11 +33,22 @@ class Compose:
     def __init__(
         self,
         func: OptionalFn = None,
+        timeout: Optional[Duration] = None,
         **aws_lambda_constructor_kwargs,
     ):
+        """
+        Container for functions meant to be composed.
+
+        Args:
+            func: a function or list or tuple of functions
+            timeout: the timeout duration of the lambda
+            **aws_lambda_constructor_kwargs: pass directly to sfn.PythonFunction
+        """
 
         self.func = func
         self.downstream = []
+
+        self.timeout = timeout
 
         self.is_map_job = False
         self.map_constructor_kwargs = {}
@@ -89,7 +101,7 @@ class Compose:
         return right
 
     @staticmethod
-    def render_lambda(
+    def _render_lambda(
         composable: "Compose",
         scope,
         id=None,
@@ -121,6 +133,10 @@ class Compose:
 
         id = id or f"{composable.func.__name__}_fn_{_sample()}"
 
+        if composable.timeout is not None:
+
+            keyword_args.update(timeout=composable.timeout.construct)
+
         return aws_lambda_python.PythonFunction(
             scope,
             id,
@@ -138,7 +154,7 @@ class Compose:
         **kwargs,
     ):
 
-        return self.render_lambda(
+        return self._render_lambda(
             self,
             scope,
             id=id,
