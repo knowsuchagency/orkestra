@@ -71,6 +71,15 @@ test = [
     "pytest~=6.2",
 ]
 
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+]
+markers = [
+    "slow",
+    "interfaces",
+]
+
 [tool.pdm.scripts]
 _.env_file = ".env"
 
