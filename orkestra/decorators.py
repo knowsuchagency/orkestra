@@ -153,18 +153,31 @@ class Compose:
             self.index = Path(*module).name + ".py"
             self.handler = func.__name__
 
-        if enable_powertools:
-            self.__call__ = powertools(
-                decorated=self.__call__,
-                log_event=log_event,
-                capture_error=capture_error,
-                capture_response=capture_response,
-                capture_cold_start_metric=capture_cold_start_metric,
-                raise_on_empty_metrics=raise_on_empty_metrics,
-                default_dimentions=default_dimentions,
-                model=model,
-                envelope=envelope,
-            )
+        # if enable_powertools:
+        #     self.__call__ = powertools(
+        #         decorated=self.__call__,
+        #         log_event=log_event,
+        #         capture_error=capture_error,
+        #         capture_response=capture_response,
+        #         capture_cold_start_metric=capture_cold_start_metric,
+        #         raise_on_empty_metrics=raise_on_empty_metrics,
+        #         default_dimentions=default_dimentions,
+        #         model=model,
+        #         envelope=envelope,
+        #     )
+
+        self.enable_powertools = enable_powertools
+
+        self.powertools_kwargs = dict(
+            log_event=log_event,
+            capture_error=capture_error,
+            capture_response=capture_response,
+            capture_cold_start_metric=capture_cold_start_metric,
+            raise_on_empty_metrics=raise_on_empty_metrics,
+            default_dimentions=default_dimentions,
+            model=model,
+            envelope=envelope,
+        )
 
     def __call__(self, event, context=None):
 
@@ -174,17 +187,35 @@ class Compose:
 
         if self.func is not None:
 
-            return self.func(event, context)
+            if self.enable_powertools:
+
+                return powertools(
+                    decorated=self.func,
+                    **self.powertools_kwargs,
+                )(event, context)
+
+            else:
+
+                return self.func(event, context)
 
         else:
 
             func = event
 
+            sfn_timeout = self.lambda_invoke_kwargs.pop("timeout")
+
             return Compose(
                 func=func,
                 timeout=self.timeout,
                 is_map_job=self.is_map_job,
-                **self.aws_lambda_constructor_kwargs,
+                sfn_timeout=sfn_timeout,
+                enable_powertools=self.enable_powertools,
+                **{
+                    **self.map_job_kwargs,
+                    **self.lambda_invoke_kwargs,
+                    **self.powertools_kwargs,
+                    **self.aws_lambda_constructor_kwargs,
+                },
             )
 
     def __repr__(self) -> str:
@@ -526,7 +557,7 @@ def powertools(
     """
 
     from aws_lambda_powertools import Logger, Tracer, Metrics
-    from aws_lambda_powertools.utilities.parser import event_parser
+    from aws_lambda_powertools.utilities.parser import parse
 
     def decorator(func):
 
@@ -574,17 +605,15 @@ def powertools(
                 Exists because event_parser expects the function it wraps to be named "handler".
                 """
 
-                result = event_parser(
-                    handler=func,
+                parsed_event = parse(
+                    event=event,
                     model=model,
                     envelope=envelope,
-                    event=event,
-                    context=context,
                 )
 
-                return result
+                return func(parsed_event, context)
 
-            func = mini_decorator
+            return mini_decorator
 
         return func
 
