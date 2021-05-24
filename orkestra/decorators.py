@@ -272,6 +272,17 @@ class Compose:
         id=None,
         **kwargs,
     ):
+        """
+        Return lambda cdk construct.
+
+        Args:
+            scope:
+            id:
+            **kwargs:
+
+        Returns (aws_cdk.aws_lambda_python.PythonFunction): python lambda
+
+        """
 
         return self._render_lambda(
             self,
@@ -288,6 +299,9 @@ class Compose:
         function_name=None,
         **kwargs,
     ):
+        """
+        Return cdk step function task construct.
+        """
 
         from aws_cdk import aws_stepfunctions as sfn
         from aws_cdk import aws_stepfunctions_tasks as sfn_tasks
@@ -428,6 +442,9 @@ class Compose:
         scope,
         definition=None,
     ):
+        """
+        Return cdk state machine definition.
+        """
 
         task = self.task(scope)
 
@@ -447,6 +464,19 @@ class Compose:
         state_machine_name=None,
         **kwargs,
     ):
+        """
+        Return step functions state machine cdk construct.
+
+        Args:
+            scope:
+            id:
+            tracing_enabled:
+            state_machine_name:
+            **kwargs:
+
+        Returns:
+
+        """
 
         from aws_cdk import aws_stepfunctions as sfn
 
@@ -477,6 +507,27 @@ class Compose:
         dead_letter_queue_enabled=False,
         **kwargs,
     ):
+        """
+        Schedule lambda or state machine to run on interval using EventBridge scheduled event rule.
+
+        Args:
+            scope:
+            id:
+            expression:
+            day:
+            hour:
+            minute:
+            month:
+            week_day:
+            year:
+            function_name:
+            state_machine_name:
+            dead_letter_queue_enabled:
+            **kwargs:
+
+        Returns:
+
+        """
         from aws_cdk import aws_events as eventbridge
         from aws_cdk import aws_events_targets as eventbridge_targets
 
