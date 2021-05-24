@@ -10,6 +10,7 @@ from orkestra.interfaces import (
     Runtime,
     LambdaInvocationType,
     IntegrationPattern,
+    Tracing,
 )
 from orkestra.utils import coerce, cdk_patch
 
@@ -67,6 +68,7 @@ class Compose:
         heartbeat: Optional[Duration] = None,
         integration_pattern: Optional[IntegrationPattern] = None,
         sfn_timeout: Optional[Duration] = None,
+        tracing: Optional[Tracing] = None,
         **aws_lambda_constructor_kwargs,
     ):
         """
@@ -102,6 +104,7 @@ class Compose:
             heartbeat: Timeout for the heartbeat. Default: - None
             integration_pattern: AWS Step Functions integrates with services directly in the Amazon States Language. You can control these AWS services using service integration patterns Default: IntegrationPattern.REQUEST_RESPONSE
             sfn_timeout: Timeout for the state machine. Default: - None
+            tracing: Enable AWS X-Ray Tracing for Lambda Function. Default: Tracing.Enabled
             **aws_lambda_constructor_kwargs: pass directly to sfn.PythonFunction
 
         For cdk params see https://docs.aws.amazon.com/cdk/api/latest/python/modules.html
@@ -153,6 +156,9 @@ class Compose:
                 entry=str(Path(*module).parent),
                 index=Path(*module).name + ".py",
                 handler=func.__name__,
+                timeout=timeout,
+                runtime=runtime,
+                tracing=tracing,
             )
 
         self.enable_powertools = enable_powertools
@@ -244,7 +250,12 @@ class Compose:
             **kwargs,
         }
 
-        cdk_patch(kwargs, "tracing", "runtime")
+        cdk_patch(
+            keyword_args,
+            "tracing",
+            "runtime",
+            "timeout",
+        )
 
         if keyword_args.get("runtime") is None:
 
