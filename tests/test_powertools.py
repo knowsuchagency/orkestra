@@ -1,6 +1,8 @@
-from examples import powertools as example
-import pytest
 from dataclasses import dataclass
+
+import pytest
+
+from examples import powertools as example
 
 
 @pytest.fixture(autouse=True)

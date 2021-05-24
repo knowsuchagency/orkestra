@@ -7,9 +7,8 @@ from typing import TypedDict
 
 from aws_lambda_powertools import Logger, Tracer
 from aws_lambda_powertools.utilities.typing import LambdaContext
-from pydantic import BaseModel
-
 from orkestra import compose, powertools
+from pydantic import BaseModel
 
 SERVICE_NAME = "validation_example"
 

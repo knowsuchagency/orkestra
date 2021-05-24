@@ -2,5 +2,5 @@ from orkestra import compose
 
 
 @compose
-def handler(event, contex):
+def handler(event, context):
     return "hello, world"

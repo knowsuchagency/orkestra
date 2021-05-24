@@ -1,5 +1,5 @@
 import random
-from typing import TypedDict
+from typing import *
 
 from orkestra import compose
 
@@ -85,7 +85,8 @@ def generate_floats(event, context):
 
 
 @compose(is_map_job=True)
-def double(n, context):
+def double(n: Union[int, float], context):
+    assert isinstance(n, (int, float))
     return n * 2
 
 

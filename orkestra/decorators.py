@@ -1,12 +1,17 @@
+import functools
 import string
 from collections import defaultdict
 from pathlib import Path
 from random import Random
 from typing import *
 
+from orkestra.interfaces import (
+    Duration,
+    Runtime,
+    LambdaInvocationType,
+    IntegrationPattern,
+)
 from orkestra.utils import coerce
-from orkestra.interfaces import Duration
-import functools
 
 OptionalFn = Optional[Union[Callable, Iterable[Callable]]]
 
@@ -36,6 +41,23 @@ class Compose:
         func: OptionalFn = None,
         timeout: Optional[Duration] = None,
         is_map_job: bool = False,
+        runtime: Optional[Runtime] = None,
+        comment: Optional[str] = None,
+        input_path: Optional[str] = None,
+        items_path: Optional[str] = None,
+        max_concurrency: Optional[Union[int, float, None]] = None,
+        output_path: Optional[str] = None,
+        parameters: Optional[Mapping[str, Any]] = None,
+        result_path: Optional[str] = None,
+        result_selector: Optional[Mapping[str, any]] = None,
+        client_context: Optional[str] = None,
+        invocation_type: Optional[LambdaInvocationType] = None,
+        payload_response_only: Optional[bool] = None,
+        qualifier: Optional[str] = None,
+        retry_on_service_exceptions: Optional[bool] = None,
+        heartbeat: Optional[Duration] = None,
+        integration_pattern: Optional[IntegrationPattern] = None,
+        sfn_timeout: Optional[Duration] = None,
         **aws_lambda_constructor_kwargs,
     ):
         """
@@ -44,10 +66,31 @@ class Compose:
         Args:
             func: a function or list or tuple of functions
             timeout: the timeout duration of the lambda
+            runtime: the python runtime to use for the lambda
+            is_map_job: whether the lambda is a map job
+            comment: An optional description for this state. Default: No comment
+            input_path: JSONPath expression to select part of the state to be the input to this state. May also be the special value JsonPath.DISCARD, which will cause the effective input to be the empty object {}. Default: $
+            items_path:  JSONPath expression to select the array to iterate over. Default: $
+            max_concurrency: MaxConcurrency. An upper bound on the number of iterations you want running at once. Default: - full concurrency
+            output_path: JSONPath expression to select part of the state to be the output to this state. May also be the special value JsonPath.DISCARD, which will cause the effective output to be the empty object {}. Default: $
+            parameters: The JSON that you want to override your default iteration input. Default: $
+            result_path: JSONPath expression to indicate where to inject the state’s output. May also be the special value JsonPath.DISCARD, which will cause the state’s input to become its output. Default: $
+            result_selector: The JSON that will replace the state’s raw result and become the effective result before ResultPath is applied. You can use ResultSelector to create a payload with values that are static or selected from the state’s raw result. Default: - None
+            client_context: Up to 3583 bytes of base64-encoded data about the invoking client to pass to the function. Default: - No context
+            invocation_type: Invocation type of the Lambda function. Default: InvocationType.REQUEST_RESPONSE
+            payload_response_only: Invoke the Lambda in a way that only returns the payload response without additional metadata. The payloadResponseOnly property cannot be used if integrationPattern, invocationType, clientContext, or qualifier are specified. It always uses the REQUEST_RESPONSE behavior. Default: false
+            qualifier:  Version or alias to invoke a published version of the function. You only need to supply this if you want the version of the Lambda Function to depend on data in the state machine state. If not, you can pass the appropriate Alias or Version object directly as the lambdaFunction argument. Default: - Version or alias inherent to the lambdaFunction object.
+            retry_on_service_exceptions: Whether to retry on Lambda service exceptions. This handles Lambda.ServiceException, Lambda.AWSLambdaException and Lambda.SdkClientException with an interval of 2 seconds, a back-off rate of 2 and 6 maximum attempts. Default: true
+            heartbeat: Timeout for the heartbeat. Default: - None
+            integration_pattern: AWS Step Functions integrates with services directly in the Amazon States Language. You can control these AWS services using service integration patterns Default: IntegrationPattern.REQUEST_RESPONSE
+            sfn_timeout: Timeout for the state machine. Default: - None
             **aws_lambda_constructor_kwargs: pass directly to sfn.PythonFunction
+
+        For more info see https://docs.aws.amazon.com/cdk/api/latest/python/modules.html
         """
 
         self.func = func
+        self.runtime = runtime
         self.downstream = []
 
         self.timeout = timeout
@@ -55,6 +98,33 @@ class Compose:
         self.is_map_job = is_map_job
 
         self.aws_lambda_constructor_kwargs = aws_lambda_constructor_kwargs
+
+        self.map_job_kwargs = {
+            "comment": comment,
+            "input_path": input_path,
+            "items_path": items_path,
+            "max_concurrency": max_concurrency,
+            "output_path": output_path,
+            "result_path": result_path,
+            "result_selector": result_selector,
+            "parameters": parameters,
+        }
+
+        self.lambda_invoke_kwargs = {
+            "client_context": client_context,
+            "invocation_type": invocation_type,
+            "payload_response_only": payload_response_only,
+            "retry_on_service_exceptions": retry_on_service_exceptions,
+            "heartbeat": heartbeat,
+            "integration_pattern": integration_pattern,
+            "timeout": sfn_timeout,
+            "comment": comment,
+            "input_path": input_path,
+            "output_path": output_path,
+            "result_path": result_path,
+            "result_selector": result_selector,
+            "qualifier": qualifier,
+        }
 
         if func and not isinstance(func, (list, tuple)):
 
@@ -144,6 +214,10 @@ class Compose:
 
             keyword_args.update(timeout=composable.timeout.construct)
 
+        if composable.runtime is not None:
+
+            keyword_args.update(runtime=composable.runtime.construct)
+
         return aws_lambda_python.PythonFunction(
             scope,
             id,
@@ -190,6 +264,10 @@ class Compose:
 
             map_kwargs = dict(id=id)
 
+            map_kwargs.update(
+                {k: v for k, v in self.map_job_kwargs.items() if v is not None}
+            )
+
             task = sfn.Map(scope, **map_kwargs)
 
             lambda_fn = self.aws_lambda(
@@ -200,6 +278,14 @@ class Compose:
             keyword_args = dict(
                 lambda_function=lambda_fn,
                 payload_response_only=payload_response_only,
+            )
+
+            keyword_args.update(
+                {
+                    k: v
+                    for k, v in self.lambda_invoke_kwargs.items()
+                    if v is not None
+                }
             )
 
             invoke_lambda = sfn_tasks.LambdaInvoke(
@@ -226,6 +312,14 @@ class Compose:
 
             keyword_args.update(kwargs)
 
+            keyword_args.update(
+                {
+                    k: v
+                    for k, v in self.lambda_invoke_kwargs.items()
+                    if v is not None
+                }
+            )
+
             task = sfn_tasks.LambdaInvoke(
                 scope,
                 id,
@@ -249,6 +343,14 @@ class Compose:
                 )
 
                 keyword_args.update(kwargs)
+
+                keyword_args.update(
+                    {
+                        k: v
+                        for k, v in self.lambda_invoke_kwargs.items()
+                        if v is not None
+                    }
+                )
 
                 branch = sfn_tasks.LambdaInvoke(
                     scope,

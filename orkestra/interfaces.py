@@ -16,6 +16,41 @@ class DurationMetric(Enum):
     seconds = "seconds"
 
 
+class Runtime(Enum):
+    PYTHON_3_8 = "PYTHON_3_8"
+    PYTHON_3_7 = "PYTHON_3_7"
+    PYTHON_3_6 = "PYTHON_3_6"
+
+    @property
+    def construct(self):
+        """CDK construct."""
+        from aws_cdk import aws_lambda
+
+        return getattr(
+            aws_lambda.Runtime,
+            self.value,
+        )
+
+
+class LambdaInvocationType(Enum):
+    "https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_stepfunctions_tasks/LambdaInvocationType.html#aws_cdk.aws_stepfunctions_tasks.LambdaInvocationType"
+    DRY_RUN = "DRY_RUN"
+    EVENT = "EVENT"
+    REQUEST_RESPONSE = "REQUEST_RESPONSE"
+
+    def construct(self):
+        from aws_cdk.aws_stepfunctions_tasks import LambdaInvocationType
+
+        return getattr(LambdaInvocationType, self.value)
+
+
+class IntegrationPattern(Enum):
+    "https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_stepfunctions/IntegrationPattern.html#aws_cdk.aws_stepfunctions.IntegrationPattern"
+    REQUEST_RESPONSE = "REQUEST_RESPONSE"
+    RUN_JOB = "RUN_JOB"
+    WAIT_FOR_TASK_TOKEN = "WAIT_FOR_TASK_TOKEN"
+
+
 @dataclass
 class Duration:
     unit: DurationMetric

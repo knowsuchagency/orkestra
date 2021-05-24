@@ -1,7 +1,7 @@
 import pytest
 
 from orkestra import compose
-from orkestra.interfaces import AdjacencyList, Composable, Nextable
+from orkestra.interfaces import AdjacencyList, Composable
 
 
 @pytest.mark.interfaces

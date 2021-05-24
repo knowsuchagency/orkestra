@@ -8,10 +8,9 @@ from uuid import uuid4
 import boto3
 from fastapi import FastAPI
 from mangum import Mangum
-from pydantic import BaseModel
-
 from orkestra import compose
 from orkestra.interfaces import Duration
+from pydantic import BaseModel
 
 
 class Order(TypedDict):
@@ -36,7 +35,9 @@ input_order: compose
 def input_order(event, context) -> Order:
     return {
         "id": event.get("id", str(uuid4())),
-        "item": random.choice(["bean", "tesla", "moon rock"]),
+        "item": event.get(
+            "item", random.choice(["bean", "tesla", "moon rock"])
+        ),
     }
 
 
