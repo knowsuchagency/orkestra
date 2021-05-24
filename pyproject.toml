@@ -85,6 +85,7 @@ testpaths = [
 markers = [
     "slow",
     "interfaces",
+    "powertools",
 ]
 
 [tool.pdm.scripts]
@@ -96,6 +97,7 @@ synth = "cdk synth"
 
 build.shell = """
 set -ex
+rm -rf examples/orkestra
 cp -R orkestra examples/orkestra
 """
 

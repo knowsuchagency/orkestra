@@ -15,7 +15,7 @@ from examples.orchestration import (
     random_shape,
     random_animal,
 )
-from examples.powertools import generate_person
+from examples.powertools import generate_person, generate_numbers_2
 from examples.rest import handler, input_order
 from examples.single_lambda import handler
 from orkestra import coerce
@@ -129,6 +129,10 @@ class Powertools(cdk.Stack):
         generate_person.schedule(
             self,
             state_machine_name="powertools_example",
+        )
+
+        generate_numbers_2.schedule(
+            self, state_machine_name="powertools_example_2"
         )
 
 

@@ -6,6 +6,7 @@ from typing import *
 
 from orkestra.utils import coerce
 from orkestra.interfaces import Duration
+import functools
 
 OptionalFn = Optional[Union[Callable, Iterable[Callable]]]
 
@@ -364,6 +365,97 @@ def map_job(decorated=None, **kwargs):
         composed.is_map_job = True
         composed.map_constructor_kwargs = kwargs
         return composed
+
+    if decorated is not None:
+        return decorator(decorated)
+    else:
+        return decorator
+
+
+def powertools(
+    decorated=None,
+    log_event=True,
+    capture_response=True,
+    capture_error=True,
+    raise_on_empty_metrics=False,
+    capture_cold_start_metric=True,
+    default_dimentions=None,
+    model=None,
+    envelope=None,
+):
+    """
+    AWS lambda powertools shortcut.
+
+    Args:
+        decorated: the function being decorated
+        log_event: passed to aws_lambda_powertools.Logger
+        capture_response: passed to aws_lambda_powertools.Tracer
+        capture_error: passed to aws_lambda_powertools.Tracer
+        raise_on_empty_metrics: passed to aws_lambda_powertools.Metrics
+        capture_cold_start_metric: passed to aws_lambda_powertools.Metrics
+        default_dimentions: passed to aws_lambda_powertools.Metrics
+        model: passed to aws_lambda_powertools.utilities.parser.event_parser
+        envelope: passed to aws_lambda_powertools.utilities.parser.event_parser
+
+    For further descriptions, see https://awslabs.github.io/aws-lambda-powertools-python/latest/
+    """
+
+    def decorator(func):
+
+        from aws_lambda_powertools import Logger, Tracer, Metrics
+        from aws_lambda_powertools.utilities.parser import event_parser
+
+        logger, tracer, metrics = (
+            globals().get(x)
+            for x in (
+                "logger",
+                "tracer",
+                "metrics",
+            )
+        )
+
+        if isinstance(logger, Logger):
+
+            func = logger.inject_lambda_context(
+                log_event=log_event,
+            )(func)
+
+        if isinstance(tracer, Tracer):
+
+            func = tracer.capture_lambda_handler(
+                capture_response=capture_response,
+                capture_error=capture_error,
+            )(func)
+
+        if isinstance(metrics, Metrics):
+
+            func = metrics.log_metrics(
+                capture_cold_start_metric=capture_cold_start_metric,
+                raise_on_empty_metrics=raise_on_empty_metrics,
+                default_dimensions=default_dimentions,
+            )(func)
+
+        if model is not None:
+
+            @functools.wraps(func)
+            def mini_decorator(event, context):
+                """
+                Exists because event_parser expects the function it wraps to be named "handler".
+                """
+
+                result = event_parser(
+                    handler=func,
+                    model=model,
+                    envelope=envelope,
+                    event=event,
+                    context=context,
+                )
+
+                return result
+
+            func = mini_decorator
+
+        return func
 
     if decorated is not None:
         return decorator(decorated)

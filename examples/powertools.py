@@ -6,11 +6,10 @@ from typing import *
 from typing import TypedDict
 
 from aws_lambda_powertools import Logger, Tracer
-from aws_lambda_powertools.utilities.parser import event_parser
 from aws_lambda_powertools.utilities.typing import LambdaContext
 from pydantic import BaseModel
 
-from orkestra import compose, map_job
+from orkestra import compose, map_job, powertools
 
 SERVICE_NAME = "validation_example"
 
@@ -39,6 +38,7 @@ def wait(seconds) -> int:
     yield seconds
 
 
+@powertools
 @compose
 def generate_person(event: dict, context) -> PersonDict:
     logger.info("generating person")
@@ -53,15 +53,14 @@ def generate_person(event: dict, context) -> PersonDict:
 
 
 @compose
-@event_parser(model=Person)
+@powertools(model=Person)
 def greet_person(person: Person, context: LambdaContext) -> str:
     logger.info(person.dict())
     return f"hello {person.name}"
 
 
+@powertools(model=Person)
 @compose
-@tracer.capture_lambda_handler
-@event_parser(model=Person)
 def dismiss_person(person: Person, context: LambdaContext) -> int:
     logger.info({"person": person, "person_dict": person.dict()})
     seconds = 2
@@ -72,18 +71,28 @@ def dismiss_person(person: Person, context: LambdaContext) -> int:
 
 
 @compose
-@tracer.capture_lambda_handler
-@logger.inject_lambda_context(log_event=True)
+@powertools
 def generate_numbers(event: list, context: LambdaContext) -> List[int]:
     return [random.randrange(100) for _ in range(10)]
 
 
 @map_job(comment="halve the numbers")
 @compose
-@tracer.capture_lambda_handler
-@logger.inject_lambda_context(log_event=True)
+@powertools
 def halve(event: int, _):
     return event / 2
 
 
+@powertools
+@compose
+@map_job
+def double(n: int, _):
+    return n * 2
+
+
+generate_numbers_2 = compose(func=generate_numbers.func)
+
+
 generate_person >> (greet_person, dismiss_person) >> generate_numbers >> halve
+
+generate_numbers_2 >> double
