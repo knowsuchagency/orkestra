@@ -51,8 +51,7 @@ def generate_person(event: dict, context) -> PersonDict:
     return person.dict()
 
 
-@compose
-@powertools(model=Person)
+@compose(enable_powertools=True, model=Person)
 def greet_person(person: Person, context: LambdaContext) -> str:
     logger.info(person.dict())
     return f"hello {person.name}"

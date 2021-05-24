@@ -39,6 +39,15 @@ class Compose:
     def __init__(
         self,
         func: OptionalFn = None,
+        enable_powertools: bool = False,
+        log_event=True,
+        capture_response=True,
+        capture_error=True,
+        raise_on_empty_metrics=False,
+        capture_cold_start_metric=True,
+        default_dimentions=None,
+        model=None,
+        envelope=None,
         timeout: Optional[Duration] = None,
         is_map_job: bool = False,
         runtime: Optional[Runtime] = None,
@@ -66,6 +75,15 @@ class Compose:
         Args:
             func: a function or list or tuple of functions
             timeout: the timeout duration of the lambda
+            enable_powertools: if true, enables powertools
+            log_event: passed to aws_lambda_powertools.Logger
+            capture_response: passed to aws_lambda_powertools.Tracer
+            capture_error: passed to aws_lambda_powertools.Tracer
+            raise_on_empty_metrics: passed to aws_lambda_powertools.Metrics
+            capture_cold_start_metric: passed to aws_lambda_powertools.Metrics
+            default_dimentions: passed to aws_lambda_powertools.Metrics
+            model: passed to aws_lambda_powertools.utilities.parser.event_parser
+            envelope: passed to aws_lambda_powertools.utilities.parser.event_parser
             runtime: the python runtime to use for the lambda
             is_map_job: whether the lambda is a map job
             comment: An optional description for this state. Default: No comment
@@ -86,7 +104,8 @@ class Compose:
             sfn_timeout: Timeout for the state machine. Default: - None
             **aws_lambda_constructor_kwargs: pass directly to sfn.PythonFunction
 
-        For more info see https://docs.aws.amazon.com/cdk/api/latest/python/modules.html
+        For cdk params see https://docs.aws.amazon.com/cdk/api/latest/python/modules.html
+        For powertools params see https://awslabs.github.io/aws-lambda-powertools-python/latest/
         """
 
         self.func = func
@@ -133,6 +152,19 @@ class Compose:
             self.entry = str(Path(*module).parent)
             self.index = Path(*module).name + ".py"
             self.handler = func.__name__
+
+        if enable_powertools:
+            self.__call__ = powertools(
+                decorated=self.__call__,
+                log_event=log_event,
+                capture_error=capture_error,
+                capture_response=capture_response,
+                capture_cold_start_metric=capture_cold_start_metric,
+                raise_on_empty_metrics=raise_on_empty_metrics,
+                default_dimentions=default_dimentions,
+                model=model,
+                envelope=envelope,
+            )
 
     def __call__(self, event, context=None):
 
