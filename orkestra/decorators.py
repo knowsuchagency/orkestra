@@ -35,6 +35,7 @@ class Compose:
         self,
         func: OptionalFn = None,
         timeout: Optional[Duration] = None,
+        is_map_job: bool = False,
         **aws_lambda_constructor_kwargs,
     ):
         """
@@ -51,8 +52,7 @@ class Compose:
 
         self.timeout = timeout
 
-        self.is_map_job = False
-        self.map_constructor_kwargs = {}
+        self.is_map_job = is_map_job
 
         self.aws_lambda_constructor_kwargs = aws_lambda_constructor_kwargs
 
@@ -64,19 +64,24 @@ class Compose:
             self.index = Path(*module).name + ".py"
             self.handler = func.__name__
 
-    def __call__(self, event_or_func, context=None):
+    def __call__(self, event, context=None):
 
         if isinstance(self.func, (list, tuple)):
+
             raise TypeError("can't call a list of functions")
 
         if self.func is not None:
-            event = event_or_func
+
             return self.func(event, context)
+
         else:
-            func = event_or_func
+
+            func = event
+
             return Compose(
                 func=func,
                 timeout=self.timeout,
+                is_map_job=self.is_map_job,
                 **self.aws_lambda_constructor_kwargs,
             )
 
@@ -184,8 +189,6 @@ class Compose:
             id = id or _incremental_id(self.func.__name__)
 
             map_kwargs = dict(id=id)
-
-            map_kwargs.update(self.map_constructor_kwargs)
 
             task = sfn.Map(scope, **map_kwargs)
 
@@ -360,18 +363,6 @@ class Compose:
         return rule
 
 
-def map_job(decorated=None, **kwargs):
-    def decorator(composed: Compose):
-        composed.is_map_job = True
-        composed.map_constructor_kwargs = kwargs
-        return composed
-
-    if decorated is not None:
-        return decorator(decorated)
-    else:
-        return decorator
-
-
 def powertools(
     decorated=None,
     log_event=True,
@@ -400,10 +391,16 @@ def powertools(
     For further descriptions, see https://awslabs.github.io/aws-lambda-powertools-python/latest/
     """
 
+    from aws_lambda_powertools import Logger, Tracer, Metrics
+    from aws_lambda_powertools.utilities.parser import event_parser
+
     def decorator(func):
 
-        from aws_lambda_powertools import Logger, Tracer, Metrics
-        from aws_lambda_powertools.utilities.parser import event_parser
+        if isinstance(func, Compose):
+
+            raise TypeError(
+                f"@powertools decorator must be used BELOW the @compose decorator."
+            )
 
         logger, tracer, metrics = (
             globals().get(x)

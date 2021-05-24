@@ -1,7 +1,7 @@
 import random
 from typing import TypedDict
 
-from orkestra import compose, map_job
+from orkestra import compose
 
 
 class Person(TypedDict):
@@ -74,8 +74,7 @@ def generate_ints(event, context):
     return [random.randrange(100) for _ in range(10)]
 
 
-@map_job
-@compose
+@compose(is_map_job=True)
 def halve(n, context):
     return n / 2
 
@@ -85,8 +84,7 @@ def generate_floats(event, context):
     return [float(n) for n in range(10)]
 
 
-@compose
-@map_job(comment="double")
+@compose(is_map_job=True)
 def double(n, context):
     return n * 2
 

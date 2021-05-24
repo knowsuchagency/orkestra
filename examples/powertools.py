@@ -9,7 +9,7 @@ from aws_lambda_powertools import Logger, Tracer
 from aws_lambda_powertools.utilities.typing import LambdaContext
 from pydantic import BaseModel
 
-from orkestra import compose, map_job, powertools
+from orkestra import compose, powertools
 
 SERVICE_NAME = "validation_example"
 
@@ -38,8 +38,8 @@ def wait(seconds) -> int:
     yield seconds
 
 
-@powertools
 @compose
+@powertools
 def generate_person(event: dict, context) -> PersonDict:
     logger.info("generating person")
     logger.info("show event as extra", extra={"event": event})
@@ -59,8 +59,8 @@ def greet_person(person: Person, context: LambdaContext) -> str:
     return f"hello {person.name}"
 
 
-@powertools(model=Person)
 @compose
+@powertools(model=Person)
 def dismiss_person(person: Person, context: LambdaContext) -> int:
     logger.info({"person": person, "person_dict": person.dict()})
     seconds = 2
@@ -76,17 +76,16 @@ def generate_numbers(event: list, context: LambdaContext) -> List[int]:
     return [random.randrange(100) for _ in range(10)]
 
 
-@map_job(comment="halve the numbers")
-@compose
+@compose(is_map_job=True)
 @powertools
 def halve(event: int, _):
     return event / 2
 
 
+@compose(is_map_job=True)
 @powertools
-@compose
-@map_job
 def double(n: int, _):
+    assert isinstance(n, int)
     return n * 2
 
 

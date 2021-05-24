@@ -36,10 +36,12 @@ class TestLocal:
 
     @staticmethod
     def test_halve(context):
+        assert example.halve.is_map_job
         assert example.halve(4, context) == 2
 
     @staticmethod
     def test_double(context):
+        assert example.double.is_map_job
         assert example.double(2, context) == 4
 
     @staticmethod
