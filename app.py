@@ -179,6 +179,10 @@ class RestExample(cdk.Stack):
 
         fn.add_environment("ROOT_PATH", stage_name)
 
+        # we can still schedule as normal
+
+        input_order.schedule(self, state_machine_name="schedule_rest_example")
+
 
 app = cdk.App()
 
