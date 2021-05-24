@@ -11,7 +11,7 @@ from orkestra.interfaces import (
     LambdaInvocationType,
     IntegrationPattern,
 )
-from orkestra.utils import coerce
+from orkestra.utils import coerce, cdk_patch
 
 OptionalFn = Optional[Union[Callable, Iterable[Callable]]]
 
@@ -45,7 +45,7 @@ class Compose:
         capture_error=True,
         raise_on_empty_metrics=False,
         capture_cold_start_metric=True,
-        default_dimentions=None,
+        default_dimensions=None,
         model=None,
         envelope=None,
         timeout: Optional[Duration] = None,
@@ -81,7 +81,7 @@ class Compose:
             capture_error: passed to aws_lambda_powertools.Tracer
             raise_on_empty_metrics: passed to aws_lambda_powertools.Metrics
             capture_cold_start_metric: passed to aws_lambda_powertools.Metrics
-            default_dimentions: passed to aws_lambda_powertools.Metrics
+            default_dimensions: passed to aws_lambda_powertools.Metrics
             model: passed to aws_lambda_powertools.utilities.parser.event_parser
             envelope: passed to aws_lambda_powertools.utilities.parser.event_parser
             runtime: the python runtime to use for the lambda
@@ -149,9 +149,11 @@ class Compose:
 
             module = func.__module__.split(".")
 
-            self.entry = str(Path(*module).parent)
-            self.index = Path(*module).name + ".py"
-            self.handler = func.__name__
+            self.aws_lambda_constructor_kwargs.update(
+                entry=str(Path(*module).parent),
+                index=Path(*module).name + ".py",
+                handler=func.__name__,
+            )
 
         self.enable_powertools = enable_powertools
 
@@ -161,7 +163,7 @@ class Compose:
             capture_response=capture_response,
             capture_cold_start_metric=capture_cold_start_metric,
             raise_on_empty_metrics=raise_on_empty_metrics,
-            default_dimentions=default_dimentions,
+            default_dimensions=default_dimensions,
             model=model,
             envelope=envelope,
         )
@@ -232,41 +234,31 @@ class Compose:
         composable: "Compose",
         scope,
         id=None,
-        function_name=None,
-        tracing=None,
-        runtime=None,
-        dead_letter_queue_enabled=False,
         **kwargs,
     ):
 
         from aws_cdk import aws_lambda, aws_lambda_python
 
-        tracing = tracing or aws_lambda.Tracing.ACTIVE
-        runtime = runtime or aws_lambda.Runtime.PYTHON_3_8
+        keyword_args = {
+            **composable.aws_lambda_constructor_kwargs,
+            **kwargs,
+        }
 
-        keyword_args = dict(
-            entry=composable.entry,
-            handler=composable.handler,
-            index=composable.index,
-            function_name=function_name,
-            runtime=runtime,
-            tracing=tracing,
-            dead_letter_queue_enabled=dead_letter_queue_enabled,
-        )
+        cdk_patch(kwargs, "tracing", "runtime")
 
-        keyword_args.update(kwargs)
+        if keyword_args.get("runtime") is None:
 
-        keyword_args.update(composable.aws_lambda_constructor_kwargs)
+            keyword_args.update(
+                runtime=aws_lambda.Runtime.PYTHON_3_8,
+            )
+
+        if keyword_args.get("tracing") is None:
+
+            keyword_args.update(
+                tracing=aws_lambda.Tracing.ACTIVE,
+            )
 
         id = id or f"{composable.func.__name__}_fn_{_sample()}"
-
-        if composable.timeout is not None:
-
-            keyword_args.update(timeout=composable.timeout.construct)
-
-        if composable.runtime is not None:
-
-            keyword_args.update(runtime=composable.runtime.construct)
 
         return aws_lambda_python.PythonFunction(
             scope,
@@ -278,10 +270,6 @@ class Compose:
         self,
         scope,
         id=None,
-        function_name=None,
-        tracing=None,
-        runtime=None,
-        dead_letter_queue_enabled=False,
         **kwargs,
     ):
 
@@ -289,10 +277,6 @@ class Compose:
             self,
             scope,
             id=id,
-            function_name=function_name,
-            tracing=tracing,
-            runtime=runtime,
-            dead_letter_queue_enabled=dead_letter_queue_enabled,
             **kwargs,
         )
 
@@ -338,6 +322,13 @@ class Compose:
                 }
             )
 
+            cdk_patch(
+                keyword_args,
+                "integration_pattern",
+                "timeout",
+                "invocation_type",
+            )
+
             invoke_lambda = sfn_tasks.LambdaInvoke(
                 scope,
                 f"invoke_{id}",
@@ -370,6 +361,13 @@ class Compose:
                 }
             )
 
+            cdk_patch(
+                keyword_args,
+                "integration_pattern",
+                "timeout",
+                "invocation_type",
+            )
+
             task = sfn_tasks.LambdaInvoke(
                 scope,
                 id,
@@ -400,6 +398,13 @@ class Compose:
                         for k, v in self.lambda_invoke_kwargs.items()
                         if v is not None
                     }
+                )
+
+                cdk_patch(
+                    keyword_args,
+                    "integration_pattern",
+                    "timeout",
+                    "invocation_type",
                 )
 
                 branch = sfn_tasks.LambdaInvoke(
@@ -522,7 +527,7 @@ def powertools(
     capture_error=True,
     raise_on_empty_metrics=False,
     capture_cold_start_metric=True,
-    default_dimentions=None,
+    default_dimensions=None,
     model=None,
     envelope=None,
 ):
@@ -536,7 +541,7 @@ def powertools(
         capture_error: passed to aws_lambda_powertools.Tracer
         raise_on_empty_metrics: passed to aws_lambda_powertools.Metrics
         capture_cold_start_metric: passed to aws_lambda_powertools.Metrics
-        default_dimentions: passed to aws_lambda_powertools.Metrics
+        default_dimensions: passed to aws_lambda_powertools.Metrics
         model: passed to aws_lambda_powertools.utilities.parser.event_parser
         envelope: passed to aws_lambda_powertools.utilities.parser.event_parser
 
@@ -584,7 +589,7 @@ def powertools(
                 lambda_handler=func,
                 capture_cold_start_metric=capture_cold_start_metric,
                 raise_on_empty_metrics=raise_on_empty_metrics,
-                default_dimensions=default_dimentions,
+                default_dimensions=default_dimensions,
             )
 
         if model is not None:

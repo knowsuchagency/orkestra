@@ -33,7 +33,10 @@ class Runtime(Enum):
 
 
 class LambdaInvocationType(Enum):
-    "https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_stepfunctions_tasks/LambdaInvocationType.html#aws_cdk.aws_stepfunctions_tasks.LambdaInvocationType"
+    """
+    https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_stepfunctions_tasks/LambdaInvocationType.html#aws_cdk.aws_stepfunctions_tasks.LambdaInvocationType
+    """
+
     DRY_RUN = "DRY_RUN"
     EVENT = "EVENT"
     REQUEST_RESPONSE = "REQUEST_RESPONSE"
@@ -45,10 +48,33 @@ class LambdaInvocationType(Enum):
 
 
 class IntegrationPattern(Enum):
-    "https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_stepfunctions/IntegrationPattern.html#aws_cdk.aws_stepfunctions.IntegrationPattern"
+    """
+    https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_stepfunctions/IntegrationPattern.html#aws_cdk.aws_stepfunctions.IntegrationPattern
+    """
+
     REQUEST_RESPONSE = "REQUEST_RESPONSE"
     RUN_JOB = "RUN_JOB"
     WAIT_FOR_TASK_TOKEN = "WAIT_FOR_TASK_TOKEN"
+
+    def construct(self):
+        from aws_cdk.aws_stepfunctions import IntegrationPattern
+
+        return getattr(IntegrationPattern, self.value)
+
+
+class Tracing(Enum):
+    """
+    https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_lambda/Tracing.html#aws_cdk.aws_lambda.Tracing
+    """
+
+    ACTIVE = "ACTIVE"
+    DISABLED = "DISABLED"
+    PASS_THROUGH = "PASS_THROUGH"
+
+    def construct(self):
+        from aws_cdk.aws_lambda import Tracing
+
+        return getattr(Tracing, self.value)
 
 
 @dataclass
