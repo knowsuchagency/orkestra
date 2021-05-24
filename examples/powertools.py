@@ -62,10 +62,22 @@ def greet_person(person: Person, context: LambdaContext) -> str:
 def dismiss_person(person: Person, context: LambdaContext) -> int:
     logger.info({"person": person, "person_dict": person.dict()})
     seconds = 2
-    tracer.put_annotation(key="waiting_for", value=seconds)
+    tracer.put_metadata(key="waiting_for", value=seconds)
+    with wait(seconds):
+        tracer.put_metadata(key="waited", value=seconds)
+    return seconds
+
+
+@compose
+@logger.inject_lambda_context(log_event=True)
+@tracer.capture_lambda_handler
+def high_five(event, context: LambdaContext):
+    logger.info(f"high five {event}")
+    seconds = 1
+    tracer.put_metadata(key="waiting_for", value=seconds)
     with wait(seconds):
         tracer.put_annotation(key="waited", value=seconds)
-    return seconds
+    return event
 
 
 @compose
@@ -90,6 +102,12 @@ def double(n: int, _):
 generate_numbers_2 = compose(func=generate_numbers.func)
 
 
-generate_person >> (greet_person, dismiss_person) >> generate_numbers >> halve
+(
+    generate_person
+    >> high_five
+    >> (greet_person, dismiss_person, high_five)
+    >> generate_numbers
+    >> halve
+)
 
 generate_numbers_2 >> double

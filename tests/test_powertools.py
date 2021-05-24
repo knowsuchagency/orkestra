@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from unittest.mock import MagicMock
 
 import pytest
 
@@ -31,13 +30,6 @@ def person() -> example.Person:
     return example.Person(name="Sam", age=28)
 
 
-@pytest.fixture
-def patch_tracer(monkeypatch):
-    monkeypatch.setattr(
-        "aws_lambda_powertools.tracing.tracer.Tracer", MagicMock()
-    )
-
-
 @pytest.mark.powertools
 class TestLocal:
     @staticmethod
@@ -63,9 +55,13 @@ class TestLocal:
         assert all(isinstance(n, int) for n in numbers)
 
     @staticmethod
-    def test_dismiss_person(person, context, patch_tracer):
+    def test_dismiss_person(person, context):
         example.dismiss_person(person.dict(), context)
 
     @staticmethod
     def test_greet_person(person, context):
         assert example.greet_person(person.dict(), context)
+
+    @staticmethod
+    def test_high_five(person, context):
+        assert example.high_five(person.dict(), context)

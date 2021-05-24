@@ -153,19 +153,6 @@ class Compose:
             self.index = Path(*module).name + ".py"
             self.handler = func.__name__
 
-        # if enable_powertools:
-        #     self.__call__ = powertools(
-        #         decorated=self.__call__,
-        #         log_event=log_event,
-        #         capture_error=capture_error,
-        #         capture_response=capture_response,
-        #         capture_cold_start_metric=capture_cold_start_metric,
-        #         raise_on_empty_metrics=raise_on_empty_metrics,
-        #         default_dimentions=default_dimentions,
-        #         model=model,
-        #         envelope=envelope,
-        #     )
-
         self.enable_powertools = enable_powertools
 
         self.powertools_kwargs = dict(
@@ -568,7 +555,7 @@ def powertools(
             )
 
         logger, tracer, metrics = (
-            globals().get(x)
+            func.__globals__.get(x)
             for x in (
                 "logger",
                 "tracer",
@@ -579,23 +566,26 @@ def powertools(
         if isinstance(logger, Logger):
 
             func = logger.inject_lambda_context(
+                lambda_handler=func,
                 log_event=log_event,
-            )(func)
+            )
 
         if isinstance(tracer, Tracer):
 
             func = tracer.capture_lambda_handler(
+                lambda_handler=func,
                 capture_response=capture_response,
                 capture_error=capture_error,
-            )(func)
+            )
 
         if isinstance(metrics, Metrics):
 
             func = metrics.log_metrics(
+                lambda_handler=func,
                 capture_cold_start_metric=capture_cold_start_metric,
                 raise_on_empty_metrics=raise_on_empty_metrics,
                 default_dimensions=default_dimentions,
-            )(func)
+            )
 
         if model is not None:
 
