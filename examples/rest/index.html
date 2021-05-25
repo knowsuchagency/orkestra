@@ -748,7 +748,10 @@ documentation and json serialization/deserialization.</p>
 <span class="normal">54</span>
 <span class="normal">55</span>
 <span class="normal">56</span>
-<span class="normal">57</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
 
 <span class="kn">from</span> <span class="nn">aws_cdk</span> <span class="kn">import</span> <span class="n">aws_apigateway</span> <span class="k">as</span> <span class="n">apigw</span>
 <span class="kn">from</span> <span class="nn">aws_cdk</span> <span class="kn">import</span> <span class="n">aws_lambda</span>
@@ -804,7 +807,10 @@ documentation and json serialization/deserialization.</p>
 
         <span class="c1"># we can still schedule as normal</span>
 
-        <span class="n">input_order</span><span class="o">.</span><span class="n">schedule</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state_machine_name</span><span class="o">=</span><span class="s2">&quot;schedule_rest_example&quot;</span><span class="p">)</span>
+        <span class="n">input_order</span><span class="o">.</span><span class="n">schedule</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">state_machine_name</span><span class="o">=</span><span class="s2">&quot;schedule_rest_example&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
 </div>
