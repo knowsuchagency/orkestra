@@ -176,7 +176,10 @@ In this example, we'll create a workflow that can be triggered asynchronously an
 
             # we can still schedule as normal
 
-            input_order.schedule(self, state_machine_name="schedule_rest_example")
+            input_order.schedule(
+                self,
+                state_machine_name="schedule_rest_example",
+            )
     ```
 
 === "examples/requirements.txt"
