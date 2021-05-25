@@ -19,9 +19,12 @@ theme:
 
 nav:
   - Home: index.md
-  - Tutorial: tutorial.md
-  - Examples:
-      - single lambda: examples/single_lambda.md
+  - Usage:
+    - Getting Started: getting_started.md
+    - Notes: notes.md
+    - Examples:
+        - single lambda: examples/single_lambda.md
+        - event-driven (api): examples/rest.md
   - Development: development.md
 
 

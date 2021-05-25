@@ -41,7 +41,7 @@ logger = Logger()
 tracer = Tracer()
 
 
-@compose(enable_powertools=True)
+@compose(enable_powertools=True, timeout=Duration.seconds(6))
 def input_order(event: dict, context) -> Order.Dict:
 
     id = event.get("id", str(uuid4()))
