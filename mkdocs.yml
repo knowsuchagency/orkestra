@@ -24,7 +24,7 @@ nav:
     - Notes: notes.md
     - Examples:
         - Single Lambda: examples/single_lambda.md
-        - Event-driven (API) Workflows: examples/rest.md
+        - Event-Driven (API) Workflows: examples/rest.md
         - CDK Orchestration: examples/cdk_orchestration.md
   - Development: development.md
 
