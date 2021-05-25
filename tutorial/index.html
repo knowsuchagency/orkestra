@@ -25,7 +25,7 @@
         
           
           
-          <meta name="theme-color" content="#7e56c2">
+          <meta name="theme-color" content="#009485">
         
       
     
@@ -54,7 +54,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="dracula" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple">
+    <body dir="ltr" data-md-color-scheme="dracula" data-md-color-primary="teal" data-md-color-accent="deep-purple">
   
     
     <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
@@ -314,6 +314,108 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#installing-orkestra" class="md-nav__link">
+    Installing Orkestra
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-our-first-workflow" class="md-nav__link">
+    Creating our first workflow
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating our first workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scaffolding" class="md-nav__link">
+    Scaffolding
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-business-logic" class="md-nav__link">
+    Adding Business Logic
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defining-our-infrastructure-as-code" class="md-nav__link">
+    Defining our Infrastructure As Code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    Testing
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-test-requirements" class="md-nav__link">
+    Install test requirements
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-test-module" class="md-nav__link">
+    Create test module
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-tests" class="md-nav__link">
+    Run Tests
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment" class="md-nav__link">
+    Deployment
+  </a>
+  
+    <nav class="md-nav" aria-label="Deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bootstrap" class="md-nav__link">
+    Bootstrap
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploy" class="md-nav__link">
+    Deploy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -409,6 +511,108 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#installing-orkestra" class="md-nav__link">
+    Installing Orkestra
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-our-first-workflow" class="md-nav__link">
+    Creating our first workflow
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating our first workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scaffolding" class="md-nav__link">
+    Scaffolding
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-business-logic" class="md-nav__link">
+    Adding Business Logic
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defining-our-infrastructure-as-code" class="md-nav__link">
+    Defining our Infrastructure As Code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    Testing
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-test-requirements" class="md-nav__link">
+    Install test requirements
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-test-module" class="md-nav__link">
+    Create test module
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-tests" class="md-nav__link">
+    Run Tests
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment" class="md-nav__link">
+    Deployment
+  </a>
+  
+    <nav class="md-nav" aria-label="Deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bootstrap" class="md-nav__link">
+    Bootstrap
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploy" class="md-nav__link">
+    Deploy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -431,6 +635,352 @@
                 <h2 id="creating-a-new-cdk-project">Creating a new CDK project<a class="headerlink" href="#creating-a-new-cdk-project" title="Permanent link">#</a></h2>
 <p>In order to use Orkestra, you'll need a CDK project to define your
 infrastructure as code (IAC).</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># make sure you have the aws CDK installed</span>
+
+npm install -g aws-cdk
+
+mkdir hello_orkestra
+
+<span class="nb">cd</span> hello_orkestra
+
+<span class="c1"># this command creates a project scaffold and virtual environment</span>
+
+cdk init -l python
+</code></pre></div>
+</td></tr></table>
+<p>You should now have a folder structure like the following</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>❯ tree
+.
+├── README.md
+├── app.py
+├── cdk.json
+├── hello_orkestra
+│   ├── __init__.py
+│   └── hello_orkestra_stack.py
+├── requirements.txt
+├── setup.py
+└── source.bat
+
+1 directory, 8 files
+</code></pre></div>
+</td></tr></table>
+<h2 id="installing-orkestra">Installing Orkestra<a class="headerlink" href="#installing-orkestra" title="Permanent link">#</a></h2>
+<p>Add orkestra to your requirements.</p>
+<div class="admonition example">
+<p class="admonition-title">requirements.txt</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>-e .
+orkestra[cdk,powertools]&gt;=0.4.3
+</code></pre></div>
+</td></tr></table>
+</div>
+<p>Activate the virtual environment and install Orkestra.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>. .venv/bin/activate
+
+pip install -r requirements.txt
+</code></pre></div>
+</td></tr></table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The rest of the tutorial will assume you have the virtual environment activated</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You'll notice we installed the cdk optional dependency.</p>
+<p>The cdk dependencies are so we can synthesize our constructs to cloudformation.</p>
+</div>
+<h2 id="creating-our-first-workflow">Creating our first workflow<a class="headerlink" href="#creating-our-first-workflow" title="Permanent link">#</a></h2>
+<h3 id="scaffolding">Scaffolding<a class="headerlink" href="#scaffolding" title="Permanent link">#</a></h3>
+<p>Create a folder for your lambdas and populate it with a module
+and a requirements.txt that references orkestra as a dependency.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>mkdir lambdas
+
+touch lambdas/main.py
+
+<span class="nb">echo</span> <span class="s2">&quot;orkestra&gt;=0.4.3&quot;</span> &gt;&gt; lambdas/requirements.txt
+</code></pre></div>
+</td></tr></table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The packages in requirements.txt file will get installed on the
+lambda.</p>
+<p>Our lambda won't need to build anything with the cdk, so no need for that
+optional dependency.</p>
+</div>
+<h3 id="adding-business-logic">Adding Business Logic<a class="headerlink" href="#adding-business-logic" title="Permanent link">#</a></h3>
+<p>Add some functions to our <code>main.py</code> module and import the head function (say_hello) in our IAC.</p>
+<div class="tabbed-set" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">main.py</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">orkestra</span> <span class="kn">import</span> <span class="n">compose</span>
+
+
+<span class="nd">@compose</span>
+<span class="k">def</span> <span class="nf">say_hello</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s2">&quot;hello, world&quot;</span>
+
+
+<span class="nd">@compose</span>
+<span class="k">def</span> <span class="nf">uppercase</span><span class="p">(</span><span class="n">event</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">event</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+
+
+<span class="nd">@compose</span>
+<span class="k">def</span> <span class="nf">double</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">event</span> <span class="o">*</span> <span class="mi">2</span>
+
+
+<span class="nd">@compose</span>
+<span class="k">def</span> <span class="nf">say_goodbye</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s2">&quot;goodbye&quot;</span>
+
+
+<span class="n">say_hello</span> <span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">uppercase</span><span class="p">,</span> <span class="n">double</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">say_goodbye</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+</div>
+<h3 id="defining-our-infrastructure-as-code">Defining our Infrastructure As Code<a class="headerlink" href="#defining-our-infrastructure-as-code" title="Permanent link">#</a></h3>
+<div class="tabbed-set" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">hello_orkestra/hello_orkestra_stack.py</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">aws_cdk</span> <span class="kn">import</span> <span class="n">core</span> <span class="k">as</span> <span class="n">cdk</span>
+<span class="kn">from</span> <span class="nn">lambdas.main</span> <span class="kn">import</span> <span class="n">say_hello</span>
+
+
+<span class="k">class</span> <span class="nc">HelloOrkestraStack</span><span class="p">(</span><span class="n">cdk</span><span class="o">.</span><span class="n">Stack</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">scope</span><span class="p">:</span> <span class="n">cdk</span><span class="o">.</span><span class="n">Construct</span><span class="p">,</span> <span class="n">construct_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">construct_id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="n">say_hello</span><span class="o">.</span><span class="n">schedule</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">expression</span><span class="o">=</span><span class="s2">&quot;rate(5 minutes)&quot;</span><span class="p">,</span>
+            <span class="n">state_machine_name</span><span class="o">=</span><span class="s2">&quot;say_hello&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The <code>schedule</code> method of our function takes care of a lot of boilerplate for us.</p>
+<p>Under-the-hood, it...</p>
+<ol>
+<li>defines the IAC for our lambda functions</li>
+<li>chains them together in a step function state machine</li>
+<li>sets that state machine to be triggered by an EventBridge (CloudWatch) event at the interval we set</li>
+</ol>
+</div>
+<h2 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">#</a></h2>
+<p>Since Orkestra works by simply decorating normal Python functions,
+you are encouraged to compose your business logic in terms of
+discrete functions that (hopefully) better lend themselves to
+local unit testing.</p>
+<h3 id="install-test-requirements">Install test requirements<a class="headerlink" href="#install-test-requirements" title="Permanent link">#</a></h3>
+<div class="admonition example">
+<p class="admonition-title">requirements.txt</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>-e .
+orkestra[cdk,powertools]&gt;=0.4.3
+pytest
+</code></pre></div>
+</td></tr></table>
+</div>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>pip install -r requirements.txt
+</code></pre></div>
+</td></tr></table>
+<h3 id="create-test-module">Create test module<a class="headerlink" href="#create-test-module" title="Permanent link">#</a></h3>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>touch lambdas/test_main.py
+</code></pre></div>
+</td></tr></table>
+<div class="admonition example">
+<p class="admonition-title">lambdas/test_main.py</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="kn">from</span> <span class="nn">main</span> <span class="kn">import</span> <span class="n">say_hello</span><span class="p">,</span> <span class="n">uppercase</span><span class="p">,</span> <span class="n">double</span><span class="p">,</span> <span class="n">say_goodbye</span>
+
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span> <span class="nf">event</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{}</span>
+
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span> <span class="nf">context</span><span class="p">():</span>
+    <span class="k">return</span> <span class="kc">None</span>
+
+
+<span class="k">def</span> <span class="nf">test_say_hello</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">say_hello</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">test_uppercase</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="n">say_hello</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">uppercase</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">test_double</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="n">say_hello</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">double</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">test_goodbye</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">say_goodbye</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+<h3 id="run-tests">Run Tests<a class="headerlink" href="#run-tests" title="Permanent link">#</a></h3>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>orkestra/hello_orkestra on  main <span class="o">[</span>!?<span class="o">]</span> via 🐍 v3.9.5 <span class="o">(</span>.venv<span class="o">)</span> on ☁️  <span class="o">(</span>us-east-2<span class="o">)</span>
+❯ pytest lambdas/test_main.py
+<span class="o">===================================</span> <span class="nb">test</span> session <span class="nv">starts</span> <span class="o">====================================</span>
+platform darwin -- Python <span class="m">3</span>.9.5, pytest-6.2.4, py-1.10.0, pluggy-0.13.1
+rootdir: ..., configfile: pyproject.toml
+collected <span class="m">4</span> items
+
+lambdas/test_main.py ....                                                            <span class="o">[</span><span class="m">100</span>%<span class="o">]</span>
+
+<span class="o">====================================</span> <span class="m">4</span> passed <span class="k">in</span> <span class="m">0</span>.02s <span class="o">=====================================</span>
+</code></pre></div>
+</td></tr></table>
+<h2 id="deployment">Deployment<a class="headerlink" href="#deployment" title="Permanent link">#</a></h2>
+<p>We're now ready to deploy our workflow to AWS.</p>
+<p>The aws cdk cli works similarly to other programmatic AWs clients
+in that it will respect environment variables like</p>
+<ul>
+<li><code>AWS_PROFILE</code></li>
+<li><code>AWS_ACCESS_KEY_ID</code></li>
+<li><code>AWS_SECRET_ACCESS_KEY</code></li>
+</ul>
+<p>in order know which AWS account to deploy to and to authenticate with AWS.</p>
+<h3 id="bootstrap">Bootstrap<a class="headerlink" href="#bootstrap" title="Permanent link">#</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If this is our first cdk deployment, we will likely need to boostrap it.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>cdk bootstrap
+</code></pre></div>
+</td></tr></table>
+</div>
+<div class="admonition note">
+<p class="admonition-title">full boostrapping instructions</p>
+<p><a href="https://docs.aws.amazon.com/cdk/latest/guide/bootstrapping.html">docs.aws.amazon.com/cdk/latest/guide/bootstrapping.html</a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">cdk cli api reference</p>
+<p><a href="https://docs.aws.amazon.com/cdk/latest/guide/cli.html">docs.aws.amazon.com/cdk/latest/guide/cli.html</a></p>
+</div>
+<h3 id="deploy">Deploy<a class="headerlink" href="#deploy" title="Permanent link">#</a></h3>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>cdk deploy
+</code></pre></div>
+</td></tr></table>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>🎉 Congratulations 🎉</p>
+<p>You've successfully deployed your first Orkestra project 😃</p>
+<p><img alt="" src="../assets/images/example_main_sfn.png" /></p>
+</div>
                 
               
               
