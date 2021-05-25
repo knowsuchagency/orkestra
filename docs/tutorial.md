@@ -40,12 +40,13 @@ You should now have a folder structure like the following
 
 Add orkestra to your requirements.
 
-!!! example "requirements.txt"
+=== "requirements.txt"
 
     ```
     -e .
     orkestra[cdk,powertools]>=0.4.3
     ```
+
 Activate the virtual environment and install Orkestra.
 
 ```bash
@@ -162,7 +163,7 @@ local unit testing.
 
 ### Install test requirements
 
-!!! example "requirements.txt"
+=== "requirements.txt"
 
     ```
     -e .
@@ -180,7 +181,7 @@ pip install -r requirements.txt
 touch lambdas/test_main.py
 ```
 
-!!! example "lambdas/test_main.py"
+=== "lambdas/test_main.py"
 
     ```python
     import pytest
