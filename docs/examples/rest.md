@@ -1,3 +1,5 @@
+## Event Triggers
+
 Orkestra helps with the orchestration of scheduled cron-like tasks,
 similar to Airflow, but being built on top of [Step Functions](https://aws.amazon.com/step-functions/)
 means workflows can be invoked by any number of events in the AWS Ecosystem.
@@ -13,8 +15,18 @@ means workflows can be invoked by any number of events in the AWS Ecosystem.
     * Lambdas
     * S3 events
 
+## Example
+
 In this example, we'll create a workflow that can be triggered asynchronously an HTTP call to [API Gateway](https://aws.amazon.com/api-gateway/).
 
+!!! info
+
+    We'll write our API using a modern web framework, [FastAPI](https://fastapi.tiangolo.com) which uses type annotations and [pydantic](https://pydantic-docs.helpmanual.io) to produce automatic API
+    documentation and json serialization/deserialization.
+
+    We use [Mangum](https://github.com/jordaneremieff/mangum) to handle the translation of API Gateway calls to [ASGI](https://asgi.readthedocs.io/en/latest/) and vice-versa.
+
+    FastAPI is built on top of [Starlette](https://www.starlette.io) which implements the ASGI protocol to transate HTTP to Python objects and vice-versa.
 
 === "examples/rest.py"
 
@@ -165,4 +177,13 @@ In this example, we'll create a workflow that can be triggered asynchronously an
             # we can still schedule as normal
 
             input_order.schedule(self, state_machine_name="schedule_rest_example")
+    ```
+
+=== "examples/requirements.txt"
+
+    ```
+    orkestra[powertools]>=0.4.3
+    fastapi==0.65.1
+    mangum==0.11.0
+    boto3==1.17.18
     ```
