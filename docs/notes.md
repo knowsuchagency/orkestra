@@ -90,3 +90,63 @@ of the parallel job that contains it.
 
 You can then decide what to do with that error in a downstream consumer, whether to log it and continue execution,
 fail the state machine, loop back, etc.
+
+## Interfaces
+
+Any function decorated with `compose` will have certain methods that are useful for Infrastructure As Code.
+
+### compose.aws_lambda(...)
+
+Returns an instance of https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_lambda_python/PythonFunction.html
+
+This removes some of the boilerplate from having to instantiate the `PythonFunction` itself i.e.
+
+```python
+# Example automatically generated without compilation. See https://github.com/aws/jsii/issues/826
+import aws_cdk.aws_lambda as lambda_
+from aws_cdk.aws_lambda_python import PythonFunction
+
+PythonFunction(self, "MyFunction",
+    entry="/path/to/my/function", # required
+    index="my_index.py", # optional, defaults to 'index.py'
+    handler="my_exported_func", # optional, defaults to 'handler'
+    runtime=lambda_.Runtime.PYTHON_3_6
+)
+```
+
+### compose.task(...)
+
+This returns a Step Functions Task construct like those in https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_stepfunctions_tasks.html
+
+```python
+# Example automatically generated without compilation. See https://github.com/aws/jsii/issues/826
+
+submit_lambda = lambda_.Function(self, "SubmitLambda", ...)
+
+submit_job = tasks.LambdaInvoke(self, "Submit Job",
+    lambda_function=submit_lambda,
+    # Lambda's result is in the attribute `Payload`
+    output_path="$.Payload"
+)
+```
+
+could be shortened to ...
+
+```python
+# submit is a function we decorated with compose
+
+submit_lambda = submit.aws_lambda(self)
+
+submit_job = tasks.LambdaInvoke(self, "Submit Job",
+    lambda_function=submit_lambda,
+    # Lambda's result is in the attribute `Payload`
+    output_path="$.Payload"
+)
+```
+
+or even ...
+
+
+```python
+submit_job = submit.task(self)
+```
