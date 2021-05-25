@@ -4,6 +4,8 @@ The elegance of Airflow + the power of AWS
 
 Documentation: https://knowsuchagency.github.io/orkestra/
 
+*examples/hello_orkestra.py*
+
 ```python
 import random
 from typing import *
@@ -119,4 +121,31 @@ def random_float(event, context):
 )
 ```
 
-![state machine](docs/assets/images/hello_orkestra_sfn.png)
+*app.py*
+
+```python
+#!/usr/bin/env python3
+from aws_cdk import core as cdk
+
+from examples.hello_orkestra import generate_item
+
+
+class HelloOrkestra(cdk.Stack):
+    def __init__(self, scope, id, **kwargs):
+
+        super().__init__(scope, id, **kwargs)
+
+        generate_item.schedule(
+            self,
+            expression="rate(5 minutes)",
+            state_machine_name="hello_orkestra",
+        )
+
+
+app = cdk.App()
+
+
+app.synth()
+```
+
+![state machine](https://github.com/knowsuchagency/orkestra/blob/main/docs/assets/images/hello_orkestra_sfn.png?raw=true)
