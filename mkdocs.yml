@@ -19,6 +19,10 @@ theme:
 
 nav:
   - Home: index.md
+  - Tutorial: tutorial.md
+  - Examples:
+      - single lambda: examples/single_lambda.md
+  - Development: development.md
 
 
 markdown_extensions:

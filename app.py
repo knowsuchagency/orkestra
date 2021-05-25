@@ -3,10 +3,13 @@ import os
 import string
 from random import Random
 
+from aws_cdk import aws_apigateway as apigw
+from aws_cdk import aws_lambda
 from aws_cdk import aws_lambda_python
 from aws_cdk import aws_stepfunctions as sfn
 from aws_cdk import core as cdk
 
+from examples.hello_orkestra import generate_item
 from examples.orchestration import (
     generate_ints,
     make_person,
@@ -19,9 +22,6 @@ from examples.powertools import generate_person, generate_numbers_2
 from examples.rest import handler, input_order
 from examples.single_lambda import handler
 from orkestra import coerce
-from aws_cdk import aws_apigateway as apigw
-from aws_cdk import aws_lambda
-
 
 random = Random(0)
 
@@ -184,10 +184,24 @@ class RestExample(cdk.Stack):
         input_order.schedule(self, state_machine_name="schedule_rest_example")
 
 
+class HelloOrkestra(cdk.Stack):
+    def __init__(self, scope, id, **kwargs):
+
+        super().__init__(scope, id, **kwargs)
+
+        generate_item.schedule(
+            self,
+            expression="rate(5 minutes)",
+            state_machine_name="hello_orkestra",
+        )
+
+
 app = cdk.App()
 
 
 def synth(app=app):
+
+    HelloOrkestra(app, "helloOrkestra")
 
     Powertools(app, "powertools")
 

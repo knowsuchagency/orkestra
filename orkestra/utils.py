@@ -17,7 +17,7 @@ def make_composable(obj: T) -> T:
 
 def cdk_patch(kwargs: dict, /, *elements: str):
     """
-    Replaced interface elements in kwargs with cdk counterpart.
+    Replace interface elements in kwargs with their cdk counterpart.
     """
 
     for e in elements:

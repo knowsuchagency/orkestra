@@ -1,8 +1,6 @@
 import functools
-import string
 from collections import defaultdict
 from pathlib import Path
-from random import Random
 from typing import *
 
 from orkestra.interfaces import (
@@ -13,16 +11,12 @@ from orkestra.interfaces import (
     Tracing,
 )
 from orkestra.utils import coerce, cdk_patch
+from orkestra.exceptions import CompositionError
 
 OptionalFn = Optional[Union[Callable, Iterable[Callable]]]
 
-random = Random(0)
 
 _id_map = defaultdict(lambda: 1)
-
-
-def _sample(k=4):
-    return "".join(random.sample(string.hexdigits, k))
 
 
 def _incremental_id(id):
@@ -220,13 +214,7 @@ class Compose:
         else:
             func = self.func.__name__ if self.func is not None else None
 
-        return (
-            "Task("
-            f"func={func}, "
-            f"aws_lambda_constructor_kwargs={self.aws_lambda_constructor_kwargs}, "
-            f"len_downstream={len(self.downstream)}"
-            ")"
-        )
+        return f"Compose(func={func})"
 
     def __rshift__(self, right):
         right = (
@@ -269,7 +257,7 @@ class Compose:
                 tracing=aws_lambda.Tracing.ACTIVE,
             )
 
-        id = id or f"{composable.func.__name__}_fn_{_sample()}"
+        id = id or _incremental_id(composable.func.__name__ + "_fn")
 
         return aws_lambda_python.PythonFunction(
             scope,
@@ -401,9 +389,13 @@ class Compose:
 
         else:
 
+            id = "parallelize " + (
+                "".join([c.func.__name__ for c in self.func])
+            )
+
             task = sfn.Parallel(
                 scope,
-                "parallelize {}".format([c.func.__name__ for c in self.func]),
+                _incremental_id(id),
             )
 
             for fn in self.func:
@@ -452,18 +444,32 @@ class Compose:
         self,
         scope,
         definition=None,
+        previous=None,
     ):
         """
-        Return cdk state machine definition.
+        Return automagically composed cdk state machine definition.
         """
+        previous = previous or []
+
+        if self in previous:
+
+            raise CompositionError(
+                f"Failed to compose {self}. Composition using >> must be acyclic."
+            )
 
         task = self.task(scope)
 
         definition = task if definition is None else definition.next(task)
 
         if self.downstream:
+
             for c in self.downstream:
-                c.definition(scope, definition=definition)
+
+                c.definition(
+                    scope,
+                    definition=definition,
+                    previous=previous + [self],
+                )
 
         return definition
 
@@ -491,7 +497,7 @@ class Compose:
 
         from aws_cdk import aws_stepfunctions as sfn
 
-        id = id or f"{self.func.__name__}_sfn_{_sample()}"
+        id = id or _incremental_id(f"{self.func.__name__}_sfn")
 
         return sfn.StateMachine(
             scope,
@@ -542,7 +548,7 @@ class Compose:
         from aws_cdk import aws_events as eventbridge
         from aws_cdk import aws_events_targets as eventbridge_targets
 
-        id = id or f"{self.func.__name__}_sched_{_sample()}"
+        id = id or _incremental_id(f"{self.func.__name__}_sched")
 
         if expression is not None:
             schedule = eventbridge.Schedule.expression(expression)
