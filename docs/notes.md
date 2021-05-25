@@ -119,9 +119,12 @@ PythonFunction(self, "MyFunction",
 This returns a Step Functions Task construct like those in https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_stepfunctions_tasks.html
 
 ```python
-# Example automatically generated without compilation. See https://github.com/aws/jsii/issues/826
-
-submit_lambda = lambda_.Function(self, "SubmitLambda", ...)
+submit_lambda = PythonFunction(self, "MyFunction",
+    entry="path/to/fn",
+    index="index.py",
+    handler="submit",
+    runtime=lambda_.Runtime.PYTHON_3_6
+)
 
 submit_job = tasks.LambdaInvoke(self, "Submit Job",
     lambda_function=submit_lambda,
@@ -133,7 +136,8 @@ submit_job = tasks.LambdaInvoke(self, "Submit Job",
 could be shortened to ...
 
 ```python
-# submit is a function we decorated with compose
+# we decorated the submit function with compose
+from ... import submit
 
 submit_lambda = submit.aws_lambda(self)
 
@@ -144,8 +148,7 @@ submit_job = tasks.LambdaInvoke(self, "Submit Job",
 )
 ```
 
-or even ...
-
+and finally ...
 
 ```python
 submit_job = submit.task(self)
