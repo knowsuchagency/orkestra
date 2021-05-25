@@ -273,4 +273,4 @@ cdk deploy
 
     You've successfully deployed your first Orkestra project 😃
 
-    ![](assets/images/example_main_sfn.png)
+![](assets/images/example_main_sfn.png)
