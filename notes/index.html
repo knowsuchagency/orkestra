@@ -746,17 +746,23 @@ fail the state machine, loop back, etc.</p>
 </td></tr></table>
 <h3 id="composetask">compose.task(...)<a class="headerlink" href="#composetask" title="Permanent link">#</a></h3>
 <p>This returns a Step Functions Task construct like those in <a href="https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_stepfunctions_tasks.html">docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_stepfunctions_tasks.html</a></p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span>
-<span class="normal">8</span>
-<span class="normal">9</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># Example automatically generated without compilation. See https://github.com/aws/jsii/issues/826</span>
-
-<span class="n">submit_lambda</span> <span class="o">=</span> <span class="n">lambda_</span><span class="o">.</span><span class="n">Function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;SubmitLambda&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">submit_lambda</span> <span class="o">=</span> <span class="n">PythonFunction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;MyFunction&quot;</span><span class="p">,</span>
+    <span class="n">entry</span><span class="o">=</span><span class="s2">&quot;path/to/fn&quot;</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="s2">&quot;index.py&quot;</span><span class="p">,</span>
+    <span class="n">handler</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span><span class="p">,</span>
+    <span class="n">runtime</span><span class="o">=</span><span class="n">lambda_</span><span class="o">.</span><span class="n">Runtime</span><span class="o">.</span><span class="n">PYTHON_3_6</span>
+<span class="p">)</span>
 
 <span class="n">submit_job</span> <span class="o">=</span> <span class="n">tasks</span><span class="o">.</span><span class="n">LambdaInvoke</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;Submit Job&quot;</span><span class="p">,</span>
     <span class="n">lambda_function</span><span class="o">=</span><span class="n">submit_lambda</span><span class="p">,</span>
@@ -766,15 +772,17 @@ fail the state machine, loop back, etc.</p>
 </code></pre></div>
 </td></tr></table>
 <p>could be shortened to ...</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span>
-<span class="normal">8</span>
-<span class="normal">9</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># submit is a function we decorated with compose</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># we decorated the submit function with compose</span>
+<span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">submit</span>
 
 <span class="n">submit_lambda</span> <span class="o">=</span> <span class="n">submit</span><span class="o">.</span><span class="n">aws_lambda</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
@@ -785,7 +793,7 @@ fail the state machine, loop back, etc.</p>
 <span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
-<p>or even ...</p>
+<p>and finally ...</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">submit_job</span> <span class="o">=</span> <span class="n">submit</span><span class="o">.</span><span class="n">task</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
