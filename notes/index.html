@@ -357,6 +357,40 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#composition" class="md-nav__link">
+    Composition
+  </a>
+  
+    <nav class="md-nav" aria-label="Composition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coming-from-airflow" class="md-nav__link">
+    Coming from Airflow
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orkestra-step-functions-graph" class="md-nav__link">
+    Orkestra (Step Functions) Graph
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#errors" class="md-nav__link">
+    Errors
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -404,7 +438,7 @@
   
     <li class="md-nav__item">
       <a href="../examples/rest/" class="md-nav__link">
-        Event-driven (API) Workflows
+        Event-Driven (API) Workflows
       </a>
     </li>
   
@@ -499,6 +533,40 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#composition" class="md-nav__link">
+    Composition
+  </a>
+  
+    <nav class="md-nav" aria-label="Composition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coming-from-airflow" class="md-nav__link">
+    Coming from Airflow
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orkestra-step-functions-graph" class="md-nav__link">
+    Orkestra (Step Functions) Graph
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#errors" class="md-nav__link">
+    Errors
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -557,6 +625,45 @@ want to increase your lambdas' timeout duration.</p>
 </td></tr></table>
 </div>
 </div>
+<h2 id="composition">Composition<a class="headerlink" href="#composition" title="Permanent link">#</a></h2>
+<p>Let's say we had a 3 part workflow <code>x &gt;&gt; y &gt;&gt; z</code>.</p>
+<p>At some point we needed to add a task that ran immediately after <code>y</code>. Let's call it <code>g</code>.</p>
+<p><code>g</code> runs after <code>y</code> but has no effect on <code>z</code>.</p>
+<h3 id="coming-from-airflow">Coming from Airflow<a class="headerlink" href="#coming-from-airflow" title="Permanent link">#</a></h3>
+<p>If you're coming from Airflow, you would likely add <code>g</code> this way:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="n">y</span> <span class="o">&gt;&gt;</span> <span class="n">z</span>
+
+<span class="n">y</span> <span class="o">&gt;&gt;</span> <span class="n">g</span>
+</code></pre></div>
+</td></tr></table>
+<p><img alt="airflow graph" src="../assets/images/airflow_graph.png" /></p>
+<h3 id="orkestra-step-functions-graph">Orkestra (Step Functions) Graph<a class="headerlink" href="#orkestra-step-functions-graph" title="Permanent link">#</a></h3>
+<p>Orkestra is built on top of AWS Step Functions which don't allow arbitrarily appending multiple downstream nodes to any
+to a given part of the State Machine graph, like Airflow.</p>
+<p>In order to achieve a similar result, you must group tasks together like so:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="n">y</span> <span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">z</span><span class="p">,</span> <span class="n">g</span><span class="p">]</span>
+</code></pre></div>
+</td></tr></table>
+<p><img alt="orkestra graph" src="../assets/images/orkestra_graph.png" /></p>
+<h3 id="errors">Errors<a class="headerlink" href="#errors" title="Permanent link">#</a></h3>
+<p>The issue we run into is in the event of the failure of <code>g</code>.</p>
+<p>Step Functions halt at the entire state machine at the time an error is first encountered.</p>
+<p>Remember we said <code>z</code> doesn't depend on <code>g</code>. If <code>g</code> fails before <code>z</code> finishes execution, the entire State Machine will
+halt execution and <code>z</code> won't run.</p>
+<p>To help address this, Orkestra allows you to compose tasks like so:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># notice we use a tuple vs a list here</span>
+<span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="n">y</span> <span class="o">&gt;&gt;</span> <span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p><img alt="orkestra error capture" src="../assets/images/orkestra_error_capture_graph.png" /></p>
+<p>This will automatically create tasks for each parallel job that "swallow" errors.</p>
+<p><code>g</code> will still show up as having failed but the error will be forwarded as part of the output
+of the parallel job that contains it.</p>
+<p>You can then decide what to do with that error in a downstream consumer, whether to log it and continue execution,
+fail the state machine, loop back, etc.</p>
                 
               
               
