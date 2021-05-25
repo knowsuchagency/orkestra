@@ -44,7 +44,7 @@ Add orkestra to your requirements.
 
     ```
     -e .
-    orkestra[cdk,powertools]>=0.4.3
+    orkestra[cdk]>=0.4.3
     ```
 
 Activate the virtual environment and install Orkestra.
