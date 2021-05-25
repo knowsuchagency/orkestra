@@ -7,7 +7,7 @@ theme:
   custom_dir: docs/theme
   palette:
     scheme: dracula
-    primary: deep purple
+    primary: teal
     accent: deep purple
   font:
     text: Roboto

@@ -135,3 +135,4 @@ cdk.out/
 .DS_Store
 .idea/
 examples/orkestra
+hello_orkestra/
