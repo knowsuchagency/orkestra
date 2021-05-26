@@ -38,7 +38,7 @@ jobs:
           prerelease: true
           enable-pep582: true
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: pdm install -s :all
 
       - name: Run Unit Tests

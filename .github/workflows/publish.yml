@@ -1,0 +1,42 @@
+name: publish to pypi
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  publish:
+
+    environment: pypi
+
+    env:
+      TWINE_USERNAME: knowsuchagency
+      TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - uses: pdm-project/setup-pdm@v2
+        name: Setup PDM
+        with:
+          python-version: 3.8
+          architecture: x64
+          prerelease: true
+          enable-pep582: true
+
+      - name: Install Dependencies
+        run: pdm install
+
+      - name: Build Package
+        run: pdm build
+
+      - name: Test Publish
+        run: pdm run test-publish
+
+      - name: Publish to PYPI
+        run: pdm run publish
