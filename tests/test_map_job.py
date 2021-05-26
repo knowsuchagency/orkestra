@@ -32,8 +32,4 @@ def test_times_3(n: Union[int, float], generic_context):
 
 @given(numbers=lists(floats(min_value=0)))
 def test_sum_up(numbers: List[float], generic_context):
-    result = sum_up(numbers, generic_context)
-    if result is nan:
-        assert nan in numbers
-    else:
-        assert result == sum(numbers)
+    assert sum_up(numbers, generic_context) == sum(numbers)
