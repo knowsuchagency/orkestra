@@ -32,11 +32,5 @@ jobs:
       - name: Install Dependencies
         run: pdm install
 
-      - name: Build Package
-        run: pdm build
-
-      - name: Test Publish
-        run: pdm run test-publish
-
       - name: Publish to PYPI
         run: pdm run publish

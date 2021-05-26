@@ -115,16 +115,15 @@ cdk destroy --force
 klaxon --title orkestra --subtitle destroyed
 """
 
-test-publish = "twine upload --repository testpypi dist/*"
+test-pypi = "twine upload --repository testpypi dist/*"
 
-publish = "twine upload dist/*"
+pypi = "twine upload dist/*"
 
-pub.shell = """
+publish.shell = """
 set -x
-pdm run format
 pdm build
 pdm run test-publish
-pdm run publish
+pdm run pypi
 """
 
 docs = "mkdocs serve"
