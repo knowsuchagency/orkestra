@@ -25,7 +25,7 @@ jobs:
           enable-pep582: true
 
       - name: Install dependencies
-        run: pdm install
+        run: pdm install -s :all
 
       - name: Run Unit Tests
         run: pdm run test
