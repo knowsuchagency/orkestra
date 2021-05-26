@@ -9,7 +9,7 @@ def ones_and_zeros(event, context) -> List[int]:
     return random.choices([0, 1], k=10)
 
 
-@compose
+@compose(is_map_job=True)
 def divide_by(n: int, context) -> float:
     return 1 / n
 
