@@ -185,7 +185,7 @@ In this example, we'll create a workflow that can be triggered asynchronously an
 === "examples/requirements.txt"
 
     ```
-    orkestra[powertools]>=0.4.3
+    orkestra[powertools]>=0.5.0
     fastapi==0.65.1
     mangum==0.11.0
     boto3==1.17.18

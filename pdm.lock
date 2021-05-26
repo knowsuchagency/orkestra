@@ -993,7 +993,7 @@ dependencies = [
     "toml>=0.10.1",
     "regex>=2020.1.8",
     "pathspec<1,>=0.8.1",
-    "mypy-extensions>=0.4.3",
+    "mypy-extensions>=0.5.0",
 ]
 
 [[package]]
@@ -1361,7 +1361,7 @@ dependencies = [
 [[package]]
 name = "mypy-extensions"
 sections = ["dev"]
-version = "0.4.3"
+version = "0.5.0"
 summary = "Experimental type system extensions for programs checked with the mypy typechecker."
 
 [[package]]
@@ -1642,7 +1642,7 @@ dependencies = [
     "importlib-metadata>=3.6",
     "keyring>=15.1",
     "rfc3986>=1.4.0",
-    "colorama>=0.4.3",
+    "colorama>=0.5.0",
 ]
 
 [[package]]
@@ -2308,9 +2308,9 @@ content_hash = "sha256:78fd2540d9cb391123ca83dacc29fb2270da283f5ca81ed6c1eaf3b7e
     {file = "mkdocs_material_extensions-1.0.1-py3-none-any.whl", hash = "sha256:d90c807a88348aa6d1805657ec5c0b2d8d609c110e62b9dce4daf7fa981fa338"},
     {file = "mkdocs-material-extensions-1.0.1.tar.gz", hash = "sha256:6947fb7f5e4291e3c61405bad3539d81e0b3cd62ae0d66ced018128af509c68f"},
 ]
-"mypy-extensions 0.4.3" = [
-    {file = "mypy_extensions-0.4.3-py2.py3-none-any.whl", hash = "sha256:090fedd75945a69ae91ce1303b5824f428daf5a028d2f6ab8a299250a846f15d"},
-    {file = "mypy_extensions-0.4.3.tar.gz", hash = "sha256:2d82818f5bb3e369420cb3c4060a7970edba416647068eb4c5343488a6c604a8"},
+"mypy-extensions 0.5.0" = [
+    {file = "mypy_extensions-0.5.0-py2.py3-none-any.whl", hash = "sha256:090fedd75945a69ae91ce1303b5824f428daf5a028d2f6ab8a299250a846f15d"},
+    {file = "mypy_extensions-0.5.0.tar.gz", hash = "sha256:2d82818f5bb3e369420cb3c4060a7970edba416647068eb4c5343488a6c604a8"},
 ]
 "nltk 3.6.2" = [
     {file = "nltk-3.6.2-py3-none-any.whl", hash = "sha256:240e23ab1ab159ef9940777d30c7c72d7e76d91877099218a7585370c11f6b9e"},
