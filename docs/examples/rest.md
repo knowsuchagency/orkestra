@@ -12,6 +12,7 @@ means workflows can be invoked by any number of events in the AWS Ecosystem.
     * SNS
     * MSK
     * EventBridge
+    * Kinesis
     * Lambdas
     * S3 events
 
