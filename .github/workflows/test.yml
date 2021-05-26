@@ -4,9 +4,9 @@ on: push
 
 jobs:
 
-  environment: dev
-
   test:
+
+    environment: dev
 
     strategy:
       matrix:
