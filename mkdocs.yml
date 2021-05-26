@@ -27,6 +27,7 @@ nav:
         - Event-Driven (API) Workflows: examples/rest.md
         - CDK Orchestration: examples/cdk_orchestration.md
   - Development: development.md
+  - Rationale: rationale.md
 
 
 markdown_extensions:
