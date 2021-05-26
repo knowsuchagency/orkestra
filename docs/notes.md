@@ -77,7 +77,7 @@ halt execution and `z` won't run.
 To help address this, Orkestra allows you to compose tasks like so:
 
 ```python
-# notice we use a tuple vs a list here
+# notice we use a tuple as opposed to a list here
 x >> y >> (z, g)
 ```
 
