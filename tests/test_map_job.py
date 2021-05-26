@@ -1,4 +1,4 @@
-from math import isnan, nan
+from math import isnan
 from typing import *
 
 import pytest
