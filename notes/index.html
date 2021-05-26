@@ -346,8 +346,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#timeout" class="md-nav__link">
-    timeout
+  <a href="#timeouts" class="md-nav__link">
+    timeouts
   </a>
   
 </li>
@@ -549,8 +549,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#timeout" class="md-nav__link">
-    timeout
+  <a href="#timeouts" class="md-nav__link">
+    timeouts
   </a>
   
 </li>
@@ -650,7 +650,7 @@ files as an optional requirement for Orkestra.</p>
 </td></tr></table>
 </div>
 </div>
-<h3 id="timeout">timeout<a class="headerlink" href="#timeout" title="Permanent link">#</a></h3>
+<h3 id="timeouts">timeouts<a class="headerlink" href="#timeouts" title="Permanent link">#</a></h3>
 <p>Using Powertools will increase your lambdas' startup time so you will likely
 want to increase your lambdas' timeout duration.</p>
 <div class="tabbed-set" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">lambda_directory/index.py</label><div class="tabbed-content">
@@ -720,32 +720,43 @@ of the parallel job that contains it.</p>
 fail the state machine, loop back, etc.</p>
 <h2 id="interfaces">Interfaces<a class="headerlink" href="#interfaces" title="Permanent link">#</a></h2>
 <p>Any function decorated with <code>compose</code> will have certain methods that are useful for Infrastructure As Code.</p>
-<h3 id="composeaws_lambda">compose.aws_lambda(...)<a class="headerlink" href="#composeaws_lambda" title="Permanent link">#</a></h3>
+<h3 id="composeaws_lambda"><code>compose.aws_lambda(...)</code><a class="headerlink" href="#composeaws_lambda" title="Permanent link">#</a></h3>
 <p>Returns an instance of <a href="https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_lambda_python/PythonFunction.html">docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_lambda_python/PythonFunction.html</a></p>
 <p>This removes some of the boilerplate from having to instantiate the <code>PythonFunction</code> itself i.e.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># Example automatically generated without compilation. See https://github.com/aws/jsii/issues/826</span>
-<span class="kn">import</span> <span class="nn">aws_cdk.aws_lambda</span> <span class="k">as</span> <span class="nn">lambda_</span>
+<div class="tabbed-set" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1">original</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">aws_cdk.aws_lambda</span> <span class="k">as</span> <span class="nn">lambda_</span>
 <span class="kn">from</span> <span class="nn">aws_cdk.aws_lambda_python</span> <span class="kn">import</span> <span class="n">PythonFunction</span>
 
-<span class="n">PythonFunction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;MyFunction&quot;</span><span class="p">,</span>
-    <span class="n">entry</span><span class="o">=</span><span class="s2">&quot;/path/to/my/function&quot;</span><span class="p">,</span> <span class="c1"># required</span>
-    <span class="n">index</span><span class="o">=</span><span class="s2">&quot;my_index.py&quot;</span><span class="p">,</span> <span class="c1"># optional, defaults to &#39;index.py&#39;</span>
-    <span class="n">handler</span><span class="o">=</span><span class="s2">&quot;my_exported_func&quot;</span><span class="p">,</span> <span class="c1"># optional, defaults to &#39;handler&#39;</span>
+<span class="n">lambda_fn</span> <span class="o">=</span> <span class="n">PythonFunction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;MyFunction&quot;</span><span class="p">,</span>
+    <span class="n">entry</span><span class="o">=</span><span class="s2">&quot;./lambda_directory&quot;</span><span class="p">,</span> <span class="c1"># required</span>
+    <span class="n">index</span><span class="o">=</span><span class="s2">&quot;main.py&quot;</span><span class="p">,</span> <span class="c1"># optional, defaults to &#39;index.py&#39;</span>
+    <span class="n">handler</span><span class="o">=</span><span class="s2">&quot;do_something&quot;</span><span class="p">,</span> <span class="c1"># optional, defaults to &#39;handler&#39;</span>
     <span class="n">runtime</span><span class="o">=</span><span class="n">lambda_</span><span class="o">.</span><span class="n">Runtime</span><span class="o">.</span><span class="n">PYTHON_3_6</span>
 <span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
-<h3 id="composetask">compose.task(...)<a class="headerlink" href="#composetask" title="Permanent link">#</a></h3>
+</div>
+<input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><label for="__tabbed_3_2">shortened</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">lambda_directory.main</span> <span class="kn">import</span> <span class="n">do_something</span>
+
+<span class="n">lambda_fn</span> <span class="o">=</span> <span class="n">do_something</span><span class="o">.</span><span class="n">aws_lambda</span><span class="p">(</span><span class="n">scope</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+</div>
+<h3 id="composetask"><code>compose.task(...)</code><a class="headerlink" href="#composetask" title="Permanent link">#</a></h3>
 <p>This returns a Step Functions Task construct like those in <a href="https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_stepfunctions_tasks.html">docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_stepfunctions_tasks.html</a></p>
+<div class="tabbed-set" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><label for="__tabbed_4_1">original</label><div class="tabbed-content">
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -771,7 +782,8 @@ fail the state machine, loop back, etc.</p>
 <span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
-<p>could be shortened to ...</p>
+</div>
+<input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><label for="__tabbed_4_2">shortened</label><div class="tabbed-content">
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -793,10 +805,13 @@ fail the state machine, loop back, etc.</p>
 <span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
-<p>or simply ...</p>
+</div>
+<input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><label for="__tabbed_4_3">further shortened</label><div class="tabbed-content">
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">submit_job</span> <span class="o">=</span> <span class="n">submit</span><span class="o">.</span><span class="n">task</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+</div>
+</div>
                 
               
               
