@@ -57,7 +57,14 @@ class TestApplication:
 
         return App()
 
-    def test_hello_orkestra(self, app):
+    def test_lambda_defaults(self, app):
+
+        assert (
+            app.single_lambda.lmb.runtime.to_string()
+            == aws_lambda.Runtime.PYTHON_3_8.to_string()
+        )
+
+    def test_single_lambda(self, app):
 
         assert isinstance(
             app.single_lambda.lmb,
