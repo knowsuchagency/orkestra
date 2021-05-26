@@ -42,7 +42,6 @@ jobs:
       - name: Run Unit Tests
         run: pdm run test --cov=orkestra
 
-
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
