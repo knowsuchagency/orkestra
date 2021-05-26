@@ -148,7 +148,7 @@ submit_job = tasks.LambdaInvoke(self, "Submit Job",
 )
 ```
 
-and finally ...
+or simply ...
 
 ```python
 submit_job = submit.task(self)

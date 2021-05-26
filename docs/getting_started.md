@@ -122,8 +122,6 @@ Add some functions to our `main.py` module and import the head function (say_hel
 
     ```
 
-### Defining our Infrastructure As Code
-
 === "hello_orkestra/hello_orkestra_stack.py"
 
     ```python
@@ -273,4 +271,4 @@ cdk deploy
 
     You've successfully deployed your first Orkestra project 😃
 
-![](assets/images/example_main_sfn.png)
+    ![](assets/images/example_main_sfn.png)
