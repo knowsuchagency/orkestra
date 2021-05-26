@@ -76,6 +76,8 @@ dev = [
 ]
 test = [
     "pytest~=6.2",
+    "coverage",
+    "pytest-cov",
 ]
 
 [tool.pytest.ini_options]
