@@ -1,5 +1,7 @@
 # Orkestra
 
+![Discord](https://img.shields.io/discord/846930683872280638)
+
 The elegance of Airflow + the power of AWS
 
 Documentation: https://knowsuchagency.github.io/orkestra/
