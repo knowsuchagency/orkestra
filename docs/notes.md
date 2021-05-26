@@ -11,7 +11,7 @@ files as an optional requirement for Orkestra.
     orkestra[powertools]>=0.4.3
     ```
 
-### timeout
+### timeouts
 
 Using Powertools will increase your lambdas' startup time so you will likely
 want to increase your lambdas' timeout duration.
@@ -95,61 +95,72 @@ fail the state machine, loop back, etc.
 
 Any function decorated with `compose` will have certain methods that are useful for Infrastructure As Code.
 
-### compose.aws_lambda(...)
+### `compose.aws_lambda(...)`
 
 Returns an instance of https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_lambda_python/PythonFunction.html
 
 This removes some of the boilerplate from having to instantiate the `PythonFunction` itself i.e.
 
-```python
-# Example automatically generated without compilation. See https://github.com/aws/jsii/issues/826
-import aws_cdk.aws_lambda as lambda_
-from aws_cdk.aws_lambda_python import PythonFunction
+=== "original"
 
-PythonFunction(self, "MyFunction",
-    entry="/path/to/my/function", # required
-    index="my_index.py", # optional, defaults to 'index.py'
-    handler="my_exported_func", # optional, defaults to 'handler'
-    runtime=lambda_.Runtime.PYTHON_3_6
-)
-```
+    ```python
+    import aws_cdk.aws_lambda as lambda_
+    from aws_cdk.aws_lambda_python import PythonFunction
 
-### compose.task(...)
+    lambda_fn = PythonFunction(self, "MyFunction",
+        entry="./lambda_directory", # required
+        index="main.py", # optional, defaults to 'index.py'
+        handler="do_something", # optional, defaults to 'handler'
+        runtime=lambda_.Runtime.PYTHON_3_6
+    )
+    ```
+
+=== "shortened"
+
+    ```python
+    from lambda_directory.main import do_something
+
+    lambda_fn = do_something.aws_lambda(scope)
+    ```
+
+### `compose.task(...)`
 
 This returns a Step Functions Task construct like those in https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_stepfunctions_tasks.html
 
-```python
-submit_lambda = PythonFunction(self, "MyFunction",
-    entry="path/to/fn",
-    index="index.py",
-    handler="submit",
-    runtime=lambda_.Runtime.PYTHON_3_6
-)
+=== "original"
 
-submit_job = tasks.LambdaInvoke(self, "Submit Job",
-    lambda_function=submit_lambda,
-    # Lambda's result is in the attribute `Payload`
-    output_path="$.Payload"
-)
-```
+    ```python
+    submit_lambda = PythonFunction(self, "MyFunction",
+        entry="path/to/fn",
+        index="index.py",
+        handler="submit",
+        runtime=lambda_.Runtime.PYTHON_3_6
+    )
 
-could be shortened to ...
+    submit_job = tasks.LambdaInvoke(self, "Submit Job",
+        lambda_function=submit_lambda,
+        # Lambda's result is in the attribute `Payload`
+        output_path="$.Payload"
+    )
+    ```
 
-```python
-# we decorated the submit function with compose
-from ... import submit
+=== "shortened"
 
-submit_lambda = submit.aws_lambda(self)
+    ```python
+    # we decorated the submit function with compose
+    from ... import submit
 
-submit_job = tasks.LambdaInvoke(self, "Submit Job",
-    lambda_function=submit_lambda,
-    # Lambda's result is in the attribute `Payload`
-    output_path="$.Payload"
-)
-```
+    submit_lambda = submit.aws_lambda(self)
 
-or simply ...
+    submit_job = tasks.LambdaInvoke(self, "Submit Job",
+        lambda_function=submit_lambda,
+        # Lambda's result is in the attribute `Payload`
+        output_path="$.Payload"
+    )
+    ```
 
-```python
-submit_job = submit.task(self)
-```
+=== "further shortened"
+
+    ```python
+    submit_job = submit.task(self)
+    ```
