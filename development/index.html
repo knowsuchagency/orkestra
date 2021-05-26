@@ -65,7 +65,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#wip" class="md-skip">
+        <a href="#expectations" class="md-skip">
           Skip to content
         </a>
       
@@ -390,12 +390,51 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
-        
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Development
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         Development
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#expectations" class="md-nav__link">
+    Expectations
+  </a>
+  
+    <nav class="md-nav" aria-label="Expectations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quickstart" class="md-nav__link">
+    Quickstart
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -417,8 +456,34 @@
   
   
   
-    
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#expectations" class="md-nav__link">
+    Expectations
+  </a>
+  
+    <nav class="md-nav" aria-label="Expectations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quickstart" class="md-nav__link">
+    Quickstart
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -435,7 +500,34 @@
                   </a>
                 
                 
-                <h1 id="wip">🚧 WIP<a class="headerlink" href="#wip" title="Permanent link">#</a></h1>
+                  <h1>Development</h1>
+                
+                <h2 id="expectations">Expectations<a class="headerlink" href="#expectations" title="Permanent link">#</a></h2>
+<p>You will need the following installed on your machine for development:</p>
+<ul>
+<li>A Python 3.8 interpreter</li>
+<li><a class="magiclink magiclink-github magiclink-repository" href="https://github.com/pdm-project/pdm" title="GitHub Repository: pdm-project/pdm">pdm-project/pdm</a> (for managing the project and task automation)</li>
+<li><a class="magiclink magiclink-github magiclink-repository" href="https://github.com/nodejs/nodejs.dev" title="GitHub Repository: nodejs/nodejs.dev">nodejs/nodejs.dev</a> (for the AWS CDK)</li>
+</ul>
+<h3 id="quickstart">Quickstart<a class="headerlink" href="#quickstart" title="Permanent link">#</a></h3>
+<div class="tabbed-set" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">mac users</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>make
+</code></pre></div>
+</td></tr></table>
+<div class="admonition question">
+<p class="admonition-title">What just happened when I ran make?</p>
+<ul>
+<li><a class="magiclink magiclink-github magiclink-repository" href="https://github.com/Homebrew/brew" title="GitHub Repository: Homebrew/brew">Homebrew/brew</a> (a MacOS package manager) was installed</li>
+<li><a class="magiclink magiclink-github magiclink-repository" href="https://github.com/pyenv/pyenv" title="GitHub Repository: pyenv/pyenv">pyenv/pyenv</a> was installed for installing python</li>
+<li><a class="magiclink magiclink-github magiclink-repository" href="https://github.com/pipxproject/pipx" title="GitHub Repository: pipxproject/pipx">pipxproject/pipx</a> was installed for python command-line utilities</li>
+<li><a class="magiclink magiclink-github magiclink-repository" href="https://github.com/pdm-project/pdm" title="GitHub Repository: pdm-project/pdm">pdm-project/pdm</a> was installed for dependency management and project automation</li>
+<li>A python3.8 virtual environment was created at in <code>.venv</code></li>
+<li>pdm installed our project's python library dependencies</li>
+<li>The project's git hooks were installed</li>
+</ul>
+</div>
+</div>
+</div>
                 
               
               
