@@ -69,7 +69,10 @@ def generate_item(event, context):
 def add_price(item: Item, context):
     price = 3.14
     logger.info(
-        "adding price to item", extra={"item": item.dict(), "price": price}
+        "adding price to item", extra={
+            "item": item.dict(),
+            "price": price,
+        }
     )
     item.price = price
     return item.dict()
