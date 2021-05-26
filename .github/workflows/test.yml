@@ -6,6 +6,8 @@ jobs:
 
   test:
 
+    environment: test
+
     env:
       POWERTOOLS_TRACE_DISABLED: 1
       ENVIRONMENT: dev
@@ -47,3 +49,4 @@ jobs:
         with:
           fail_ci_if_error: true
           verbose: true
+          token: ${{ secrets.CODECOV_TOKEN }}
