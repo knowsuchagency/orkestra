@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         python-version: [3.8, 3.9]
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest]
 
     runs-on: ${{ matrix.os }}
 
@@ -35,4 +35,4 @@ jobs:
         run: pdm install -s :all
 
       - name: Run Unit Tests
-        run: pdm run test -m 'not synthesis'
+        run: pdm run test # -m 'not synthesis'
