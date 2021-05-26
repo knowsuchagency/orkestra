@@ -59,7 +59,7 @@ def input_order(event: dict, context) -> Order.Dict:
 @compose(model=Order, timeout=Duration.seconds(6), enable_powertools=True)
 def process_order(order: Order, context) -> Order.Dict:
     start = time.time()
-    time.sleep(3)
+    time.sleep(0.1)
     duration = time.time() - start
     tracer.put_metadata("duration", duration)
     logger.info("successfully processed order", extra={"order": order.dict()})
