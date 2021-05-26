@@ -9,7 +9,7 @@ keywords = ["orchestration", "aws", "cloud"]
 license = {text = "MIT"}
 name = "orkestra"
 requires-python = ">=3.8"
-version = "0.4.6"
+version = "0.4.7"
 readme = "README.md"
 
 [project.urls]
@@ -72,7 +72,7 @@ dev = [
     "fastapi",
     "uvicorn",
     "boto3",
-    "python-dotenv",
+    "twine",
 ]
 test = [
     "pytest~=6.2",
@@ -84,6 +84,7 @@ testpaths = [
 ]
 markers = [
     "slow",
+    "synthesis",
     "interfaces",
     "powertools",
 ]
@@ -116,10 +117,7 @@ klaxon --title orkestra --subtitle destroyed
 
 test-publish = "twine upload --repository testpypi dist/*"
 
-publish.shell = """
-
-twine upload dist/*
-"""
+publish = "twine upload dist/*"
 
 pub.shell = """
 set -x

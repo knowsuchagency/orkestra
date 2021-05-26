@@ -1,0 +1,45 @@
+name: test
+
+on: push
+
+jobs:
+
+  test:
+
+    environment: dev
+
+    env:
+      POWERTOOLS_TRACE_DISABLED: 1
+      ENVIRONMENT: dev
+
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9]
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Cache PDM
+        uses: actions/cache@v2.1.5
+        env:
+          cache-name: cache-pdm
+        with:
+          path: /home/runner/.cache/pdm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('pdm.lock') }}
+
+      - uses: pdm-project/setup-pdm@v2
+        name: Setup PDM
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: x64
+          prerelease: true
+          enable-pep582: true
+
+      - name: Install Dependencies
+        run: pdm install -s :all
+
+      - name: Run Unit Tests
+        run: pdm run test
