@@ -257,3 +257,22 @@ It aims to bring a similar development experience to that of Airflow while lever
 === "xray"
 
     ![](assets/images/hello_orkestra_xray.png)
+
+=== "cloudwatch"
+
+    ```{.py3 hl_lines="4-10"}
+    @compose(model=Item, **default_args)
+    def add_price(item: Item, context):
+        price = 3.14
+        logger.info(
+            "adding price to item",
+            extra={
+                "item": item.dict(),
+                "price": price,
+            },
+        )
+        item.price = price
+        return item.dict()
+    ```
+
+    ![](assets/images/hello_orkestra_cloudwatch.png)
