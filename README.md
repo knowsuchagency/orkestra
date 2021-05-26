@@ -7,8 +7,8 @@
 [![Docs](https://img.shields.io/badge/Docs-mkdocs-blue?style=for-the-badge)](https://knowsuchagency.github.io/orkestra)
 [![Codecov](https://img.shields.io/codecov/c/github/knowsuchagency/orkestra?style=for-the-badge)](https://app.codecov.io/gh/knowsuchagency/orkestra/)
 
-![Discord](https://img.shields.io/discord/846930683872280638)
-![PyPI](https://img.shields.io/pypi/v/orkestra)
+[![Docs](https://img.shields.io/badge/Docs-mkdocs-blue?style=for-the-badge)](https://knowsuchagency.github.io/orkestra)
+[![PyPI](https://img.shields.io/pypi/v/orkestra)](https://pypi.org/project/orkestra/)
 ![PyPI - Downloads](https://img.shields.io/pypi/dw/orkestra)
 ![PyPI - License](https://img.shields.io/pypi/l/orkestra)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/orkestra)
