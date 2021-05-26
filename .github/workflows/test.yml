@@ -1,0 +1,25 @@
+name: test
+
+on: push
+
+jobs:
+
+  test:
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: pdm-project/setup-pdm@v2
+        name: Setup PDM
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: x64
+          prerelease: true
+          enable-pep582: true
+
+      - name: Install dependencies
+        run: pdm install
+
+      - name: Run Unit Tests
+        run: pdm test
