@@ -8,24 +8,22 @@ You will need the following installed on your machine for development:
 
 ### Quickstart
 
-=== "mac users"
+#### Mac Users
 
-    ```bash
-    make
-    ```
+```bash
+make
+```
 
-    !!! question "What just happened when I ran make?"
+!!! question "What just happened when I ran make?"
 
-        - @Homebrew/brew (a MacOS package manager) was installed
-        - @pyenv/pyenv was installed for installing python
-        - @pipxproject/pipx was installed for python command-line utilities
-        - @pdm-project/pdm was installed for dependency management and project automation
-        - A python3.8 virtual environment was created at in `.venv`
-        - pdm installed our project's python library dependencies
-        - The project's git hooks were installed
+- @Homebrew/brew (a MacOS package manager) was installed
+- @pyenv/pyenv was installed for installing python
+- @pipxproject/pipx was installed for python command-line utilities
+- @pdm-project/pdm was installed for dependency management and project automation
+- A python3.8 virtual environment was created at in `.venv`
+- pdm installed our project's python library dependencies
+- The project's git hooks were installed
 
-[comment]: <> (## Mac Users)
+!!! note
 
-[comment]: <> (Running `make` will run the `scripts/bootstrap.sh` script to get you set up.)
-
-[comment]: <> (It's recommended you read the bootstrap script.)
+    It's recommended you read the ==scripts/bootstrap.sh== script that was invoked by `Make`
