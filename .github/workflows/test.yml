@@ -48,6 +48,6 @@ jobs:
         uses: codecov/codecov-action@v1
         with:
           fail_ci_if_error: true
-          verbose: true
-          token: ${{ secrets.CODECOV_TOKEN }}
           file: ./coverage.xml
+#          verbose: true
+#          token: ${{ secrets.CODECOV_TOKEN }}
