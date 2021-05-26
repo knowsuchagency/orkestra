@@ -537,7 +537,7 @@ to provide a seamless way of building observable cloud-native workflows.</p>
 <li>highly scalable</li>
 </ul>
 <h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h3>
-<div class="tabbed-set" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">examples/hello_orkestra.py</label><div class="tabbed-content">
+<div class="tabbed-set" data-tabs="1:6"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">examples/hello_orkestra.py</label><div class="tabbed-content">
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">  1</span>
 <span class="normal">  2</span>
 <span class="normal">  3</span>
@@ -981,6 +981,34 @@ to provide a seamless way of building observable cloud-native workflows.</p>
 </div>
 <input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><label for="__tabbed_1_5">xray</label><div class="tabbed-content">
 <p><img alt="" src="assets/images/hello_orkestra_xray.png" /></p>
+</div>
+<input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><label for="__tabbed_1_6">cloudwatch</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nd">@compose</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">Item</span><span class="p">,</span> <span class="o">**</span><span class="n">default_args</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">add_price</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Item</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="n">price</span> <span class="o">=</span> <span class="mf">3.14</span>
+<span class="hll">    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+</span><span class="hll">        <span class="s2">&quot;adding price to item&quot;</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">extra</span><span class="o">=</span><span class="p">{</span>
+</span><span class="hll">            <span class="s2">&quot;item&quot;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">dict</span><span class="p">(),</span>
+</span><span class="hll">            <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="n">price</span><span class="p">,</span>
+</span><span class="hll">        <span class="p">},</span>
+</span><span class="hll">    <span class="p">)</span>
+</span>    <span class="n">item</span><span class="o">.</span><span class="n">price</span> <span class="o">=</span> <span class="n">price</span>
+    <span class="k">return</span> <span class="n">item</span><span class="o">.</span><span class="n">dict</span><span class="p">()</span>
+</code></pre></div>
+</td></tr></table>
+<p><img alt="" src="assets/images/hello_orkestra_cloudwatch.png" /></p>
 </div>
 </div>
                 
