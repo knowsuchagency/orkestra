@@ -122,8 +122,8 @@ pypi = "twine upload dist/*"
 publish.shell = """
 set -x
 pdm build
-pdm run test-publish
-pdm run pypi
+pdm run test-pypi
+pdm run pypi || exit 0
 """
 
 docs = "mkdocs serve"
