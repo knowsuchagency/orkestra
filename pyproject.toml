@@ -78,6 +78,7 @@ test = [
     "pytest~=6.2",
     "coverage",
     "pytest-cov",
+    "hypothesis",
 ]
 
 [tool.pytest.ini_options]

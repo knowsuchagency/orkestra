@@ -11,7 +11,7 @@ def disable_powertools(monkeypatch):
     monkeypatch.setenv("POWERTOOLS_LOG_DEDUPLICATION_DISABLED", "1")
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def generic_context():
     @dataclass
     class LambdaContext:
