@@ -23,12 +23,10 @@ that can be composed using AWS Step Function besides lambdas.
 
 ## Example
 
-!!! question
-    Does Orkestra provide a way of helping us compose [arbitrary step function tasks](https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_stepfunctions_tasks.html)
-    more intuitively?
+!!! question "Does Orkestra provide a way of helping us compose [arbitrary step function tasks](https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_stepfunctions_tasks.html) more intuitively?"
 
 **Yes**, Orkestra has a function `coerce` that takes any object with a `.next` method, such as those in [the cdk step functions library](https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_stepfunctions.html),
-and updates them such that calling `object_1 >> object_2` is equivalent to returning `object_1.next(object_2)`.
+such that calling `object_1 >> object_2` is equivalent to returning `object_1.next(object_2)`.
 
 === "examples/orchestration.py"
 
