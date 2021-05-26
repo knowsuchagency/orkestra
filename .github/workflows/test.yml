@@ -40,7 +40,7 @@ jobs:
         run: pdm install -s :all
 
       - name: Run Unit Tests
-        run: pdm run test --cov=orkestra
+        run: pdm run test
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1

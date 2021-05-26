@@ -5,7 +5,7 @@ from contextlib import contextmanager
 from typing import *
 from typing import TypedDict
 
-from aws_lambda_powertools import Logger, Tracer
+from aws_lambda_powertools import Logger, Tracer, Metrics
 from aws_lambda_powertools.utilities.typing import LambdaContext
 from orkestra import compose, powertools
 from pydantic import BaseModel
@@ -28,6 +28,11 @@ class PersonDict(TypedDict):
 tracer = Tracer()
 
 logger = Logger()
+
+metrics = Metrics(
+    namespace="foo",
+    service="bar",
+)
 
 
 @tracer.capture_method

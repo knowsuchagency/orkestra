@@ -90,6 +90,10 @@ markers = [
     "powertools",
 ]
 
+addopts = [
+    "--cov=orkestra"
+]
+
 [tool.pdm.scripts]
 _.env_file = ".env"
 

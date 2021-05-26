@@ -133,6 +133,7 @@ class ComposableAdjacencyList(Composable, AdjacencyList, Protocol):
 
 @runtime_checkable
 class Nextable(Protocol):
+    @abc.abstractmethod
     def next(self, other):
         ...
 
