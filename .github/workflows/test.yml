@@ -6,8 +6,6 @@ jobs:
 
   test:
 
-    environment: dev
-
     env:
       POWERTOOLS_TRACE_DISABLED: 1
       ENVIRONMENT: dev
