@@ -35,4 +35,4 @@ jobs:
         run: pdm install -s :all
 
       - name: Run Unit Tests
-        run: pdm run test
+        run: pdm run test -m 'not synthesis'

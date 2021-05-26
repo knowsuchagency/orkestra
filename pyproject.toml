@@ -84,6 +84,7 @@ testpaths = [
 ]
 markers = [
     "slow",
+    "synthesis",
     "interfaces",
     "powertools",
 ]
