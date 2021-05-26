@@ -18,7 +18,7 @@ means workflows can be invoked by any number of events in the AWS Ecosystem.
 
 ## Example
 
-In this example, we'll create a workflow that can be triggered asynchronously an HTTP call to [API Gateway](https://aws.amazon.com/api-gateway/).
+In this example, we'll create a workflow that can be asynchronously triggered via an HTTP call to [API Gateway](https://aws.amazon.com/api-gateway/).
 
 !!! info
 
