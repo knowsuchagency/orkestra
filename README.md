@@ -5,7 +5,7 @@
 ![PyPI - Downloads](https://img.shields.io/pypi/dw/orkestra)
 ![PyPI - License](https://img.shields.io/pypi/l/orkestra)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/orkestra)
-![GitHub issues](https://img.shields.io/github/issues/knowsuchgency/orkestra)
+![GitHub issues](https://img.shields.io/github/issues/knowsuchagency/orkestra)
 [![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-blueviolet)](https://knowsuchagency.github.io/orkestra)
 
 The elegance of Airflow + the power of AWS
