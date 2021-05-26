@@ -8,6 +8,10 @@ jobs:
 
     environment: dev
 
+    env:
+      POWERTOOLS_TRACE_DISABLED: 1
+      ENVIRONMENT: dev
+
     strategy:
       matrix:
         python-version: [3.8, 3.9]
