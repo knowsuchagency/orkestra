@@ -1,5 +1,17 @@
 # Orkestra
 
+
+[![Docs](https://img.shields.io/badge/Docs-mkdocs-blue?style=for-the-badge)](https://knowsuchagency.github.io/orkestra)
+[![Codecov](https://img.shields.io/codecov/c/github/knowsuchagency/orkestra?style=for-the-badge)](https://app.codecov.io/gh/knowsuchagency/orkestra/)
+
+![Discord](https://img.shields.io/discord/846930683872280638)
+![PyPI](https://img.shields.io/pypi/v/orkestra)
+![PyPI - Downloads](https://img.shields.io/pypi/dw/orkestra)
+![PyPI - License](https://img.shields.io/pypi/l/orkestra)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/orkestra)
+![GitHub issues](https://img.shields.io/github/issues/knowsuchagency/orkestra)
+
+
 ## What is Orkestra?
 
 Orkestra is a lightweight framework that leverages the [AWS Cloud Development Kit (CDK)](https://github.com/aws/aws-cdk)
