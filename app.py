@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import os
-import string
-from random import Random
+from typing import Type
 
 from aws_cdk import aws_apigateway as apigw
 from aws_cdk import aws_lambda
@@ -23,13 +22,6 @@ from examples.rest import handler, input_order
 from examples.single_lambda import handler
 from orkestra import coerce
 
-random = Random(0)
-
-
-def id_(s: str):
-    unique_postfix = "".join(random.sample(string.hexdigits, 4))
-    return f"{s}_{unique_postfix}"
-
 
 class SingleLambda(cdk.Stack):
     """Single lambda deployment example."""
@@ -38,9 +30,9 @@ class SingleLambda(cdk.Stack):
 
         super().__init__(scope, id, **kwargs)
 
-        handler.aws_lambda(self)
+        self.lmb = handler.aws_lambda(self)
 
-        handler.state_machine(
+        self.state_machine = handler.state_machine(
             self, state_machine_name="simple_state_machine_example"
         )
 
@@ -196,26 +188,40 @@ class HelloOrkestra(cdk.Stack):
         )
 
 
-app = cdk.App()
+class App:
+    def __init__(self):
 
+        self.app = cdk.App()
 
-def synth(app=app):
+        self.hello_orkestra = HelloOrkestra(self.app, "helloOrkestra")
 
-    HelloOrkestra(app, "helloOrkestra")
+        self.powertools = Powertools(self.app, "powertools")
 
-    Powertools(app, "powertools")
+        self.single_lambda = SingleLambda(self.app, "singleLambda")
 
-    SingleLambda(app, "singleLambda")
+        self.airflowish = Airflowish(self.app, "airflowish")
 
-    Airflowish(app, "airflowish")
+        self.cdk_composition = CdkComposition(self.app, "cdkComposition")
 
-    CdkComposition(app, "cdkComposition")
+        self.rest = RestExample(self.app, "rest")
 
-    RestExample(app, "rest")
+        self.added = {}
 
-    app.synth()
+    def add(self, stack: Type[cdk.Stack], id: str):
+
+        stack_instance = stack(self.app, id)
+
+        self.added[id] = stack_instance
+
+        return stack_instance
+
+    def synth(self):
+
+        self.app.synth()
 
 
 if __name__ == "__main__":
 
-    synth()
+    app = App()
+
+    app.synth()

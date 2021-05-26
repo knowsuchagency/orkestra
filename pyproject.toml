@@ -76,6 +76,8 @@ dev = [
 ]
 test = [
     "pytest~=6.2",
+    "coverage",
+    "pytest-cov",
 ]
 
 [tool.pytest.ini_options]
@@ -84,9 +86,12 @@ testpaths = [
 ]
 markers = [
     "slow",
-    "synthesis",
-    "interfaces",
+    "cdk",
     "powertools",
+]
+
+addopts = [
+    "--cov=orkestra"
 ]
 
 [tool.pdm.scripts]

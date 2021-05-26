@@ -1,4 +1,11 @@
+<div align="center">
+
 # Orkestra
+
+### The elegance of Airflow + the power of AWS
+
+[![Docs](https://img.shields.io/badge/Docs-mkdocs-blue?style=for-the-badge)](https://knowsuchagency.github.io/orkestra)
+![Codecov](https://img.shields.io/codecov/c/github/knowsuchagency/orkestra?style=for-the-badge)
 
 ![Discord](https://img.shields.io/discord/846930683872280638)
 ![PyPI](https://img.shields.io/pypi/v/orkestra)
@@ -6,11 +13,12 @@
 ![PyPI - License](https://img.shields.io/pypi/l/orkestra)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/orkestra)
 ![GitHub issues](https://img.shields.io/github/issues/knowsuchagency/orkestra)
-[![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-blueviolet)](https://knowsuchagency.github.io/orkestra)
 
-The elegance of Airflow + the power of AWS
+[comment]: <> ([![codecov]&#40;https://codecov.io/gh/knowsuchagency/orkestra/branch/main/graph/badge.svg?token=DXFC1QP12O&#41;]&#40;https://codecov.io/gh/knowsuchagency/orkestra&#41;)
 
-Documentation: https://knowsuchagency.github.io/orkestra/
+
+
+</div>
 
 *examples/hello_orkestra.py*
 

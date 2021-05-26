@@ -4,14 +4,18 @@ from orkestra import compose
 from orkestra.interfaces import AdjacencyList, Composable
 
 
-@pytest.mark.interfaces
-class TestInterfaces:
+@pytest.fixture
+def composed():
     @compose
-    def handler(event, context):
+    def noop(event, context):
         ...
 
-    def test_composable(self):
-        assert isinstance(self.handler, Composable)
+    return noop
 
-    def test_adjacency_list(self):
-        assert isinstance(self.handler, AdjacencyList)
+
+def test_composable(composed):
+    assert isinstance(composed, Composable)
+
+
+def test_adjacency_list(composed):
+    assert isinstance(composed, AdjacencyList)
