@@ -41,6 +41,7 @@ class LambdaInvocationType(Enum):
     EVENT = "EVENT"
     REQUEST_RESPONSE = "REQUEST_RESPONSE"
 
+    @property
     def construct(self):
         from aws_cdk.aws_stepfunctions_tasks import LambdaInvocationType
 
@@ -56,6 +57,7 @@ class IntegrationPattern(Enum):
     RUN_JOB = "RUN_JOB"
     WAIT_FOR_TASK_TOKEN = "WAIT_FOR_TASK_TOKEN"
 
+    @property
     def construct(self):
         from aws_cdk.aws_stepfunctions import IntegrationPattern
 
@@ -71,6 +73,7 @@ class Tracing(Enum):
     DISABLED = "DISABLED"
     PASS_THROUGH = "PASS_THROUGH"
 
+    @property
     def construct(self):
         from aws_cdk.aws_lambda import Tracing
 

@@ -7,7 +7,7 @@
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/orkestra)
 ![GitHub issues](https://img.shields.io/github/issues/knowsuchagency/orkestra)
 [![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-blueviolet)](https://knowsuchagency.github.io/orkestra)
-
+[![codecov](https://codecov.io/gh/knowsuchagency/orkestra/branch/main/graph/badge.svg?token=DXFC1QP12O)](https://codecov.io/gh/knowsuchagency/orkestra)
 The elegance of Airflow + the power of AWS
 
 Documentation: https://knowsuchagency.github.io/orkestra/
