@@ -8,11 +8,19 @@ from aws_cdk import (
     aws_lambda,
     aws_stepfunctions_tasks as sfn_tasks,
 )
+from aws_cdk.cx_api import CloudAssembly
 
 from app import App
-from examples.for_testing import invalid_composition
+from examples.for_testing import (
+    invalid_composition,
+    hello_world,
+)
 from orkestra import interfaces
 from orkestra.exceptions import CompositionError
+
+
+def test_hello_world(generic_event, generic_context):
+    assert "hello" in hello_world(generic_event, generic_context)
 
 
 @pytest.mark.cdk
@@ -20,33 +28,33 @@ def test_interfaces():
 
     for runtime in interfaces.Runtime:
         assert isinstance(
-            runtime.construct,
+            runtime.cdk_construct,
             aws_lambda.Runtime,
         )
 
     for invocation_type in interfaces.LambdaInvocationType:
 
         assert isinstance(
-            invocation_type.construct,
+            invocation_type.cdk_construct,
             sfn_tasks.LambdaInvocationType,
         )
 
     for integration_pattern in interfaces.IntegrationPattern:
 
         assert isinstance(
-            integration_pattern.construct,
+            integration_pattern.cdk_construct,
             sfn.IntegrationPattern,
         )
 
     for t in interfaces.Tracing:
 
-        assert isinstance(t.construct, aws_lambda.Tracing)
+        assert isinstance(t.cdk_construct, aws_lambda.Tracing)
 
     for method in ("days", "hours", "millis", "minutes", "seconds"):
 
         duration = methodcaller(method, 1)(interfaces.Duration)
 
-        assert isinstance(duration.construct, cdk.Duration)
+        assert isinstance(duration.cdk_construct, cdk.Duration)
 
 
 @pytest.mark.cdk
@@ -56,6 +64,11 @@ class TestApplication:
     def app(self):
 
         return App()
+
+    @pytest.fixture(scope="class")
+    def cloud_assembly(self, app) -> CloudAssembly:
+
+        return app.synth()
 
     def test_lambda_defaults(self, app):
 
@@ -93,10 +106,6 @@ class TestApplication:
                 "invalidStack",
             )
 
-    def test_synthesis(self, app):
-        """assert that all the stacks synthesize."""
-        app.synth()
-
     def test_nextable(self, app):
         class HasPass(cdk.Stack):
             def __init__(self, scope, id):
@@ -112,3 +121,20 @@ class TestApplication:
             stack.pass_,
             interfaces.Nextable,
         )
+
+    @staticmethod
+    def test_cdk_patch(app):
+        class CdkPatch(cdk.Stack):
+            def __init__(self, scope, id, **kwargs):
+                super().__init__(scope, id, **kwargs)
+                self.lmb = hello_world.aws_lambda(self)
+
+        stack_name = "cdkPath"
+
+        stack: CdkPatch = app.add(CdkPatch, "cdkPatch", stack_name=stack_name)
+
+        [
+            tracing_config
+        ] = stack.lmb.node.default_child.tracing_config._delegates
+
+        assert tracing_config.mode == "PassThrough"

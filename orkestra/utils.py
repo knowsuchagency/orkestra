@@ -15,18 +15,16 @@ def make_composable(obj: T) -> T:
     return obj
 
 
-def cdk_patch(kwargs: dict, /, *elements: str):
+def cdk_patch(kwargs: dict):
     """
     Replace interface elements in kwargs with their cdk counterpart.
     """
 
-    for e in elements:
+    for key, value in kwargs.items():
 
-        if e in kwargs and hasattr(kwargs[e], "construct"):
+        if hasattr(value, "cdk_construct"):
 
-            construct = kwargs[e].construct
-
-            kwargs[e] = construct
+            kwargs[key] = value.cdk_construct
 
     return kwargs
 

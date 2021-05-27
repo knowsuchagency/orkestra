@@ -221,9 +221,9 @@ class App:
 
         self.added = {}
 
-    def add(self, stack: Type[cdk.Stack], id: str):
+    def add(self, stack: Type[cdk.Stack], id: str, **kwargs):
 
-        stack_instance = stack(self.app, id)
+        stack_instance = stack(self.app, id, **kwargs)
 
         self.added[id] = stack_instance
 
@@ -231,7 +231,7 @@ class App:
 
     def synth(self):
 
-        self.app.synth()
+        return self.app.synth()
 
 
 if __name__ == "__main__":
