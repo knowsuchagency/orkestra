@@ -6,7 +6,7 @@ import pytest
 def test_call_list_raises_error(generic_event, generic_context):
     f = compose(func=[])
     with pytest.raises(TypeError):
-        f()
+        f(generic_event, generic_context)
 
 
 def test_list_compose_repr():

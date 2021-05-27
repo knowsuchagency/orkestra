@@ -131,7 +131,8 @@ api = "uvicorn examples.rest:app --reload"
 
 install-hooks = "pre-commit install --install-hooks"
 
-html-report.shell = """
+coverage-report.shell = """
+pdm run test --cov=orkestra
 coverage html
 open htmlcov/index.html
 """
