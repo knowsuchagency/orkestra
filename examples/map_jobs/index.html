@@ -456,9 +456,9 @@
                 
                   <h1>Map Jobs</h1>
                 
-                <p>Step Functions state machines halt execution at the first encounter of a failure.</p>
+                <p>State Machines halt execution at the first encounter of a failure.</p>
 <p>Sometimes, when processing map jobs, you may want all instances of the map job to complete regardless of
-an individual failure.</p>
+individual errors.</p>
 <p>We can accomodate for this by passing <code>capture_map_errors=True</code> to our <code>compose</code> constructor.</p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
