@@ -26,6 +26,7 @@ nav:
         - Single Lambda: examples/single_lambda.md
         - Event-Driven (API) Workflows: examples/rest.md
         - CDK Orchestration: examples/cdk_orchestration.md
+        - Map Jobs: examples/map_jobs.md
   - Development: development.md
   - Rationale: rationale.md
 
