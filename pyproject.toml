@@ -91,9 +91,6 @@ markers = [
     "powertools",
 ]
 
-addopts = [
-    "--cov=orkestra"
-]
 
 [tool.pdm.scripts]
 _.env_file = ".env"
@@ -133,3 +130,8 @@ test = "pytest tests/"
 api = "uvicorn examples.rest:app --reload"
 
 install-hooks = "pre-commit install --install-hooks"
+
+html-report.shell = """
+coverage html
+open htmlcov/index.html
+"""

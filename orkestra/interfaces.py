@@ -117,7 +117,7 @@ class Duration:
 class Composable(Protocol):
     @abc.abstractmethod
     def __rshift__(self, right):
-        ...
+        ...  # pragma: no cover
 
 
 @runtime_checkable
@@ -134,7 +134,7 @@ class ComposableAdjacencyList(Composable, AdjacencyList, Protocol):
 class Nextable(Protocol):
     @abc.abstractmethod
     def next(self, other):
-        ...
+        ...  # pragma: no cover
 
 
 @runtime_checkable
