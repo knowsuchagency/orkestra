@@ -10,6 +10,10 @@ You will need the following installed on your machine for development:
 
 #### Mac Users
 
+!!! note
+
+    It's recommended you read the ==scripts/bootstrap.sh== script that's invoked by the `Makefile`
+
 ```bash
 make
 ```
@@ -23,7 +27,3 @@ make
 - A python3.8 virtual environment was created at in `.venv`
 - pdm installed our project's python library dependencies
 - The project's git hooks were installed
-
-!!! note
-
-    It's recommended you read the ==scripts/bootstrap.sh== script that was invoked by `Make`
