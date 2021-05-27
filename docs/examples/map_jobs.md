@@ -1,7 +1,7 @@
-Step Functions state machines halt execution at the first encounter of a failure.
+State Machines halt execution at the first encounter of a failure.
 
 Sometimes, when processing map jobs, you may want all instances of the map job to complete regardless of
-an individual failure.
+individual errors.
 
 We can accomodate for this by passing `capture_map_errors=True` to our `compose` constructor.
 
