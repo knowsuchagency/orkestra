@@ -37,6 +37,8 @@ class SingleLambda(cdk.Stack):
             self, state_machine_name="simple_state_machine_example"
         )
 
+        handler.schedule(self)
+
 
 class Airflowish(cdk.Stack):
     """
