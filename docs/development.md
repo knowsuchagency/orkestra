@@ -10,13 +10,16 @@ You will need the following installed on your machine for development:
 
 #### Mac Users
 
-!!! note
+
+!!! example
+
+    !!! note
 
     It's recommended you read the ==scripts/bootstrap.sh== script that's invoked by the `Makefile`
 
-```bash
-make
-```
+    ```bash
+    make
+    ```
 
 !!! question "What just happened when I ran make?"
 
