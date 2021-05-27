@@ -45,6 +45,7 @@ class Compose:
         envelope=None,
         timeout: Optional[Duration] = None,
         is_map_job: bool = False,
+        capture_map_errors: bool = False,
         runtime: Optional[Runtime] = None,
         comment: Optional[str] = None,
         input_path: Optional[str] = None,
@@ -82,6 +83,7 @@ class Compose:
             envelope: passed to aws_lambda_powertools.utilities.parser.event_parser
             runtime: the python runtime to use for the lambda
             is_map_job: whether the lambda is a map job
+            capture_map_errors: set true to add guarantee successful map job execution
             comment: An optional description for this state. Default: No comment
             input_path: JSONPath expression to select part of the state to be the input to this state. May also be the special value JsonPath.DISCARD, which will cause the effective input to be the empty object {}. Default: $
             items_path:  JSONPath expression to select the array to iterate over. Default: $
@@ -106,12 +108,10 @@ class Compose:
         """
 
         self.func = func
-        self.runtime = runtime
         self.downstream = []
 
-        self.timeout = timeout
-
         self.is_map_job = is_map_job
+        self.capture_map_errors = capture_map_errors
 
         self.aws_lambda_constructor_kwargs = aws_lambda_constructor_kwargs
 
@@ -195,8 +195,8 @@ class Compose:
 
             return Compose(
                 func=func,
-                timeout=self.timeout,
                 is_map_job=self.is_map_job,
+                capture_map_errors=self.capture_map_errors,
                 sfn_timeout=sfn_timeout,
                 enable_powertools=self.enable_powertools,
                 **{
@@ -342,11 +342,21 @@ class Compose:
                 "invocation_type",
             )
 
+            task_id = f"invoke_{id}"
+
             invoke_lambda = sfn_tasks.LambdaInvoke(
                 scope,
-                f"invoke_{id}",
+                task_id,
                 **keyword_args,
             )
+
+            if self.capture_map_errors:
+                invoke_lambda.add_catch(
+                    sfn.Pass(
+                        scope,
+                        f"{task_id}_failed",
+                    )
+                )
 
             task.iterator(invoke_lambda)
 
@@ -433,7 +443,10 @@ class Compose:
                 if isinstance(self.func, tuple):
 
                     branch.add_catch(
-                        sfn.Pass(scope, f"{fn.func.__name__}_failed")
+                        sfn.Pass(
+                            scope,
+                            f"{fn.func.__name__}_failed",
+                        )
                     )
 
                 task.branch(branch)
