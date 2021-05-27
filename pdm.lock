@@ -20,11 +20,11 @@ summary = "Classes Without Boilerplate"
 [[package]]
 name = "aws-cdk.assets"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "This module is deprecated. All types are now available under the core module"
 dependencies = [
-    "aws-cdk.core==1.106.0",
-    "aws-cdk.cx-api==1.106.0",
+    "aws-cdk.core==1.106.1",
+    "aws-cdk.cx-api==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -33,21 +33,21 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-apigateway"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::ApiGateway"
 dependencies = [
-    "aws-cdk.aws-certificatemanager==1.106.0",
-    "aws-cdk.aws-cloudwatch==1.106.0",
-    "aws-cdk.aws-cognito==1.106.0",
-    "aws-cdk.aws-ec2==1.106.0",
-    "aws-cdk.aws-elasticloadbalancingv2==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-lambda==1.106.0",
-    "aws-cdk.aws-logs==1.106.0",
-    "aws-cdk.aws-s3-assets==1.106.0",
-    "aws-cdk.aws-s3==1.106.0",
-    "aws-cdk.core==1.106.0",
-    "aws-cdk.cx-api==1.106.0",
+    "aws-cdk.aws-certificatemanager==1.106.1",
+    "aws-cdk.aws-cloudwatch==1.106.1",
+    "aws-cdk.aws-cognito==1.106.1",
+    "aws-cdk.aws-ec2==1.106.1",
+    "aws-cdk.aws-elasticloadbalancingv2==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-lambda==1.106.1",
+    "aws-cdk.aws-logs==1.106.1",
+    "aws-cdk.aws-s3-assets==1.106.1",
+    "aws-cdk.aws-s3==1.106.1",
+    "aws-cdk.core==1.106.1",
+    "aws-cdk.cx-api==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -56,13 +56,13 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-applicationautoscaling"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::ApplicationAutoScaling"
 dependencies = [
-    "aws-cdk.aws-autoscaling-common==1.106.0",
-    "aws-cdk.aws-cloudwatch==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.aws-autoscaling-common==1.106.1",
+    "aws-cdk.aws-cloudwatch==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -71,17 +71,17 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-autoscaling"
 sections = ["cdk"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::AutoScaling"
 dependencies = [
-    "aws-cdk.aws-autoscaling-common==1.106.0",
-    "aws-cdk.aws-cloudwatch==1.106.0",
-    "aws-cdk.aws-ec2==1.106.0",
-    "aws-cdk.aws-elasticloadbalancing==1.106.0",
-    "aws-cdk.aws-elasticloadbalancingv2==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-sns==1.106.0",
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.aws-autoscaling-common==1.106.1",
+    "aws-cdk.aws-cloudwatch==1.106.1",
+    "aws-cdk.aws-ec2==1.106.1",
+    "aws-cdk.aws-elasticloadbalancing==1.106.1",
+    "aws-cdk.aws-elasticloadbalancingv2==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-sns==1.106.1",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -90,11 +90,11 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-autoscaling-common"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "Common implementation package for @aws-cdk/aws-autoscaling and @aws-cdk/aws-applicationautoscaling"
 dependencies = [
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -103,17 +103,17 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-autoscaling-hooktargets"
 sections = ["cdk"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "Lifecycle hook for AWS AutoScaling"
 dependencies = [
-    "aws-cdk.aws-autoscaling==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-kms==1.106.0",
-    "aws-cdk.aws-lambda==1.106.0",
-    "aws-cdk.aws-sns-subscriptions==1.106.0",
-    "aws-cdk.aws-sns==1.106.0",
-    "aws-cdk.aws-sqs==1.106.0",
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.aws-autoscaling==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-kms==1.106.1",
+    "aws-cdk.aws-lambda==1.106.1",
+    "aws-cdk.aws-sns-subscriptions==1.106.1",
+    "aws-cdk.aws-sns==1.106.1",
+    "aws-cdk.aws-sqs==1.106.1",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -122,13 +122,13 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-certificatemanager"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::CertificateManager"
 dependencies = [
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-lambda==1.106.0",
-    "aws-cdk.aws-route53==1.106.0",
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-lambda==1.106.1",
+    "aws-cdk.aws-route53==1.106.1",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -137,15 +137,15 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-cloudformation"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::CloudFormation"
 dependencies = [
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-lambda==1.106.0",
-    "aws-cdk.aws-s3==1.106.0",
-    "aws-cdk.aws-sns==1.106.0",
-    "aws-cdk.core==1.106.0",
-    "aws-cdk.cx-api==1.106.0",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-lambda==1.106.1",
+    "aws-cdk.aws-s3==1.106.1",
+    "aws-cdk.aws-sns==1.106.1",
+    "aws-cdk.core==1.106.1",
+    "aws-cdk.cx-api==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -154,18 +154,18 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-cloudfront"
 sections = ["cdk"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::CloudFront"
 dependencies = [
-    "aws-cdk.aws-certificatemanager==1.106.0",
-    "aws-cdk.aws-cloudwatch==1.106.0",
-    "aws-cdk.aws-ec2==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-kms==1.106.0",
-    "aws-cdk.aws-lambda==1.106.0",
-    "aws-cdk.aws-s3==1.106.0",
-    "aws-cdk.aws-ssm==1.106.0",
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.aws-certificatemanager==1.106.1",
+    "aws-cdk.aws-cloudwatch==1.106.1",
+    "aws-cdk.aws-ec2==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-kms==1.106.1",
+    "aws-cdk.aws-lambda==1.106.1",
+    "aws-cdk.aws-s3==1.106.1",
+    "aws-cdk.aws-ssm==1.106.1",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -174,11 +174,11 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-cloudwatch"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::CloudWatch"
 dependencies = [
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -187,24 +187,24 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-codebuild"
 sections = ["cdk"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::CodeBuild"
 dependencies = [
-    "aws-cdk.assets==1.106.0",
-    "aws-cdk.aws-cloudwatch==1.106.0",
-    "aws-cdk.aws-codecommit==1.106.0",
-    "aws-cdk.aws-ec2==1.106.0",
-    "aws-cdk.aws-ecr-assets==1.106.0",
-    "aws-cdk.aws-ecr==1.106.0",
-    "aws-cdk.aws-events==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-kms==1.106.0",
-    "aws-cdk.aws-logs==1.106.0",
-    "aws-cdk.aws-s3-assets==1.106.0",
-    "aws-cdk.aws-s3==1.106.0",
-    "aws-cdk.aws-secretsmanager==1.106.0",
-    "aws-cdk.core==1.106.0",
-    "aws-cdk.region-info==1.106.0",
+    "aws-cdk.assets==1.106.1",
+    "aws-cdk.aws-cloudwatch==1.106.1",
+    "aws-cdk.aws-codecommit==1.106.1",
+    "aws-cdk.aws-ec2==1.106.1",
+    "aws-cdk.aws-ecr-assets==1.106.1",
+    "aws-cdk.aws-ecr==1.106.1",
+    "aws-cdk.aws-events==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-kms==1.106.1",
+    "aws-cdk.aws-logs==1.106.1",
+    "aws-cdk.aws-s3-assets==1.106.1",
+    "aws-cdk.aws-s3==1.106.1",
+    "aws-cdk.aws-secretsmanager==1.106.1",
+    "aws-cdk.core==1.106.1",
+    "aws-cdk.region-info==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -213,12 +213,12 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-codecommit"
 sections = ["cdk"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::CodeCommit"
 dependencies = [
-    "aws-cdk.aws-events==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.aws-events==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -227,11 +227,11 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-codeguruprofiler"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::CodeGuruProfiler"
 dependencies = [
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -240,14 +240,14 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-codepipeline"
 sections = ["cdk"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "Better interface to AWS Code Pipeline"
 dependencies = [
-    "aws-cdk.aws-events==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-kms==1.106.0",
-    "aws-cdk.aws-s3==1.106.0",
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.aws-events==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-kms==1.106.1",
+    "aws-cdk.aws-s3==1.106.1",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -256,14 +256,14 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-cognito"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::Cognito"
 dependencies = [
-    "aws-cdk.aws-certificatemanager==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-lambda==1.106.0",
-    "aws-cdk.core==1.106.0",
-    "aws-cdk.custom-resources==1.106.0",
+    "aws-cdk.aws-certificatemanager==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-lambda==1.106.1",
+    "aws-cdk.core==1.106.1",
+    "aws-cdk.custom-resources==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -272,16 +272,16 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-dynamodb"
 sections = ["cdk"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::DynamoDB"
 dependencies = [
-    "aws-cdk.aws-applicationautoscaling==1.106.0",
-    "aws-cdk.aws-cloudwatch==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-kms==1.106.0",
-    "aws-cdk.aws-lambda==1.106.0",
-    "aws-cdk.core==1.106.0",
-    "aws-cdk.custom-resources==1.106.0",
+    "aws-cdk.aws-applicationautoscaling==1.106.1",
+    "aws-cdk.aws-cloudwatch==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-kms==1.106.1",
+    "aws-cdk.aws-lambda==1.106.1",
+    "aws-cdk.core==1.106.1",
+    "aws-cdk.custom-resources==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -290,20 +290,20 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-ec2"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::EC2"
 dependencies = [
-    "aws-cdk.aws-cloudwatch==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-kms==1.106.0",
-    "aws-cdk.aws-logs==1.106.0",
-    "aws-cdk.aws-s3-assets==1.106.0",
-    "aws-cdk.aws-s3==1.106.0",
-    "aws-cdk.aws-ssm==1.106.0",
-    "aws-cdk.cloud-assembly-schema==1.106.0",
-    "aws-cdk.core==1.106.0",
-    "aws-cdk.cx-api==1.106.0",
-    "aws-cdk.region-info==1.106.0",
+    "aws-cdk.aws-cloudwatch==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-kms==1.106.1",
+    "aws-cdk.aws-logs==1.106.1",
+    "aws-cdk.aws-s3-assets==1.106.1",
+    "aws-cdk.aws-s3==1.106.1",
+    "aws-cdk.aws-ssm==1.106.1",
+    "aws-cdk.cloud-assembly-schema==1.106.1",
+    "aws-cdk.core==1.106.1",
+    "aws-cdk.cx-api==1.106.1",
+    "aws-cdk.region-info==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -312,12 +312,12 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-ecr"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::ECR"
 dependencies = [
-    "aws-cdk.aws-events==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.aws-events==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -326,15 +326,15 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-ecr-assets"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "Docker image assets deployed to ECR"
 dependencies = [
-    "aws-cdk.assets==1.106.0",
-    "aws-cdk.aws-ecr==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-s3==1.106.0",
-    "aws-cdk.core==1.106.0",
-    "aws-cdk.cx-api==1.106.0",
+    "aws-cdk.assets==1.106.1",
+    "aws-cdk.aws-ecr==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-s3==1.106.1",
+    "aws-cdk.core==1.106.1",
+    "aws-cdk.cx-api==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -343,34 +343,34 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-ecs"
 sections = ["cdk"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::ECS"
 dependencies = [
-    "aws-cdk.aws-applicationautoscaling==1.106.0",
-    "aws-cdk.aws-autoscaling-hooktargets==1.106.0",
-    "aws-cdk.aws-autoscaling==1.106.0",
-    "aws-cdk.aws-certificatemanager==1.106.0",
-    "aws-cdk.aws-cloudwatch==1.106.0",
-    "aws-cdk.aws-ec2==1.106.0",
-    "aws-cdk.aws-ecr-assets==1.106.0",
-    "aws-cdk.aws-ecr==1.106.0",
-    "aws-cdk.aws-elasticloadbalancing==1.106.0",
-    "aws-cdk.aws-elasticloadbalancingv2==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-kms==1.106.0",
-    "aws-cdk.aws-lambda==1.106.0",
-    "aws-cdk.aws-logs==1.106.0",
-    "aws-cdk.aws-route53-targets==1.106.0",
-    "aws-cdk.aws-route53==1.106.0",
-    "aws-cdk.aws-s3-assets==1.106.0",
-    "aws-cdk.aws-s3==1.106.0",
-    "aws-cdk.aws-secretsmanager==1.106.0",
-    "aws-cdk.aws-servicediscovery==1.106.0",
-    "aws-cdk.aws-sns==1.106.0",
-    "aws-cdk.aws-sqs==1.106.0",
-    "aws-cdk.aws-ssm==1.106.0",
-    "aws-cdk.core==1.106.0",
-    "aws-cdk.cx-api==1.106.0",
+    "aws-cdk.aws-applicationautoscaling==1.106.1",
+    "aws-cdk.aws-autoscaling-hooktargets==1.106.1",
+    "aws-cdk.aws-autoscaling==1.106.1",
+    "aws-cdk.aws-certificatemanager==1.106.1",
+    "aws-cdk.aws-cloudwatch==1.106.1",
+    "aws-cdk.aws-ec2==1.106.1",
+    "aws-cdk.aws-ecr-assets==1.106.1",
+    "aws-cdk.aws-ecr==1.106.1",
+    "aws-cdk.aws-elasticloadbalancing==1.106.1",
+    "aws-cdk.aws-elasticloadbalancingv2==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-kms==1.106.1",
+    "aws-cdk.aws-lambda==1.106.1",
+    "aws-cdk.aws-logs==1.106.1",
+    "aws-cdk.aws-route53-targets==1.106.1",
+    "aws-cdk.aws-route53==1.106.1",
+    "aws-cdk.aws-s3-assets==1.106.1",
+    "aws-cdk.aws-s3==1.106.1",
+    "aws-cdk.aws-secretsmanager==1.106.1",
+    "aws-cdk.aws-servicediscovery==1.106.1",
+    "aws-cdk.aws-sns==1.106.1",
+    "aws-cdk.aws-sqs==1.106.1",
+    "aws-cdk.aws-ssm==1.106.1",
+    "aws-cdk.core==1.106.1",
+    "aws-cdk.cx-api==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -379,14 +379,14 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-efs"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::EFS"
 dependencies = [
-    "aws-cdk.aws-ec2==1.106.0",
-    "aws-cdk.aws-kms==1.106.0",
-    "aws-cdk.cloud-assembly-schema==1.106.0",
-    "aws-cdk.core==1.106.0",
-    "aws-cdk.cx-api==1.106.0",
+    "aws-cdk.aws-ec2==1.106.1",
+    "aws-cdk.aws-kms==1.106.1",
+    "aws-cdk.cloud-assembly-schema==1.106.1",
+    "aws-cdk.core==1.106.1",
+    "aws-cdk.cx-api==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -395,19 +395,19 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-eks"
 sections = ["cdk"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::EKS"
 dependencies = [
-    "aws-cdk.aws-autoscaling==1.106.0",
-    "aws-cdk.aws-ec2==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-kms==1.106.0",
-    "aws-cdk.aws-lambda==1.106.0",
-    "aws-cdk.aws-ssm==1.106.0",
-    "aws-cdk.core==1.106.0",
-    "aws-cdk.custom-resources==1.106.0",
-    "aws-cdk.lambda-layer-awscli==1.106.0",
-    "aws-cdk.lambda-layer-kubectl==1.106.0",
+    "aws-cdk.aws-autoscaling==1.106.1",
+    "aws-cdk.aws-ec2==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-kms==1.106.1",
+    "aws-cdk.aws-lambda==1.106.1",
+    "aws-cdk.aws-ssm==1.106.1",
+    "aws-cdk.core==1.106.1",
+    "aws-cdk.custom-resources==1.106.1",
+    "aws-cdk.lambda-layer-awscli==1.106.1",
+    "aws-cdk.lambda-layer-kubectl==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -416,11 +416,11 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-elasticloadbalancing"
 sections = ["cdk"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::ElasticLoadBalancing"
 dependencies = [
-    "aws-cdk.aws-ec2==1.106.0",
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.aws-ec2==1.106.1",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -429,19 +429,19 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-elasticloadbalancingv2"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::ElasticLoadBalancingV2"
 dependencies = [
-    "aws-cdk.aws-certificatemanager==1.106.0",
-    "aws-cdk.aws-cloudwatch==1.106.0",
-    "aws-cdk.aws-ec2==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-lambda==1.106.0",
-    "aws-cdk.aws-s3==1.106.0",
-    "aws-cdk.cloud-assembly-schema==1.106.0",
-    "aws-cdk.core==1.106.0",
-    "aws-cdk.cx-api==1.106.0",
-    "aws-cdk.region-info==1.106.0",
+    "aws-cdk.aws-certificatemanager==1.106.1",
+    "aws-cdk.aws-cloudwatch==1.106.1",
+    "aws-cdk.aws-ec2==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-lambda==1.106.1",
+    "aws-cdk.aws-s3==1.106.1",
+    "aws-cdk.cloud-assembly-schema==1.106.1",
+    "aws-cdk.core==1.106.1",
+    "aws-cdk.cx-api==1.106.1",
+    "aws-cdk.region-info==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -450,11 +450,11 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-events"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "Amazon EventBridge Construct Library"
 dependencies = [
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -463,27 +463,27 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-events-targets"
 sections = ["cdk"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "Event targets for Amazon EventBridge"
 dependencies = [
-    "aws-cdk.aws-apigateway==1.106.0",
-    "aws-cdk.aws-codebuild==1.106.0",
-    "aws-cdk.aws-codepipeline==1.106.0",
-    "aws-cdk.aws-ec2==1.106.0",
-    "aws-cdk.aws-ecs==1.106.0",
-    "aws-cdk.aws-events==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-kinesis==1.106.0",
-    "aws-cdk.aws-kinesisfirehose==1.106.0",
-    "aws-cdk.aws-kms==1.106.0",
-    "aws-cdk.aws-lambda==1.106.0",
-    "aws-cdk.aws-logs==1.106.0",
-    "aws-cdk.aws-sns-subscriptions==1.106.0",
-    "aws-cdk.aws-sns==1.106.0",
-    "aws-cdk.aws-sqs==1.106.0",
-    "aws-cdk.aws-stepfunctions==1.106.0",
-    "aws-cdk.core==1.106.0",
-    "aws-cdk.custom-resources==1.106.0",
+    "aws-cdk.aws-apigateway==1.106.1",
+    "aws-cdk.aws-codebuild==1.106.1",
+    "aws-cdk.aws-codepipeline==1.106.1",
+    "aws-cdk.aws-ec2==1.106.1",
+    "aws-cdk.aws-ecs==1.106.1",
+    "aws-cdk.aws-events==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-kinesis==1.106.1",
+    "aws-cdk.aws-kinesisfirehose==1.106.1",
+    "aws-cdk.aws-kms==1.106.1",
+    "aws-cdk.aws-lambda==1.106.1",
+    "aws-cdk.aws-logs==1.106.1",
+    "aws-cdk.aws-sns-subscriptions==1.106.1",
+    "aws-cdk.aws-sns==1.106.1",
+    "aws-cdk.aws-sqs==1.106.1",
+    "aws-cdk.aws-stepfunctions==1.106.1",
+    "aws-cdk.core==1.106.1",
+    "aws-cdk.custom-resources==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -492,12 +492,12 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-globalaccelerator"
 sections = ["cdk"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::GlobalAccelerator"
 dependencies = [
-    "aws-cdk.aws-ec2==1.106.0",
-    "aws-cdk.core==1.106.0",
-    "aws-cdk.custom-resources==1.106.0",
+    "aws-cdk.aws-ec2==1.106.1",
+    "aws-cdk.core==1.106.1",
+    "aws-cdk.custom-resources==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -506,11 +506,11 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-iam"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "CDK routines for easily assigning correct and minimal IAM permissions"
 dependencies = [
-    "aws-cdk.core==1.106.0",
-    "aws-cdk.region-info==1.106.0",
+    "aws-cdk.core==1.106.1",
+    "aws-cdk.region-info==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -519,14 +519,14 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-kinesis"
 sections = ["cdk"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::Kinesis"
 dependencies = [
-    "aws-cdk.aws-cloudwatch==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-kms==1.106.0",
-    "aws-cdk.aws-logs==1.106.0",
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.aws-cloudwatch==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-kms==1.106.1",
+    "aws-cdk.aws-logs==1.106.1",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -535,10 +535,10 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-kinesisfirehose"
 sections = ["cdk"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::KinesisFirehose"
 dependencies = [
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -547,12 +547,12 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-kms"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::KMS"
 dependencies = [
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.core==1.106.0",
-    "aws-cdk.cx-api==1.106.0",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.core==1.106.1",
+    "aws-cdk.cx-api==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -561,26 +561,26 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-lambda"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::Lambda"
 dependencies = [
-    "aws-cdk.aws-applicationautoscaling==1.106.0",
-    "aws-cdk.aws-cloudwatch==1.106.0",
-    "aws-cdk.aws-codeguruprofiler==1.106.0",
-    "aws-cdk.aws-ec2==1.106.0",
-    "aws-cdk.aws-ecr-assets==1.106.0",
-    "aws-cdk.aws-ecr==1.106.0",
-    "aws-cdk.aws-efs==1.106.0",
-    "aws-cdk.aws-events==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-kms==1.106.0",
-    "aws-cdk.aws-logs==1.106.0",
-    "aws-cdk.aws-s3-assets==1.106.0",
-    "aws-cdk.aws-s3==1.106.0",
-    "aws-cdk.aws-signer==1.106.0",
-    "aws-cdk.aws-sqs==1.106.0",
-    "aws-cdk.core==1.106.0",
-    "aws-cdk.cx-api==1.106.0",
+    "aws-cdk.aws-applicationautoscaling==1.106.1",
+    "aws-cdk.aws-cloudwatch==1.106.1",
+    "aws-cdk.aws-codeguruprofiler==1.106.1",
+    "aws-cdk.aws-ec2==1.106.1",
+    "aws-cdk.aws-ecr-assets==1.106.1",
+    "aws-cdk.aws-ecr==1.106.1",
+    "aws-cdk.aws-efs==1.106.1",
+    "aws-cdk.aws-events==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-kms==1.106.1",
+    "aws-cdk.aws-logs==1.106.1",
+    "aws-cdk.aws-s3-assets==1.106.1",
+    "aws-cdk.aws-s3==1.106.1",
+    "aws-cdk.aws-signer==1.106.1",
+    "aws-cdk.aws-sqs==1.106.1",
+    "aws-cdk.core==1.106.1",
+    "aws-cdk.cx-api==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -589,12 +589,12 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-lambda-python"
 sections = ["cdk"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS Lambda in Python"
 dependencies = [
-    "aws-cdk.aws-ec2==1.106.0",
-    "aws-cdk.aws-lambda==1.106.0",
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.aws-ec2==1.106.1",
+    "aws-cdk.aws-lambda==1.106.1",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -603,14 +603,14 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-logs"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::Logs"
 dependencies = [
-    "aws-cdk.aws-cloudwatch==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-kms==1.106.0",
-    "aws-cdk.aws-s3-assets==1.106.0",
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.aws-cloudwatch==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-kms==1.106.1",
+    "aws-cdk.aws-s3-assets==1.106.1",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -619,15 +619,15 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-route53"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::Route53"
 dependencies = [
-    "aws-cdk.aws-ec2==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-logs==1.106.0",
-    "aws-cdk.cloud-assembly-schema==1.106.0",
-    "aws-cdk.core==1.106.0",
-    "aws-cdk.custom-resources==1.106.0",
+    "aws-cdk.aws-ec2==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-logs==1.106.1",
+    "aws-cdk.cloud-assembly-schema==1.106.1",
+    "aws-cdk.core==1.106.1",
+    "aws-cdk.custom-resources==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -636,21 +636,21 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-route53-targets"
 sections = ["cdk"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS Route53 Alias Targets"
 dependencies = [
-    "aws-cdk.aws-apigateway==1.106.0",
-    "aws-cdk.aws-cloudfront==1.106.0",
-    "aws-cdk.aws-cognito==1.106.0",
-    "aws-cdk.aws-ec2==1.106.0",
-    "aws-cdk.aws-elasticloadbalancing==1.106.0",
-    "aws-cdk.aws-elasticloadbalancingv2==1.106.0",
-    "aws-cdk.aws-globalaccelerator==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-route53==1.106.0",
-    "aws-cdk.aws-s3==1.106.0",
-    "aws-cdk.core==1.106.0",
-    "aws-cdk.region-info==1.106.0",
+    "aws-cdk.aws-apigateway==1.106.1",
+    "aws-cdk.aws-cloudfront==1.106.1",
+    "aws-cdk.aws-cognito==1.106.1",
+    "aws-cdk.aws-ec2==1.106.1",
+    "aws-cdk.aws-elasticloadbalancing==1.106.1",
+    "aws-cdk.aws-elasticloadbalancingv2==1.106.1",
+    "aws-cdk.aws-globalaccelerator==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-route53==1.106.1",
+    "aws-cdk.aws-s3==1.106.1",
+    "aws-cdk.core==1.106.1",
+    "aws-cdk.region-info==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -659,14 +659,14 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-s3"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::S3"
 dependencies = [
-    "aws-cdk.aws-events==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-kms==1.106.0",
-    "aws-cdk.core==1.106.0",
-    "aws-cdk.cx-api==1.106.0",
+    "aws-cdk.aws-events==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-kms==1.106.1",
+    "aws-cdk.core==1.106.1",
+    "aws-cdk.cx-api==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -675,15 +675,15 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-s3-assets"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "Deploy local files and directories to S3"
 dependencies = [
-    "aws-cdk.assets==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-kms==1.106.0",
-    "aws-cdk.aws-s3==1.106.0",
-    "aws-cdk.core==1.106.0",
-    "aws-cdk.cx-api==1.106.0",
+    "aws-cdk.assets==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-kms==1.106.1",
+    "aws-cdk.aws-s3==1.106.1",
+    "aws-cdk.core==1.106.1",
+    "aws-cdk.cx-api==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -692,10 +692,10 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-sam"
 sections = ["cdk"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for the AWS Serverless Application Model (SAM) resources"
 dependencies = [
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -704,16 +704,16 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-secretsmanager"
 sections = ["cdk"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::SecretsManager"
 dependencies = [
-    "aws-cdk.aws-ec2==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-kms==1.106.0",
-    "aws-cdk.aws-lambda==1.106.0",
-    "aws-cdk.aws-sam==1.106.0",
-    "aws-cdk.core==1.106.0",
-    "aws-cdk.cx-api==1.106.0",
+    "aws-cdk.aws-ec2==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-kms==1.106.1",
+    "aws-cdk.aws-lambda==1.106.1",
+    "aws-cdk.aws-sam==1.106.1",
+    "aws-cdk.core==1.106.1",
+    "aws-cdk.cx-api==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -722,13 +722,13 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-servicediscovery"
 sections = ["cdk"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::ServiceDiscovery"
 dependencies = [
-    "aws-cdk.aws-ec2==1.106.0",
-    "aws-cdk.aws-elasticloadbalancingv2==1.106.0",
-    "aws-cdk.aws-route53==1.106.0",
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.aws-ec2==1.106.1",
+    "aws-cdk.aws-elasticloadbalancingv2==1.106.1",
+    "aws-cdk.aws-route53==1.106.1",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -737,10 +737,10 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-signer"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::Signer"
 dependencies = [
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -749,15 +749,15 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-sns"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::SNS"
 dependencies = [
-    "aws-cdk.aws-cloudwatch==1.106.0",
-    "aws-cdk.aws-events==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-kms==1.106.0",
-    "aws-cdk.aws-sqs==1.106.0",
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.aws-cloudwatch==1.106.1",
+    "aws-cdk.aws-events==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-kms==1.106.1",
+    "aws-cdk.aws-sqs==1.106.1",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -766,14 +766,14 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-sns-subscriptions"
 sections = ["cdk"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "CDK Subscription Constructs for AWS SNS"
 dependencies = [
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-lambda==1.106.0",
-    "aws-cdk.aws-sns==1.106.0",
-    "aws-cdk.aws-sqs==1.106.0",
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-lambda==1.106.1",
+    "aws-cdk.aws-sns==1.106.1",
+    "aws-cdk.aws-sqs==1.106.1",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -782,13 +782,13 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-sqs"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::SQS"
 dependencies = [
-    "aws-cdk.aws-cloudwatch==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-kms==1.106.0",
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.aws-cloudwatch==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-kms==1.106.1",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -797,13 +797,13 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-ssm"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::SSM"
 dependencies = [
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-kms==1.106.0",
-    "aws-cdk.cloud-assembly-schema==1.106.0",
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-kms==1.106.1",
+    "aws-cdk.cloud-assembly-schema==1.106.1",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -812,15 +812,15 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-stepfunctions"
 sections = ["cdk"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "The CDK Construct Library for AWS::StepFunctions"
 dependencies = [
-    "aws-cdk.aws-cloudwatch==1.106.0",
-    "aws-cdk.aws-events==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-logs==1.106.0",
-    "aws-cdk.aws-s3==1.106.0",
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.aws-cloudwatch==1.106.1",
+    "aws-cdk.aws-events==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-logs==1.106.1",
+    "aws-cdk.aws-s3==1.106.1",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -829,26 +829,26 @@ dependencies = [
 [[package]]
 name = "aws-cdk.aws-stepfunctions-tasks"
 sections = ["cdk"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "Task integrations for AWS StepFunctions"
 dependencies = [
-    "aws-cdk.aws-apigateway==1.106.0",
-    "aws-cdk.aws-cloudwatch==1.106.0",
-    "aws-cdk.aws-codebuild==1.106.0",
-    "aws-cdk.aws-dynamodb==1.106.0",
-    "aws-cdk.aws-ec2==1.106.0",
-    "aws-cdk.aws-ecr-assets==1.106.0",
-    "aws-cdk.aws-ecr==1.106.0",
-    "aws-cdk.aws-ecs==1.106.0",
-    "aws-cdk.aws-eks==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-kms==1.106.0",
-    "aws-cdk.aws-lambda==1.106.0",
-    "aws-cdk.aws-s3==1.106.0",
-    "aws-cdk.aws-sns==1.106.0",
-    "aws-cdk.aws-sqs==1.106.0",
-    "aws-cdk.aws-stepfunctions==1.106.0",
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.aws-apigateway==1.106.1",
+    "aws-cdk.aws-cloudwatch==1.106.1",
+    "aws-cdk.aws-codebuild==1.106.1",
+    "aws-cdk.aws-dynamodb==1.106.1",
+    "aws-cdk.aws-ec2==1.106.1",
+    "aws-cdk.aws-ecr-assets==1.106.1",
+    "aws-cdk.aws-ecr==1.106.1",
+    "aws-cdk.aws-ecs==1.106.1",
+    "aws-cdk.aws-eks==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-kms==1.106.1",
+    "aws-cdk.aws-lambda==1.106.1",
+    "aws-cdk.aws-s3==1.106.1",
+    "aws-cdk.aws-sns==1.106.1",
+    "aws-cdk.aws-sqs==1.106.1",
+    "aws-cdk.aws-stepfunctions==1.106.1",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -857,7 +857,7 @@ dependencies = [
 [[package]]
 name = "aws-cdk.cloud-assembly-schema"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "Cloud Assembly Schema"
 dependencies = [
     "jsii<2.0.0,>=1.29.0",
@@ -867,12 +867,12 @@ dependencies = [
 [[package]]
 name = "aws-cdk.core"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "AWS Cloud Development Kit Core Library"
 dependencies = [
-    "aws-cdk.cloud-assembly-schema==1.106.0",
-    "aws-cdk.cx-api==1.106.0",
-    "aws-cdk.region-info==1.106.0",
+    "aws-cdk.cloud-assembly-schema==1.106.1",
+    "aws-cdk.cx-api==1.106.1",
+    "aws-cdk.region-info==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -881,16 +881,16 @@ dependencies = [
 [[package]]
 name = "aws-cdk.custom-resources"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "Constructs for implementing CDK custom resources"
 dependencies = [
-    "aws-cdk.aws-cloudformation==1.106.0",
-    "aws-cdk.aws-ec2==1.106.0",
-    "aws-cdk.aws-iam==1.106.0",
-    "aws-cdk.aws-lambda==1.106.0",
-    "aws-cdk.aws-logs==1.106.0",
-    "aws-cdk.aws-sns==1.106.0",
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.aws-cloudformation==1.106.1",
+    "aws-cdk.aws-ec2==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-lambda==1.106.1",
+    "aws-cdk.aws-logs==1.106.1",
+    "aws-cdk.aws-sns==1.106.1",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -899,10 +899,10 @@ dependencies = [
 [[package]]
 name = "aws-cdk.cx-api"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "Cloud executable protocol"
 dependencies = [
-    "aws-cdk.cloud-assembly-schema==1.106.0",
+    "aws-cdk.cloud-assembly-schema==1.106.1",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
 ]
@@ -910,11 +910,11 @@ dependencies = [
 [[package]]
 name = "aws-cdk.lambda-layer-awscli"
 sections = ["cdk"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "An AWS Lambda layer that contains the AWS CLI"
 dependencies = [
-    "aws-cdk.aws-lambda==1.106.0",
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.aws-lambda==1.106.1",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -923,11 +923,11 @@ dependencies = [
 [[package]]
 name = "aws-cdk.lambda-layer-kubectl"
 sections = ["cdk"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "An AWS Lambda layer that contains the `kubectl` and `helm`"
 dependencies = [
-    "aws-cdk.aws-lambda==1.106.0",
-    "aws-cdk.core==1.106.0",
+    "aws-cdk.aws-lambda==1.106.1",
+    "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
     "publication>=0.0.3",
@@ -936,7 +936,7 @@ dependencies = [
 [[package]]
 name = "aws-cdk.region-info"
 sections = ["cdk", "dev"]
-version = "1.106.0"
+version = "1.106.1"
 summary = "AWS region information, such as service principal names"
 dependencies = [
     "jsii<2.0.0,>=1.29.0",
@@ -945,7 +945,7 @@ dependencies = [
 
 [[package]]
 name = "aws-lambda-powertools"
-sections = ["dev", "powertools"]
+sections = ["powertools"]
 version = "1.16.1"
 summary = "Python utilities for AWS Lambda functions including but not limited to tracing, logging and custom metric"
 dependencies = [
@@ -968,12 +968,12 @@ dependencies = [
     "fastjsonschema<3.0.0,>=2.14.5",
     "jmespath<0.11.0,>=0.10.0",
     "pydantic<2.0.0,>=1.8.2",
-    "aws-lambda-powertools==1.16.1",
+    "aws-lambda-powertools",
 ]
 
 [[package]]
 name = "aws-xray-sdk"
-sections = ["dev", "powertools"]
+sections = ["powertools"]
 version = "2.8.0"
 summary = "The AWS X-Ray SDK for Python (the SDK) enables Python developers to record and emit information from within their applications to the AWS X-Ray service."
 dependencies = [
@@ -1010,10 +1010,10 @@ dependencies = [
 [[package]]
 name = "boto3"
 sections = ["dev", "powertools"]
-version = "1.17.80"
+version = "1.17.82"
 summary = "The AWS SDK for Python"
 dependencies = [
-    "botocore<1.21.0,>=1.20.80",
+    "botocore<1.21.0,>=1.20.82",
     "jmespath<1.0.0,>=0.7.1",
     "s3transfer<0.5.0,>=0.4.0",
 ]
@@ -1021,7 +1021,7 @@ dependencies = [
 [[package]]
 name = "botocore"
 sections = ["dev", "powertools"]
-version = "1.20.80"
+version = "1.20.82"
 summary = "Low-level, data-driven core of boto 3."
 dependencies = [
     "jmespath<1.0.0,>=0.7.1",
@@ -1103,7 +1103,7 @@ extras = ["toml"]
 summary = "Code coverage measurement for Python"
 dependencies = [
     "toml",
-    "coverage==5.5",
+    "coverage>=5.2.1",
 ]
 
 [[package]]
@@ -1156,7 +1156,7 @@ dependencies = [
 
 [[package]]
 name = "fastjsonschema"
-sections = ["dev", "powertools"]
+sections = ["powertools"]
 version = "2.15.1"
 summary = "Fastest Python implementation of JSON schema"
 
@@ -1203,7 +1203,7 @@ summary = "Internationalized Domain Names in Applications (IDNA)"
 [[package]]
 name = "importlib-metadata"
 sections = ["dev"]
-version = "4.0.1"
+version = "4.2.0"
 summary = "Read metadata from Python packages"
 dependencies = [
     "zipp>=0.5",
@@ -1471,7 +1471,7 @@ summary = "Data validation and settings management using python 3.6 type hinting
 dependencies = [
     "typing-extensions>=3.7.4.3",
     "email-validator>=1.0.3",
-    "pydantic==1.8.2",
+    "pydantic",
 ]
 
 [[package]]
@@ -1670,7 +1670,7 @@ summary = "Backported and Experimental Type Hints for Python 3.5+"
 [[package]]
 name = "urllib3"
 sections = ["dev", "powertools"]
-version = "1.26.4"
+version = "1.26.5"
 summary = "HTTP library with thread-safe connection pooling, file post, and more."
 
 [[package]]
@@ -1703,7 +1703,7 @@ summary = "Character encoding aliases for legacy web content"
 
 [[package]]
 name = "wrapt"
-sections = ["dev", "powertools"]
+sections = ["powertools"]
 version = "1.12.1"
 summary = "Module for decorators, wrappers and monkey patching."
 
@@ -1715,7 +1715,7 @@ summary = "Backport of pathlib-compatible object wrapper for zip files"
 
 [metadata]
 lock_version = "2"
-content_hash = "sha256:93353b15db703614a7723aa8e7ce8d8a1bd0fa64ce705b94c185bc5312a14179"
+content_hash = "sha256:b039436720f519aa167a4a7e55d8f55516adab998b1678eb6d4d14e5f42755de"
 
 [metadata.files]
 "appdirs 1.4.4" = [
@@ -1730,225 +1730,225 @@ content_hash = "sha256:93353b15db703614a7723aa8e7ce8d8a1bd0fa64ce705b94c185bc531
     {file = "attrs-20.3.0-py2.py3-none-any.whl", hash = "sha256:31b2eced602aa8423c2aea9c76a724617ed67cf9513173fd3a4f03e3a929c7e6"},
     {file = "attrs-20.3.0.tar.gz", hash = "sha256:832aa3cde19744e49938b91fea06d69ecb9e649c93ba974535d08ad92164f700"},
 ]
-"aws-cdk.assets 1.106.0" = [
-    {file = "aws_cdk.assets-1.106.0-py3-none-any.whl", hash = "sha256:a9c4a29109cfecd4deba3f0029a07b9b68c090eb58940ac2749c6de600d8bc6f"},
-    {file = "aws-cdk.assets-1.106.0.tar.gz", hash = "sha256:8118486564b4bb0c5ec906c4801cb25e3d2515d0ab15940c0f357b8d9e91274b"},
+"aws-cdk.assets 1.106.1" = [
+    {file = "aws_cdk.assets-1.106.1-py3-none-any.whl", hash = "sha256:99566d2715e928adb15860fc3472b246369ed7236c3115829f23b7e0328f44d1"},
+    {file = "aws-cdk.assets-1.106.1.tar.gz", hash = "sha256:3011160243046dc5db3eb28145d5c1ad6673f9f4da6ca3b504417ec78711490b"},
 ]
-"aws-cdk.aws-apigateway 1.106.0" = [
-    {file = "aws_cdk.aws_apigateway-1.106.0-py3-none-any.whl", hash = "sha256:07401dd691f12fb93b78d566fd417297032a9fea85f0b907c4ccd23af0f31964"},
-    {file = "aws-cdk.aws-apigateway-1.106.0.tar.gz", hash = "sha256:ff702372cbc59e806781ea84e29143185ac3b3f2c951fb5031b2fce06344257a"},
+"aws-cdk.aws-apigateway 1.106.1" = [
+    {file = "aws_cdk.aws_apigateway-1.106.1-py3-none-any.whl", hash = "sha256:f8114b48f7b4d395f6c1d8215d813bd3582ba5bd40ee4c661c8e15d0b077bf0e"},
+    {file = "aws-cdk.aws-apigateway-1.106.1.tar.gz", hash = "sha256:c8dd74623a08792c65ee35919860d3802c535031d3f57eed05b5d7b56b364123"},
 ]
-"aws-cdk.aws-applicationautoscaling 1.106.0" = [
-    {file = "aws_cdk.aws_applicationautoscaling-1.106.0-py3-none-any.whl", hash = "sha256:7af7a44ce5f0a5f4f1dfcafe8537ba1485dd58746a20357945d8b94afc5bf511"},
-    {file = "aws-cdk.aws-applicationautoscaling-1.106.0.tar.gz", hash = "sha256:4a73b1a5026743667e241910dd6e1db281073907cc017d7ab58828630ce23f4b"},
+"aws-cdk.aws-applicationautoscaling 1.106.1" = [
+    {file = "aws_cdk.aws_applicationautoscaling-1.106.1-py3-none-any.whl", hash = "sha256:d398b860bcc7a6aae6adee085e0a996cf104f14a41053eaff3033d897868f4b0"},
+    {file = "aws-cdk.aws-applicationautoscaling-1.106.1.tar.gz", hash = "sha256:1bb811bdd4203f72c32c2f39713e247ccb3e16ec85ba81a76880dfe95cbf2924"},
 ]
-"aws-cdk.aws-autoscaling 1.106.0" = [
-    {file = "aws_cdk.aws_autoscaling-1.106.0-py3-none-any.whl", hash = "sha256:88c3da4a5655e195766e5aa8d19c7dd8c411fca5f1dcb036647389f369a41587"},
-    {file = "aws-cdk.aws-autoscaling-1.106.0.tar.gz", hash = "sha256:a8f7e8e5201941ba3012168e355c350890af4313e44f07790efe227857e9564f"},
+"aws-cdk.aws-autoscaling 1.106.1" = [
+    {file = "aws_cdk.aws_autoscaling-1.106.1-py3-none-any.whl", hash = "sha256:dfbc1b7103a4a2de6e490bff1dcb02ca3f7cc85b8215efa39f72d4262ee93490"},
+    {file = "aws-cdk.aws-autoscaling-1.106.1.tar.gz", hash = "sha256:1f4686fe25c1542aa3864b78ce9b5f0433cdc68a7e01f07b9d9c6fdff11ac428"},
 ]
-"aws-cdk.aws-autoscaling-common 1.106.0" = [
-    {file = "aws_cdk.aws_autoscaling_common-1.106.0-py3-none-any.whl", hash = "sha256:5f0a0ded88967d2cc9571144f653b9860dd813583b8631d6aeba32c08cc78b9b"},
-    {file = "aws-cdk.aws-autoscaling-common-1.106.0.tar.gz", hash = "sha256:7b71530fee79364613877c41558ef3b4ff5174c89ee511ba9e770505fea6e093"},
+"aws-cdk.aws-autoscaling-common 1.106.1" = [
+    {file = "aws_cdk.aws_autoscaling_common-1.106.1-py3-none-any.whl", hash = "sha256:e50f475544a3496459467385000ea56c2579a522dfa8b18359ca90785eccfd48"},
+    {file = "aws-cdk.aws-autoscaling-common-1.106.1.tar.gz", hash = "sha256:605f19e330705ed19af4859b4a61b98aa095e7d15908f370c3f5880364da7a68"},
 ]
-"aws-cdk.aws-autoscaling-hooktargets 1.106.0" = [
-    {file = "aws_cdk.aws_autoscaling_hooktargets-1.106.0-py3-none-any.whl", hash = "sha256:bbe6570b964873e045b4da47d3f42785394ecff773c1007350759cb4c453a017"},
-    {file = "aws-cdk.aws-autoscaling-hooktargets-1.106.0.tar.gz", hash = "sha256:b5c10056d9d1948cd2d6b2d6c2d356f2d3d65ed1831679c1930300eda03577cc"},
+"aws-cdk.aws-autoscaling-hooktargets 1.106.1" = [
+    {file = "aws_cdk.aws_autoscaling_hooktargets-1.106.1-py3-none-any.whl", hash = "sha256:b368a7838f397c8af2e8af66f27d02c802df3de29ed5a768676ddca9ac73a7a6"},
+    {file = "aws-cdk.aws-autoscaling-hooktargets-1.106.1.tar.gz", hash = "sha256:787b59b05e277ad37b6124b7a55ddddc893a830ab8c28cd24fc87a638d22e5dc"},
 ]
-"aws-cdk.aws-certificatemanager 1.106.0" = [
-    {file = "aws_cdk.aws_certificatemanager-1.106.0-py3-none-any.whl", hash = "sha256:75b29e52bffe9122759320ac9d0faca356a29ca11af2932738f32cf1be33d929"},
-    {file = "aws-cdk.aws-certificatemanager-1.106.0.tar.gz", hash = "sha256:1215c9a8142b07d2ff72096994d6095d4f8e7daee8cbd698abb51b623ca4e05a"},
+"aws-cdk.aws-certificatemanager 1.106.1" = [
+    {file = "aws_cdk.aws_certificatemanager-1.106.1-py3-none-any.whl", hash = "sha256:312ec3ca0133a43b87a721cd2e8d1ab65bdefbfdd486ca4052b1c049e7a88237"},
+    {file = "aws-cdk.aws-certificatemanager-1.106.1.tar.gz", hash = "sha256:04b3b1959dd38731e318d67285bb2666618921145a53e37de3eaed37dc938c97"},
 ]
-"aws-cdk.aws-cloudformation 1.106.0" = [
-    {file = "aws_cdk.aws_cloudformation-1.106.0-py3-none-any.whl", hash = "sha256:1adcb5d4b918c61d0a99589300719815de89cfe494f524a2b9405df80d212e75"},
-    {file = "aws-cdk.aws-cloudformation-1.106.0.tar.gz", hash = "sha256:3d885148e8c00440a108cb957196c12c07527b01f11467e2782ced3f13e4dc4f"},
+"aws-cdk.aws-cloudformation 1.106.1" = [
+    {file = "aws_cdk.aws_cloudformation-1.106.1-py3-none-any.whl", hash = "sha256:4bd585b8d1790861683171107f156c69034147d0fca2aae238dae25be292a7fe"},
+    {file = "aws-cdk.aws-cloudformation-1.106.1.tar.gz", hash = "sha256:ba34439cf5e22a3bbfc26ff31098080001f4fa07d1f05f15bcf7cb241f8b17db"},
 ]
-"aws-cdk.aws-cloudfront 1.106.0" = [
-    {file = "aws_cdk.aws_cloudfront-1.106.0-py3-none-any.whl", hash = "sha256:d1f0ea83e6a20bed2e14810a0d060fb33831650e666c314f3f055ba0af09140e"},
-    {file = "aws-cdk.aws-cloudfront-1.106.0.tar.gz", hash = "sha256:b81172e4dd6ec8938ee5ebac867b242b628996c1cf9d523c497882b80d1e3877"},
+"aws-cdk.aws-cloudfront 1.106.1" = [
+    {file = "aws_cdk.aws_cloudfront-1.106.1-py3-none-any.whl", hash = "sha256:470bc1a94ca44ea524057408be7d9e420d6cf692116768be0922d9f1c11bc792"},
+    {file = "aws-cdk.aws-cloudfront-1.106.1.tar.gz", hash = "sha256:98f037f974164cb6d4e1b78092181a6ad3c468dca62eb216aca40b282fb914ff"},
 ]
-"aws-cdk.aws-cloudwatch 1.106.0" = [
-    {file = "aws_cdk.aws_cloudwatch-1.106.0-py3-none-any.whl", hash = "sha256:735f143e431ebd715353f1cf5fce1879f92c9536ac65daead7dfe2d370b8ed71"},
-    {file = "aws-cdk.aws-cloudwatch-1.106.0.tar.gz", hash = "sha256:59463fad4685d1add36d5a66773d7128c1be063f34b7077da5593c267964e377"},
+"aws-cdk.aws-cloudwatch 1.106.1" = [
+    {file = "aws_cdk.aws_cloudwatch-1.106.1-py3-none-any.whl", hash = "sha256:338e87abe6b2283c3917d82e0df8e867ba0818eda2fb02a02944ef12a6f29e5d"},
+    {file = "aws-cdk.aws-cloudwatch-1.106.1.tar.gz", hash = "sha256:b892c6e68c9e66b551b54b01fef3019fc72892ec12c5afa36896586a3e4678c8"},
 ]
-"aws-cdk.aws-codebuild 1.106.0" = [
-    {file = "aws_cdk.aws_codebuild-1.106.0-py3-none-any.whl", hash = "sha256:9a5bb009031a1b5b4c8343d5a1ba9111a737644ef2757b072958d0d619cab0dc"},
-    {file = "aws-cdk.aws-codebuild-1.106.0.tar.gz", hash = "sha256:3170ffd75f23fd7e218e66075620da763be5815c1aebc000e36d58f1b6507791"},
+"aws-cdk.aws-codebuild 1.106.1" = [
+    {file = "aws_cdk.aws_codebuild-1.106.1-py3-none-any.whl", hash = "sha256:2f3102dfdaa6ecee64e125f790af264ffb97be7ce60e5372dbfbaf044f70dbbd"},
+    {file = "aws-cdk.aws-codebuild-1.106.1.tar.gz", hash = "sha256:b57255840bf14a9e6b6006698c963f07f52c19dcfcd886b4ac93a60b3b77d014"},
 ]
-"aws-cdk.aws-codecommit 1.106.0" = [
-    {file = "aws_cdk.aws_codecommit-1.106.0-py3-none-any.whl", hash = "sha256:a192139b1d3528795a97ac8574b883dfec4b07a81d1fe96faddd76be8049bcd6"},
-    {file = "aws-cdk.aws-codecommit-1.106.0.tar.gz", hash = "sha256:a6721a94da595c1df597461398a3dd1b1a9561af2ddb493f20c1e9eae1f8bb02"},
+"aws-cdk.aws-codecommit 1.106.1" = [
+    {file = "aws_cdk.aws_codecommit-1.106.1-py3-none-any.whl", hash = "sha256:692eec51988ad5a0dc32cf67c460bb1caf42d5506fea8922aa0b481b16b2c3a0"},
+    {file = "aws-cdk.aws-codecommit-1.106.1.tar.gz", hash = "sha256:e3927fc8b9d403eadcb962dac392e0c499b4988f42d7860bd8abc93407996bd6"},
 ]
-"aws-cdk.aws-codeguruprofiler 1.106.0" = [
-    {file = "aws_cdk.aws_codeguruprofiler-1.106.0-py3-none-any.whl", hash = "sha256:5d0629e5dfff9396f79ea8e85a30c7ae5163469855f846965aac36b655d0375c"},
-    {file = "aws-cdk.aws-codeguruprofiler-1.106.0.tar.gz", hash = "sha256:bf34449b64186a0cb6c1dade713a013e47869c6d6c6277c0f11ecee778dfaadd"},
+"aws-cdk.aws-codeguruprofiler 1.106.1" = [
+    {file = "aws_cdk.aws_codeguruprofiler-1.106.1-py3-none-any.whl", hash = "sha256:494924a2a9bb33483580e82d540f12dcd771afb92911e78ab58bc137ec42672e"},
+    {file = "aws-cdk.aws-codeguruprofiler-1.106.1.tar.gz", hash = "sha256:62c3b2ccc7d8cddb91fa9d05ae640f28ccde25ed8bf5c31072d10616cd3ac343"},
 ]
-"aws-cdk.aws-codepipeline 1.106.0" = [
-    {file = "aws_cdk.aws_codepipeline-1.106.0-py3-none-any.whl", hash = "sha256:bf0fd02879ba9ceba4e2f68e03280fc5a89bc065d21a701ab569dd18cdd336b7"},
-    {file = "aws-cdk.aws-codepipeline-1.106.0.tar.gz", hash = "sha256:98240285a0dee5798f69baba719232a3444a69fa1f3ac522e100a1490af0bdfc"},
+"aws-cdk.aws-codepipeline 1.106.1" = [
+    {file = "aws_cdk.aws_codepipeline-1.106.1-py3-none-any.whl", hash = "sha256:8e96c178ae2b1c07e59e4a9d7b0d0219ed4aff05ba3b5c54c585fd5639f48856"},
+    {file = "aws-cdk.aws-codepipeline-1.106.1.tar.gz", hash = "sha256:9f45ca35f57ecb14b67a7e9a7f93ebcad8440f4fe2d1763236d129a00d900995"},
 ]
-"aws-cdk.aws-cognito 1.106.0" = [
-    {file = "aws_cdk.aws_cognito-1.106.0-py3-none-any.whl", hash = "sha256:a77ee907ca5259b1d24a3d18da3b8d9556aba2be76c87b1a6753f505557d5388"},
-    {file = "aws-cdk.aws-cognito-1.106.0.tar.gz", hash = "sha256:251d304aeabd60151d268263deefa6a073e5673b65f6987c1e096e1639c292bb"},
+"aws-cdk.aws-cognito 1.106.1" = [
+    {file = "aws_cdk.aws_cognito-1.106.1-py3-none-any.whl", hash = "sha256:d0a915b70195861d24007a7a0cbfbe36f6586f584c965c3c8bdeb88666210ffa"},
+    {file = "aws-cdk.aws-cognito-1.106.1.tar.gz", hash = "sha256:ba63bb1641c67079e0ee2f892a21bb123797db96d046162f50d057f359b436bf"},
 ]
-"aws-cdk.aws-dynamodb 1.106.0" = [
-    {file = "aws_cdk.aws_dynamodb-1.106.0-py3-none-any.whl", hash = "sha256:3b11a3d40d2a321c99ae93bec8eba6fe704aaed2dcddbcb59c615efe923ec279"},
-    {file = "aws-cdk.aws-dynamodb-1.106.0.tar.gz", hash = "sha256:d906617c23b869951f6a38ce4d45ceed8a8d5c12addaf04559064896a1685717"},
+"aws-cdk.aws-dynamodb 1.106.1" = [
+    {file = "aws_cdk.aws_dynamodb-1.106.1-py3-none-any.whl", hash = "sha256:9e3397d9acbb8a49ab3cd67e6a4df502a0eb45a62b6453d49230beaff21047c3"},
+    {file = "aws-cdk.aws-dynamodb-1.106.1.tar.gz", hash = "sha256:c92ea810ca1bc842c17b6f8dc293c1b980b2b56d389bf9a50eba8e12790aff4c"},
 ]
-"aws-cdk.aws-ec2 1.106.0" = [
-    {file = "aws_cdk.aws_ec2-1.106.0-py3-none-any.whl", hash = "sha256:5b3c4c7e4afa3c589afed38411fa594b88d76520765378c8c3c3b441593099a3"},
-    {file = "aws-cdk.aws-ec2-1.106.0.tar.gz", hash = "sha256:c5c6d38a69560989ce9dc248d88e70203e952ccff0c441dadc74ade5f2b2345f"},
+"aws-cdk.aws-ec2 1.106.1" = [
+    {file = "aws_cdk.aws_ec2-1.106.1-py3-none-any.whl", hash = "sha256:15feff3ec3672d6ca4e30cb45badf82f570d981f32d2d9274e79019dce31a745"},
+    {file = "aws-cdk.aws-ec2-1.106.1.tar.gz", hash = "sha256:678d257fc69abdfd63099ba017c0c9ac2c958706c70a7181448c5c77977a0b85"},
 ]
-"aws-cdk.aws-ecr 1.106.0" = [
-    {file = "aws_cdk.aws_ecr-1.106.0-py3-none-any.whl", hash = "sha256:fdbcdbf2b89b256653dbf5c9e343ac83ef507dba4e7bbef1f359fd440adef790"},
-    {file = "aws-cdk.aws-ecr-1.106.0.tar.gz", hash = "sha256:513d5efd9addf6e0ac8b881b22f251b1b543fb669ca672ca84df56d4a9f7d8a6"},
+"aws-cdk.aws-ecr 1.106.1" = [
+    {file = "aws_cdk.aws_ecr-1.106.1-py3-none-any.whl", hash = "sha256:7786481f21d3d9dc18597998acc4a8b8e315440b16a837575f8fac5a36f99043"},
+    {file = "aws-cdk.aws-ecr-1.106.1.tar.gz", hash = "sha256:fd533a1dd58370f0ffeb48e4f97e183d4911ec874b6334f5fe9f87d75a5920d9"},
 ]
-"aws-cdk.aws-ecr-assets 1.106.0" = [
-    {file = "aws_cdk.aws_ecr_assets-1.106.0-py3-none-any.whl", hash = "sha256:cd574b48bd6026fb7892f3b7fed3c4756e2fe3280b21ede59ac2e75f4ccd9926"},
-    {file = "aws-cdk.aws-ecr-assets-1.106.0.tar.gz", hash = "sha256:e05fde1a8a9e456c11361c4069fd988174071ecc5530c9bb98737c345313be15"},
+"aws-cdk.aws-ecr-assets 1.106.1" = [
+    {file = "aws_cdk.aws_ecr_assets-1.106.1-py3-none-any.whl", hash = "sha256:ba8391a92683b8461177623ead7775a20fe8ae9423f967fc8a0a7f8e13f46271"},
+    {file = "aws-cdk.aws-ecr-assets-1.106.1.tar.gz", hash = "sha256:5bdf049b577f67f49a6746327cf68243312791cc417139b8045e413cc1e4ab5c"},
 ]
-"aws-cdk.aws-ecs 1.106.0" = [
-    {file = "aws_cdk.aws_ecs-1.106.0-py3-none-any.whl", hash = "sha256:259ded4940afebe5c642b558cb91bd198cc0d472af744f94e321a71d200dfec9"},
-    {file = "aws-cdk.aws-ecs-1.106.0.tar.gz", hash = "sha256:26a55918a9b266c9ea08165cc573fa1bb81350e82a5231443950210b53760a6d"},
+"aws-cdk.aws-ecs 1.106.1" = [
+    {file = "aws_cdk.aws_ecs-1.106.1-py3-none-any.whl", hash = "sha256:f6f285b205bc7a010238129737eac1c5b73530526a46ffc263eef537c6741615"},
+    {file = "aws-cdk.aws-ecs-1.106.1.tar.gz", hash = "sha256:c3bff339c296848c924bbe21ea1eb574afe4e6549c23f6de3121fc66ded50de5"},
 ]
-"aws-cdk.aws-efs 1.106.0" = [
-    {file = "aws_cdk.aws_efs-1.106.0-py3-none-any.whl", hash = "sha256:e49b65188d47e1d081989caac04dffbc64d8361d8a53e8e13b2e34c4c8ca5d1a"},
-    {file = "aws-cdk.aws-efs-1.106.0.tar.gz", hash = "sha256:7199ff36aaa43dd19230051b5e08c2ef60751ee29afe6c75aa4e41f48f1b816c"},
+"aws-cdk.aws-efs 1.106.1" = [
+    {file = "aws_cdk.aws_efs-1.106.1-py3-none-any.whl", hash = "sha256:8281e39e3e320c6deb50a144b2de160fd46961a6876d43b496890cb4c45acfa3"},
+    {file = "aws-cdk.aws-efs-1.106.1.tar.gz", hash = "sha256:2c287d4117402ab02eab72df0c2e49706197ea3de60979c749b4683d105e530e"},
 ]
-"aws-cdk.aws-eks 1.106.0" = [
-    {file = "aws_cdk.aws_eks-1.106.0-py3-none-any.whl", hash = "sha256:471c2562b1c6295074277d635c1e805b710421c3e371f2edae05fc92c0fc6d75"},
-    {file = "aws-cdk.aws-eks-1.106.0.tar.gz", hash = "sha256:7bd1556218daff10a3a8470aced70ee449566e4f1b04f1b882ea4d3ef2cb4ef0"},
+"aws-cdk.aws-eks 1.106.1" = [
+    {file = "aws_cdk.aws_eks-1.106.1-py3-none-any.whl", hash = "sha256:e0c41eec23f10125f60ec86ae13398f6e53bfa2c329553574c9faf6155fbfc61"},
+    {file = "aws-cdk.aws-eks-1.106.1.tar.gz", hash = "sha256:ed9318bc087a2852ce54dabea62e4850a4655cda2eb8013b71669173c0ea5f5d"},
 ]
-"aws-cdk.aws-elasticloadbalancing 1.106.0" = [
-    {file = "aws_cdk.aws_elasticloadbalancing-1.106.0-py3-none-any.whl", hash = "sha256:cd3bcf87f754cf6a05c81f2046fe2424023b6fe080d0a17739c9481d20f69cf9"},
-    {file = "aws-cdk.aws-elasticloadbalancing-1.106.0.tar.gz", hash = "sha256:4a1d10c772e826a3159b143c8c43320901757129f34a037486a3a5ca31ef2f32"},
+"aws-cdk.aws-elasticloadbalancing 1.106.1" = [
+    {file = "aws_cdk.aws_elasticloadbalancing-1.106.1-py3-none-any.whl", hash = "sha256:2997776cebc211d81080c3c51eb5a6a50784a32b843e764b25b7c5e6b628d89c"},
+    {file = "aws-cdk.aws-elasticloadbalancing-1.106.1.tar.gz", hash = "sha256:ce2e18c08e7712976c0808c1416a512ed6d3cbcbcb6d04c2e7a7d5dae55ae858"},
 ]
-"aws-cdk.aws-elasticloadbalancingv2 1.106.0" = [
-    {file = "aws_cdk.aws_elasticloadbalancingv2-1.106.0-py3-none-any.whl", hash = "sha256:e89b5e9ca5b98ffba23c9041dbbf38b1be1fd4dd6f75ec17432227a5a03fc2c2"},
-    {file = "aws-cdk.aws-elasticloadbalancingv2-1.106.0.tar.gz", hash = "sha256:ea9011a63fd2ff3053254c193cedeb937279a6b2263f4396faa065617da1b33a"},
+"aws-cdk.aws-elasticloadbalancingv2 1.106.1" = [
+    {file = "aws_cdk.aws_elasticloadbalancingv2-1.106.1-py3-none-any.whl", hash = "sha256:604d56c8e2f10831f20db75dbd81069346028e2fed3edcffa8061b66a13e391a"},
+    {file = "aws-cdk.aws-elasticloadbalancingv2-1.106.1.tar.gz", hash = "sha256:f58f466cdc60667c55b1b7b688f3a41768ebc8a9a67ff7431cb77280cbeb81c9"},
 ]
-"aws-cdk.aws-events 1.106.0" = [
-    {file = "aws_cdk.aws_events-1.106.0-py3-none-any.whl", hash = "sha256:ad116f05f3daec97af746d9163afd9213935e0ecd3132295f777de3c0a8b5b59"},
-    {file = "aws-cdk.aws-events-1.106.0.tar.gz", hash = "sha256:3b5bb1893758b8b2f532e81b383ba78175614b03643e6c3c3a02c380d279129a"},
+"aws-cdk.aws-events 1.106.1" = [
+    {file = "aws_cdk.aws_events-1.106.1-py3-none-any.whl", hash = "sha256:0859db05f8b3e5fd90b20358381054c3f11311d88fd13bfcd6669dbae97d4fbb"},
+    {file = "aws-cdk.aws-events-1.106.1.tar.gz", hash = "sha256:95a843f2a9660e2a6b6bd57c74656a95edacdb8a575be79579e747f600d2e576"},
 ]
-"aws-cdk.aws-events-targets 1.106.0" = [
-    {file = "aws_cdk.aws_events_targets-1.106.0-py3-none-any.whl", hash = "sha256:de3c153e69c38d50168426651736c4beb40dee677ab23bf22c8683fc6b8536ac"},
-    {file = "aws-cdk.aws-events-targets-1.106.0.tar.gz", hash = "sha256:742f4519faaf2c16cfc2ccb4badb6f31f3549626d7a5321906b589629cdc16fa"},
+"aws-cdk.aws-events-targets 1.106.1" = [
+    {file = "aws_cdk.aws_events_targets-1.106.1-py3-none-any.whl", hash = "sha256:6b032cd87d7a3bd3d353ee6374d36d1090d4564bc9575dbdd3435fafaee28a1d"},
+    {file = "aws-cdk.aws-events-targets-1.106.1.tar.gz", hash = "sha256:9f430cbe00ad9f7d95147d83a505431e8c4d80a922c25730e35a7885d83fc407"},
 ]
-"aws-cdk.aws-globalaccelerator 1.106.0" = [
-    {file = "aws_cdk.aws_globalaccelerator-1.106.0-py3-none-any.whl", hash = "sha256:c79e7d667e07f3c4846d151a6b003b3840c27b84fe65b673d6330060263dc61b"},
-    {file = "aws-cdk.aws-globalaccelerator-1.106.0.tar.gz", hash = "sha256:db1658fffcf3c90bd362321ff39e163dbab3cd2adec0b36301532bcebbc6740e"},
+"aws-cdk.aws-globalaccelerator 1.106.1" = [
+    {file = "aws_cdk.aws_globalaccelerator-1.106.1-py3-none-any.whl", hash = "sha256:949583e62a75affbb00de30bdce0fcddd8671aac87d3fafbb185fb097bb3a2cd"},
+    {file = "aws-cdk.aws-globalaccelerator-1.106.1.tar.gz", hash = "sha256:36799cd51463bdab809ae246e2aa9c6c04b292982b16186a0d69219d649e0f77"},
 ]
-"aws-cdk.aws-iam 1.106.0" = [
-    {file = "aws_cdk.aws_iam-1.106.0-py3-none-any.whl", hash = "sha256:12334e4c673b6097142cf800dec1a76484c2e1899519ad6d10cfce78a82dd601"},
-    {file = "aws-cdk.aws-iam-1.106.0.tar.gz", hash = "sha256:1a7f8c2fe338225fccbb4ac43dff40ba3f118c19ebe1a52cd6833d1da4388c48"},
+"aws-cdk.aws-iam 1.106.1" = [
+    {file = "aws_cdk.aws_iam-1.106.1-py3-none-any.whl", hash = "sha256:7f43f00394469f3ca00901520875b6fe4c26d54cca831308d2a70c1c7ae24567"},
+    {file = "aws-cdk.aws-iam-1.106.1.tar.gz", hash = "sha256:eeecbf9933f7529a1225ba055fe872671416b7eacae602a546b7eea4e4995fdf"},
 ]
-"aws-cdk.aws-kinesis 1.106.0" = [
-    {file = "aws_cdk.aws_kinesis-1.106.0-py3-none-any.whl", hash = "sha256:b451fcfc0de0749aa9a7fe8d1262fd49965867ef0f289e53d3877f7f1c7669bb"},
-    {file = "aws-cdk.aws-kinesis-1.106.0.tar.gz", hash = "sha256:01e5559c68bd5207ce71d682329d7de40ed31545231c475af1a093c7599f9644"},
+"aws-cdk.aws-kinesis 1.106.1" = [
+    {file = "aws_cdk.aws_kinesis-1.106.1-py3-none-any.whl", hash = "sha256:d9bf302abce75e5a1786912646e52fa8f6ed0bb578d3dc94b09f228028fc1a50"},
+    {file = "aws-cdk.aws-kinesis-1.106.1.tar.gz", hash = "sha256:2bbcf140095a1dccf71af484af7c7a8449bb8de0b2b7a4b253214c27eff69408"},
 ]
-"aws-cdk.aws-kinesisfirehose 1.106.0" = [
-    {file = "aws_cdk.aws_kinesisfirehose-1.106.0-py3-none-any.whl", hash = "sha256:667b29ade9a995282a45a02df0549322eb5c087836aacc3e85172ea801e9f853"},
-    {file = "aws-cdk.aws-kinesisfirehose-1.106.0.tar.gz", hash = "sha256:813e84a5b03be4cb847744a8e0deb174e8f47ef53de5070d48ea92e5122a31b9"},
+"aws-cdk.aws-kinesisfirehose 1.106.1" = [
+    {file = "aws_cdk.aws_kinesisfirehose-1.106.1-py3-none-any.whl", hash = "sha256:0ff8db98b978d361a52b79558480ea2499a0e11db976c8c1b875859c63ec9558"},
+    {file = "aws-cdk.aws-kinesisfirehose-1.106.1.tar.gz", hash = "sha256:21eae5f4f932f87f9a0679d3ec5b86885630377336a832a0667050a0c73f7cde"},
 ]
-"aws-cdk.aws-kms 1.106.0" = [
-    {file = "aws_cdk.aws_kms-1.106.0-py3-none-any.whl", hash = "sha256:e0a61cc9703b4094a3f72dad1678041d5fa26e84e10aa2d9ba1a190d2d71df05"},
-    {file = "aws-cdk.aws-kms-1.106.0.tar.gz", hash = "sha256:dc17e9178720a22db9751357d1cffea81f9f8b5740583b52177c6278e9fb9e6d"},
+"aws-cdk.aws-kms 1.106.1" = [
+    {file = "aws_cdk.aws_kms-1.106.1-py3-none-any.whl", hash = "sha256:629a3eddee9e00471c54c3034b87280bf776a2f13604db7b45ec821b9f6147d7"},
+    {file = "aws-cdk.aws-kms-1.106.1.tar.gz", hash = "sha256:eafa74d86da1a3856559eb9ca9f08d39772162de8616d19f08b6592f9480b132"},
 ]
-"aws-cdk.aws-lambda 1.106.0" = [
-    {file = "aws_cdk.aws_lambda-1.106.0-py3-none-any.whl", hash = "sha256:565d4b7d133c2df441e2c28dedb94c442f7fa7aa01b6586b60e66347a5b6750b"},
-    {file = "aws-cdk.aws-lambda-1.106.0.tar.gz", hash = "sha256:965d5c1e58e867234756f5e236e026312d8d2e566a84a1724dc38de787454465"},
+"aws-cdk.aws-lambda 1.106.1" = [
+    {file = "aws_cdk.aws_lambda-1.106.1-py3-none-any.whl", hash = "sha256:4f28ed24f21046399ef93ff4d4f64a5bcd22ed65deb637ab10fae8327e74f408"},
+    {file = "aws-cdk.aws-lambda-1.106.1.tar.gz", hash = "sha256:b66d2ce824a82771ec1a993a35abd196bb72aa9f0d6dec5eb4557328984af91d"},
 ]
-"aws-cdk.aws-lambda-python 1.106.0" = [
-    {file = "aws_cdk.aws_lambda_python-1.106.0-py3-none-any.whl", hash = "sha256:1ab21c02eb43f4caf920db8a8ed945742af64e6bb7fecabbda854a52abb819f5"},
-    {file = "aws-cdk.aws-lambda-python-1.106.0.tar.gz", hash = "sha256:6bd2a0629419277c5e145ce1f9b8ae02685cfc8fe14b7ec06bb4dd702c20cb34"},
+"aws-cdk.aws-lambda-python 1.106.1" = [
+    {file = "aws_cdk.aws_lambda_python-1.106.1-py3-none-any.whl", hash = "sha256:3602c0a96fc481232af7ca3153228ed97c62ae63091a9b07595f1c41f06edcdf"},
+    {file = "aws-cdk.aws-lambda-python-1.106.1.tar.gz", hash = "sha256:38d93c29f69b1c0e3f42683223768a8a112f8e9a66329cad841c2181557b40aa"},
 ]
-"aws-cdk.aws-logs 1.106.0" = [
-    {file = "aws_cdk.aws_logs-1.106.0-py3-none-any.whl", hash = "sha256:304d9cfce5d21b24ef0069dd108f3164cd991f889ffd26e20589789cd7724af6"},
-    {file = "aws-cdk.aws-logs-1.106.0.tar.gz", hash = "sha256:608c04cb48e5df32a44e8e5a66fb97fd78f9df3036d46c8c42fe8ccd09c92eb3"},
+"aws-cdk.aws-logs 1.106.1" = [
+    {file = "aws_cdk.aws_logs-1.106.1-py3-none-any.whl", hash = "sha256:9b7904ab6f446e62217d89ca7e5f7a0b8ba03a00d3ee49ef376a72b71992d3bf"},
+    {file = "aws-cdk.aws-logs-1.106.1.tar.gz", hash = "sha256:865ff4c851151ccad405da8b930a4aaf1d95adddecd41f5d8ee49b5e6e55f179"},
 ]
-"aws-cdk.aws-route53 1.106.0" = [
-    {file = "aws_cdk.aws_route53-1.106.0-py3-none-any.whl", hash = "sha256:0891bfbb3f432ffa39298b5acabb537d6e8afd81376ae5f35f63cdde5b991291"},
-    {file = "aws-cdk.aws-route53-1.106.0.tar.gz", hash = "sha256:ae43041d5e603bffa87d9360f271ebf6f04ce7fa5c4994ed833543db2b181ca8"},
+"aws-cdk.aws-route53 1.106.1" = [
+    {file = "aws_cdk.aws_route53-1.106.1-py3-none-any.whl", hash = "sha256:9960cad21e5332885428a4e6c0ca90948fc34b245519f8fdea190a56e56190bc"},
+    {file = "aws-cdk.aws-route53-1.106.1.tar.gz", hash = "sha256:15b9d46781e12c8923341ad274ff32d485292a2aef0e7d2b0cd609fa32afe0ed"},
 ]
-"aws-cdk.aws-route53-targets 1.106.0" = [
-    {file = "aws_cdk.aws_route53_targets-1.106.0-py3-none-any.whl", hash = "sha256:240a172498b865f09bd4c2acb3b20bc470990abd963768943553bb93ffb60109"},
-    {file = "aws-cdk.aws-route53-targets-1.106.0.tar.gz", hash = "sha256:d40a971264473b94fc8bcd4d34d3e2d5ad446a3d4d9a6b12247981f5ff7bb3c0"},
+"aws-cdk.aws-route53-targets 1.106.1" = [
+    {file = "aws_cdk.aws_route53_targets-1.106.1-py3-none-any.whl", hash = "sha256:16d25b3b2b635181615bb889c0c5aa7d710dffb9b8f2c68716e66ccc5b1f9079"},
+    {file = "aws-cdk.aws-route53-targets-1.106.1.tar.gz", hash = "sha256:56f05e9ee864b42e9e9ccf01455783fdd72e26a09d7a143b169116999d8e716b"},
 ]
-"aws-cdk.aws-s3 1.106.0" = [
-    {file = "aws_cdk.aws_s3-1.106.0-py3-none-any.whl", hash = "sha256:45d6018015394c75b050f1f14de05004f4e8e6306aec279820c5b501c53af358"},
-    {file = "aws-cdk.aws-s3-1.106.0.tar.gz", hash = "sha256:644d86bebaa223f105360bf56545955afb687f0a0202ff1294dd61212180ba11"},
+"aws-cdk.aws-s3 1.106.1" = [
+    {file = "aws_cdk.aws_s3-1.106.1-py3-none-any.whl", hash = "sha256:2b74b01ededb4f8339d462ecccdc7fd13a3ee6454fae16933f132b7facaf6106"},
+    {file = "aws-cdk.aws-s3-1.106.1.tar.gz", hash = "sha256:5dec0ca84c9ddf85048b6f5fa6c9c12135785a5fef6988a27a290e68377bc340"},
 ]
-"aws-cdk.aws-s3-assets 1.106.0" = [
-    {file = "aws_cdk.aws_s3_assets-1.106.0-py3-none-any.whl", hash = "sha256:771fb308aa6a88847d13aa8409548c463626a5a03b4bacc550ee6d7a420ae9ae"},
-    {file = "aws-cdk.aws-s3-assets-1.106.0.tar.gz", hash = "sha256:4adf769aa22c1cdf83d7e5a0ccce014e8c00562d1eea10d4b3893393b3012a54"},
+"aws-cdk.aws-s3-assets 1.106.1" = [
+    {file = "aws_cdk.aws_s3_assets-1.106.1-py3-none-any.whl", hash = "sha256:03c20d8b90c0b183db5ed9d55477c3631e238053a2f6b134b2f499d8a64f3e2e"},
+    {file = "aws-cdk.aws-s3-assets-1.106.1.tar.gz", hash = "sha256:46705ba93ee7b05a922d1bd9893391ef08e7c890c8d05e1befd833781739f2ea"},
 ]
-"aws-cdk.aws-sam 1.106.0" = [
-    {file = "aws_cdk.aws_sam-1.106.0-py3-none-any.whl", hash = "sha256:069d4f43e2e6a5246da0e98df8c136bac94be308e1b4edbdf0f3f9e77300cd8d"},
-    {file = "aws-cdk.aws-sam-1.106.0.tar.gz", hash = "sha256:144fa4b6e302b0e192325aefba96b2d61dd40c3e4e3aafcb75645606b99edac6"},
+"aws-cdk.aws-sam 1.106.1" = [
+    {file = "aws_cdk.aws_sam-1.106.1-py3-none-any.whl", hash = "sha256:64d2d12bb602fdc9bd9ecd1a80416b07310d7a556d399e89cf83705d9e68975a"},
+    {file = "aws-cdk.aws-sam-1.106.1.tar.gz", hash = "sha256:1d20f1a8711c7a93faa47a7988db919c3a4fc8a3a56dd63cf94ef4e32f481b40"},
 ]
-"aws-cdk.aws-secretsmanager 1.106.0" = [
-    {file = "aws_cdk.aws_secretsmanager-1.106.0-py3-none-any.whl", hash = "sha256:6230ee731b409930c900aed7a6e1fc1f62cfbb7199930262e8983d94ac943223"},
-    {file = "aws-cdk.aws-secretsmanager-1.106.0.tar.gz", hash = "sha256:af0f7c8603c9dac16e9943e3e702444967503b01989c408196ff4069a0fc8f01"},
+"aws-cdk.aws-secretsmanager 1.106.1" = [
+    {file = "aws_cdk.aws_secretsmanager-1.106.1-py3-none-any.whl", hash = "sha256:0dc2fb4128cf28c2a0faf0d7c60d53ae92395858d5dd9b9bb7b3277838f957ef"},
+    {file = "aws-cdk.aws-secretsmanager-1.106.1.tar.gz", hash = "sha256:be03c468d6359e6eca2ad68fe45461ff4d77fbc9bca01344835691833998159a"},
 ]
-"aws-cdk.aws-servicediscovery 1.106.0" = [
-    {file = "aws_cdk.aws_servicediscovery-1.106.0-py3-none-any.whl", hash = "sha256:b5eca0c5d4bb7789262eaf9dbe6c36b1bb3a3665f762e7688268d9c388e63b99"},
-    {file = "aws-cdk.aws-servicediscovery-1.106.0.tar.gz", hash = "sha256:70b473121cd7756b89a32fcccf67c77d7cc7fc3f873c5318b00698d6f48f5019"},
+"aws-cdk.aws-servicediscovery 1.106.1" = [
+    {file = "aws_cdk.aws_servicediscovery-1.106.1-py3-none-any.whl", hash = "sha256:9a2cddaf7966e58aa5f596a22fbadcfe47292cf5952a52e3d719ae0b93bb8352"},
+    {file = "aws-cdk.aws-servicediscovery-1.106.1.tar.gz", hash = "sha256:8c1856a70042f66de5d1c4c3bc904de10d455e80974ceea22d8a5037006fd4f8"},
 ]
-"aws-cdk.aws-signer 1.106.0" = [
-    {file = "aws_cdk.aws_signer-1.106.0-py3-none-any.whl", hash = "sha256:eabd9e6ab5f949ab882dc50ab0e7591605f904fbb2b9288a38e6be75c846a3f3"},
-    {file = "aws-cdk.aws-signer-1.106.0.tar.gz", hash = "sha256:07958c4cfba65258a35e113b1a3e17da7b10bc002387594330f38efb7f2ed43c"},
+"aws-cdk.aws-signer 1.106.1" = [
+    {file = "aws_cdk.aws_signer-1.106.1-py3-none-any.whl", hash = "sha256:493fae32f1d228244e3d6c552349b9738f40197c564e9f6ef6e25d9d816cb3eb"},
+    {file = "aws-cdk.aws-signer-1.106.1.tar.gz", hash = "sha256:c1f33924ca9c8cae3531be98c2d83591dd062b717d92af7a504788e3b6760905"},
 ]
-"aws-cdk.aws-sns 1.106.0" = [
-    {file = "aws_cdk.aws_sns-1.106.0-py3-none-any.whl", hash = "sha256:e96342910c6c82eafa741298a9ae97e01e29da22cb1e0fea07130d6caca5966c"},
-    {file = "aws-cdk.aws-sns-1.106.0.tar.gz", hash = "sha256:25d4d933b989426ab0f755b4898b1aba8dab8df25ed82c52582a6d3e7f29f8d4"},
+"aws-cdk.aws-sns 1.106.1" = [
+    {file = "aws_cdk.aws_sns-1.106.1-py3-none-any.whl", hash = "sha256:b85e31559ce4fb8b455f255fe0819a75fc69dc2feeb1fe02600c8d20f3cb4031"},
+    {file = "aws-cdk.aws-sns-1.106.1.tar.gz", hash = "sha256:3481e957fd81149bb66660f7f8f7bbc11cbc73e8b38592eef4d1845a981079d9"},
 ]
-"aws-cdk.aws-sns-subscriptions 1.106.0" = [
-    {file = "aws_cdk.aws_sns_subscriptions-1.106.0-py3-none-any.whl", hash = "sha256:667bf7f7c4e20bee9ae2a5d26e70cf68edd7a78948d54dea97610c26965d66b6"},
-    {file = "aws-cdk.aws-sns-subscriptions-1.106.0.tar.gz", hash = "sha256:a7dae5ef025d098595b51e217cff7f4596dd84bd3b870c8ebbcb8285378b1071"},
+"aws-cdk.aws-sns-subscriptions 1.106.1" = [
+    {file = "aws_cdk.aws_sns_subscriptions-1.106.1-py3-none-any.whl", hash = "sha256:bad368df5e1ac08e4c49fb07d299a75f9b85b23eb427004c0e862dcaa8cbe803"},
+    {file = "aws-cdk.aws-sns-subscriptions-1.106.1.tar.gz", hash = "sha256:02b8fa44300be58d6d7f33fb4d262601fa22381c5b8d6a60469811b6ad33822b"},
 ]
-"aws-cdk.aws-sqs 1.106.0" = [
-    {file = "aws_cdk.aws_sqs-1.106.0-py3-none-any.whl", hash = "sha256:34e4b27237576b460d75c13473e4960c3873e9bf2ee1868997728a88cd524f8e"},
-    {file = "aws-cdk.aws-sqs-1.106.0.tar.gz", hash = "sha256:0a8ab9aca58e9e6f5354a6c190b3bbf1e0ef33a8b7fe9dfe5a7362523ef93bca"},
+"aws-cdk.aws-sqs 1.106.1" = [
+    {file = "aws_cdk.aws_sqs-1.106.1-py3-none-any.whl", hash = "sha256:d1587aa5c7b3a720e9ee3dc3f54d34a4a74cb699c1ed5147752a967ec894fc48"},
+    {file = "aws-cdk.aws-sqs-1.106.1.tar.gz", hash = "sha256:4d9938ae0eba961d6c56d6bef96d844e2a47953b44b084b6fcca10691557c37e"},
 ]
-"aws-cdk.aws-ssm 1.106.0" = [
-    {file = "aws_cdk.aws_ssm-1.106.0-py3-none-any.whl", hash = "sha256:3ffe19eb52f7d40f1d2ff5aaaad1c88a6203aadf18181ec364c4ab75a33baa24"},
-    {file = "aws-cdk.aws-ssm-1.106.0.tar.gz", hash = "sha256:00bb582fa14ce0cb2a778c578323aec2fe0ecfb2ebecb4b84202a0a02bd27550"},
+"aws-cdk.aws-ssm 1.106.1" = [
+    {file = "aws_cdk.aws_ssm-1.106.1-py3-none-any.whl", hash = "sha256:6048e48dd97fa845e084b85a85dd4f21c7c10a354f30e8080a23988fd71b2e53"},
+    {file = "aws-cdk.aws-ssm-1.106.1.tar.gz", hash = "sha256:dda0606a203708d5f6e46bb5631ee23274c130d93057548fc568d0bf351dca37"},
 ]
-"aws-cdk.aws-stepfunctions 1.106.0" = [
-    {file = "aws_cdk.aws_stepfunctions-1.106.0-py3-none-any.whl", hash = "sha256:496c1853d65a0370ee617e4eb76c1bb403b27cc1ddae86a6d316dacd7609e4f0"},
-    {file = "aws-cdk.aws-stepfunctions-1.106.0.tar.gz", hash = "sha256:e4e34b6a4bfe94feab0f90df8adbdc2b60cdf1b1e6471cbde5bef26a22f4ddea"},
+"aws-cdk.aws-stepfunctions 1.106.1" = [
+    {file = "aws_cdk.aws_stepfunctions-1.106.1-py3-none-any.whl", hash = "sha256:f19e644af21e9f2c6bf77c266bf8838dffc13f13b7d3d96de5250e0406eabe8e"},
+    {file = "aws-cdk.aws-stepfunctions-1.106.1.tar.gz", hash = "sha256:652f70c9e069b191744b59f91c80a28eab206848b6b6cbc5aa4b0d2dd340be34"},
 ]
-"aws-cdk.aws-stepfunctions-tasks 1.106.0" = [
-    {file = "aws_cdk.aws_stepfunctions_tasks-1.106.0-py3-none-any.whl", hash = "sha256:43097d55e5352257d5d821283060a96ffed1613293facd4c162b40cf66ad6066"},
-    {file = "aws-cdk.aws-stepfunctions-tasks-1.106.0.tar.gz", hash = "sha256:c1072398fac229d5e9d805a8221e3a071b3a83d38287c7084567d3f721f068b4"},
+"aws-cdk.aws-stepfunctions-tasks 1.106.1" = [
+    {file = "aws_cdk.aws_stepfunctions_tasks-1.106.1-py3-none-any.whl", hash = "sha256:507af0a01f318a68b9d19c01c140a7d2ff3bb0adce6094ae3a0b5f2165223f59"},
+    {file = "aws-cdk.aws-stepfunctions-tasks-1.106.1.tar.gz", hash = "sha256:f39cf882e4efad9ba0cc351169807f23ed80dfc9006ac4bd88f7488eb80771aa"},
 ]
-"aws-cdk.cloud-assembly-schema 1.106.0" = [
-    {file = "aws_cdk.cloud_assembly_schema-1.106.0-py3-none-any.whl", hash = "sha256:888e428e759a5c10f2f64b6d5de93b13d8242369f36f55073099776115594a79"},
-    {file = "aws-cdk.cloud-assembly-schema-1.106.0.tar.gz", hash = "sha256:facdf6167abf150f1432506c2bfe03fb33b68f2db344218c97f6996c4f19895c"},
+"aws-cdk.cloud-assembly-schema 1.106.1" = [
+    {file = "aws_cdk.cloud_assembly_schema-1.106.1-py3-none-any.whl", hash = "sha256:5287b31d984b4b52c1947bfa31ec585af7bd3b5f0c2d975c1eae794a89c14488"},
+    {file = "aws-cdk.cloud-assembly-schema-1.106.1.tar.gz", hash = "sha256:53c699dcfcc4ae1a4396084e723c36fcbef360343229d2471e1f7cce8aa4b0db"},
 ]
-"aws-cdk.core 1.106.0" = [
-    {file = "aws_cdk.core-1.106.0-py3-none-any.whl", hash = "sha256:cfa08d75f6e82dfc72facdd1bbcd1e8672153e25af4e8770a425131dd50231c9"},
-    {file = "aws-cdk.core-1.106.0.tar.gz", hash = "sha256:6d1c64104a8baf278f1fb2e65f69892868919fbbb4512e156101f3ee8af807d4"},
+"aws-cdk.core 1.106.1" = [
+    {file = "aws_cdk.core-1.106.1-py3-none-any.whl", hash = "sha256:bc966e504492c46eff636f6b65f8f3febc6dd550d017b50daddfb3f9c5d9adb8"},
+    {file = "aws-cdk.core-1.106.1.tar.gz", hash = "sha256:e1c9888b635896d049237cbadae4b7f330c419d562f3fb17d0dfb37c3953c1dc"},
 ]
-"aws-cdk.custom-resources 1.106.0" = [
-    {file = "aws_cdk.custom_resources-1.106.0-py3-none-any.whl", hash = "sha256:51ed4aeacbc27478c656448008eb3144d066b84b3e4b71ddfc9926ac6da578ad"},
-    {file = "aws-cdk.custom-resources-1.106.0.tar.gz", hash = "sha256:3a0afda0d72125c7ffed99f570a1d5d8652b2d43fe37a410cdbfb5b6bd3948df"},
+"aws-cdk.custom-resources 1.106.1" = [
+    {file = "aws_cdk.custom_resources-1.106.1-py3-none-any.whl", hash = "sha256:c618a1145d96f805b1a8ac1bc56fe129b997497c964c81d7df0646d4369a5729"},
+    {file = "aws-cdk.custom-resources-1.106.1.tar.gz", hash = "sha256:1dfdbc593d810694153184db2ee1315cd43d1c20334ec8fb27d3e008e2909bcd"},
 ]
-"aws-cdk.cx-api 1.106.0" = [
-    {file = "aws_cdk.cx_api-1.106.0-py3-none-any.whl", hash = "sha256:d43316737d1e03435a78d6afc9ed7ef373ad0a0ba4b1a38ccd729efcb65bc37d"},
-    {file = "aws-cdk.cx-api-1.106.0.tar.gz", hash = "sha256:035a9dabd7dff47527d5944ee95d7d2cbb246794153582b1b1bd5bdea69c1977"},
+"aws-cdk.cx-api 1.106.1" = [
+    {file = "aws_cdk.cx_api-1.106.1-py3-none-any.whl", hash = "sha256:39fadce4693782c2499f6322984b39a1f32865ab95f3e74635bcec86c3d2182f"},
+    {file = "aws-cdk.cx-api-1.106.1.tar.gz", hash = "sha256:69dc9875ff6dc9b39ffc61110dc03d5b474e55b01f95dccfef1dabd66a39f12d"},
 ]
-"aws-cdk.lambda-layer-awscli 1.106.0" = [
-    {file = "aws_cdk.lambda_layer_awscli-1.106.0-py3-none-any.whl", hash = "sha256:2a63784478e9cee80f207037be4a9a0c6fdba6fee59cabbe4b2a78887de353cb"},
-    {file = "aws-cdk.lambda-layer-awscli-1.106.0.tar.gz", hash = "sha256:8f9d8aad08ba960925114a63b6309f7dd3b7be0d56bdd00b8323ab070ff4d59a"},
+"aws-cdk.lambda-layer-awscli 1.106.1" = [
+    {file = "aws_cdk.lambda_layer_awscli-1.106.1-py3-none-any.whl", hash = "sha256:026510a24dd15304b12b9fd65ffc4b9a228af3d1894ea022316ecfb0e4b7ab2b"},
+    {file = "aws-cdk.lambda-layer-awscli-1.106.1.tar.gz", hash = "sha256:a77ca6fc3012d6a3f84eed859c84ff288710f38c8268c56eba07d327595467a8"},
 ]
-"aws-cdk.lambda-layer-kubectl 1.106.0" = [
-    {file = "aws_cdk.lambda_layer_kubectl-1.106.0-py3-none-any.whl", hash = "sha256:ec9444a8f0327d13b507a9e98ba5e475fc85699ea175952151ae40b1b4de7706"},
-    {file = "aws-cdk.lambda-layer-kubectl-1.106.0.tar.gz", hash = "sha256:7e9c5eed3b3ff97825c18f90f3f78c07469d0dbfb7650cbc7ac8ff1a7e8e8b3a"},
+"aws-cdk.lambda-layer-kubectl 1.106.1" = [
+    {file = "aws_cdk.lambda_layer_kubectl-1.106.1-py3-none-any.whl", hash = "sha256:10b5a553808b2fbe18f8fc8748e27fbc0881932eb3a2527104555c6382dc968e"},
+    {file = "aws-cdk.lambda-layer-kubectl-1.106.1.tar.gz", hash = "sha256:d41463ef4a5ca97c3bd8c69d92ef92bd4b6c0dcd98c54165fd7f1bb4c1e82f34"},
 ]
-"aws-cdk.region-info 1.106.0" = [
-    {file = "aws_cdk.region_info-1.106.0-py3-none-any.whl", hash = "sha256:ed7c43714b82480afc4ce391d7f7d0ac8f644c786a1761162ccb863f4a91d7ec"},
-    {file = "aws-cdk.region-info-1.106.0.tar.gz", hash = "sha256:164eac5adaddca828f8b1e337888c98fdd49698750b1f02bc9257fab0145a6ec"},
+"aws-cdk.region-info 1.106.1" = [
+    {file = "aws_cdk.region_info-1.106.1-py3-none-any.whl", hash = "sha256:76953813492e3526e48f65a8da9f45e63cdd37d11de57a9d8cf5fdf215dfa066"},
+    {file = "aws-cdk.region-info-1.106.1.tar.gz", hash = "sha256:35ec243dd8812236264c35c245726235a3d777dc12098b4a48dc3aa13728a7b6"},
 ]
 "aws-lambda-powertools 1.16.1" = [
     {file = "aws_lambda_powertools-1.16.1-py3-none-any.whl", hash = "sha256:0dc3b3487e00ea6c987c6387f1b7804be9a02aa3ecc183a1d25717578a9d4d75"},
@@ -1970,12 +1970,13 @@ content_hash = "sha256:93353b15db703614a7723aa8e7ce8d8a1bd0fa64ce705b94c185bc531
     {file = "bleach-3.3.0-py2.py3-none-any.whl", hash = "sha256:6123ddc1052673e52bab52cdc955bcb57a015264a1c57d37bea2f6b817af0125"},
     {file = "bleach-3.3.0.tar.gz", hash = "sha256:98b3170739e5e83dd9dc19633f074727ad848cbedb6026708c8ac2d3b697a433"},
 ]
-"boto3 1.17.80" = [
-    {file = "boto3-1.17.80.tar.gz", hash = "sha256:5a30ba8be76bc73ca32b9ac2d344271a3f2c04a95fb52ffa95238b8caf82f06f"},
+"boto3 1.17.82" = [
+    {file = "boto3-1.17.82-py2.py3-none-any.whl", hash = "sha256:c75465a1780c2fd3908528d68f51f640cc608419e0f7f63ff33b592276a50bae"},
+    {file = "boto3-1.17.82.tar.gz", hash = "sha256:3434dba6fe38c7c22e1068804706c31e8a5ea907cb40bbbe4521603dd9bf1d77"},
 ]
-"botocore 1.20.80" = [
-    {file = "botocore-1.20.80-py2.py3-none-any.whl", hash = "sha256:e47726efd7ebebc20f0747502747dab982489e6337ad24ca257b568e8216d300"},
-    {file = "botocore-1.20.80.tar.gz", hash = "sha256:a67923f9faa47833f13b4f3a3fc9a7f12499a58f51982faad4ddcc9132e59a1e"},
+"botocore 1.20.82" = [
+    {file = "botocore-1.20.82-py2.py3-none-any.whl", hash = "sha256:c72908e231358a242b802f5ca522da03471cb8429a2ac545a9f8a94939c80c2f"},
+    {file = "botocore-1.20.82.tar.gz", hash = "sha256:eed482adab95e0653225f919fbab5d4061ef8bae82e311853e44f00d1820350f"},
 ]
 "cattrs 1.5.0" = [
     {file = "cattrs-1.5.0-py3-none-any.whl", hash = "sha256:277d12740b45e46318b41c3b2e4a3bc067a7b9971cf61f0e96497598ad83f282"},
@@ -2225,9 +2226,9 @@ content_hash = "sha256:93353b15db703614a7723aa8e7ce8d8a1bd0fa64ce705b94c185bc531
     {file = "idna-2.10-py2.py3-none-any.whl", hash = "sha256:b97d804b1e9b523befed77c48dacec60e6dcb0b5391d57af6a65a312a90648c0"},
     {file = "idna-2.10.tar.gz", hash = "sha256:b307872f855b18632ce0c21c5e45be78c0ea7ae4c15c828c20788b26921eb3f6"},
 ]
-"importlib-metadata 4.0.1" = [
-    {file = "importlib_metadata-4.0.1-py3-none-any.whl", hash = "sha256:d7eb1dea6d6a6086f8be21784cc9e3bcfa55872b52309bc5fad53a8ea444465d"},
-    {file = "importlib_metadata-4.0.1.tar.gz", hash = "sha256:8c501196e49fb9df5df43833bdb1e4328f64847763ec8a50703148b73784d581"},
+"importlib-metadata 4.2.0" = [
+    {file = "importlib_metadata-4.2.0-py3-none-any.whl", hash = "sha256:057e92c15bc8d9e8109738a48db0ccb31b4d9d5cfbee5a8670879a30be66304b"},
+    {file = "importlib_metadata-4.2.0.tar.gz", hash = "sha256:b7e52a1f8dec14a75ea73e0891f3060099ca1d8e6a462a4dff11c3e119ea1b31"},
 ]
 "iniconfig 1.1.1" = [
     {file = "iniconfig-1.1.1-py2.py3-none-any.whl", hash = "sha256:011e24c64b7f47f6ebd835bb12a743f2fbe9a26d4cecaa7f53bc4f35ee9da8b3"},
@@ -2618,9 +2619,9 @@ content_hash = "sha256:93353b15db703614a7723aa8e7ce8d8a1bd0fa64ce705b94c185bc531
     {file = "typing_extensions-3.10.0.0-py3-none-any.whl", hash = "sha256:779383f6086d90c99ae41cf0ff39aac8a7937a9283ce0a414e5dd782f4c94a84"},
     {file = "typing_extensions-3.10.0.0.tar.gz", hash = "sha256:50b6f157849174217d0656f99dc82fe932884fb250826c18350e159ec6cdf342"},
 ]
-"urllib3 1.26.4" = [
-    {file = "urllib3-1.26.4-py2.py3-none-any.whl", hash = "sha256:2f4da4594db7e1e110a944bb1b551fdf4e6c136ad42e4234131391e21eb5b0df"},
-    {file = "urllib3-1.26.4.tar.gz", hash = "sha256:e7b021f7241115872f92f43c6508082facffbd1c048e3c6e2bb9c2a157e28937"},
+"urllib3 1.26.5" = [
+    {file = "urllib3-1.26.5-py2.py3-none-any.whl", hash = "sha256:753a0374df26658f99d826cfe40394a686d05985786d946fbe4165b5148f5a7c"},
+    {file = "urllib3-1.26.5.tar.gz", hash = "sha256:a7acd0977125325f516bda9735fa7142b909a8d01e8b2e4c8108d0984e6e0098"},
 ]
 "uvicorn 0.13.4" = [
     {file = "uvicorn-0.13.4-py3-none-any.whl", hash = "sha256:7587f7b08bd1efd2b9bad809a3d333e972f1d11af8a5e52a9371ee3a5de71524"},

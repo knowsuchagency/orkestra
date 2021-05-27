@@ -9,7 +9,7 @@ keywords = ["orchestration", "aws", "cloud"]
 license = {text = "MIT"}
 name = "orkestra"
 requires-python = ">=3.8"
-version = "0.6.1"
+version = "0.6.2"
 readme = "README.md"
 
 [project.urls]
@@ -64,9 +64,8 @@ exclude = '''
 dev = [
     "klaxon",
     "mkdocs-material",
-    "pre-commit~=2.12",
-    "black~=21.5b1",
-    "aws-lambda-powertools~=1.16",
+    "pre-commit",
+    "black",
     "aws-cdk.aws_apigateway",
     "mangum",
     "fastapi",
@@ -132,7 +131,7 @@ api = "uvicorn examples.rest:app --reload"
 install-hooks = "pre-commit install --install-hooks"
 
 coverage-report.shell = """
-pdm run test --cov=orkestra
+coverage run pdm run test
 coverage html
 open htmlcov/index.html
 """
