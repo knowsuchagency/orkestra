@@ -90,6 +90,11 @@ markers = [
     "powertools",
 ]
 
+[tool.coverage.run]
+source = [
+    "orkestra"
+]
+
 
 [tool.pdm.scripts]
 _.env_file = ".env"
@@ -131,7 +136,7 @@ api = "uvicorn examples.rest:app --reload"
 install-hooks = "pre-commit install --install-hooks"
 
 coverage-report.shell = """
-coverage run pdm run test
+pdm run coverage run -m pytest tests/
 coverage html
 open htmlcov/index.html
 """
