@@ -45,6 +45,7 @@ class Compose:
         envelope=None,
         timeout: Optional[Duration] = None,
         is_map_job: bool = False,
+        capture_map_errors: bool = False,
         runtime: Optional[Runtime] = None,
         comment: Optional[str] = None,
         input_path: Optional[str] = None,
@@ -82,6 +83,7 @@ class Compose:
             envelope: passed to aws_lambda_powertools.utilities.parser.event_parser
             runtime: the python runtime to use for the lambda
             is_map_job: whether the lambda is a map job
+            capture_map_errors: set true to add guarantee successful map job execution
             comment: An optional description for this state. Default: No comment
             input_path: JSONPath expression to select part of the state to be the input to this state. May also be the special value JsonPath.DISCARD, which will cause the effective input to be the empty object {}. Default: $
             items_path:  JSONPath expression to select the array to iterate over. Default: $
@@ -106,12 +108,10 @@ class Compose:
         """
 
         self.func = func
-        self.runtime = runtime
         self.downstream = []
 
-        self.timeout = timeout
-
         self.is_map_job = is_map_job
+        self.capture_map_errors = capture_map_errors
 
         self.aws_lambda_constructor_kwargs = aws_lambda_constructor_kwargs
 
@@ -142,31 +142,35 @@ class Compose:
             "qualifier": qualifier,
         }
 
-        if func and not isinstance(func, (list, tuple)):
+        self.powertools_kwargs = {
+            "log_event": log_event,
+            "capture_error": capture_error,
+            "capture_response": capture_response,
+            "capture_cold_start_metric": capture_cold_start_metric,
+            "raise_on_empty_metrics": raise_on_empty_metrics,
+            "default_dimensions": default_dimensions,
+            "model": model,
+            "envelope": envelope,
+        }
 
-            module = func.__module__.split(".")
-
-            self.aws_lambda_constructor_kwargs.update(
-                entry=str(Path(*module).parent),
-                index=Path(*module).name + ".py",
-                handler=func.__name__,
-                timeout=timeout,
-                runtime=runtime,
-                tracing=tracing,
-            )
+        self.aws_lambda_constructor_kwargs.update(
+            timeout=timeout,
+            runtime=runtime,
+            tracing=tracing,
+        )
 
         self.enable_powertools = enable_powertools
 
-        self.powertools_kwargs = dict(
-            log_event=log_event,
-            capture_error=capture_error,
-            capture_response=capture_response,
-            capture_cold_start_metric=capture_cold_start_metric,
-            raise_on_empty_metrics=raise_on_empty_metrics,
-            default_dimensions=default_dimensions,
-            model=model,
-            envelope=envelope,
-        )
+        self.update_metadata()
+
+    def update_metadata(self):
+        if self.func and not isinstance(self.func, (list, tuple)):
+            module = self.func.__module__.split(".")
+            self.aws_lambda_constructor_kwargs.update(
+                entry=str(Path(*module).parent),
+                index=Path(*module).name + ".py",
+                handler=self.func.__name__,
+            )
 
     def __call__(self, event, context=None):
 
@@ -189,23 +193,11 @@ class Compose:
 
         else:
 
-            func = event
+            self.func = event
 
-            sfn_timeout = self.lambda_invoke_kwargs.pop("timeout")
+            self.update_metadata()
 
-            return Compose(
-                func=func,
-                timeout=self.timeout,
-                is_map_job=self.is_map_job,
-                sfn_timeout=sfn_timeout,
-                enable_powertools=self.enable_powertools,
-                **{
-                    **self.map_job_kwargs,
-                    **self.lambda_invoke_kwargs,
-                    **self.powertools_kwargs,
-                    **self.aws_lambda_constructor_kwargs,
-                },
-            )
+            return self
 
     def __repr__(self) -> str:
 
@@ -238,12 +230,7 @@ class Compose:
             **kwargs,
         }
 
-        cdk_patch(
-            keyword_args,
-            "tracing",
-            "runtime",
-            "timeout",
-        )
+        cdk_patch(keyword_args)
 
         if keyword_args.get("runtime") is None:
 
@@ -258,6 +245,8 @@ class Compose:
             )
 
         id = id or _incremental_id(composable.func.__name__ + "_fn")
+
+        keyword_args = {k: v for k, v in keyword_args.items() if v is not None}
 
         return aws_lambda_python.PythonFunction(
             scope,
@@ -317,13 +306,13 @@ class Compose:
 
             task = sfn.Map(scope, **map_kwargs)
 
-            lambda_fn = self.aws_lambda(
+            self.lambda_fn = self.aws_lambda(
                 scope,
                 function_name=function_name,
             )
 
             keyword_args = dict(
-                lambda_function=lambda_fn,
+                lambda_function=self.lambda_fn,
                 payload_response_only=payload_response_only,
             )
 
@@ -335,18 +324,23 @@ class Compose:
                 }
             )
 
-            cdk_patch(
-                keyword_args,
-                "integration_pattern",
-                "timeout",
-                "invocation_type",
-            )
+            cdk_patch(keyword_args)
+
+            task_id = f"invoke_{id}"
 
             invoke_lambda = sfn_tasks.LambdaInvoke(
                 scope,
-                f"invoke_{id}",
+                task_id,
                 **keyword_args,
             )
+
+            if self.capture_map_errors:
+                invoke_lambda.add_catch(
+                    sfn.Pass(
+                        scope,
+                        f"{task_id}_failed",
+                    )
+                )
 
             task.iterator(invoke_lambda)
 
@@ -354,13 +348,13 @@ class Compose:
 
             id = id or _incremental_id(self.func.__name__)
 
-            lambda_fn = self.aws_lambda(
+            self.lambda_fn = self.aws_lambda(
                 scope,
                 function_name=function_name,
             )
 
             keyword_args = dict(
-                lambda_function=lambda_fn,
+                lambda_function=self.lambda_fn,
                 payload_response_only=payload_response_only,
             )
 
@@ -374,12 +368,7 @@ class Compose:
                 }
             )
 
-            cdk_patch(
-                keyword_args,
-                "integration_pattern",
-                "timeout",
-                "invocation_type",
-            )
+            cdk_patch(keyword_args)
 
             task = sfn_tasks.LambdaInvoke(
                 scope,
@@ -417,12 +406,7 @@ class Compose:
                     }
                 )
 
-                cdk_patch(
-                    keyword_args,
-                    "integration_pattern",
-                    "timeout",
-                    "invocation_type",
-                )
+                cdk_patch(keyword_args)
 
                 branch = sfn_tasks.LambdaInvoke(
                     scope,
@@ -433,7 +417,10 @@ class Compose:
                 if isinstance(self.func, tuple):
 
                     branch.add_catch(
-                        sfn.Pass(scope, f"{fn.func.__name__}_failed")
+                        sfn.Pass(
+                            scope,
+                            f"{fn.func.__name__}_failed",
+                        )
                     )
 
                 task.branch(branch)

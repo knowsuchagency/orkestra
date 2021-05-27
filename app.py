@@ -9,6 +9,7 @@ from aws_cdk import aws_stepfunctions as sfn
 from aws_cdk import core as cdk
 
 from examples.hello_orkestra import generate_item
+from examples.map_job import ones_and_zeros
 from examples.orchestration import (
     generate_ints,
     make_person,
@@ -188,6 +189,17 @@ class HelloOrkestra(cdk.Stack):
         )
 
 
+class MapJob(cdk.Stack):
+    def __init__(self, scope, id, **kwargs):
+
+        super().__init__(scope, id, **kwargs)
+
+        ones_and_zeros.schedule(
+            self,
+            state_machine_name="map_example",
+        )
+
+
 class App:
     def __init__(self):
 
@@ -205,11 +217,13 @@ class App:
 
         self.rest = RestExample(self.app, "rest")
 
+        self.map_job = MapJob(self.app, "map")
+
         self.added = {}
 
-    def add(self, stack: Type[cdk.Stack], id: str):
+    def add(self, stack: Type[cdk.Stack], id: str, **kwargs):
 
-        stack_instance = stack(self.app, id)
+        stack_instance = stack(self.app, id, **kwargs)
 
         self.added[id] = stack_instance
 
@@ -217,7 +231,7 @@ class App:
 
     def synth(self):
 
-        self.app.synth()
+        return self.app.synth()
 
 
 if __name__ == "__main__":

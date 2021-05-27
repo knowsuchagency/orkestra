@@ -22,8 +22,7 @@ class Runtime(Enum):
     PYTHON_3_6 = "PYTHON_3_6"
 
     @property
-    def construct(self):
-        """CDK construct."""
+    def cdk_construct(self):
         from aws_cdk import aws_lambda
 
         return getattr(
@@ -42,7 +41,7 @@ class LambdaInvocationType(Enum):
     REQUEST_RESPONSE = "REQUEST_RESPONSE"
 
     @property
-    def construct(self):
+    def cdk_construct(self):
         from aws_cdk.aws_stepfunctions_tasks import LambdaInvocationType
 
         return getattr(LambdaInvocationType, self.value)
@@ -58,7 +57,7 @@ class IntegrationPattern(Enum):
     WAIT_FOR_TASK_TOKEN = "WAIT_FOR_TASK_TOKEN"
 
     @property
-    def construct(self):
+    def cdk_construct(self):
         from aws_cdk.aws_stepfunctions import IntegrationPattern
 
         return getattr(IntegrationPattern, self.value)
@@ -74,7 +73,7 @@ class Tracing(Enum):
     PASS_THROUGH = "PASS_THROUGH"
 
     @property
-    def construct(self):
+    def cdk_construct(self):
         from aws_cdk.aws_lambda import Tracing
 
         return getattr(Tracing, self.value)
@@ -86,7 +85,7 @@ class Duration:
     amount: Number
 
     @property
-    def construct(self):
+    def cdk_construct(self):
         """CDK construct."""
         from aws_cdk import core as cdk
 
