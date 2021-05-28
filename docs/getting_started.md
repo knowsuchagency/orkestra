@@ -44,7 +44,7 @@ Add orkestra to your requirements.
 
     ```
     -e .
-    orkestra[cdk]>=0.6.0
+    orkestra[cdk]>=0.7.0
     ```
 
 Activate the virtual environment and install Orkestra.
@@ -77,7 +77,7 @@ mkdir lambdas
 
 touch lambdas/main.py
 
-echo "orkestra>=0.6.0" >> lambdas/requirements.txt
+echo "orkestra>=0.7.0" >> lambdas/requirements.txt
 ```
 
 !!! note
@@ -165,7 +165,7 @@ local unit testing.
 
     ```
     -e .
-    orkestra[cdk,powertools]>=0.6.0
+    orkestra[cdk,powertools]>=0.7.0
     pytest
     ```
 
