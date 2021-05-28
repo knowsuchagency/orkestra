@@ -17,7 +17,7 @@ to help you get started.
 brew install pipx
 brew install npm # (if not installed)
 
-npm install -g aw-cdk
+npm install -g aws-cdk
 
 pipx install copier
 pipx install pdm
