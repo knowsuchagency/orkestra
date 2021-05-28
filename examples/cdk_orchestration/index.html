@@ -616,7 +616,7 @@ that can be composed using AWS Step Function besides lambdas.</p>
 </div>
 <p><strong>Yes</strong>, Orkestra has a function <code>coerce</code> that takes any object with a <code>.next</code> method, such as those in <a href="https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_stepfunctions.html">the cdk step functions library</a>,
 such that calling <code>object_1 &gt;&gt; object_2</code> is equivalent to returning <code>object_1.next(object_2)</code>.</p>
-<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">examples/orchestration.py</label><div class="tabbed-content">
+<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Business Logic</label><div class="tabbed-content">
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>

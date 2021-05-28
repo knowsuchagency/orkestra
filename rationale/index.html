@@ -494,8 +494,6 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
-        
-      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           Rationale
@@ -511,8 +509,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -521,8 +517,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#when-to-use-orkestra" class="md-nav__link">
-    When to use Orkestra
+  <a href="#why-orkestra" class="md-nav__link">
+    Why Orkestra?
+  </a>
+  
+    <nav class="md-nav" aria-label="Why Orkestra?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compared-to-airflow" class="md-nav__link">
+    Compared to Airflow
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#who-is-orkestra-for" class="md-nav__link">
+    Who is Orkestra for?
   </a>
   
 </li>
@@ -558,8 +574,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -568,8 +582,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#when-to-use-orkestra" class="md-nav__link">
-    When to use Orkestra
+  <a href="#why-orkestra" class="md-nav__link">
+    Why Orkestra?
+  </a>
+  
+    <nav class="md-nav" aria-label="Why Orkestra?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compared-to-airflow" class="md-nav__link">
+    Compared to Airflow
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#who-is-orkestra-for" class="md-nav__link">
+    Who is Orkestra for?
   </a>
   
 </li>
@@ -598,7 +632,9 @@
                   </a>
                 
                 
-                <h1 id="why-orkestra">Why Orkestra?<a class="headerlink" href="#why-orkestra" title="Permanent link">#</a></h1>
+                  <h1>Rationale</h1>
+                
+                <h2 id="why-orkestra">Why Orkestra?<a class="headerlink" href="#why-orkestra" title="Permanent link">#</a></h2>
 <p>There are a wide array of workflow orchestration tools to choose from.</p>
 <div class="admonition info">
 <p class="admonition-title">Workflow Orchestration Frameworks</p>
@@ -614,13 +650,29 @@
 </ul>
 </div>
 <p>These projects (and others) have their own unique value proposition and use-case.</p>
-<p>Orkestra itself is built on top of the latter (Step Functions) and the AWS CDK.</p>
-<h2 id="when-to-use-orkestra">When to use Orkestra<a class="headerlink" href="#when-to-use-orkestra" title="Permanent link">#</a></h2>
+<h3 id="compared-to-airflow">Compared to Airflow<a class="headerlink" href="#compared-to-airflow" title="Permanent link">#</a></h3>
+<p>Orkestra takes inspiration from Airflow in terms of the developer experience it provides for composing workflows
+and running them on a schedule.</p>
+<p>Since Orkestra is primarily an abstraction layer over AWS Step Functions, it means that you're not limited to scheduling
+your workflows based on a time interval (cron) like Airflow. Workflows and be triggered from any number of events available in the AWS ecosystem.</p>
+<p>That also means that you don't need to worry about operating and maintaining the persistent infrastructure something
+like Airflow runs on i.e. a scheduler, message broker, workers, database etc. All of that operational burden is handled
+by AWS at a fraction of the cost of Airflow.</p>
+<p>For the cost of simply having a small Airflow cluster running via <a href="https://docs.aws.amazon.com/mwaa/latest/userguide/what-is-mwaa.html">MWAA</a>
+or <a href="https://www.astronomer.io">Astronomer</a> without any jobs, you could have run hundreds of thousands of Orkestra workflows.</p>
+<p>On the other hand, Airflow has a lot of unique utility that Orkestra doesn't provide as simply a convenience layer of Step Functions.</p>
 <ul>
-<li>your team is running on AWS</li>
-<li>your team is Python-positive</li>
-<li>your team wants an intuitive means of writing both scheduled and event-driven workflows</li>
-<li>your team wants to spend more time implementing business logic and less time on ops and managing infrastructure<ul>
+<li>Airflow's UI is unmatched in how it provides visibility into the health of previous executions of the same job.</li>
+<li>Airflow collates the logs of various executions of the same job across workers in one place.</li>
+<li>Airflow makes it trivial to run new executions of the same job from its web UI</li>
+<li>Airflow's statefullness and execution context provides a huge amount of utility when needing to run backfills</li>
+</ul>
+<h2 id="who-is-orkestra-for">Who is Orkestra for?<a class="headerlink" href="#who-is-orkestra-for" title="Permanent link">#</a></h2>
+<ul>
+<li>teams running on AWS</li>
+<li>teams that are Python-positive</li>
+<li>teams wanting intuitive means of writing both scheduled and event-driven workflows</li>
+<li>those who want to spend more time implementing business logic and less time on ops and managing infrastructure<ul>
 <li>an experience similar to managed Airflow while paying a fraction of the price for something like
   <a href="https://docs.aws.amazon.com/mwaa/latest/userguide/what-is-mwaa.html">MWAA</a></li>
 </ul>
@@ -628,9 +680,7 @@
 </ul>
 <h2 id="when-not-to-use-orkestra">When <em>not</em> to use Orkestra<a class="headerlink" href="#when-not-to-use-orkestra" title="Permanent link">#</a></h2>
 <ul>
-<li>your team isn't on AWS</li>
-<li>your team isn't comfortable with Python</li>
-<li>your team has a large budget and many jobs that require backfills (Airflow excels at this)</li>
+<li>teams with a larger budgets and many jobs that require backfills (Airflow excels at this)</li>
 </ul>
                 
               

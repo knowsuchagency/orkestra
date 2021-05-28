@@ -313,15 +313,15 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example" class="md-nav__link">
     Example
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -595,15 +595,15 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example" class="md-nav__link">
     Example
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -633,10 +633,22 @@
 <img alt="PyPI - License" src="https://img.shields.io/pypi/l/orkestra" />
 <img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/orkestra" />
 <img alt="GitHub issues" src="https://img.shields.io/github/issues/knowsuchagency/orkestra" /></p>
+<ul>
+<li><em>deploy lambdas, compose them into workflows, and trigger them on schedule or from cloud events with ease (at a tiny fraction of the cost of Airflow)</em></li>
+<li><em>render your diagrams dynamically from code (like Airflow)</em></li>
+<li><em>no more wondering about the status of your jobs (and how they broke)</em></li>
+<li><em>no more struggling with the operational maintenance of always-on infrastructure to run your jobs</em></li>
+</ul>
 <h2 id="what-is-orkestra">What is Orkestra?<a class="headerlink" href="#what-is-orkestra" title="Permanent link">#</a></h2>
-<p>Orkestra is a lightweight framework that leverages the <a href="https://github.com/aws/aws-cdk">AWS Cloud Development Kit (CDK)</a>
-, <a href="https://aws.amazon.com/lambda/">Lambda</a>, and <a href="https://aws.amazon.com/step-functions/?step-functions.sort-by=item.additionalFields.postDateTime&amp;step-functions.sort-order=desc">Step Functions</a>
-to provide a seamless way of building observable cloud-native workflows.</p>
+<p>Orkestra is a lightweight abstraction layer on top of</p>
+<ul>
+<li><a href="https://github.com/aws/aws-cdk">AWS Cloud Development Kit (CDK)</a></li>
+<li><a href="https://aws.amazon.com/lambda/">Lambda</a></li>
+<li><a href="https://aws.amazon.com/step-functions/?step-functions.sort-by=item.additionalFields.postDateTime&amp;step-functions.sort-order=desc">Step Functions</a></li>
+<li><a href="https://aws.amazon.com/xray/">X-Ray</a></li>
+<li><a href="https://awslabs.github.io/aws-lambda-powertools-python/latest/">Lambda Powertools</a> (optionally)</li>
+</ul>
+<p>that provides a seamless way of building observable (scheduled or event-driven) cloud-native workflows.</p>
 <p>It aims to bring a similar development experience to that of Airflow while leveraging the full power of AWS.</p>
 <h3 id="features">Features<a class="headerlink" href="#features" title="Permanent link">#</a></h3>
 <ul>
@@ -648,8 +660,8 @@ to provide a seamless way of building observable cloud-native workflows.</p>
 <li>cost-effective</li>
 <li>highly scalable</li>
 </ul>
-<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h3>
-<div class="tabbed-set" data-tabs="1:6"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">examples/hello_orkestra.py</label><div class="tabbed-content">
+<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<div class="tabbed-set" data-tabs="1:6"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Business Logic</label><div class="tabbed-content">
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">  1</span>
 <span class="normal">  2</span>
 <span class="normal">  3</span>
@@ -876,7 +888,7 @@ to provide a seamless way of building observable cloud-native workflows.</p>
 </code></pre></div>
 </td></tr></table>
 </div>
-<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">app.py</label><div class="tabbed-content">
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Infrastructure As Code</label><div class="tabbed-content">
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -913,7 +925,7 @@ to provide a seamless way of building observable cloud-native workflows.</p>
 </code></pre></div>
 </td></tr></table>
 </div>
-<input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><label for="__tabbed_1_3">test_hello_orkestra.py</label><div class="tabbed-content">
+<input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><label for="__tabbed_1_3">Unit Tests</label><div class="tabbed-content">
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1088,13 +1100,13 @@ to provide a seamless way of building observable cloud-native workflows.</p>
 </code></pre></div>
 </td></tr></table>
 </div>
-<input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><label for="__tabbed_1_4">state machine</label><div class="tabbed-content">
+<input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><label for="__tabbed_1_4">State Machine Diagram Screenshot</label><div class="tabbed-content">
 <p><img alt="" src="assets/images/hello_orkestra_sfn.png" /></p>
 </div>
-<input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><label for="__tabbed_1_5">xray</label><div class="tabbed-content">
+<input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><label for="__tabbed_1_5">X-Ray Screenshot</label><div class="tabbed-content">
 <p><img alt="" src="assets/images/hello_orkestra_xray.png" /></p>
 </div>
-<input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><label for="__tabbed_1_6">cloudwatch</label><div class="tabbed-content">
+<input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><label for="__tabbed_1_6">CloudWatch Screenshot</label><div class="tabbed-content">
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
