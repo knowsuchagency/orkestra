@@ -1,4 +1,4 @@
-There exists a minimal and slightly opinionated [starter template](https://github.com/knowsuchagency/orkestra_template/tree/main/project)
+There exists a minimal and slightly opinionated [template](https://github.com/knowsuchagency/orkestra_template/tree/main/project)
 to help you get started.
 
 ## Pre-requisites
