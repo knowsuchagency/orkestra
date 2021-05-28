@@ -1,7 +1,7 @@
 Orkestra can be used to simplify the process of deployment lambdas
 without necessarily composing them as state machines.
 
-=== "examples/single_lambda.py"
+=== "Business Logic"
 
     ```python
     from orkestra import compose

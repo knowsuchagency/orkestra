@@ -29,7 +29,7 @@ In this example, we'll create a workflow that can be asynchronously triggered vi
 
     FastAPI is built on top of [Starlette](https://www.starlette.io) which implements the ASGI protocol to transate HTTP to Python objects and vice-versa.
 
-=== "examples/rest.py"
+=== "Business Logic"
 
     ```python
     import os
@@ -183,7 +183,9 @@ In this example, we'll create a workflow that can be asynchronously triggered vi
             )
     ```
 
-=== "examples/requirements.txt"
+=== "requirements.txt"
+
+    This file would exist in the same directory as your lambdas' module
 
     ```
     orkestra[powertools]>=0.7.0

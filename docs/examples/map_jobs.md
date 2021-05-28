@@ -15,7 +15,7 @@ We can accomodate for this by passing `capture_map_errors=True` to our `compose`
         ...
     ```
 
-=== "business logic"
+=== "Business Logic"
 
     ```python
     import random

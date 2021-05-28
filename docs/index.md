@@ -11,12 +11,22 @@
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/orkestra)
 ![GitHub issues](https://img.shields.io/github/issues/knowsuchagency/orkestra)
 
+* *deploy lambdas, compose them into workflows, and trigger them on schedule or from cloud events with ease (at a tiny fraction of the cost of Airflow)*
+* *render your diagrams dynamically from code (like Airflow)*
+* *no more wondering about the status of your jobs (and how they broke)*
+* *no more struggling with the operational maintenance of always-on infrastructure to run your jobs*
 
 ## What is Orkestra?
 
-Orkestra is a lightweight framework that leverages the [AWS Cloud Development Kit (CDK)](https://github.com/aws/aws-cdk)
-, [Lambda](https://aws.amazon.com/lambda/), and [Step Functions](https://aws.amazon.com/step-functions/?step-functions.sort-by=item.additionalFields.postDateTime&step-functions.sort-order=desc)
-to provide a seamless way of building observable cloud-native workflows.
+Orkestra is a lightweight abstraction layer on top of
+
+* [AWS Cloud Development Kit (CDK)](https://github.com/aws/aws-cdk)
+* [Lambda](https://aws.amazon.com/lambda/)
+* [Step Functions](https://aws.amazon.com/step-functions/?step-functions.sort-by=item.additionalFields.postDateTime&step-functions.sort-order=desc)
+* [X-Ray](https://aws.amazon.com/xray/)
+* [Lambda Powertools](https://awslabs.github.io/aws-lambda-powertools-python/latest/) (optionally)
+
+that provides a seamless way of building observable (scheduled or event-driven) cloud-native workflows.
 
 It aims to bring a similar development experience to that of Airflow while leveraging the full power of AWS.
 
@@ -31,9 +41,10 @@ It aims to bring a similar development experience to that of Airflow while lever
 * cost-effective
 * highly scalable
 
-### Example
 
-=== "examples/hello_orkestra.py"
+## Example
+
+=== "Business Logic"
 
     ```python
     import random
@@ -150,7 +161,7 @@ It aims to bring a similar development experience to that of Airflow while lever
     )
     ```
 
-=== "app.py"
+=== "Infrastructure As Code"
 
     ```python
     from aws_cdk import core as cdk
@@ -171,7 +182,7 @@ It aims to bring a similar development experience to that of Airflow while lever
 
     HelloOrkestra(app, "helloOrkestra")
     ```
-=== "test_hello_orkestra.py"
+=== "Unit Tests"
 
     ```python
     from dataclasses import dataclass
@@ -262,15 +273,15 @@ It aims to bring a similar development experience to that of Airflow while lever
             assert isinstance(result, float)
     ```
 
-=== "state machine"
+=== "State Machine Diagram Screenshot"
 
     ![](assets/images/hello_orkestra_sfn.png)
 
-=== "xray"
+=== "X-Ray Screenshot"
 
     ![](assets/images/hello_orkestra_xray.png)
 
-=== "cloudwatch"
+=== "CloudWatch Screenshot"
 
     ```{.py3 hl_lines="4-10"}
     @compose(model=Item, **default_args)

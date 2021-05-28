@@ -28,7 +28,7 @@ that can be composed using AWS Step Function besides lambdas.
 **Yes**, Orkestra has a function `coerce` that takes any object with a `.next` method, such as those in [the cdk step functions library](https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_stepfunctions.html),
 such that calling `object_1 >> object_2` is equivalent to returning `object_1.next(object_2)`.
 
-=== "examples/orchestration.py"
+=== "Business Logic"
 
     ```python
     import random
