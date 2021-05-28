@@ -58,4 +58,6 @@ extra_css:
 
 plugins:
   - search
-  - mkdocstrings
+  - mkdocstrings:
+      watch:
+        - orkestra/
