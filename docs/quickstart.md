@@ -1,11 +1,14 @@
 There exists a minimal and slightly opinionated [starter template](https://github.com/knowsuchagency/orkestra_template/tree/main/project)
 to help you get started.
 
-There are just a couple of prerequisites to use the template
+## Pre-requisites
 
 * [copier](https://copier.readthedocs.io/en/latest/)
 * [pdm](https://pdm.fming.dev)
 * [cdk cli](https://docs.aws.amazon.com/cdk/latest/guide/cli.html)
+
+
+## Usage
 
 ```bash
 
