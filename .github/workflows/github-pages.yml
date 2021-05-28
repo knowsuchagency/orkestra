@@ -19,7 +19,7 @@ jobs:
 
       - name: Install mkdocs
         run: |
-          python -m pip install mkdocs-material
+          python -m pip install mkdocs-material mkdocstrings
 
       - name: Build Docs
         run: |
