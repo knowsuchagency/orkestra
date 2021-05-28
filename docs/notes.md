@@ -8,7 +8,7 @@ files as an optional requirement for Orkestra.
 === "lambda_directory/requirements.txt"
 
     ```
-    orkestra[powertools]>=0.6.0
+    orkestra[powertools]>=0.7.0
     ```
 
 ### timeouts

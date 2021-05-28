@@ -9,7 +9,7 @@ keywords = ["orchestration", "aws", "cloud"]
 license = {text = "MIT"}
 name = "orkestra"
 requires-python = ">=3.8"
-version = "0.6.2"
+version = "0.7.0"
 readme = "README.md"
 
 [project.urls]
@@ -72,6 +72,7 @@ dev = [
     "uvicorn",
     "boto3",
     "twine",
+    "mkdocstrings",
 ]
 test = [
     "pytest~=6.2",

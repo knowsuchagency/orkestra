@@ -10,7 +10,7 @@ from orkestra.interfaces import (
     IntegrationPattern,
     Tracing,
 )
-from orkestra.utils import coerce, cdk_patch
+from orkestra.utils import coerce, _cdk_patch
 from orkestra.exceptions import CompositionError
 
 OptionalFn = Optional[Union[Callable, Iterable[Callable]]]
@@ -35,14 +35,14 @@ class Compose:
         self,
         func: OptionalFn = None,
         enable_powertools: bool = False,
-        log_event=True,
-        capture_response=True,
-        capture_error=True,
-        raise_on_empty_metrics=False,
-        capture_cold_start_metric=True,
-        default_dimensions=None,
-        model=None,
-        envelope=None,
+        log_event: bool = True,
+        capture_response: bool = True,
+        capture_error: bool = True,
+        raise_on_empty_metrics: bool = False,
+        capture_cold_start_metric: bool = True,
+        default_dimensions: Optional[dict] = None,
+        model: Optional["pydantic.BaseModel"] = None,
+        envelope: Optional["pydantic.BaseModel"] = None,
         timeout: Optional[Duration] = None,
         is_map_job: bool = False,
         capture_map_errors: bool = False,
@@ -230,7 +230,7 @@ class Compose:
             **kwargs,
         }
 
-        cdk_patch(keyword_args)
+        _cdk_patch(keyword_args)
 
         if keyword_args.get("runtime") is None:
 
@@ -256,17 +256,17 @@ class Compose:
 
     def aws_lambda(
         self,
-        scope,
-        id=None,
+        scope: "aws_cdk.core.Construct",
+        id: Optional[str] = None,
         **kwargs,
     ):
         """
         Return lambda cdk construct.
 
         Args:
-            scope:
-            id:
-            **kwargs:
+            scope: cdk construct
+            id: construct id
+            **kwargs: to be passed to aws_cdk.aws_lambda_python.PythonFunction
 
         Returns (aws_cdk.aws_lambda_python.PythonFunction): python lambda
 
@@ -281,10 +281,10 @@ class Compose:
 
     def task(
         self,
-        scope,
-        id=None,
-        payload_response_only=True,
-        function_name=None,
+        scope: "aws_cdk.core.Construct",
+        id: Optional[str] = None,
+        payload_response_only: bool = True,
+        function_name: Optional[str] = None,
         **kwargs,
     ):
         """
@@ -324,7 +324,7 @@ class Compose:
                 }
             )
 
-            cdk_patch(keyword_args)
+            _cdk_patch(keyword_args)
 
             task_id = f"invoke_{id}"
 
@@ -368,7 +368,7 @@ class Compose:
                 }
             )
 
-            cdk_patch(keyword_args)
+            _cdk_patch(keyword_args)
 
             task = sfn_tasks.LambdaInvoke(
                 scope,
@@ -406,7 +406,7 @@ class Compose:
                     }
                 )
 
-                cdk_patch(keyword_args)
+                _cdk_patch(keyword_args)
 
                 branch = sfn_tasks.LambdaInvoke(
                     scope,
@@ -429,16 +429,26 @@ class Compose:
 
     def definition(
         self,
-        scope,
-        definition=None,
-        previous=None,
+        scope: "aws_cdk.core.Construct",
+        previous_definition: Optional[
+            "aws_cdk.aws_stepfunctions.IChainable"
+        ] = None,
+        previously_composed: Optional["Compose"] = None,
     ):
         """
         Return automagically composed cdk state machine definition.
-        """
-        previous = previous or []
 
-        if self in previous:
+        Args:
+            scope: cdk scope
+            previous_definition: the previous definition
+            previously_composed: the previously composed
+
+        Returns:
+
+        """
+        previously_composed = previously_composed or []
+
+        if self in previously_composed:
 
             raise CompositionError(
                 f"Failed to compose {self}. Composition using >> must be acyclic."
@@ -446,7 +456,11 @@ class Compose:
 
         task = self.task(scope)
 
-        definition = task if definition is None else definition.next(task)
+        definition = (
+            task
+            if previous_definition is None
+            else previous_definition.next(task)
+        )
 
         if self.downstream:
 
@@ -454,18 +468,18 @@ class Compose:
 
                 c.definition(
                     scope,
-                    definition=definition,
-                    previous=previous + [self],
+                    previous_definition=definition,
+                    previously_composed=previously_composed + [self],
                 )
 
         return definition
 
     def state_machine(
         self,
-        scope,
-        id=None,
-        tracing_enabled=True,
-        state_machine_name=None,
+        scope: "aws_cdk.core.Construct",
+        id: Optional[str] = None,
+        tracing_enabled: bool = True,
+        state_machine_name: Optional[str] = None,
         **kwargs,
     ):
         """
@@ -497,8 +511,8 @@ class Compose:
 
     def schedule(
         self,
-        scope,
-        id=None,
+        scope: "aws_cdk.core.Construct",
+        id: Optional[str] = None,
         expression: Optional[str] = None,
         day: Optional[str] = None,
         hour: Optional[str] = None,
@@ -506,30 +520,30 @@ class Compose:
         month: Optional[str] = None,
         week_day: Optional[str] = None,
         year: Optional[str] = None,
-        function_name=None,
-        state_machine_name=None,
-        dead_letter_queue_enabled=False,
+        function_name: Optional[str] = None,
+        state_machine_name: Optional[str] = None,
+        dead_letter_queue_enabled: bool = False,
         **kwargs,
     ):
         """
         Schedule lambda or state machine to run on interval using EventBridge scheduled event rule.
 
         Args:
-            scope:
-            id:
-            expression:
-            day:
-            hour:
-            minute:
-            month:
-            week_day:
-            year:
-            function_name:
-            state_machine_name:
-            dead_letter_queue_enabled:
+            scope: cdk scope
+            id: construct id
+            expression: interval at which to run. Can be cron expression or CloudWatch rate expression
+            day: day of month
+            hour: hour of day
+            minute: minute of our
+            month: month of year
+            week_day: week day
+            year: year
+            function_name: the function name, if just a lambda
+            state_machine_name: the state machine name, if downstream
+            dead_letter_queue_enabled: whether the lamdba will have a DLQ
             **kwargs:
 
-        Returns:
+        Returns: EventBridge schedule rule
 
         """
         from aws_cdk import aws_events as eventbridge
@@ -576,15 +590,15 @@ class Compose:
 
 
 def powertools(
-    decorated=None,
-    log_event=True,
-    capture_response=True,
-    capture_error=True,
-    raise_on_empty_metrics=False,
-    capture_cold_start_metric=True,
-    default_dimensions=None,
-    model=None,
-    envelope=None,
+    decorated: Optional[Callable] = None,
+    log_event: bool = True,
+    capture_response: bool = True,
+    capture_error: bool = True,
+    raise_on_empty_metrics: bool = False,
+    capture_cold_start_metric: bool = True,
+    default_dimensions: Optional[dict] = None,
+    model: Optional["pydantic.BaseModel"] = None,
+    envelope: Optional["pydantic.BaseModel"] = None,
 ):
     """
     AWS lambda powertools shortcut.

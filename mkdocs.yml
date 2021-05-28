@@ -27,6 +27,10 @@ nav:
         - Event-Driven (API) Workflows: examples/rest.md
         - CDK Orchestration: examples/cdk_orchestration.md
         - Map Jobs: examples/map_jobs.md
+    - Reference:
+        - compose: reference/compose.md
+        - powertools: reference/powertools.md
+        - coerce: reference/coerce.md
   - Development: development.md
   - Rationale: rationale.md
 
@@ -54,3 +58,6 @@ extra_css:
 
 plugins:
   - search
+  - mkdocstrings:
+      watch:
+        - orkestra/
