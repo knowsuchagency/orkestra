@@ -1,0 +1,1788 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/ork_light.svg">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.5">
+    
+    
+      
+        <title>compose - Orkestra</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bde7dde4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-7a1297c0a9.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="dracula" data-md-color-primary="teal" data-md-color-accent="deep-purple">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#orkestra.decorators.Compose" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Orkestra" class="md-header__button md-logo" aria-label="Orkestra" data-md-component="logo">
+      
+  <img src="../../assets/ork_light.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Orkestra
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              compose
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/knowsuchagency/orkestra/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../getting_started/" class="md-tabs__link md-tabs__link--active">
+        Usage
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../development/" class="md-tabs__link">
+      Development
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../rationale/" class="md-tabs__link">
+      Rationale
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Orkestra" class="md-nav__button md-logo" aria-label="Orkestra" data-md-component="logo">
+      
+  <img src="../../assets/ork_light.svg" alt="logo">
+
+    </a>
+    Orkestra
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/knowsuchagency/orkestra/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        Usage
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Usage" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Usage
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/" class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/" class="md-nav__link">
+        Notes
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
+      
+      <label class="md-nav__link" for="__nav_2_3">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/single_lambda/" class="md-nav__link">
+        Single Lambda
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/rest/" class="md-nav__link">
+        Event-Driven (API) Workflows
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/cdk_orchestration/" class="md-nav__link">
+        CDK Orchestration
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/map_jobs/" class="md-nav__link">
+        Map Jobs
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_4" type="checkbox" id="__nav_2_4" checked>
+      
+      <label class="md-nav__link" for="__nav_2_4">
+        Reference
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Reference" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          compose
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        compose
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#orkestra.decorators.Compose" class="md-nav__link">
+    orkestra.decorators.Compose
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orkestra.decorators.Compose.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orkestra.decorators.Compose.aws_lambda" class="md-nav__link">
+    aws_lambda()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orkestra.decorators.Compose.definition" class="md-nav__link">
+    definition()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orkestra.decorators.Compose.schedule" class="md-nav__link">
+    schedule()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orkestra.decorators.Compose.state_machine" class="md-nav__link">
+    state_machine()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orkestra.decorators.Compose.task" class="md-nav__link">
+    task()
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../powertools/" class="md-nav__link">
+        powertools
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coerce/" class="md-nav__link">
+        coerce
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/" class="md-nav__link">
+        Development
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rationale/" class="md-nav__link">
+        Rationale
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#orkestra.decorators.Compose" class="md-nav__link">
+    orkestra.decorators.Compose
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orkestra.decorators.Compose.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orkestra.decorators.Compose.aws_lambda" class="md-nav__link">
+    aws_lambda()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orkestra.decorators.Compose.definition" class="md-nav__link">
+    definition()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orkestra.decorators.Compose.schedule" class="md-nav__link">
+    schedule()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orkestra.decorators.Compose.state_machine" class="md-nav__link">
+    state_machine()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orkestra.decorators.Compose.task" class="md-nav__link">
+    task()
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/knowsuchagency/orkestra/edit/master/docs/reference/compose.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>compose</h1>
+                
+                <div class="doc doc-object doc-class">
+
+<a id="orkestra.decorators.Compose"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h2 id="orkestra.decorators.Compose.__init__" class="doc doc-heading">
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">enable_powertools</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_event</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">capture_response</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">capture_error</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">raise_on_empty_metrics</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">capture_cold_start_metric</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default_dimensions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">envelope</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">is_map_job</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">capture_map_errors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">runtime</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">input_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">items_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_concurrency</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">result_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">result_selector</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">client_context</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">invocation_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">payload_response_only</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">qualifier</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">retry_on_service_exceptions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">heartbeat</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">integration_pattern</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sfn_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tracing</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">aws_lambda_constructor_kwargs</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+<a href="#orkestra.decorators.Compose.__init__" class="headerlink" title="Permanent link">#</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Container for functions meant to be composed.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>func</code></td>
+        <td><code>Union[Callable, Iterable[Callable]]</code></td>
+        <td><p>a function or list or tuple of functions</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>timeout</code></td>
+        <td><code>Optional[orkestra.interfaces.Duration]</code></td>
+        <td><p>the timeout duration of the lambda</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>enable_powertools</code></td>
+        <td><code>bool</code></td>
+        <td><p>if true, enables powertools</p></td>
+        <td><code>False</code></td>
+      </tr>
+      <tr>
+        <td><code>log_event</code></td>
+        <td><code>bool</code></td>
+        <td><p>passed to aws_lambda_powertools.Logger</p></td>
+        <td><code>True</code></td>
+      </tr>
+      <tr>
+        <td><code>capture_response</code></td>
+        <td><code>bool</code></td>
+        <td><p>passed to aws_lambda_powertools.Tracer</p></td>
+        <td><code>True</code></td>
+      </tr>
+      <tr>
+        <td><code>capture_error</code></td>
+        <td><code>bool</code></td>
+        <td><p>passed to aws_lambda_powertools.Tracer</p></td>
+        <td><code>True</code></td>
+      </tr>
+      <tr>
+        <td><code>raise_on_empty_metrics</code></td>
+        <td><code>bool</code></td>
+        <td><p>passed to aws_lambda_powertools.Metrics</p></td>
+        <td><code>False</code></td>
+      </tr>
+      <tr>
+        <td><code>capture_cold_start_metric</code></td>
+        <td><code>bool</code></td>
+        <td><p>passed to aws_lambda_powertools.Metrics</p></td>
+        <td><code>True</code></td>
+      </tr>
+      <tr>
+        <td><code>default_dimensions</code></td>
+        <td><code>Optional[dict]</code></td>
+        <td><p>passed to aws_lambda_powertools.Metrics</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>model</code></td>
+        <td><code>Optional[pydantic.BaseModel]</code></td>
+        <td><p>passed to aws_lambda_powertools.utilities.parser.event_parser</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>envelope</code></td>
+        <td><code>Optional[pydantic.BaseModel]</code></td>
+        <td><p>passed to aws_lambda_powertools.utilities.parser.event_parser</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>runtime</code></td>
+        <td><code>Optional[orkestra.interfaces.Runtime]</code></td>
+        <td><p>the python runtime to use for the lambda</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>is_map_job</code></td>
+        <td><code>bool</code></td>
+        <td><p>whether the lambda is a map job</p></td>
+        <td><code>False</code></td>
+      </tr>
+      <tr>
+        <td><code>capture_map_errors</code></td>
+        <td><code>bool</code></td>
+        <td><p>set true to add guarantee successful map job execution</p></td>
+        <td><code>False</code></td>
+      </tr>
+      <tr>
+        <td><code>comment</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>An optional description for this state. Default: No comment</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>input_path</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>JSONPath expression to select part of the state to be the input to this state. May also be the special value JsonPath.DISCARD, which will cause the effective input to be the empty object {}. Default: $</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>items_path</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>JSONPath expression to select the array to iterate over. Default: $</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>max_concurrency</code></td>
+        <td><code>Union[int, float]</code></td>
+        <td><p>MaxConcurrency. An upper bound on the number of iterations you want running at once. Default: - full concurrency</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>output_path</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>JSONPath expression to select part of the state to be the output to this state. May also be the special value JsonPath.DISCARD, which will cause the effective output to be the empty object {}. Default: $</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>parameters</code></td>
+        <td><code>Optional[Mapping[str, Any]]</code></td>
+        <td><p>The JSON that you want to override your default iteration input. Default: $</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>result_path</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>JSONPath expression to indicate where to inject the state’s output. May also be the special value JsonPath.DISCARD, which will cause the state’s input to become its output. Default: $</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>result_selector</code></td>
+        <td><code>Optional[Mapping[str, &lt;built-in function any&gt;]]</code></td>
+        <td><p>The JSON that will replace the state’s raw result and become the effective result before ResultPath is applied. You can use ResultSelector to create a payload with values that are static or selected from the state’s raw result. Default: - None</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>client_context</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Up to 3583 bytes of base64-encoded data about the invoking client to pass to the function. Default: - No context</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>invocation_type</code></td>
+        <td><code>Optional[orkestra.interfaces.LambdaInvocationType]</code></td>
+        <td><p>Invocation type of the Lambda function. Default: InvocationType.REQUEST_RESPONSE</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>payload_response_only</code></td>
+        <td><code>Optional[bool]</code></td>
+        <td><p>Invoke the Lambda in a way that only returns the payload response without additional metadata. The payloadResponseOnly property cannot be used if integrationPattern, invocationType, clientContext, or qualifier are specified. It always uses the REQUEST_RESPONSE behavior. Default: false</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>qualifier</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>Version or alias to invoke a published version of the function. You only need to supply this if you want the version of the Lambda Function to depend on data in the state machine state. If not, you can pass the appropriate Alias or Version object directly as the lambdaFunction argument. Default: - Version or alias inherent to the lambdaFunction object.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>retry_on_service_exceptions</code></td>
+        <td><code>Optional[bool]</code></td>
+        <td><p>Whether to retry on Lambda service exceptions. This handles Lambda.ServiceException, Lambda.AWSLambdaException and Lambda.SdkClientException with an interval of 2 seconds, a back-off rate of 2 and 6 maximum attempts. Default: true</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>heartbeat</code></td>
+        <td><code>Optional[orkestra.interfaces.Duration]</code></td>
+        <td><p>Timeout for the heartbeat. Default: - None</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>integration_pattern</code></td>
+        <td><code>Optional[orkestra.interfaces.IntegrationPattern]</code></td>
+        <td><p>AWS Step Functions integrates with services directly in the Amazon States Language. You can control these AWS services using service integration patterns Default: IntegrationPattern.REQUEST_RESPONSE</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>sfn_timeout</code></td>
+        <td><code>Optional[orkestra.interfaces.Duration]</code></td>
+        <td><p>Timeout for the state machine. Default: - None</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>tracing</code></td>
+        <td><code>Optional[orkestra.interfaces.Tracing]</code></td>
+        <td><p>Enable AWS X-Ray Tracing for Lambda Function. Default: Tracing.Enabled</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>**aws_lambda_constructor_kwargs</code></td>
+        <td><code></code></td>
+        <td><p>pass directly to sfn.PythonFunction</p></td>
+        <td><code>{}</code></td>
+      </tr>
+  </tbody>
+</table>      <p>For cdk params see <a href="https://docs.aws.amazon.com/cdk/api/latest/python/modules.html">docs.aws.amazon.com/cdk/api/latest/python/modules.html</a>
+For powertools params see <a href="https://awslabs.github.io/aws-lambda-powertools-python/latest/">awslabs.github.io/aws-lambda-powertools-python/latest/</a></p>
+
+        <details class="quote">
+          <summary>Source code in <code>orkestra/decorators.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">func</span><span class="p">:</span> <span class="n">OptionalFn</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">enable_powertools</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">log_event</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">capture_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">capture_error</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">raise_on_empty_metrics</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">capture_cold_start_metric</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">default_dimensions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;pydantic.BaseModel&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">envelope</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;pydantic.BaseModel&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Duration</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">is_map_job</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">capture_map_errors</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">runtime</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Runtime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">comment</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">input_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">items_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">max_concurrency</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">output_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">parameters</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">result_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">result_selector</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">client_context</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">invocation_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">LambdaInvocationType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">payload_response_only</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">qualifier</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">retry_on_service_exceptions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">heartbeat</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Duration</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">integration_pattern</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">IntegrationPattern</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">sfn_timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Duration</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">tracing</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tracing</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">aws_lambda_constructor_kwargs</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Container for functions meant to be composed.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        func: a function or list or tuple of functions</span>
+<span class="sd">        timeout: the timeout duration of the lambda</span>
+<span class="sd">        enable_powertools: if true, enables powertools</span>
+<span class="sd">        log_event: passed to aws_lambda_powertools.Logger</span>
+<span class="sd">        capture_response: passed to aws_lambda_powertools.Tracer</span>
+<span class="sd">        capture_error: passed to aws_lambda_powertools.Tracer</span>
+<span class="sd">        raise_on_empty_metrics: passed to aws_lambda_powertools.Metrics</span>
+<span class="sd">        capture_cold_start_metric: passed to aws_lambda_powertools.Metrics</span>
+<span class="sd">        default_dimensions: passed to aws_lambda_powertools.Metrics</span>
+<span class="sd">        model: passed to aws_lambda_powertools.utilities.parser.event_parser</span>
+<span class="sd">        envelope: passed to aws_lambda_powertools.utilities.parser.event_parser</span>
+<span class="sd">        runtime: the python runtime to use for the lambda</span>
+<span class="sd">        is_map_job: whether the lambda is a map job</span>
+<span class="sd">        capture_map_errors: set true to add guarantee successful map job execution</span>
+<span class="sd">        comment: An optional description for this state. Default: No comment</span>
+<span class="sd">        input_path: JSONPath expression to select part of the state to be the input to this state. May also be the special value JsonPath.DISCARD, which will cause the effective input to be the empty object {}. Default: $</span>
+<span class="sd">        items_path:  JSONPath expression to select the array to iterate over. Default: $</span>
+<span class="sd">        max_concurrency: MaxConcurrency. An upper bound on the number of iterations you want running at once. Default: - full concurrency</span>
+<span class="sd">        output_path: JSONPath expression to select part of the state to be the output to this state. May also be the special value JsonPath.DISCARD, which will cause the effective output to be the empty object {}. Default: $</span>
+<span class="sd">        parameters: The JSON that you want to override your default iteration input. Default: $</span>
+<span class="sd">        result_path: JSONPath expression to indicate where to inject the state’s output. May also be the special value JsonPath.DISCARD, which will cause the state’s input to become its output. Default: $</span>
+<span class="sd">        result_selector: The JSON that will replace the state’s raw result and become the effective result before ResultPath is applied. You can use ResultSelector to create a payload with values that are static or selected from the state’s raw result. Default: - None</span>
+<span class="sd">        client_context: Up to 3583 bytes of base64-encoded data about the invoking client to pass to the function. Default: - No context</span>
+<span class="sd">        invocation_type: Invocation type of the Lambda function. Default: InvocationType.REQUEST_RESPONSE</span>
+<span class="sd">        payload_response_only: Invoke the Lambda in a way that only returns the payload response without additional metadata. The payloadResponseOnly property cannot be used if integrationPattern, invocationType, clientContext, or qualifier are specified. It always uses the REQUEST_RESPONSE behavior. Default: false</span>
+<span class="sd">        qualifier:  Version or alias to invoke a published version of the function. You only need to supply this if you want the version of the Lambda Function to depend on data in the state machine state. If not, you can pass the appropriate Alias or Version object directly as the lambdaFunction argument. Default: - Version or alias inherent to the lambdaFunction object.</span>
+<span class="sd">        retry_on_service_exceptions: Whether to retry on Lambda service exceptions. This handles Lambda.ServiceException, Lambda.AWSLambdaException and Lambda.SdkClientException with an interval of 2 seconds, a back-off rate of 2 and 6 maximum attempts. Default: true</span>
+<span class="sd">        heartbeat: Timeout for the heartbeat. Default: - None</span>
+<span class="sd">        integration_pattern: AWS Step Functions integrates with services directly in the Amazon States Language. You can control these AWS services using service integration patterns Default: IntegrationPattern.REQUEST_RESPONSE</span>
+<span class="sd">        sfn_timeout: Timeout for the state machine. Default: - None</span>
+<span class="sd">        tracing: Enable AWS X-Ray Tracing for Lambda Function. Default: Tracing.Enabled</span>
+<span class="sd">        **aws_lambda_constructor_kwargs: pass directly to sfn.PythonFunction</span>
+
+<span class="sd">    For cdk params see https://docs.aws.amazon.com/cdk/api/latest/python/modules.html</span>
+<span class="sd">    For powertools params see https://awslabs.github.io/aws-lambda-powertools-python/latest/</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">func</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">downstream</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">is_map_job</span> <span class="o">=</span> <span class="n">is_map_job</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">capture_map_errors</span> <span class="o">=</span> <span class="n">capture_map_errors</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">aws_lambda_constructor_kwargs</span> <span class="o">=</span> <span class="n">aws_lambda_constructor_kwargs</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">map_job_kwargs</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;comment&quot;</span><span class="p">:</span> <span class="n">comment</span><span class="p">,</span>
+        <span class="s2">&quot;input_path&quot;</span><span class="p">:</span> <span class="n">input_path</span><span class="p">,</span>
+        <span class="s2">&quot;items_path&quot;</span><span class="p">:</span> <span class="n">items_path</span><span class="p">,</span>
+        <span class="s2">&quot;max_concurrency&quot;</span><span class="p">:</span> <span class="n">max_concurrency</span><span class="p">,</span>
+        <span class="s2">&quot;output_path&quot;</span><span class="p">:</span> <span class="n">output_path</span><span class="p">,</span>
+        <span class="s2">&quot;result_path&quot;</span><span class="p">:</span> <span class="n">result_path</span><span class="p">,</span>
+        <span class="s2">&quot;result_selector&quot;</span><span class="p">:</span> <span class="n">result_selector</span><span class="p">,</span>
+        <span class="s2">&quot;parameters&quot;</span><span class="p">:</span> <span class="n">parameters</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">lambda_invoke_kwargs</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;client_context&quot;</span><span class="p">:</span> <span class="n">client_context</span><span class="p">,</span>
+        <span class="s2">&quot;invocation_type&quot;</span><span class="p">:</span> <span class="n">invocation_type</span><span class="p">,</span>
+        <span class="s2">&quot;payload_response_only&quot;</span><span class="p">:</span> <span class="n">payload_response_only</span><span class="p">,</span>
+        <span class="s2">&quot;retry_on_service_exceptions&quot;</span><span class="p">:</span> <span class="n">retry_on_service_exceptions</span><span class="p">,</span>
+        <span class="s2">&quot;heartbeat&quot;</span><span class="p">:</span> <span class="n">heartbeat</span><span class="p">,</span>
+        <span class="s2">&quot;integration_pattern&quot;</span><span class="p">:</span> <span class="n">integration_pattern</span><span class="p">,</span>
+        <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="n">sfn_timeout</span><span class="p">,</span>
+        <span class="s2">&quot;comment&quot;</span><span class="p">:</span> <span class="n">comment</span><span class="p">,</span>
+        <span class="s2">&quot;input_path&quot;</span><span class="p">:</span> <span class="n">input_path</span><span class="p">,</span>
+        <span class="s2">&quot;output_path&quot;</span><span class="p">:</span> <span class="n">output_path</span><span class="p">,</span>
+        <span class="s2">&quot;result_path&quot;</span><span class="p">:</span> <span class="n">result_path</span><span class="p">,</span>
+        <span class="s2">&quot;result_selector&quot;</span><span class="p">:</span> <span class="n">result_selector</span><span class="p">,</span>
+        <span class="s2">&quot;qualifier&quot;</span><span class="p">:</span> <span class="n">qualifier</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">powertools_kwargs</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;log_event&quot;</span><span class="p">:</span> <span class="n">log_event</span><span class="p">,</span>
+        <span class="s2">&quot;capture_error&quot;</span><span class="p">:</span> <span class="n">capture_error</span><span class="p">,</span>
+        <span class="s2">&quot;capture_response&quot;</span><span class="p">:</span> <span class="n">capture_response</span><span class="p">,</span>
+        <span class="s2">&quot;capture_cold_start_metric&quot;</span><span class="p">:</span> <span class="n">capture_cold_start_metric</span><span class="p">,</span>
+        <span class="s2">&quot;raise_on_empty_metrics&quot;</span><span class="p">:</span> <span class="n">raise_on_empty_metrics</span><span class="p">,</span>
+        <span class="s2">&quot;default_dimensions&quot;</span><span class="p">:</span> <span class="n">default_dimensions</span><span class="p">,</span>
+        <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span>
+        <span class="s2">&quot;envelope&quot;</span><span class="p">:</span> <span class="n">envelope</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">aws_lambda_constructor_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+        <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
+        <span class="n">runtime</span><span class="o">=</span><span class="n">runtime</span><span class="p">,</span>
+        <span class="n">tracing</span><span class="o">=</span><span class="n">tracing</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">enable_powertools</span> <span class="o">=</span> <span class="n">enable_powertools</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">update_metadata</span><span class="p">()</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h2 id="orkestra.decorators.Compose.aws_lambda" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">aws_lambda</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scope</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+
+<a href="#orkestra.decorators.Compose.aws_lambda" class="headerlink" title="Permanent link">#</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Return lambda cdk construct.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>scope</code></td>
+        <td><code>aws_cdk.core.Construct</code></td>
+        <td><p>cdk construct</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>id</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>construct id</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>**kwargs</code></td>
+        <td><code></code></td>
+        <td><p>to be passed to aws_cdk.aws_lambda_python.PythonFunction</p></td>
+        <td><code>{}</code></td>
+      </tr>
+  </tbody>
+</table>      <p>Returns (aws_cdk.aws_lambda_python.PythonFunction): python lambda</p>
+
+        <details class="quote">
+          <summary>Source code in <code>orkestra/decorators.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">aws_lambda</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">scope</span><span class="p">:</span> <span class="s2">&quot;aws_cdk.core.Construct&quot;</span><span class="p">,</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return lambda cdk construct.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        scope: cdk construct</span>
+<span class="sd">        id: construct id</span>
+<span class="sd">        **kwargs: to be passed to aws_cdk.aws_lambda_python.PythonFunction</span>
+
+<span class="sd">    Returns (aws_cdk.aws_lambda_python.PythonFunction): python lambda</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render_lambda</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">scope</span><span class="p">,</span>
+        <span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h2 id="orkestra.decorators.Compose.definition" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">definition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scope</span><span class="p">,</span> <span class="n">previous_definition</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">previously_composed</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+<a href="#orkestra.decorators.Compose.definition" class="headerlink" title="Permanent link">#</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Return automagically composed cdk state machine definition.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>scope</code></td>
+        <td><code>aws_cdk.core.Construct</code></td>
+        <td><p>cdk scope</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>previous_definition</code></td>
+        <td><code>Optional[aws_cdk.aws_stepfunctions.IChainable]</code></td>
+        <td><p>the previous definition</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>previously_composed</code></td>
+        <td><code>Optional[Compose]</code></td>
+        <td><p>the previously composed</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>orkestra/decorators.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">definition</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">scope</span><span class="p">:</span> <span class="s2">&quot;aws_cdk.core.Construct&quot;</span><span class="p">,</span>
+    <span class="n">previous_definition</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span>
+        <span class="s2">&quot;aws_cdk.aws_stepfunctions.IChainable&quot;</span>
+    <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">previously_composed</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;Compose&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return automagically composed cdk state machine definition.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        scope: cdk scope</span>
+<span class="sd">        previous_definition: the previous definition</span>
+<span class="sd">        previously_composed: the previously composed</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">previously_composed</span> <span class="o">=</span> <span class="n">previously_composed</span> <span class="ow">or</span> <span class="p">[]</span>
+
+    <span class="k">if</span> <span class="bp">self</span> <span class="ow">in</span> <span class="n">previously_composed</span><span class="p">:</span>
+
+        <span class="k">raise</span> <span class="n">CompositionError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Failed to compose </span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2">. Composition using &gt;&gt; must be acyclic.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="n">task</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="p">(</span><span class="n">scope</span><span class="p">)</span>
+
+    <span class="n">definition</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">task</span>
+        <span class="k">if</span> <span class="n">previous_definition</span> <span class="ow">is</span> <span class="kc">None</span>
+        <span class="k">else</span> <span class="n">previous_definition</span><span class="o">.</span><span class="n">next</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">downstream</span><span class="p">:</span>
+
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">downstream</span><span class="p">:</span>
+
+            <span class="n">c</span><span class="o">.</span><span class="n">definition</span><span class="p">(</span>
+                <span class="n">scope</span><span class="p">,</span>
+                <span class="n">previous_definition</span><span class="o">=</span><span class="n">definition</span><span class="p">,</span>
+                <span class="n">previously_composed</span><span class="o">=</span><span class="n">previously_composed</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="p">],</span>
+            <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">definition</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h2 id="orkestra.decorators.Compose.schedule" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">schedule</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scope</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">expression</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hour</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">minute</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">week_day</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">function_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">state_machine_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dead_letter_queue_enabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+
+<a href="#orkestra.decorators.Compose.schedule" class="headerlink" title="Permanent link">#</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Schedule lambda or state machine to run on interval using EventBridge scheduled event rule.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>scope</code></td>
+        <td><code>aws_cdk.core.Construct</code></td>
+        <td><p>cdk scope</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>id</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>construct id</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>expression</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>interval at which to run. Can be cron expression or CloudWatch rate expression</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>day</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>day of month</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>hour</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>hour of day</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>minute</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>minute of our</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>month</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>month of year</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>week_day</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>week day</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>year</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>year</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>function_name</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>the function name, if just a lambda</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>state_machine_name</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>the state machine name, if downstream</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>dead_letter_queue_enabled</code></td>
+        <td><code>bool</code></td>
+        <td><p>whether the lamdba will have a DLQ</p></td>
+        <td><code>False</code></td>
+      </tr>
+      <tr>
+        <td><code>**kwargs</code></td>
+        <td><code></code></td>
+        <td></td>
+        <td><code>{}</code></td>
+      </tr>
+  </tbody>
+</table>      <p>Returns: EventBridge schedule rule</p>
+
+        <details class="quote">
+          <summary>Source code in <code>orkestra/decorators.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">schedule</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">scope</span><span class="p">:</span> <span class="s2">&quot;aws_cdk.core.Construct&quot;</span><span class="p">,</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">expression</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">day</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">hour</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">minute</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">month</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">week_day</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">year</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">function_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">state_machine_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">dead_letter_queue_enabled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Schedule lambda or state machine to run on interval using EventBridge scheduled event rule.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        scope: cdk scope</span>
+<span class="sd">        id: construct id</span>
+<span class="sd">        expression: interval at which to run. Can be cron expression or CloudWatch rate expression</span>
+<span class="sd">        day: day of month</span>
+<span class="sd">        hour: hour of day</span>
+<span class="sd">        minute: minute of our</span>
+<span class="sd">        month: month of year</span>
+<span class="sd">        week_day: week day</span>
+<span class="sd">        year: year</span>
+<span class="sd">        function_name: the function name, if just a lambda</span>
+<span class="sd">        state_machine_name: the state machine name, if downstream</span>
+<span class="sd">        dead_letter_queue_enabled: whether the lamdba will have a DLQ</span>
+<span class="sd">        **kwargs:</span>
+
+<span class="sd">    Returns: EventBridge schedule rule</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">aws_cdk</span> <span class="kn">import</span> <span class="n">aws_events</span> <span class="k">as</span> <span class="n">eventbridge</span>
+    <span class="kn">from</span> <span class="nn">aws_cdk</span> <span class="kn">import</span> <span class="n">aws_events_targets</span> <span class="k">as</span> <span class="n">eventbridge_targets</span>
+
+    <span class="nb">id</span> <span class="o">=</span> <span class="nb">id</span> <span class="ow">or</span> <span class="n">_incremental_id</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">_sched&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">expression</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">schedule</span> <span class="o">=</span> <span class="n">eventbridge</span><span class="o">.</span><span class="n">Schedule</span><span class="o">.</span><span class="n">expression</span><span class="p">(</span><span class="n">expression</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">schedule</span> <span class="o">=</span> <span class="n">eventbridge</span><span class="o">.</span><span class="n">Schedule</span><span class="o">.</span><span class="n">cron</span><span class="p">(</span>
+            <span class="n">day</span><span class="o">=</span><span class="n">day</span><span class="p">,</span>
+            <span class="n">hour</span><span class="o">=</span><span class="n">hour</span><span class="p">,</span>
+            <span class="n">minute</span><span class="o">=</span><span class="n">minute</span><span class="p">,</span>
+            <span class="n">month</span><span class="o">=</span><span class="n">month</span><span class="p">,</span>
+            <span class="n">week_day</span><span class="o">=</span><span class="n">week_day</span><span class="p">,</span>
+            <span class="n">year</span><span class="o">=</span><span class="n">year</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="n">rule</span> <span class="o">=</span> <span class="n">eventbridge</span><span class="o">.</span><span class="n">Rule</span><span class="p">(</span>
+        <span class="n">scope</span><span class="p">,</span>
+        <span class="nb">id</span><span class="p">,</span>
+        <span class="n">schedule</span><span class="o">=</span><span class="n">schedule</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">downstream</span><span class="p">:</span>
+        <span class="n">fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aws_lambda</span><span class="p">(</span>
+            <span class="n">scope</span><span class="p">,</span>
+            <span class="n">function_name</span><span class="o">=</span><span class="n">function_name</span><span class="p">,</span>
+            <span class="n">dead_letter_queue_enabled</span><span class="o">=</span><span class="n">dead_letter_queue_enabled</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">eventbridge_targets</span><span class="o">.</span><span class="n">LambdaFunction</span><span class="p">(</span><span class="n">handler</span><span class="o">=</span><span class="n">fn</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">state_machine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state_machine</span><span class="p">(</span>
+            <span class="n">scope</span><span class="p">,</span>
+            <span class="n">state_machine_name</span><span class="o">=</span><span class="n">state_machine_name</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">eventbridge_targets</span><span class="o">.</span><span class="n">SfnStateMachine</span><span class="p">(</span><span class="n">machine</span><span class="o">=</span><span class="n">state_machine</span><span class="p">)</span>
+
+    <span class="n">rule</span><span class="o">.</span><span class="n">add_target</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">rule</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h2 id="orkestra.decorators.Compose.state_machine" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">state_machine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scope</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tracing_enabled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">state_machine_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+
+<a href="#orkestra.decorators.Compose.state_machine" class="headerlink" title="Permanent link">#</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Return step functions state machine cdk construct.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>scope</code></td>
+        <td><code>aws_cdk.core.Construct</code></td>
+        <td></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>id</code></td>
+        <td><code>Optional[str]</code></td>
+        <td></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>tracing_enabled</code></td>
+        <td><code>bool</code></td>
+        <td></td>
+        <td><code>True</code></td>
+      </tr>
+      <tr>
+        <td><code>state_machine_name</code></td>
+        <td><code>Optional[str]</code></td>
+        <td></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>**kwargs</code></td>
+        <td><code></code></td>
+        <td></td>
+        <td><code>{}</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>orkestra/decorators.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">state_machine</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">scope</span><span class="p">:</span> <span class="s2">&quot;aws_cdk.core.Construct&quot;</span><span class="p">,</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">tracing_enabled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">state_machine_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return step functions state machine cdk construct.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        scope:</span>
+<span class="sd">        id:</span>
+<span class="sd">        tracing_enabled:</span>
+<span class="sd">        state_machine_name:</span>
+<span class="sd">        **kwargs:</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="kn">from</span> <span class="nn">aws_cdk</span> <span class="kn">import</span> <span class="n">aws_stepfunctions</span> <span class="k">as</span> <span class="n">sfn</span>
+
+    <span class="nb">id</span> <span class="o">=</span> <span class="nb">id</span> <span class="ow">or</span> <span class="n">_incremental_id</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">_sfn&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">sfn</span><span class="o">.</span><span class="n">StateMachine</span><span class="p">(</span>
+        <span class="n">scope</span><span class="p">,</span>
+        <span class="nb">id</span><span class="p">,</span>
+        <span class="n">definition</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">definition</span><span class="p">(</span><span class="n">scope</span><span class="p">),</span>
+        <span class="n">tracing_enabled</span><span class="o">=</span><span class="n">tracing_enabled</span><span class="p">,</span>
+        <span class="n">state_machine_name</span><span class="o">=</span><span class="n">state_machine_name</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h2 id="orkestra.decorators.Compose.task" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scope</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">payload_response_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">function_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+
+<a href="#orkestra.decorators.Compose.task" class="headerlink" title="Permanent link">#</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Return cdk step function task construct.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>orkestra/decorators.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">task</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">scope</span><span class="p">:</span> <span class="s2">&quot;aws_cdk.core.Construct&quot;</span><span class="p">,</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">payload_response_only</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">function_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return cdk step function task construct.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="kn">from</span> <span class="nn">aws_cdk</span> <span class="kn">import</span> <span class="n">aws_stepfunctions</span> <span class="k">as</span> <span class="n">sfn</span>
+    <span class="kn">from</span> <span class="nn">aws_cdk</span> <span class="kn">import</span> <span class="n">aws_stepfunctions_tasks</span> <span class="k">as</span> <span class="n">sfn_tasks</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_map_job</span><span class="p">:</span>
+
+        <span class="nb">id</span> <span class="o">=</span> <span class="nb">id</span> <span class="ow">or</span> <span class="n">_incremental_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+
+        <span class="n">map_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+
+        <span class="n">map_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+            <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_job_kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">}</span>
+        <span class="p">)</span>
+
+        <span class="n">task</span> <span class="o">=</span> <span class="n">sfn</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="o">**</span><span class="n">map_kwargs</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">lambda_fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aws_lambda</span><span class="p">(</span>
+            <span class="n">scope</span><span class="p">,</span>
+            <span class="n">function_name</span><span class="o">=</span><span class="n">function_name</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">keyword_args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">lambda_function</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_fn</span><span class="p">,</span>
+            <span class="n">payload_response_only</span><span class="o">=</span><span class="n">payload_response_only</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">keyword_args</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="n">k</span><span class="p">:</span> <span class="n">v</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">lambda_invoke_kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+
+        <span class="n">_cdk_patch</span><span class="p">(</span><span class="n">keyword_args</span><span class="p">)</span>
+
+        <span class="n">task_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;invoke_</span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="n">invoke_lambda</span> <span class="o">=</span> <span class="n">sfn_tasks</span><span class="o">.</span><span class="n">LambdaInvoke</span><span class="p">(</span>
+            <span class="n">scope</span><span class="p">,</span>
+            <span class="n">task_id</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">keyword_args</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">capture_map_errors</span><span class="p">:</span>
+            <span class="n">invoke_lambda</span><span class="o">.</span><span class="n">add_catch</span><span class="p">(</span>
+                <span class="n">sfn</span><span class="o">.</span><span class="n">Pass</span><span class="p">(</span>
+                    <span class="n">scope</span><span class="p">,</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">task_id</span><span class="si">}</span><span class="s2">_failed&quot;</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="n">task</span><span class="o">.</span><span class="n">iterator</span><span class="p">(</span><span class="n">invoke_lambda</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+
+        <span class="nb">id</span> <span class="o">=</span> <span class="nb">id</span> <span class="ow">or</span> <span class="n">_incremental_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">lambda_fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aws_lambda</span><span class="p">(</span>
+            <span class="n">scope</span><span class="p">,</span>
+            <span class="n">function_name</span><span class="o">=</span><span class="n">function_name</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">keyword_args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">lambda_function</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_fn</span><span class="p">,</span>
+            <span class="n">payload_response_only</span><span class="o">=</span><span class="n">payload_response_only</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">keyword_args</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="n">keyword_args</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="n">k</span><span class="p">:</span> <span class="n">v</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">lambda_invoke_kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+
+        <span class="n">_cdk_patch</span><span class="p">(</span><span class="n">keyword_args</span><span class="p">)</span>
+
+        <span class="n">task</span> <span class="o">=</span> <span class="n">sfn_tasks</span><span class="o">.</span><span class="n">LambdaInvoke</span><span class="p">(</span>
+            <span class="n">scope</span><span class="p">,</span>
+            <span class="nb">id</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">keyword_args</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="nb">id</span> <span class="o">=</span> <span class="s2">&quot;parallelize &quot;</span> <span class="o">+</span> <span class="p">(</span>
+            <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">c</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">])</span>
+        <span class="p">)</span>
+
+        <span class="n">task</span> <span class="o">=</span> <span class="n">sfn</span><span class="o">.</span><span class="n">Parallel</span><span class="p">(</span>
+            <span class="n">scope</span><span class="p">,</span>
+            <span class="n">_incremental_id</span><span class="p">(</span><span class="nb">id</span><span class="p">),</span>
+        <span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">:</span>
+
+            <span class="n">lambda_fn</span> <span class="o">=</span> <span class="n">fn</span><span class="o">.</span><span class="n">aws_lambda</span><span class="p">(</span><span class="n">scope</span><span class="p">)</span>
+
+            <span class="n">keyword_args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+                <span class="n">lambda_function</span><span class="o">=</span><span class="n">lambda_fn</span><span class="p">,</span>
+                <span class="n">payload_response_only</span><span class="o">=</span><span class="n">payload_response_only</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="n">keyword_args</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+
+            <span class="n">keyword_args</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="n">k</span><span class="p">:</span> <span class="n">v</span>
+                    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">lambda_invoke_kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+
+            <span class="n">_cdk_patch</span><span class="p">(</span><span class="n">keyword_args</span><span class="p">)</span>
+
+            <span class="n">branch</span> <span class="o">=</span> <span class="n">sfn_tasks</span><span class="o">.</span><span class="n">LambdaInvoke</span><span class="p">(</span>
+                <span class="n">scope</span><span class="p">,</span>
+                <span class="n">_incremental_id</span><span class="p">(</span><span class="n">fn</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">),</span>
+                <span class="o">**</span><span class="n">keyword_args</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+
+                <span class="n">branch</span><span class="o">.</span><span class="n">add_catch</span><span class="p">(</span>
+                    <span class="n">sfn</span><span class="o">.</span><span class="n">Pass</span><span class="p">(</span>
+                        <span class="n">scope</span><span class="p">,</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">fn</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">_failed&quot;</span><span class="p">,</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+
+            <span class="n">task</span><span class="o">.</span><span class="n">branch</span><span class="p">(</span><span class="n">branch</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">coerce</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../../examples/map_jobs/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Map Jobs
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../powertools/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              powertools
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.d351de03.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a1609d9a.min.js"></script>
+      
+    
+  </body>
+</html>
