@@ -20,7 +20,9 @@ theme:
 nav:
   - Home: index.md
   - Usage:
-    - Getting Started: getting_started.md
+    - Getting Started:
+        - Quick Start: quickstart.md
+        - In-depth Tutorial: tutorial.md
     - Notes: notes.md
     - Examples:
         - Single Lambda: examples/single_lambda.md
