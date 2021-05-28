@@ -1,21 +1,28 @@
-from typing import TypeVar
-
-T = TypeVar("T")
+from orkestra.interfaces import Nextable
 
 
-def rshift(self, right):
-    result = self.next(right)
-    make_composable(right)
-    make_composable(result)
-    return result
+def coerce(obj: Nextable) -> Nextable:
+    """
+    Overload the `__rshift__` operator of obj to call its .next() method and do the same for the object it's called on.
 
+    Args:
+        obj: an object with a `.next(self, other)` method
 
-def make_composable(obj: T) -> T:
+    Returns: obj
+
+    """
+
+    def rshift(self, right):
+        result = self.next(right)
+        coerce(right)
+        coerce(result)
+        return result
+
     obj.__class__.__rshift__ = rshift
     return obj
 
 
-def cdk_patch(kwargs: dict):
+def _cdk_patch(kwargs: dict):
     """
     Replace interface elements in kwargs with their cdk counterpart.
     """
@@ -27,6 +34,3 @@ def cdk_patch(kwargs: dict):
             kwargs[key] = value.cdk_construct
 
     return kwargs
-
-
-coerce = make_composable

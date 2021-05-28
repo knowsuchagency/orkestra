@@ -72,6 +72,7 @@ dev = [
     "uvicorn",
     "boto3",
     "twine",
+    "mkdocstrings",
 ]
 test = [
     "pytest~=6.2",
