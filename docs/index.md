@@ -24,7 +24,7 @@ Orkestra is a lightweight abstraction layer on top of
 * [Lambda](https://aws.amazon.com/lambda/)
 * [Step Functions](https://aws.amazon.com/step-functions/?step-functions.sort-by=item.additionalFields.postDateTime&step-functions.sort-order=desc)
 * [X-Ray](https://aws.amazon.com/xray/)
-* [Lambda Powertools](https://awslabs.github.io/aws-lambda-powertools-python/latest/) (optionally)
+* [Lambda Powertools](https://awslabs.github.io/aws-lambda-powertools-python/latest/) (optional but recommended)
 
 that provides a seamless way of building observable (scheduled or event-driven) cloud-native workflows.
 

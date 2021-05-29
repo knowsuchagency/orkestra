@@ -13,8 +13,9 @@ files as an optional requirement for Orkestra.
 
 ### timeouts
 
-Using Powertools will increase your lambdas' startup time so you will likely
-want to increase your lambdas' timeout duration.
+Using Powertools may increase your lambdas' startup time.
+
+You can account for this by increasing the timeout duration.
 
 === "lambda_directory/index.py"
 
