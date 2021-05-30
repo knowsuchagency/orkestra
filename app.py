@@ -258,10 +258,8 @@ class BatchExample(cdk.Stack):
 
         batch_job = BatchConstruct(self, "batch_construct").batch_job
 
-        self.lambda_invoke = banana.task(self)
-
         self.definition = (
-            self.lambda_invoke >> batch_job >> sfn.Succeed(self, "Success!")
+            banana.task(self) >> batch_job >> sfn.Succeed(self, "Success!")
         )
 
         self.state_machine = sfn.StateMachine(

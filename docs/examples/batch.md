@@ -2,7 +2,7 @@ A minimal AWS Batch example.
 
 === "Infrastructure As Code"
 
-    ```{.py3 hl_lines="19-21"}
+    ```{.py3 hl_lines="17-19"}
     from aws_cdk import aws_batch as batch
     from aws_cdk import aws_ec2 as ec2
     from aws_cdk import aws_ecs as ecs
@@ -19,10 +19,8 @@ A minimal AWS Batch example.
 
             batch_job = BatchConstruct(self, "batch_construct").batch_job
 
-            self.lambda_invoke = banana.task(self)
-
             self.definition = (
-                self.lambda_invoke >> batch_job >> sfn.Succeed(self, "Success!")
+                banana.task(self) >> batch_job >> sfn.Succeed(self, "Success!")
             )
 
             self.state_machine = sfn.StateMachine(
