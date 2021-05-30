@@ -656,9 +656,7 @@
 <span class="normal">73</span>
 <span class="normal">74</span>
 <span class="normal">75</span>
-<span class="normal">76</span>
-<span class="normal">77</span>
-<span class="normal">78</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">aws_cdk</span> <span class="kn">import</span> <span class="n">aws_batch</span> <span class="k">as</span> <span class="n">batch</span>
+<span class="normal">76</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">aws_cdk</span> <span class="kn">import</span> <span class="n">aws_batch</span> <span class="k">as</span> <span class="n">batch</span>
 <span class="kn">from</span> <span class="nn">aws_cdk</span> <span class="kn">import</span> <span class="n">aws_ec2</span> <span class="k">as</span> <span class="n">ec2</span>
 <span class="kn">from</span> <span class="nn">aws_cdk</span> <span class="kn">import</span> <span class="n">aws_ecs</span> <span class="k">as</span> <span class="n">ecs</span>
 <span class="kn">from</span> <span class="nn">aws_cdk</span> <span class="kn">import</span> <span class="n">aws_stepfunctions</span> <span class="k">as</span> <span class="n">sfn</span>
@@ -674,10 +672,8 @@
 
         <span class="n">batch_job</span> <span class="o">=</span> <span class="n">BatchConstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;batch_construct&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">batch_job</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">lambda_invoke</span> <span class="o">=</span> <span class="n">banana</span><span class="o">.</span><span class="n">task</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-
 <span class="hll">        <span class="bp">self</span><span class="o">.</span><span class="n">definition</span> <span class="o">=</span> <span class="p">(</span>
-</span><span class="hll">            <span class="bp">self</span><span class="o">.</span><span class="n">lambda_invoke</span> <span class="o">&gt;&gt;</span> <span class="n">batch_job</span> <span class="o">&gt;&gt;</span> <span class="n">sfn</span><span class="o">.</span><span class="n">Succeed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;Success!&quot;</span><span class="p">)</span>
+</span><span class="hll">            <span class="n">banana</span><span class="o">.</span><span class="n">task</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">batch_job</span> <span class="o">&gt;&gt;</span> <span class="n">sfn</span><span class="o">.</span><span class="n">Succeed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;Success!&quot;</span><span class="p">)</span>
 </span><span class="hll">        <span class="p">)</span>
 </span>
         <span class="bp">self</span><span class="o">.</span><span class="n">state_machine</span> <span class="o">=</span> <span class="n">sfn</span><span class="o">.</span><span class="n">StateMachine</span><span class="p">(</span>
