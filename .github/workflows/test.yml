@@ -6,9 +6,15 @@ jobs:
 
   test:
 
+    environment: dev
+
     env:
       POWERTOOLS_TRACE_DISABLED: 1
       ENVIRONMENT: dev
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_ACCOUNT: ${{ secrets.AWS_DEFAULT_ACCOUNT }}
+      AWS_DEFAULT_REGION: us-east-2
 
     strategy:
       matrix:
