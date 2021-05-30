@@ -580,22 +580,7 @@
                   <h1>AWS Batch</h1>
                 
                 <p>A minimal AWS Batch example.</p>
-<div class="tabbed-set" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Business Logic</label><div class="tabbed-content">
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">orkestra</span> <span class="kn">import</span> <span class="n">compose</span>
-
-
-<span class="nd">@compose</span>
-<span class="k">def</span> <span class="nf">banana</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
-    <span class="k">return</span> <span class="s2">&quot;banana&quot;</span>
-</code></pre></div>
-</td></tr></table>
-</div>
-<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Infrastructure As Code</label><div class="tabbed-content">
+<div class="tabbed-set" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Infrastructure As Code</label><div class="tabbed-content">
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -751,6 +736,21 @@
             <span class="n">job_name</span><span class="o">=</span><span class="s2">&quot;example_batch_job&quot;</span><span class="p">,</span>
             <span class="n">job_queue_arn</span><span class="o">=</span><span class="n">job_queue</span><span class="o">.</span><span class="n">job_queue_arn</span><span class="p">,</span>
         <span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Business Logic</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">orkestra</span> <span class="kn">import</span> <span class="n">compose</span>
+
+
+<span class="nd">@compose</span>
+<span class="k">def</span> <span class="nf">banana</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s2">&quot;banana&quot;</span>
 </code></pre></div>
 </td></tr></table>
 </div>
