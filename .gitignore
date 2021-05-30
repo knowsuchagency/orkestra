@@ -136,3 +136,4 @@ cdk.out/
 .idea/
 examples/orkestra
 hello_orkestra/
+cdk.context.json

@@ -29,6 +29,7 @@ nav:
         - Event-Driven (API) Workflows: examples/rest.md
         - CDK Orchestration: examples/cdk_orchestration.md
         - Map Jobs: examples/map_jobs.md
+        - AWS Batch: examples/batch.md
     - Reference:
         - compose: reference/compose.md
         - powertools: reference/powertools.md
