@@ -14,7 +14,7 @@
     
     
       
-        <title>Single Lambda - Orkestra</title>
+        <title>AWS Batch - Orkestra</title>
       
     
     
@@ -91,7 +91,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Single Lambda
+              AWS Batch
             
           </span>
         </div>
@@ -390,19 +390,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../single_lambda/" class="md-nav__link">
         Single Lambda
       </a>
-      
     </li>
   
 
@@ -446,11 +438,19 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../batch/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         AWS Batch
       </a>
+      
     </li>
   
 
@@ -572,16 +572,15 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/knowsuchagency/orkestra/edit/master/docs/examples/single_lambda.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/knowsuchagency/orkestra/edit/master/docs/examples/batch.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>Single Lambda</h1>
+                  <h1>AWS Batch</h1>
                 
-                <p>Orkestra can be used to simplify the process of deployment lambdas
-without necessarily composing them as state machines.</p>
-<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Business Logic</label><div class="tabbed-content">
+                <p>A minimal AWS Batch example.</p>
+<div class="tabbed-set" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Business Logic</label><div class="tabbed-content">
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -591,8 +590,8 @@ without necessarily composing them as state machines.</p>
 
 
 <span class="nd">@compose</span>
-<span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
-    <span class="k">return</span> <span class="s2">&quot;hello, world&quot;</span>
+<span class="k">def</span> <span class="nf">banana</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s2">&quot;banana&quot;</span>
 </code></pre></div>
 </td></tr></table>
 </div>
@@ -609,21 +608,167 @@ without necessarily composing them as state machines.</p>
 <span class="normal">10</span>
 <span class="normal">11</span>
 <span class="normal">12</span>
-<span class="normal">13</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">aws_cdk</span> <span class="kn">import</span> <span class="n">core</span> <span class="k">as</span> <span class="n">cdk</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">aws_cdk</span> <span class="kn">import</span> <span class="n">aws_batch</span> <span class="k">as</span> <span class="n">batch</span>
+<span class="kn">from</span> <span class="nn">aws_cdk</span> <span class="kn">import</span> <span class="n">aws_ec2</span> <span class="k">as</span> <span class="n">ec2</span>
+<span class="kn">from</span> <span class="nn">aws_cdk</span> <span class="kn">import</span> <span class="n">aws_ecs</span> <span class="k">as</span> <span class="n">ecs</span>
+<span class="kn">from</span> <span class="nn">aws_cdk</span> <span class="kn">import</span> <span class="n">aws_stepfunctions</span> <span class="k">as</span> <span class="n">sfn</span>
+<span class="kn">from</span> <span class="nn">aws_cdk</span> <span class="kn">import</span> <span class="n">aws_stepfunctions_tasks</span> <span class="k">as</span> <span class="n">sfn_tasks</span>
+<span class="kn">from</span> <span class="nn">aws_cdk</span> <span class="kn">import</span> <span class="n">core</span> <span class="k">as</span> <span class="n">cdk</span>
 
-<span class="kn">from</span> <span class="nn">examples.single_lambda</span> <span class="kn">import</span> <span class="n">handler</span>
+<span class="kn">from</span> <span class="nn">examples.batch_example</span> <span class="kn">import</span> <span class="n">banana</span>
 
 
-<span class="k">class</span> <span class="nc">SingleLambda</span><span class="p">(</span><span class="n">cdk</span><span class="o">.</span><span class="n">Stack</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Single lambda deployment example.&quot;&quot;&quot;</span>
-
+<span class="k">class</span> <span class="nc">BatchExample</span><span class="p">(</span><span class="n">cdk</span><span class="o">.</span><span class="n">Stack</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scope</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="n">handler</span><span class="o">.</span><span class="n">aws_lambda</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">batch_job</span> <span class="o">=</span> <span class="n">BatchConstruct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;batch_construct&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">batch_job</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">lambda_invoke</span> <span class="o">=</span> <span class="n">banana</span><span class="o">.</span><span class="n">task</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="hll">        <span class="bp">self</span><span class="o">.</span><span class="n">definition</span> <span class="o">=</span> <span class="p">(</span>
+</span><span class="hll">            <span class="bp">self</span><span class="o">.</span><span class="n">lambda_invoke</span> <span class="o">&gt;&gt;</span> <span class="n">batch_job</span> <span class="o">&gt;&gt;</span> <span class="n">sfn</span><span class="o">.</span><span class="n">Succeed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;Success!&quot;</span><span class="p">)</span>
+</span><span class="hll">        <span class="p">)</span>
+</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_machine</span> <span class="o">=</span> <span class="n">sfn</span><span class="o">.</span><span class="n">StateMachine</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="s2">&quot;example_batch_sfn&quot;</span><span class="p">,</span>
+            <span class="n">definition</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">definition</span><span class="p">,</span>
+            <span class="n">state_machine_name</span><span class="o">=</span><span class="s2">&quot;example_batch_state_machine&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">BatchConstruct</span><span class="p">(</span><span class="n">cdk</span><span class="o">.</span><span class="n">Construct</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scope</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="n">default_vpc</span> <span class="o">=</span> <span class="n">ec2</span><span class="o">.</span><span class="n">Vpc</span><span class="o">.</span><span class="n">from_lookup</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="s2">&quot;default_vpc&quot;</span><span class="p">,</span>
+            <span class="n">is_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">compute_resources</span> <span class="o">=</span> <span class="n">batch</span><span class="o">.</span><span class="n">ComputeResources</span><span class="p">(</span>
+            <span class="n">vpc</span><span class="o">=</span><span class="n">default_vpc</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">compute_environment</span> <span class="o">=</span> <span class="n">batch</span><span class="o">.</span><span class="n">ComputeEnvironment</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="s2">&quot;example_compute_environment&quot;</span><span class="p">,</span>
+            <span class="n">compute_resources</span><span class="o">=</span><span class="n">compute_resources</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">job_queue</span> <span class="o">=</span> <span class="n">batch</span><span class="o">.</span><span class="n">JobQueue</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="s2">&quot;batch_job_queue&quot;</span><span class="p">,</span>
+            <span class="n">compute_environments</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">batch</span><span class="o">.</span><span class="n">JobQueueComputeEnvironment</span><span class="p">(</span>
+                    <span class="n">compute_environment</span><span class="o">=</span><span class="n">compute_environment</span><span class="p">,</span>
+                    <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="n">job_definition</span> <span class="o">=</span> <span class="n">batch</span><span class="o">.</span><span class="n">JobDefinition</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="s2">&quot;example_job_definition&quot;</span><span class="p">,</span>
+            <span class="n">container</span><span class="o">=</span><span class="n">batch</span><span class="o">.</span><span class="n">JobDefinitionContainer</span><span class="p">(</span>
+                <span class="n">image</span><span class="o">=</span><span class="n">ecs</span><span class="o">.</span><span class="n">ContainerImage</span><span class="o">.</span><span class="n">from_asset</span><span class="p">(</span><span class="s2">&quot;./examples/batch/&quot;</span><span class="p">),</span>
+                <span class="n">vcpus</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                <span class="n">memory_limit_mib</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch_job</span> <span class="o">=</span> <span class="n">sfn_tasks</span><span class="o">.</span><span class="n">BatchSubmitJob</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="s2">&quot;example_batch_job&quot;</span><span class="p">,</span>
+            <span class="n">job_definition_arn</span><span class="o">=</span><span class="n">job_definition</span><span class="o">.</span><span class="n">job_definition_arn</span><span class="p">,</span>
+            <span class="n">job_name</span><span class="o">=</span><span class="s2">&quot;example_batch_job&quot;</span><span class="p">,</span>
+            <span class="n">job_queue_arn</span><span class="o">=</span><span class="n">job_queue</span><span class="o">.</span><span class="n">job_queue_arn</span><span class="p">,</span>
+        <span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
+</div>
+<input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><label for="__tabbed_1_3">Dockerfile</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">FROM</span> <span class="s">python:3.8-slim</span>
+
+<span class="k">ENTRYPOINT</span> <span class="p">[</span><span class="s2">&quot;echo&quot;</span><span class="p">]</span>
+
+<span class="k">CMD</span> <span class="p">[</span><span class="s2">&quot;hello, world&quot;</span><span class="p">]</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+<input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><label for="__tabbed_1_4">State Machine Screenshot</label><div class="tabbed-content">
+<p><img alt="batch example" src="../../assets/images/batch_example_sfn.jpg" /></p>
 </div>
 </div>
                 
@@ -644,7 +789,7 @@ without necessarily composing them as state machines.</p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../../notes/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../map_jobs/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -653,19 +798,19 @@ without necessarily composing them as state machines.</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              Notes
+              Map Jobs
             </div>
           </div>
         </a>
       
       
-        <a href="../rest/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../../reference/compose/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Event-Driven (API) Workflows
+              compose
             </div>
           </div>
           <div class="md-footer__button md-icon">
