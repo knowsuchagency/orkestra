@@ -39,10 +39,11 @@ rm -rf .venv
 # configure pdm
 
 pdm config -l python.path .venv/bin/python
+pdm config -l use_venv true
 
 # install app library dependencies
 
-pdm install
+pdm install -s :all
 
 # install git hooks
 
