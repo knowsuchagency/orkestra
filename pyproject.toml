@@ -73,6 +73,7 @@ dev = [
     "boto3",
     "twine",
     "mkdocstrings",
+    "aws-cdk.aws_batch",
 ]
 test = [
     "pytest~=6.2",

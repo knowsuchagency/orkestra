@@ -161,9 +161,9 @@ class Compose:
 
         self.enable_powertools = enable_powertools
 
-        self.update_metadata()
+        self._update_metadata()
 
-    def update_metadata(self):
+    def _update_metadata(self):
         if self.func and not isinstance(self.func, (list, tuple)):
             module = self.func.__module__.split(".")
             self.aws_lambda_constructor_kwargs.update(
@@ -195,7 +195,7 @@ class Compose:
 
             self.func = event
 
-            self.update_metadata()
+            self._update_metadata()
 
             return self
 

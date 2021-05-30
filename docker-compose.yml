@@ -1,0 +1,5 @@
+version: "3.8"
+
+services:
+  hello_batch:
+    build: ./examples/batch

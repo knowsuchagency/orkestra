@@ -81,7 +81,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-autoscaling"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.106.1"
 summary = "The CDK Construct Library for AWS::AutoScaling"
 dependencies = [
@@ -113,7 +113,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-autoscaling-hooktargets"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.106.1"
 summary = "Lifecycle hook for AWS AutoScaling"
 dependencies = [
@@ -124,6 +124,24 @@ dependencies = [
     "aws-cdk.aws-sns-subscriptions==1.106.1",
     "aws-cdk.aws-sns==1.106.1",
     "aws-cdk.aws-sqs==1.106.1",
+    "aws-cdk.core==1.106.1",
+    "constructs<4.0.0,>=3.3.69",
+    "jsii<2.0.0,>=1.29.0",
+    "publication>=0.0.3",
+]
+
+[[package]]
+name = "aws-cdk.aws-batch"
+sections = ["dev"]
+version = "1.106.1"
+summary = "The CDK Construct Library for AWS::Batch"
+dependencies = [
+    "aws-cdk.aws-ec2==1.106.1",
+    "aws-cdk.aws-ecr==1.106.1",
+    "aws-cdk.aws-ecs==1.106.1",
+    "aws-cdk.aws-iam==1.106.1",
+    "aws-cdk.aws-secretsmanager==1.106.1",
+    "aws-cdk.aws-ssm==1.106.1",
     "aws-cdk.core==1.106.1",
     "constructs<4.0.0,>=3.3.69",
     "jsii<2.0.0,>=1.29.0",
@@ -164,7 +182,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-cloudfront"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.106.1"
 summary = "The CDK Construct Library for AWS::CloudFront"
 dependencies = [
@@ -353,7 +371,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-ecs"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.106.1"
 summary = "The CDK Construct Library for AWS::ECS"
 dependencies = [
@@ -426,7 +444,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-elasticloadbalancing"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.106.1"
 summary = "The CDK Construct Library for AWS::ElasticLoadBalancing"
 dependencies = [
@@ -502,7 +520,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-globalaccelerator"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.106.1"
 summary = "The CDK Construct Library for AWS::GlobalAccelerator"
 dependencies = [
@@ -646,7 +664,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-route53-targets"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.106.1"
 summary = "The CDK Construct Library for AWS Route53 Alias Targets"
 dependencies = [
@@ -702,7 +720,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-sam"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.106.1"
 summary = "The CDK Construct Library for the AWS Serverless Application Model (SAM) resources"
 dependencies = [
@@ -714,7 +732,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-secretsmanager"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.106.1"
 summary = "The CDK Construct Library for AWS::SecretsManager"
 dependencies = [
@@ -732,7 +750,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-servicediscovery"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.106.1"
 summary = "The CDK Construct Library for AWS::ServiceDiscovery"
 dependencies = [
@@ -776,7 +794,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-sns-subscriptions"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.106.1"
 summary = "CDK Subscription Constructs for AWS SNS"
 dependencies = [
@@ -1252,7 +1270,6 @@ summary = "JSON Matching Expressions"
 name = "joblib"
 sections = ["dev"]
 version = "1.0.1"
-marker = "python_version >= '2.8'"
 summary = "Lightweight pipelining with Python functions"
 
 [[package]]
@@ -1767,7 +1784,7 @@ summary = "Backport of pathlib-compatible object wrapper for zip files"
 
 [metadata]
 lock_version = "2"
-content_hash = "sha256:f4a56a88f473d574eac3b121db5e17cad4d5a8445a500bee5239fe245b8e9753"
+content_hash = "sha256:008586600c36c0b93ade55542040ea04b7aa333405495a0ecc581dd5d0d74edd"
 
 [metadata.files]
 "appdirs 1.4.4" = [
@@ -1809,6 +1826,10 @@ content_hash = "sha256:f4a56a88f473d574eac3b121db5e17cad4d5a8445a500bee5239fe245
 "aws-cdk.aws-autoscaling-hooktargets 1.106.1" = [
     {file = "aws_cdk.aws_autoscaling_hooktargets-1.106.1-py3-none-any.whl", hash = "sha256:b368a7838f397c8af2e8af66f27d02c802df3de29ed5a768676ddca9ac73a7a6"},
     {file = "aws-cdk.aws-autoscaling-hooktargets-1.106.1.tar.gz", hash = "sha256:787b59b05e277ad37b6124b7a55ddddc893a830ab8c28cd24fc87a638d22e5dc"},
+]
+"aws-cdk.aws-batch 1.106.1" = [
+    {file = "aws_cdk.aws_batch-1.106.1-py3-none-any.whl", hash = "sha256:28bc26038f147c42ed6d519afc64feeaf2325f01e981fae6581834a9589871fb"},
+    {file = "aws-cdk.aws-batch-1.106.1.tar.gz", hash = "sha256:8a662f03b9ee99eaba0d0d6e2b2c1bc864aff76855291f3ec9e58a29a0ad1a98"},
 ]
 "aws-cdk.aws-certificatemanager 1.106.1" = [
     {file = "aws_cdk.aws_certificatemanager-1.106.1-py3-none-any.whl", hash = "sha256:312ec3ca0133a43b87a721cd2e8d1ab65bdefbfdd486ca4052b1c049e7a88237"},

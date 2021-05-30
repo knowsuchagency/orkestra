@@ -3,11 +3,16 @@ import os
 from typing import Type
 
 from aws_cdk import aws_apigateway as apigw
+from aws_cdk import aws_batch as batch
+from aws_cdk import aws_ec2 as ec2
+from aws_cdk import aws_ecs as ecs
 from aws_cdk import aws_lambda
 from aws_cdk import aws_lambda_python
 from aws_cdk import aws_stepfunctions as sfn
+from aws_cdk import aws_stepfunctions_tasks as sfn_tasks
 from aws_cdk import core as cdk
 
+from examples.batch_example import banana
 from examples.hello_orkestra import generate_item
 from examples.map_job import ones_and_zeros
 from examples.orchestration import (
@@ -191,6 +196,76 @@ class HelloOrkestra(cdk.Stack):
         )
 
 
+class BatchConstruct(cdk.Construct):
+    def __init__(self, scope, id, **kwargs):
+        super().__init__(scope, id, **kwargs)
+
+        default_vpc = ec2.Vpc.from_lookup(
+            self,
+            "default_vpc",
+            is_default=True,
+        )
+
+        self.compute_resources = batch.ComputeResources(
+            vpc=default_vpc,
+        )
+
+        self.compute_environment = batch.ComputeEnvironment(
+            self,
+            "example_compute_environment",
+            compute_resources=self.compute_resources,
+        )
+
+        self.job_queue = batch.JobQueue(
+            self,
+            "batch_job_queue",
+            compute_environments=[
+                batch.JobQueueComputeEnvironment(
+                    compute_environment=self.compute_environment,
+                    order=1,
+                )
+            ],
+        )
+
+        self.job_definition = batch.JobDefinition(
+            self,
+            "example_job_definition",
+            container=batch.JobDefinitionContainer(
+                image=ecs.ContainerImage.from_asset("./examples/batch/"),
+                vcpus=2,
+                memory_limit_mib=8,
+            ),
+        )
+
+        self.batch_job = sfn_tasks.BatchSubmitJob(
+            self,
+            "example_batch_job",
+            job_definition_arn=self.job_definition.job_definition_arn,
+            job_name="example_batch_job",
+            job_queue_arn=self.job_queue.job_queue_arn,
+        )
+
+
+class BatchExample(cdk.Stack):
+    def __init__(self, scope, id, **kwargs):
+        super().__init__(scope, id, **kwargs)
+
+        batch_job = BatchConstruct(self, "batch_construct").batch_job
+
+        self.lambda_invoke = banana.task(self)
+
+        self.definition = (
+            self.lambda_invoke >> batch_job >> sfn.Succeed(self, "Success!")
+        )
+
+        self.state_machine = sfn.StateMachine(
+            self,
+            "example_batch_sfn",
+            definition=self.definition,
+            state_machine_name="example_batch_state_machine",
+        )
+
+
 class MapJob(cdk.Stack):
     def __init__(self, scope, id, **kwargs):
 
@@ -207,25 +282,41 @@ class App:
 
         self.app = cdk.App()
 
-        self.hello_orkestra = HelloOrkestra(self.app, "helloOrkestra")
+        self.env = cdk.Environment(
+            account=os.environ["CDK_DEFAULT_ACCOUNT"],
+            region=os.getenv(
+                "AWS_DEFAULT_REGION",
+                "us-east-2",
+            ),
+        )
 
-        self.powertools = Powertools(self.app, "powertools")
+        self.hello_orkestra = HelloOrkestra(
+            self.app, "helloOrkestra", env=self.env
+        )
 
-        self.single_lambda = SingleLambda(self.app, "singleLambda")
+        self.powertools = Powertools(self.app, "powertools", env=self.env)
 
-        self.airflowish = Airflowish(self.app, "airflowish")
+        self.single_lambda = SingleLambda(
+            self.app, "singleLambda", env=self.env
+        )
 
-        self.cdk_composition = CdkComposition(self.app, "cdkComposition")
+        self.airflowish = Airflowish(self.app, "airflowish", env=self.env)
 
-        self.rest = RestExample(self.app, "rest")
+        self.cdk_composition = CdkComposition(
+            self.app, "cdkComposition", env=self.env
+        )
 
-        self.map_job = MapJob(self.app, "map")
+        self.rest = RestExample(self.app, "rest", env=self.env)
+
+        self.map_job = MapJob(self.app, "map", env=self.env)
+
+        self.batch = BatchExample(self.app, "batch", env=self.env)
 
         self.added = {}
 
     def add(self, stack: Type[cdk.Stack], id: str, **kwargs):
 
-        stack_instance = stack(self.app, id, **kwargs)
+        stack_instance = stack(self.app, id, env=self.env, **kwargs)
 
         self.added[id] = stack_instance
 
