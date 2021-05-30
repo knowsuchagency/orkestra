@@ -93,8 +93,8 @@ class TestApplication:
 
     def test_invalid_composition(self, app):
         class Invalid(cdk.Stack):
-            def __init__(self, scope, id):
-                super().__init__(scope, id)
+            def __init__(self, scope, id, **kwargs):
+                super().__init__(scope, id, **kwargs)
                 invalid_composition.state_machine(
                     self,
                     "invalid",
@@ -108,8 +108,8 @@ class TestApplication:
 
     def test_nextable(self, app):
         class HasPass(cdk.Stack):
-            def __init__(self, scope, id):
-                super().__init__(scope, id)
+            def __init__(self, scope, id, **kwargs):
+                super().__init__(scope, id, **kwargs)
                 self.pass_ = sfn.Pass(
                     self,
                     "pass_me",
