@@ -1,16 +1,5 @@
 A minimal AWS Batch example.
 
-=== "Business Logic"
-
-    ```python
-    from orkestra import compose
-
-
-    @compose
-    def banana(event, context):
-        return "banana"
-    ```
-
 === "Infrastructure As Code"
 
     ```{.py3 hl_lines="19-21"}
@@ -92,6 +81,17 @@ A minimal AWS Batch example.
                 job_name="example_batch_job",
                 job_queue_arn=job_queue.job_queue_arn,
             )
+    ```
+
+=== "Business Logic"
+
+    ```python
+    from orkestra import compose
+
+
+    @compose
+    def banana(event, context):
+        return "banana"
     ```
 
 === "Dockerfile"
