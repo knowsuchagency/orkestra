@@ -9,6 +9,19 @@ from orkestra import compose
 from orkestra.interfaces import Duration
 
 
+def dag():
+    (
+        generate_item
+        >> add_price
+        >> copy_item
+        >> double_price
+        >> (do_nothing, assert_false)
+        >> say_hello
+        >> [random_int, random_float]
+        >> say_goodbye
+    )
+
+
 class Item(BaseModel):
     id: str
     name: str
@@ -37,19 +50,6 @@ default_args = dict(
     enable_powertools=True,
     timeout=Duration.seconds(6),
 )
-
-
-def dag():
-    (
-        generate_item
-        >> add_price
-        >> copy_item
-        >> double_price
-        >> (do_nothing, assert_false)
-        >> say_hello
-        >> [random_int, random_float]
-        >> say_goodbye
-    )
 
 
 @compose(**default_args)

@@ -46,7 +46,7 @@ It aims to bring a similar development experience to that of Airflow while lever
 
 === "Business Logic"
 
-    ```python
+    ```{.py3 hl_lines="12-22"}
     import random
     from typing import *
     from uuid import uuid4
@@ -56,6 +56,19 @@ It aims to bring a similar development experience to that of Airflow while lever
 
     from orkestra import compose
     from orkestra.interfaces import Duration
+
+
+    def dag():
+        (
+            generate_item
+            >> add_price
+            >> copy_item
+            >> double_price
+            >> (do_nothing, assert_false)
+            >> say_hello
+            >> [random_int, random_float]
+            >> say_goodbye
+        )
 
 
     class Item(BaseModel):
@@ -86,19 +99,6 @@ It aims to bring a similar development experience to that of Airflow while lever
         enable_powertools=True,
         timeout=Duration.seconds(6),
     )
-
-
-    def dag():
-        (
-            generate_item
-            >> add_price
-            >> copy_item
-            >> double_price
-            >> (do_nothing, assert_false)
-            >> say_hello
-            >> [random_int, random_float]
-            >> say_goodbye
-        )
 
 
     @compose(**default_args)
