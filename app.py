@@ -28,6 +28,10 @@ from examples.rest import handler, input_order
 from examples.single_lambda import handler
 from orkestra import coerce
 
+CDK_DEFAULT_ACCOUNT = os.getenv("CDK_DEFAULT_ACCOUNT", "")
+
+AWS_ACCESS = os.getenv("AWS_ACCESS", "false").lower().startswith("t")
+
 
 class SingleLambda(cdk.Stack):
     """Single lambda deployment example."""
@@ -200,6 +204,8 @@ class BatchConstruct(cdk.Construct):
     def __init__(self, scope, id, **kwargs):
         super().__init__(scope, id, **kwargs)
 
+        assert AWS_ACCESS, "Access to AWS necessary to perform lookup"
+
         default_vpc = ec2.Vpc.from_lookup(
             self,
             "default_vpc",
@@ -283,7 +289,7 @@ class App:
         self.app = cdk.App()
 
         self.env = cdk.Environment(
-            account=os.environ["CDK_DEFAULT_ACCOUNT"],
+            account=CDK_DEFAULT_ACCOUNT,
             region=os.getenv(
                 "AWS_DEFAULT_REGION",
                 "us-east-2",
@@ -310,7 +316,9 @@ class App:
 
         self.map_job = MapJob(self.app, "map", env=self.env)
 
-        self.batch = BatchExample(self.app, "batch", env=self.env)
+        if AWS_ACCESS:
+
+            self.batch = BatchExample(self.app, "batch", env=self.env)
 
         self.added = {}
 

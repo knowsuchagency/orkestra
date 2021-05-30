@@ -33,6 +33,19 @@ from orkestra import compose
 from orkestra.interfaces import Duration
 
 
+def dag():
+    (
+        generate_item
+        >> add_price
+        >> copy_item
+        >> double_price
+        >> (do_nothing, assert_false)
+        >> say_hello
+        >> [random_int, random_float]
+        >> say_goodbye
+    )
+
+
 class Item(BaseModel):
     id: str
     name: str
@@ -76,10 +89,11 @@ def generate_item(event, context):
 def add_price(item: Item, context):
     price = 3.14
     logger.info(
-        "adding price to item", extra={
+        "adding price to item",
+        extra={
             "item": item.dict(),
             "price": price,
-        }
+        },
     )
     item.price = price
     return item.dict()
@@ -127,16 +141,7 @@ def random_float(event, context):
     return float(random_int(event, context))
 
 
-(
-    generate_item
-    >> add_price
-    >> copy_item
-    >> double_price
-    >> (do_nothing, assert_false)
-    >> say_hello
-    >> [random_int, random_float]
-    >> say_goodbye
-)
+dag()
 ```
 
 *app.py*
