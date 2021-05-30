@@ -206,28 +206,28 @@ class BatchConstruct(cdk.Construct):
             is_default=True,
         )
 
-        self.compute_resources = batch.ComputeResources(
+        compute_resources = batch.ComputeResources(
             vpc=default_vpc,
         )
 
-        self.compute_environment = batch.ComputeEnvironment(
+        compute_environment = batch.ComputeEnvironment(
             self,
             "example_compute_environment",
-            compute_resources=self.compute_resources,
+            compute_resources=compute_resources,
         )
 
-        self.job_queue = batch.JobQueue(
+        job_queue = batch.JobQueue(
             self,
             "batch_job_queue",
             compute_environments=[
                 batch.JobQueueComputeEnvironment(
-                    compute_environment=self.compute_environment,
+                    compute_environment=compute_environment,
                     order=1,
                 )
             ],
         )
 
-        self.job_definition = batch.JobDefinition(
+        job_definition = batch.JobDefinition(
             self,
             "example_job_definition",
             container=batch.JobDefinitionContainer(
@@ -240,9 +240,9 @@ class BatchConstruct(cdk.Construct):
         self.batch_job = sfn_tasks.BatchSubmitJob(
             self,
             "example_batch_job",
-            job_definition_arn=self.job_definition.job_definition_arn,
+            job_definition_arn=job_definition.job_definition_arn,
             job_name="example_batch_job",
-            job_queue_arn=self.job_queue.job_queue_arn,
+            job_queue_arn=job_queue.job_queue_arn,
         )
 
 
