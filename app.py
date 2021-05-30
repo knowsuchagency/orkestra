@@ -28,7 +28,9 @@ from examples.rest import handler, input_order
 from examples.single_lambda import handler
 from orkestra import coerce
 
-AWS_ACCESS = os.environ.get("AWS_ACCESS", "false").lower().startswith("t")
+CDK_DEFAULT_ACCOUNT = os.getenv("CDK_DEFAULT_ACCOUNT", "")
+
+AWS_ACCESS = os.getenv("AWS_ACCESS", "false").lower().startswith("t")
 
 
 class SingleLambda(cdk.Stack):
@@ -287,7 +289,7 @@ class App:
         self.app = cdk.App()
 
         self.env = cdk.Environment(
-            account=os.environ["CDK_DEFAULT_ACCOUNT"],
+            account=CDK_DEFAULT_ACCOUNT,
             region=os.getenv(
                 "AWS_DEFAULT_REGION",
                 "us-east-2",
