@@ -819,7 +819,15 @@
 <span class="normal">109</span>
 <span class="normal">110</span>
 <span class="normal">111</span>
-<span class="normal">112</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">random</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">uuid4</span>
 
@@ -829,6 +837,19 @@
 <span class="kn">from</span> <span class="nn">orkestra</span> <span class="kn">import</span> <span class="n">compose</span>
 <span class="kn">from</span> <span class="nn">orkestra.interfaces</span> <span class="kn">import</span> <span class="n">Duration</span>
 
+
+<span class="hll"><span class="k">def</span> <span class="nf">dag</span><span class="p">():</span>
+</span><span class="hll">    <span class="p">(</span>
+</span><span class="hll">        <span class="n">generate_item</span>
+</span><span class="hll">        <span class="o">&gt;&gt;</span> <span class="n">add_price</span>
+</span><span class="hll">        <span class="o">&gt;&gt;</span> <span class="n">copy_item</span>
+</span><span class="hll">        <span class="o">&gt;&gt;</span> <span class="n">double_price</span>
+</span><span class="hll">        <span class="o">&gt;&gt;</span> <span class="p">(</span><span class="n">do_nothing</span><span class="p">,</span> <span class="n">assert_false</span><span class="p">)</span>
+</span><span class="hll">        <span class="o">&gt;&gt;</span> <span class="n">say_hello</span>
+</span><span class="hll">        <span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">random_int</span><span class="p">,</span> <span class="n">random_float</span><span class="p">]</span>
+</span><span class="hll">        <span class="o">&gt;&gt;</span> <span class="n">say_goodbye</span>
+</span><span class="hll">    <span class="p">)</span>
+</span>
 
 <span class="k">class</span> <span class="nc">Item</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>
@@ -873,7 +894,11 @@
 <span class="k">def</span> <span class="nf">add_price</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Item</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
     <span class="n">price</span> <span class="o">=</span> <span class="mf">3.14</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-        <span class="s2">&quot;adding price to item&quot;</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;item&quot;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">dict</span><span class="p">(),</span> <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="n">price</span><span class="p">}</span>
+        <span class="s2">&quot;adding price to item&quot;</span><span class="p">,</span>
+        <span class="n">extra</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;item&quot;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">dict</span><span class="p">(),</span>
+            <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="n">price</span><span class="p">,</span>
+        <span class="p">},</span>
     <span class="p">)</span>
     <span class="n">item</span><span class="o">.</span><span class="n">price</span> <span class="o">=</span> <span class="n">price</span>
     <span class="k">return</span> <span class="n">item</span><span class="o">.</span><span class="n">dict</span><span class="p">()</span>
@@ -921,16 +946,7 @@
     <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">random_int</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">))</span>
 
 
-<span class="p">(</span>
-    <span class="n">generate_item</span>
-    <span class="o">&gt;&gt;</span> <span class="n">add_price</span>
-    <span class="o">&gt;&gt;</span> <span class="n">copy_item</span>
-    <span class="o">&gt;&gt;</span> <span class="n">double_price</span>
-    <span class="o">&gt;&gt;</span> <span class="p">(</span><span class="n">do_nothing</span><span class="p">,</span> <span class="n">assert_false</span><span class="p">)</span>
-    <span class="o">&gt;&gt;</span> <span class="n">say_hello</span>
-    <span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">random_int</span><span class="p">,</span> <span class="n">random_float</span><span class="p">]</span>
-    <span class="o">&gt;&gt;</span> <span class="n">say_goodbye</span>
-<span class="p">)</span>
+<span class="n">dag</span><span class="p">()</span>
 </code></pre></div>
 </td></tr></table>
 </div>
