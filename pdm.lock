@@ -1038,7 +1038,7 @@ dependencies = [
 
 [[package]]
 name = "boto3"
-sections = ["dev", "powertools"]
+sections = ["dev", "powertools", "test"]
 version = "1.17.82"
 summary = "The AWS SDK for Python"
 dependencies = [
@@ -1049,7 +1049,7 @@ dependencies = [
 
 [[package]]
 name = "botocore"
-sections = ["dev", "powertools"]
+sections = ["dev", "powertools", "test"]
 version = "1.20.82"
 summary = "Low-level, data-driven core of boto 3."
 dependencies = [
@@ -1262,7 +1262,7 @@ dependencies = [
 
 [[package]]
 name = "jmespath"
-sections = ["dev", "powertools"]
+sections = ["dev", "powertools", "test"]
 version = "0.10.0"
 summary = "JSON Matching Expressions"
 
@@ -1270,6 +1270,7 @@ summary = "JSON Matching Expressions"
 name = "joblib"
 sections = ["dev"]
 version = "1.0.1"
+marker = "python_version >= '2.8'"
 summary = "Lightweight pipelining with Python functions"
 
 [[package]]
@@ -1576,7 +1577,7 @@ dependencies = [
 
 [[package]]
 name = "python-dateutil"
-sections = ["cdk", "dev", "powertools"]
+sections = ["cdk", "dev", "powertools", "test"]
 version = "2.8.1"
 summary = "Extensions to the standard Python datetime module"
 dependencies = [
@@ -1652,7 +1653,7 @@ summary = "Validating URI References per RFC 3986"
 
 [[package]]
 name = "s3transfer"
-sections = ["dev", "powertools"]
+sections = ["dev", "powertools", "test"]
 version = "0.4.2"
 summary = "An Amazon S3 Transfer Manager"
 dependencies = [
@@ -1672,7 +1673,7 @@ dependencies = [
 
 [[package]]
 name = "six"
-sections = ["cdk", "dev", "powertools"]
+sections = ["cdk", "dev", "powertools", "test"]
 version = "1.16.0"
 summary = "Python 2 and 3 compatibility utilities"
 
@@ -1731,7 +1732,7 @@ summary = "Backported and Experimental Type Hints for Python 3.5+"
 
 [[package]]
 name = "urllib3"
-sections = ["dev", "powertools"]
+sections = ["dev", "powertools", "test"]
 version = "1.26.5"
 summary = "HTTP library with thread-safe connection pooling, file post, and more."
 
@@ -1784,7 +1785,7 @@ summary = "Backport of pathlib-compatible object wrapper for zip files"
 
 [metadata]
 lock_version = "2"
-content_hash = "sha256:008586600c36c0b93ade55542040ea04b7aa333405495a0ecc581dd5d0d74edd"
+content_hash = "sha256:c2180136848b96d837ac2592640b5ae34b7c65d8a3c935b40a9a987bb6f92fe4"
 
 [metadata.files]
 "appdirs 1.4.4" = [

@@ -5,7 +5,7 @@ import pytest
 
 def test_call_list_raises_error(generic_event, generic_context):
     f = compose(func=[])
-    with pytest.raises(TypeError, match="can't call a list of functions"):
+    with pytest.raises(TypeError, match=".*is not callable"):
         f(generic_event, generic_context)
 
 
