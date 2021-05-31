@@ -54,7 +54,7 @@ class Compose:
         output_path: Optional[str] = None,
         parameters: Optional[Mapping[str, Any]] = None,
         result_path: Optional[str] = None,
-        result_selector: Optional[Mapping[str, any]] = None,
+        result_selector: Optional[Mapping[str, Any]] = None,
         client_context: Optional[str] = None,
         invocation_type: Optional[LambdaInvocationType] = None,
         payload_response_only: Optional[bool] = None,
@@ -64,6 +64,10 @@ class Compose:
         integration_pattern: Optional[IntegrationPattern] = None,
         sfn_timeout: Optional[Duration] = None,
         tracing: Optional[Tracing] = None,
+        state_machine_type: Optional[
+            "aws_cdk.aws_stepfunctions.StateMachineType"
+        ] = None,
+        state_machine_name: Optional[str] = None,
         **aws_lambda_constructor_kwargs,
     ):
         """
@@ -101,6 +105,8 @@ class Compose:
             integration_pattern: AWS Step Functions integrates with services directly in the Amazon States Language. You can control these AWS services using service integration patterns Default: IntegrationPattern.REQUEST_RESPONSE
             sfn_timeout: Timeout for the state machine. Default: - None
             tracing: Enable AWS X-Ray Tracing for Lambda Function. Default: Tracing.Enabled
+            state_machine_type: Type of the state machine. Default: StateMachineType.STANDARD
+            state_machine_name: A name for the state machine. Default: A name is automatically generated
             **aws_lambda_constructor_kwargs: pass directly to sfn.PythonFunction
 
         For cdk params see https://docs.aws.amazon.com/cdk/api/latest/python/modules.html
@@ -153,6 +159,11 @@ class Compose:
             "envelope": envelope,
         }
 
+        self.state_machine_kwargs = {
+            "state_machine_type": state_machine_type,
+            "state_machine_name": state_machine_name,
+        }
+
         self.aws_lambda_constructor_kwargs.update(
             timeout=timeout,
             runtime=runtime,
@@ -160,6 +171,8 @@ class Compose:
         )
 
         self.enable_powertools = enable_powertools
+
+        self._lambda_function = None
 
         self._update_metadata()
 
@@ -174,9 +187,9 @@ class Compose:
 
     def __call__(self, event, context=None):
 
-        if isinstance(self.func, (list, tuple)):
+        if self.func and not callable(self.func):
 
-            raise TypeError("can't call a list of functions")
+            raise TypeError(f"{self.func} is not callable")
 
         if self.func is not None:
 
@@ -201,10 +214,10 @@ class Compose:
 
     def __repr__(self) -> str:
 
-        if isinstance(self.func, (list, tuple)):
-            func = repr(self.func)
+        if hasattr(self.func, "__name__"):
+            func = self.func.__name__
         else:
-            func = self.func.__name__ if self.func is not None else None
+            func = repr(self.func)
 
         return f"Compose(func={func})"
 
@@ -272,12 +285,18 @@ class Compose:
 
         """
 
-        return self._render_lambda(
+        if self._lambda_function is not None:
+
+            return self._lambda_function
+
+        self._lambda_function = self._render_lambda(
             self,
             scope,
             id=id,
             **kwargs,
         )
+
+        return self._lambda_function
 
     def task(
         self,
@@ -298,13 +317,11 @@ class Compose:
 
             id = id or _incremental_id(self.func.__name__)
 
-            map_kwargs = dict(id=id)
+            map_kwargs = {
+                k: v for k, v in self.map_job_kwargs.items() if v is not None
+            }
 
-            map_kwargs.update(
-                {k: v for k, v in self.map_job_kwargs.items() if v is not None}
-            )
-
-            task = sfn.Map(scope, **map_kwargs)
+            task = sfn.Map(scope, id, **map_kwargs)
 
             self.lambda_fn = self.aws_lambda(
                 scope,
@@ -344,39 +361,7 @@ class Compose:
 
             task.iterator(invoke_lambda)
 
-        elif not isinstance(self.func, (list, tuple)):
-
-            id = id or _incremental_id(self.func.__name__)
-
-            self.lambda_fn = self.aws_lambda(
-                scope,
-                function_name=function_name,
-            )
-
-            keyword_args = dict(
-                lambda_function=self.lambda_fn,
-                payload_response_only=payload_response_only,
-            )
-
-            keyword_args.update(kwargs)
-
-            keyword_args.update(
-                {
-                    k: v
-                    for k, v in self.lambda_invoke_kwargs.items()
-                    if v is not None
-                }
-            )
-
-            _cdk_patch(keyword_args)
-
-            task = sfn_tasks.LambdaInvoke(
-                scope,
-                id,
-                **keyword_args,
-            )
-
-        else:
+        elif isinstance(self.func, (list, tuple)):
 
             id = "parallelize " + (
                 "".join([c.func.__name__ for c in self.func])
@@ -424,6 +409,38 @@ class Compose:
                     )
 
                 task.branch(branch)
+
+        else:
+
+            id = id or _incremental_id(self.func.__name__)
+
+            self.lambda_fn = self.aws_lambda(
+                scope,
+                function_name=function_name,
+            )
+
+            keyword_args = dict(
+                lambda_function=self.lambda_fn,
+                payload_response_only=payload_response_only,
+            )
+
+            keyword_args.update(kwargs)
+
+            keyword_args.update(
+                {
+                    k: v
+                    for k, v in self.lambda_invoke_kwargs.items()
+                    if v is not None
+                }
+            )
+
+            _cdk_patch(keyword_args)
+
+            task = sfn_tasks.LambdaInvoke(
+                scope,
+                id,
+                **keyword_args,
+            )
 
         return coerce(task)
 
@@ -480,16 +497,20 @@ class Compose:
         id: Optional[str] = None,
         tracing_enabled: bool = True,
         state_machine_name: Optional[str] = None,
+        state_machine_type: Optional[
+            "aws_cdk.aws_stepfunctions.StateMachineType"
+        ] = None,
         **kwargs,
     ):
         """
         Return step functions state machine cdk construct.
 
         Args:
-            scope:
-            id:
-            tracing_enabled:
-            state_machine_name:
+            scope: cdk scope
+            id: cdk id
+            tracing_enabled: xray tracing
+            state_machine_name: name of state machine
+            state_machine_type: express or standard
             **kwargs:
 
         Returns:
@@ -500,12 +521,23 @@ class Compose:
 
         id = id or _incremental_id(f"{self.func.__name__}_sfn")
 
+        kwargs.update(
+            {
+                k: v
+                for k, v in self.state_machine_kwargs.items()
+                if v is not None
+            }
+        )
+
+        _cdk_patch(kwargs)
+
         return sfn.StateMachine(
             scope,
             id,
             definition=self.definition(scope),
             tracing_enabled=tracing_enabled,
             state_machine_name=state_machine_name,
+            state_machine_type=state_machine_type,
             **kwargs,
         )
 
@@ -520,11 +552,12 @@ class Compose:
         month: Optional[str] = None,
         week_day: Optional[str] = None,
         year: Optional[str] = None,
-        function_name: Optional[str] = None,
         state_machine_name: Optional[str] = None,
-        dead_letter_queue_enabled: bool = False,
+        state_machine_type: Optional[
+            "aws_cdk.aws_stepfunctions.StateMachineType"
+        ] = None,
         **kwargs,
-    ):
+    ) -> tuple:
         """
         Schedule lambda or state machine to run on interval using EventBridge scheduled event rule.
 
@@ -538,12 +571,11 @@ class Compose:
             month: month of year
             week_day: week day
             year: year
-            function_name: the function name, if just a lambda
             state_machine_name: the state machine name, if downstream
-            dead_letter_queue_enabled: whether the lamdba will have a DLQ
+            state_machine_type: type of state machine; express or standard
             **kwargs:
 
-        Returns: EventBridge schedule rule
+        Returns (tuple): EventBridge schedule rule, SFN State Machine
 
         """
         from aws_cdk import aws_events as eventbridge
@@ -570,23 +602,18 @@ class Compose:
             **kwargs,
         )
 
-        if not self.downstream:
-            fn = self.aws_lambda(
-                scope,
-                function_name=function_name,
-                dead_letter_queue_enabled=dead_letter_queue_enabled,
-            )
-            target = eventbridge_targets.LambdaFunction(handler=fn)
-        else:
-            state_machine = self.state_machine(
-                scope,
-                state_machine_name=state_machine_name,
-            )
-            target = eventbridge_targets.SfnStateMachine(machine=state_machine)
+        state_machine = self.state_machine(
+            scope,
+            state_machine_name=state_machine_name,
+            state_machine_type=state_machine_type,
+            **kwargs,
+        )
+
+        target = eventbridge_targets.SfnStateMachine(machine=state_machine)
 
         rule.add_target(target)
 
-        return rule
+        return rule, state_machine
 
 
 def powertools(

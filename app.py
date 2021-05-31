@@ -28,6 +28,7 @@ from examples.rest import handler, input_order
 from examples.single_lambda import handler
 from orkestra import coerce
 
+
 CDK_DEFAULT_ACCOUNT = os.getenv("CDK_DEFAULT_ACCOUNT", "")
 
 AWS_ACCESS = os.getenv("AWS_ACCESS", "false").lower().startswith("t")
@@ -42,11 +43,21 @@ class SingleLambda(cdk.Stack):
 
         self.lmb = handler.aws_lambda(self)
 
-        self.state_machine = handler.state_machine(
-            self, state_machine_name="simple_state_machine_example"
+        handler.schedule(
+            self,
+            state_machine_name="simple_scheduled_state_machine_example",
         )
 
-        handler.schedule(self)
+        self.state_machine = handler.state_machine(
+            self,
+            state_machine_name="simple_state_machine_example",
+            state_machine_type=sfn.StateMachineType.EXPRESS,
+        )
+
+        assert (
+            self.state_machine.state_machine_type
+            == sfn.StateMachineType.EXPRESS
+        )
 
 
 class Airflowish(cdk.Stack):

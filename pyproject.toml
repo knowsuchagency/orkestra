@@ -76,10 +76,11 @@ dev = [
     "aws-cdk.aws_batch",
 ]
 test = [
-    "pytest~=6.2",
+    "pytest",
     "coverage",
     "pytest-cov",
     "hypothesis",
+    "boto3",
 ]
 
 [tool.pytest.ini_options]
@@ -131,7 +132,9 @@ pdm run pypi || exit 0
 
 docs = "mkdocs serve"
 
-test = "pytest tests/"
+unit-tests = "pytest tests/unit/"
+
+integration-tests = "pytest tests/integration/"
 
 api = "uvicorn examples.rest:app --reload"
 

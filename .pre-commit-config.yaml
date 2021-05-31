@@ -26,5 +26,5 @@ repos:
       - id: test
         name: unit tests
         language: system
-        entry: pdm run test -m 'not slow'
+        entry: pdm run unit-tests -m 'not slow'
         pass_filenames: false
