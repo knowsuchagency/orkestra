@@ -187,7 +187,7 @@ class Compose:
 
     def __call__(self, event, context=None):
 
-        if self.func and not callable(self.func):
+        if self.func is not None and not callable(self.func):
 
             raise TypeError(f"{self.func} is not callable")
 
