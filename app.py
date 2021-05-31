@@ -54,11 +54,6 @@ class SingleLambda(cdk.Stack):
             state_machine_type=sfn.StateMachineType.EXPRESS,
         )
 
-        assert (
-            self.state_machine.state_machine_type
-            == sfn.StateMachineType.EXPRESS
-        )
-
 
 class Airflowish(cdk.Stack):
     """
