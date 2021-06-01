@@ -34,3 +34,26 @@ def _cdk_patch(kwargs: dict):
             kwargs[key] = value.cdk_construct
 
     return kwargs
+
+
+def _coalesce(*dictionaries: dict, **kwargs):
+    """
+    Coalesce multiple dictionaries into one, passing only non-None arguments.
+    """
+
+    def filter_none(dict):
+        return {k: v for k, v in dict.items() if v is not None}
+
+    result, *dictionaries = dictionaries
+
+    result = result.copy()
+
+    for d in dictionaries:
+
+        result.update(filter_none(d))
+
+    result.update(filter_none(kwargs))
+
+    _cdk_patch(result)
+
+    return result
