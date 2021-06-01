@@ -13,6 +13,10 @@ from orkestra.interfaces import (
 from orkestra.utils import coerce, _cdk_patch
 from orkestra.exceptions import CompositionError
 
+StateMachineStr = Literal["EXPRESS", "STANDARD"]
+
+SfnType = Union[StateMachineStr, "aws_cdk.aws_stepfunctions.StateMachineType"]
+
 OptionalFn = Optional[Union[Callable, Iterable[Callable]]]
 
 
@@ -64,9 +68,7 @@ class Compose:
         integration_pattern: Optional[IntegrationPattern] = None,
         sfn_timeout: Optional[Duration] = None,
         tracing: Optional[Tracing] = None,
-        state_machine_type: Optional[
-            "aws_cdk.aws_stepfunctions.StateMachineType"
-        ] = None,
+        state_machine_type: Optional[SfnType] = None,
         state_machine_name: Optional[str] = None,
         **aws_lambda_constructor_kwargs,
     ):
@@ -328,17 +330,11 @@ class Compose:
                 function_name=function_name,
             )
 
-            keyword_args = dict(
-                lambda_function=self.lambda_fn,
-                payload_response_only=payload_response_only,
-            )
+            keyword_args = self.lambda_invoke_kwargs.copy()
 
             keyword_args.update(
-                {
-                    k: v
-                    for k, v in self.lambda_invoke_kwargs.items()
-                    if v is not None
-                }
+                lambda_function=self.lambda_fn,
+                payload_response_only=payload_response_only,
             )
 
             _cdk_patch(keyword_args)
@@ -376,19 +372,15 @@ class Compose:
 
                 lambda_fn = fn.aws_lambda(scope)
 
-                keyword_args = dict(
+                keyword_args = self.lambda_invoke_kwargs.copy()
+
+                keyword_args.update(
                     lambda_function=lambda_fn,
                     payload_response_only=payload_response_only,
                 )
 
-                keyword_args.update(kwargs)
-
                 keyword_args.update(
-                    {
-                        k: v
-                        for k, v in self.lambda_invoke_kwargs.items()
-                        if v is not None
-                    }
+                    {k: v for k, v in kwargs.items() if v is not None}
                 )
 
                 _cdk_patch(keyword_args)
@@ -419,19 +411,11 @@ class Compose:
                 function_name=function_name,
             )
 
-            keyword_args = dict(
-                lambda_function=self.lambda_fn,
-                payload_response_only=payload_response_only,
-            )
-
-            keyword_args.update(kwargs)
+            keyword_args = self.lambda_invoke_kwargs.copy()
 
             keyword_args.update(
-                {
-                    k: v
-                    for k, v in self.lambda_invoke_kwargs.items()
-                    if v is not None
-                }
+                lambda_function=self.lambda_fn,
+                payload_response_only=payload_response_only,
             )
 
             _cdk_patch(keyword_args)
@@ -497,9 +481,7 @@ class Compose:
         id: Optional[str] = None,
         tracing_enabled: bool = True,
         state_machine_name: Optional[str] = None,
-        state_machine_type: Optional[
-            "aws_cdk.aws_stepfunctions.StateMachineType"
-        ] = None,
+        state_machine_type: Optional[SfnType] = None,
         **kwargs,
     ):
         """
@@ -521,24 +503,33 @@ class Compose:
 
         id = id or _incremental_id(f"{self.func.__name__}_sfn")
 
+        state_machine_kwargs = self.state_machine_kwargs.copy()
+
         kwargs.update(
-            {
-                k: v
-                for k, v in self.state_machine_kwargs.items()
-                if v is not None
-            }
+            state_machine_name=state_machine_name,
+            state_machine_type=state_machine_type,
         )
 
-        _cdk_patch(kwargs)
+        state_machine_kwargs.update(
+            {k: v for k, v in kwargs.items() if v is not None}
+        )
+
+        _cdk_patch(state_machine_kwargs)
+
+        state_machine_type = state_machine_kwargs.get("state_machine_type")
+
+        if isinstance(state_machine_type, str):
+
+            state_machine_type = sfn.StateMachineType[state_machine_type]
+
+            state_machine_kwargs["state_machine_type"] = state_machine_type
 
         return sfn.StateMachine(
             scope,
             id,
             definition=self.definition(scope),
             tracing_enabled=tracing_enabled,
-            state_machine_name=state_machine_name,
-            state_machine_type=state_machine_type,
-            **kwargs,
+            **state_machine_kwargs,
         )
 
     def schedule(
@@ -553,9 +544,7 @@ class Compose:
         week_day: Optional[str] = None,
         year: Optional[str] = None,
         state_machine_name: Optional[str] = None,
-        state_machine_type: Optional[
-            "aws_cdk.aws_stepfunctions.StateMachineType"
-        ] = None,
+        state_machine_type: Optional[SfnType] = None,
         **kwargs,
     ) -> tuple:
         """
