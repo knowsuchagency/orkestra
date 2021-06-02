@@ -7,6 +7,7 @@ timeout_seconds = 10
 @compose(
     timeout=Duration.seconds(timeout_seconds),
     tracing=Tracing.PASS_THROUGH,
+    state_machine_type="EXPRESS",
 )
 def hello_world(event, context):
     return "hello, world"

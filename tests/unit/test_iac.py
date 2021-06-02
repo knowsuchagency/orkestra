@@ -138,3 +138,33 @@ class TestApplication:
         ] = stack.lmb.node.default_child.tracing_config._delegates
 
         assert tracing_config.mode == "PassThrough"
+
+    @staticmethod
+    def test_state_machine_type(app):
+        class StateMachineTest(cdk.Stack):
+            def __init__(self, scope, id, **kwargs):
+                super().__init__(scope, id, **kwargs)
+                self.sm1 = hello_world.state_machine(self)
+                self.sm2 = hello_world.state_machine(
+                    self, state_machine_type="STANDARD"
+                )
+                self.sm3 = hello_world.state_machine(
+                    self, state_machine_type=sfn.StateMachineType.STANDARD
+                )
+
+                assert (
+                    self.sm1.state_machine_type == sfn.StateMachineType.EXPRESS
+                )
+
+                assert self.sm2 is not self.sm3
+                assert (
+                    self.sm2.state_machine_type
+                    == sfn.StateMachineType.STANDARD
+                )
+                assert (
+                    self.sm2.state_machine_type == self.sm3.state_machine_type
+                )
+
+        stack_name = "stateMachinetest"
+
+        app.add(StateMachineTest, stack_name)

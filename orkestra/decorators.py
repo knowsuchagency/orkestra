@@ -10,8 +10,12 @@ from orkestra.interfaces import (
     IntegrationPattern,
     Tracing,
 )
-from orkestra.utils import coerce, _cdk_patch
+from orkestra.utils import coerce, _coalesce
 from orkestra.exceptions import CompositionError
+
+StateMachineStr = Literal["EXPRESS", "STANDARD"]
+
+SfnType = Union[StateMachineStr, "aws_cdk.aws_stepfunctions.StateMachineType"]
 
 OptionalFn = Optional[Union[Callable, Iterable[Callable]]]
 
@@ -31,21 +35,42 @@ def _incremental_id(id):
 
 
 class Compose:
+    _powertools_defaults = {
+        "log_event": True,
+        "capture_response": True,
+        "capture_error": True,
+        "raise_on_empty_metrics": False,
+        "capture_cold_start_metric": True,
+    }
+
+    _sfn_task_defaults = {
+        "payload_response_only": True,
+    }
+
+    @property
+    def _aws_lambda_defaults(self):
+        from aws_cdk.aws_lambda import Runtime, Tracing
+
+        return {
+            "runtime": Runtime.PYTHON_3_8,
+            "tracing": Tracing.ACTIVE,
+        }
+
     def __init__(
         self,
         func: OptionalFn = None,
         enable_powertools: bool = False,
-        log_event: bool = True,
-        capture_response: bool = True,
-        capture_error: bool = True,
-        raise_on_empty_metrics: bool = False,
-        capture_cold_start_metric: bool = True,
+        is_map_job: bool = False,
+        capture_map_errors: bool = False,
+        log_event: Optional[bool] = None,
+        capture_response: Optional[bool] = None,
+        capture_error: Optional[bool] = None,
+        raise_on_empty_metrics: Optional[bool] = None,
+        capture_cold_start_metric: Optional[bool] = None,
         default_dimensions: Optional[dict] = None,
         model: Optional["pydantic.BaseModel"] = None,
         envelope: Optional["pydantic.BaseModel"] = None,
         timeout: Optional[Duration] = None,
-        is_map_job: bool = False,
-        capture_map_errors: bool = False,
         runtime: Optional[Runtime] = None,
         comment: Optional[str] = None,
         input_path: Optional[str] = None,
@@ -64,9 +89,7 @@ class Compose:
         integration_pattern: Optional[IntegrationPattern] = None,
         sfn_timeout: Optional[Duration] = None,
         tracing: Optional[Tracing] = None,
-        state_machine_type: Optional[
-            "aws_cdk.aws_stepfunctions.StateMachineType"
-        ] = None,
+        state_machine_type: Optional[SfnType] = None,
         state_machine_name: Optional[str] = None,
         **aws_lambda_constructor_kwargs,
     ):
@@ -132,32 +155,36 @@ class Compose:
             "parameters": parameters,
         }
 
-        self.lambda_invoke_kwargs = {
-            "client_context": client_context,
-            "invocation_type": invocation_type,
-            "payload_response_only": payload_response_only,
-            "retry_on_service_exceptions": retry_on_service_exceptions,
-            "heartbeat": heartbeat,
-            "integration_pattern": integration_pattern,
-            "timeout": sfn_timeout,
-            "comment": comment,
-            "input_path": input_path,
-            "output_path": output_path,
-            "result_path": result_path,
-            "result_selector": result_selector,
-            "qualifier": qualifier,
-        }
+        self.lambda_invoke_kwargs = _coalesce(
+            self._sfn_task_defaults,
+            {
+                "client_context": client_context,
+                "invocation_type": invocation_type,
+                "payload_response_only": payload_response_only,
+                "retry_on_service_exceptions": retry_on_service_exceptions,
+                "heartbeat": heartbeat,
+                "integration_pattern": integration_pattern,
+                "timeout": sfn_timeout,
+                "comment": comment,
+                "input_path": input_path,
+                "output_path": output_path,
+                "result_path": result_path,
+                "result_selector": result_selector,
+                "qualifier": qualifier,
+            },
+        )
 
-        self.powertools_kwargs = {
-            "log_event": log_event,
-            "capture_error": capture_error,
-            "capture_response": capture_response,
-            "capture_cold_start_metric": capture_cold_start_metric,
-            "raise_on_empty_metrics": raise_on_empty_metrics,
-            "default_dimensions": default_dimensions,
-            "model": model,
-            "envelope": envelope,
-        }
+        self.powertools_kwargs = _coalesce(
+            self._powertools_defaults,
+            default_dimensions=default_dimensions,
+            model=model,
+            envelope=envelope,
+            log_event=log_event,
+            capture_response=capture_response,
+            capture_error=capture_error,
+            raise_on_empty_metrics=raise_on_empty_metrics,
+            capture_cold_start_metric=capture_cold_start_metric,
+        )
 
         self.state_machine_kwargs = {
             "state_machine_type": state_machine_type,
@@ -236,35 +263,20 @@ class Compose:
         **kwargs,
     ):
 
-        from aws_cdk import aws_lambda, aws_lambda_python
-
-        keyword_args = {
-            **composable.aws_lambda_constructor_kwargs,
-            **kwargs,
-        }
-
-        _cdk_patch(keyword_args)
-
-        if keyword_args.get("runtime") is None:
-
-            keyword_args.update(
-                runtime=aws_lambda.Runtime.PYTHON_3_8,
-            )
-
-        if keyword_args.get("tracing") is None:
-
-            keyword_args.update(
-                tracing=aws_lambda.Tracing.ACTIVE,
-            )
+        from aws_cdk.aws_lambda_python import PythonFunction
 
         id = id or _incremental_id(composable.func.__name__ + "_fn")
 
-        keyword_args = {k: v for k, v in keyword_args.items() if v is not None}
+        kwargs = _coalesce(
+            composable._aws_lambda_defaults,
+            composable.aws_lambda_constructor_kwargs,
+            kwargs,
+        )
 
-        return aws_lambda_python.PythonFunction(
+        return PythonFunction(
             scope,
             id,
-            **keyword_args,
+            **kwargs,
         )
 
     def aws_lambda(
@@ -317,9 +329,7 @@ class Compose:
 
             id = id or _incremental_id(self.func.__name__)
 
-            map_kwargs = {
-                k: v for k, v in self.map_job_kwargs.items() if v is not None
-            }
+            map_kwargs = _coalesce(self.map_job_kwargs)
 
             task = sfn.Map(scope, id, **map_kwargs)
 
@@ -328,20 +338,12 @@ class Compose:
                 function_name=function_name,
             )
 
-            keyword_args = dict(
+            keyword_args = _coalesce(
+                self.lambda_invoke_kwargs,
                 lambda_function=self.lambda_fn,
                 payload_response_only=payload_response_only,
+                **kwargs,
             )
-
-            keyword_args.update(
-                {
-                    k: v
-                    for k, v in self.lambda_invoke_kwargs.items()
-                    if v is not None
-                }
-            )
-
-            _cdk_patch(keyword_args)
 
             task_id = f"invoke_{id}"
 
@@ -376,22 +378,12 @@ class Compose:
 
                 lambda_fn = fn.aws_lambda(scope)
 
-                keyword_args = dict(
+                keyword_args = _coalesce(
+                    self.lambda_invoke_kwargs,
                     lambda_function=lambda_fn,
                     payload_response_only=payload_response_only,
+                    **kwargs,
                 )
-
-                keyword_args.update(kwargs)
-
-                keyword_args.update(
-                    {
-                        k: v
-                        for k, v in self.lambda_invoke_kwargs.items()
-                        if v is not None
-                    }
-                )
-
-                _cdk_patch(keyword_args)
 
                 branch = sfn_tasks.LambdaInvoke(
                     scope,
@@ -419,22 +411,12 @@ class Compose:
                 function_name=function_name,
             )
 
-            keyword_args = dict(
+            keyword_args = _coalesce(
+                self.lambda_invoke_kwargs,
                 lambda_function=self.lambda_fn,
                 payload_response_only=payload_response_only,
+                **kwargs,
             )
-
-            keyword_args.update(kwargs)
-
-            keyword_args.update(
-                {
-                    k: v
-                    for k, v in self.lambda_invoke_kwargs.items()
-                    if v is not None
-                }
-            )
-
-            _cdk_patch(keyword_args)
 
             task = sfn_tasks.LambdaInvoke(
                 scope,
@@ -497,9 +479,7 @@ class Compose:
         id: Optional[str] = None,
         tracing_enabled: bool = True,
         state_machine_name: Optional[str] = None,
-        state_machine_type: Optional[
-            "aws_cdk.aws_stepfunctions.StateMachineType"
-        ] = None,
+        state_machine_type: Optional[SfnType] = None,
         **kwargs,
     ):
         """
@@ -517,28 +497,31 @@ class Compose:
 
         """
 
-        from aws_cdk import aws_stepfunctions as sfn
+        from aws_cdk.aws_stepfunctions import StateMachine, StateMachineType
 
         id = id or _incremental_id(f"{self.func.__name__}_sfn")
 
-        kwargs.update(
-            {
-                k: v
-                for k, v in self.state_machine_kwargs.items()
-                if v is not None
-            }
+        state_machine_kwargs = _coalesce(
+            self.state_machine_kwargs,
+            state_machine_name=state_machine_name,
+            state_machine_type=state_machine_type,
+            **kwargs,
         )
 
-        _cdk_patch(kwargs)
+        state_machine_type = state_machine_kwargs.get("state_machine_type")
 
-        return sfn.StateMachine(
+        if isinstance(state_machine_type, str):
+
+            state_machine_type = StateMachineType[state_machine_type]
+
+            state_machine_kwargs["state_machine_type"] = state_machine_type
+
+        return StateMachine(
             scope,
             id,
             definition=self.definition(scope),
             tracing_enabled=tracing_enabled,
-            state_machine_name=state_machine_name,
-            state_machine_type=state_machine_type,
-            **kwargs,
+            **state_machine_kwargs,
         )
 
     def schedule(
@@ -553,9 +536,7 @@ class Compose:
         week_day: Optional[str] = None,
         year: Optional[str] = None,
         state_machine_name: Optional[str] = None,
-        state_machine_type: Optional[
-            "aws_cdk.aws_stepfunctions.StateMachineType"
-        ] = None,
+        state_machine_type: Optional[SfnType] = None,
         **kwargs,
     ) -> tuple:
         """

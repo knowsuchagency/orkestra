@@ -45,13 +45,19 @@ class SingleLambda(cdk.Stack):
 
         handler.schedule(
             self,
-            state_machine_name="simple_scheduled_state_machine_example",
+            state_machine_name="simple_express_scheduled_state_machine_example",
+            expression="rate(1 hour)",
         )
 
         self.state_machine = handler.state_machine(
             self,
-            state_machine_name="simple_state_machine_example",
-            state_machine_type=sfn.StateMachineType.EXPRESS,
+            state_machine_name="simple_express_state_machine_example",
+        )
+
+        handler.state_machine(
+            self,
+            state_machine_type=sfn.StateMachineType.STANDARD,
+            state_machine_name="simple_standard_state_machine_example",
         )
 
 
