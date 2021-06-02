@@ -50,6 +50,10 @@ def test_interfaces():
 
         assert isinstance(t.cdk_construct, aws_lambda.Tracing)
 
+    for sfn_type in interfaces.StateMachineType:
+
+        assert isinstance(sfn_type.cdk_construct, sfn.StateMachineType)
+
     for method in ("days", "hours", "millis", "minutes", "seconds"):
 
         duration = methodcaller(method, 1)(interfaces.Duration)
@@ -146,10 +150,12 @@ class TestApplication:
                 super().__init__(scope, id, **kwargs)
                 self.sm1 = hello_world.state_machine(self)
                 self.sm2 = hello_world.state_machine(
-                    self, state_machine_type="STANDARD"
+                    self,
+                    state_machine_type=interfaces.StateMachineType.STANDARD,
                 )
                 self.sm3 = hello_world.state_machine(
-                    self, state_machine_type=sfn.StateMachineType.STANDARD
+                    self,
+                    state_machine_type=sfn.StateMachineType.STANDARD,
                 )
 
                 assert (
