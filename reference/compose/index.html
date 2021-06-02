@@ -751,7 +751,7 @@
 
 
 <h2 id="orkestra.decorators.Compose.__init__" class="doc doc-heading">
-<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">enable_powertools</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_event</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">capture_response</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">capture_error</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">raise_on_empty_metrics</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">capture_cold_start_metric</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default_dimensions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">envelope</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">is_map_job</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">capture_map_errors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">runtime</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">input_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">items_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_concurrency</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">result_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">result_selector</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">client_context</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">invocation_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">payload_response_only</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">qualifier</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">retry_on_service_exceptions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">heartbeat</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">integration_pattern</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sfn_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tracing</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">state_machine_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">state_machine_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">aws_lambda_constructor_kwargs</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">enable_powertools</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_map_job</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">capture_map_errors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_event</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">capture_response</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">capture_error</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">raise_on_empty_metrics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">capture_cold_start_metric</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">default_dimensions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">envelope</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">runtime</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">input_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">items_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_concurrency</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">result_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">result_selector</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">client_context</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">invocation_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">payload_response_only</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">qualifier</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">retry_on_service_exceptions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">heartbeat</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">integration_pattern</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sfn_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tracing</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">state_machine_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">state_machine_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">aws_lambda_constructor_kwargs</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-special"><code>special</code></small>
@@ -794,33 +794,33 @@
       </tr>
       <tr>
         <td><code>log_event</code></td>
-        <td><code>bool</code></td>
+        <td><code>Optional[bool]</code></td>
         <td><p>passed to aws_lambda_powertools.Logger</p></td>
-        <td><code>True</code></td>
+        <td><code>None</code></td>
       </tr>
       <tr>
         <td><code>capture_response</code></td>
-        <td><code>bool</code></td>
+        <td><code>Optional[bool]</code></td>
         <td><p>passed to aws_lambda_powertools.Tracer</p></td>
-        <td><code>True</code></td>
+        <td><code>None</code></td>
       </tr>
       <tr>
         <td><code>capture_error</code></td>
-        <td><code>bool</code></td>
+        <td><code>Optional[bool]</code></td>
         <td><p>passed to aws_lambda_powertools.Tracer</p></td>
-        <td><code>True</code></td>
+        <td><code>None</code></td>
       </tr>
       <tr>
         <td><code>raise_on_empty_metrics</code></td>
-        <td><code>bool</code></td>
+        <td><code>Optional[bool]</code></td>
         <td><p>passed to aws_lambda_powertools.Metrics</p></td>
-        <td><code>False</code></td>
+        <td><code>None</code></td>
       </tr>
       <tr>
         <td><code>capture_cold_start_metric</code></td>
-        <td><code>bool</code></td>
+        <td><code>Optional[bool]</code></td>
         <td><p>passed to aws_lambda_powertools.Metrics</p></td>
-        <td><code>True</code></td>
+        <td><code>None</code></td>
       </tr>
       <tr>
         <td><code>default_dimensions</code></td>
@@ -962,7 +962,7 @@
       </tr>
       <tr>
         <td><code>state_machine_type</code></td>
-        <td><code>Optional[aws_cdk.aws_stepfunctions.StateMachineType]</code></td>
+        <td><code>Union[Literal[&#39;EXPRESS&#39;, &#39;STANDARD&#39;], aws_cdk.aws_stepfunctions.StateMachineType]</code></td>
         <td><p>Type of the state machine. Default: StateMachineType.STANDARD</p></td>
         <td><code>None</code></td>
       </tr>
@@ -988,17 +988,17 @@ For powertools params see <a href="https://awslabs.github.io/aws-lambda-powertoo
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">func</span><span class="p">:</span> <span class="n">OptionalFn</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">enable_powertools</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">log_event</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="n">capture_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="n">capture_error</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="n">raise_on_empty_metrics</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">capture_cold_start_metric</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">is_map_job</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">capture_map_errors</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">log_event</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">capture_response</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">capture_error</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">raise_on_empty_metrics</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">capture_cold_start_metric</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">default_dimensions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;pydantic.BaseModel&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">envelope</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;pydantic.BaseModel&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Duration</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">is_map_job</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">capture_map_errors</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">runtime</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Runtime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">comment</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">input_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1017,9 +1017,7 @@ For powertools params see <a href="https://awslabs.github.io/aws-lambda-powertoo
     <span class="n">integration_pattern</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">IntegrationPattern</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">sfn_timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Duration</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">tracing</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tracing</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">state_machine_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span>
-        <span class="s2">&quot;aws_cdk.aws_stepfunctions.StateMachineType&quot;</span>
-    <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">state_machine_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SfnType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">state_machine_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="o">**</span><span class="n">aws_lambda_constructor_kwargs</span><span class="p">,</span>
 <span class="p">):</span>
@@ -1085,32 +1083,36 @@ For powertools params see <a href="https://awslabs.github.io/aws-lambda-powertoo
         <span class="s2">&quot;parameters&quot;</span><span class="p">:</span> <span class="n">parameters</span><span class="p">,</span>
     <span class="p">}</span>
 
-    <span class="bp">self</span><span class="o">.</span><span class="n">lambda_invoke_kwargs</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;client_context&quot;</span><span class="p">:</span> <span class="n">client_context</span><span class="p">,</span>
-        <span class="s2">&quot;invocation_type&quot;</span><span class="p">:</span> <span class="n">invocation_type</span><span class="p">,</span>
-        <span class="s2">&quot;payload_response_only&quot;</span><span class="p">:</span> <span class="n">payload_response_only</span><span class="p">,</span>
-        <span class="s2">&quot;retry_on_service_exceptions&quot;</span><span class="p">:</span> <span class="n">retry_on_service_exceptions</span><span class="p">,</span>
-        <span class="s2">&quot;heartbeat&quot;</span><span class="p">:</span> <span class="n">heartbeat</span><span class="p">,</span>
-        <span class="s2">&quot;integration_pattern&quot;</span><span class="p">:</span> <span class="n">integration_pattern</span><span class="p">,</span>
-        <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="n">sfn_timeout</span><span class="p">,</span>
-        <span class="s2">&quot;comment&quot;</span><span class="p">:</span> <span class="n">comment</span><span class="p">,</span>
-        <span class="s2">&quot;input_path&quot;</span><span class="p">:</span> <span class="n">input_path</span><span class="p">,</span>
-        <span class="s2">&quot;output_path&quot;</span><span class="p">:</span> <span class="n">output_path</span><span class="p">,</span>
-        <span class="s2">&quot;result_path&quot;</span><span class="p">:</span> <span class="n">result_path</span><span class="p">,</span>
-        <span class="s2">&quot;result_selector&quot;</span><span class="p">:</span> <span class="n">result_selector</span><span class="p">,</span>
-        <span class="s2">&quot;qualifier&quot;</span><span class="p">:</span> <span class="n">qualifier</span><span class="p">,</span>
-    <span class="p">}</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">lambda_invoke_kwargs</span> <span class="o">=</span> <span class="n">_coalesce</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sfn_task_defaults</span><span class="p">,</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;client_context&quot;</span><span class="p">:</span> <span class="n">client_context</span><span class="p">,</span>
+            <span class="s2">&quot;invocation_type&quot;</span><span class="p">:</span> <span class="n">invocation_type</span><span class="p">,</span>
+            <span class="s2">&quot;payload_response_only&quot;</span><span class="p">:</span> <span class="n">payload_response_only</span><span class="p">,</span>
+            <span class="s2">&quot;retry_on_service_exceptions&quot;</span><span class="p">:</span> <span class="n">retry_on_service_exceptions</span><span class="p">,</span>
+            <span class="s2">&quot;heartbeat&quot;</span><span class="p">:</span> <span class="n">heartbeat</span><span class="p">,</span>
+            <span class="s2">&quot;integration_pattern&quot;</span><span class="p">:</span> <span class="n">integration_pattern</span><span class="p">,</span>
+            <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="n">sfn_timeout</span><span class="p">,</span>
+            <span class="s2">&quot;comment&quot;</span><span class="p">:</span> <span class="n">comment</span><span class="p">,</span>
+            <span class="s2">&quot;input_path&quot;</span><span class="p">:</span> <span class="n">input_path</span><span class="p">,</span>
+            <span class="s2">&quot;output_path&quot;</span><span class="p">:</span> <span class="n">output_path</span><span class="p">,</span>
+            <span class="s2">&quot;result_path&quot;</span><span class="p">:</span> <span class="n">result_path</span><span class="p">,</span>
+            <span class="s2">&quot;result_selector&quot;</span><span class="p">:</span> <span class="n">result_selector</span><span class="p">,</span>
+            <span class="s2">&quot;qualifier&quot;</span><span class="p">:</span> <span class="n">qualifier</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">)</span>
 
-    <span class="bp">self</span><span class="o">.</span><span class="n">powertools_kwargs</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;log_event&quot;</span><span class="p">:</span> <span class="n">log_event</span><span class="p">,</span>
-        <span class="s2">&quot;capture_error&quot;</span><span class="p">:</span> <span class="n">capture_error</span><span class="p">,</span>
-        <span class="s2">&quot;capture_response&quot;</span><span class="p">:</span> <span class="n">capture_response</span><span class="p">,</span>
-        <span class="s2">&quot;capture_cold_start_metric&quot;</span><span class="p">:</span> <span class="n">capture_cold_start_metric</span><span class="p">,</span>
-        <span class="s2">&quot;raise_on_empty_metrics&quot;</span><span class="p">:</span> <span class="n">raise_on_empty_metrics</span><span class="p">,</span>
-        <span class="s2">&quot;default_dimensions&quot;</span><span class="p">:</span> <span class="n">default_dimensions</span><span class="p">,</span>
-        <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span>
-        <span class="s2">&quot;envelope&quot;</span><span class="p">:</span> <span class="n">envelope</span><span class="p">,</span>
-    <span class="p">}</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">powertools_kwargs</span> <span class="o">=</span> <span class="n">_coalesce</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_powertools_defaults</span><span class="p">,</span>
+        <span class="n">default_dimensions</span><span class="o">=</span><span class="n">default_dimensions</span><span class="p">,</span>
+        <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+        <span class="n">envelope</span><span class="o">=</span><span class="n">envelope</span><span class="p">,</span>
+        <span class="n">log_event</span><span class="o">=</span><span class="n">log_event</span><span class="p">,</span>
+        <span class="n">capture_response</span><span class="o">=</span><span class="n">capture_response</span><span class="p">,</span>
+        <span class="n">capture_error</span><span class="o">=</span><span class="n">capture_error</span><span class="p">,</span>
+        <span class="n">raise_on_empty_metrics</span><span class="o">=</span><span class="n">raise_on_empty_metrics</span><span class="p">,</span>
+        <span class="n">capture_cold_start_metric</span><span class="o">=</span><span class="n">capture_cold_start_metric</span><span class="p">,</span>
+    <span class="p">)</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">state_machine_kwargs</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;state_machine_type&quot;</span><span class="p">:</span> <span class="n">state_machine_type</span><span class="p">,</span>
@@ -1412,7 +1414,7 @@ For powertools params see <a href="https://awslabs.github.io/aws-lambda-powertoo
       </tr>
       <tr>
         <td><code>state_machine_type</code></td>
-        <td><code>Optional[aws_cdk.aws_stepfunctions.StateMachineType]</code></td>
+        <td><code>Union[Literal[&#39;EXPRESS&#39;, &#39;STANDARD&#39;], aws_cdk.aws_stepfunctions.StateMachineType]</code></td>
         <td><p>type of state machine; express or standard</p></td>
         <td><code>None</code></td>
       </tr>
@@ -1439,9 +1441,7 @@ For powertools params see <a href="https://awslabs.github.io/aws-lambda-powertoo
     <span class="n">week_day</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">year</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">state_machine_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">state_machine_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span>
-        <span class="s2">&quot;aws_cdk.aws_stepfunctions.StateMachineType&quot;</span>
-    <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">state_machine_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SfnType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -1559,7 +1559,7 @@ For powertools params see <a href="https://awslabs.github.io/aws-lambda-powertoo
       </tr>
       <tr>
         <td><code>state_machine_type</code></td>
-        <td><code>Optional[aws_cdk.aws_stepfunctions.StateMachineType]</code></td>
+        <td><code>Union[Literal[&#39;EXPRESS&#39;, &#39;STANDARD&#39;], aws_cdk.aws_stepfunctions.StateMachineType]</code></td>
         <td><p>express or standard</p></td>
         <td><code>None</code></td>
       </tr>
@@ -1579,9 +1579,7 @@ For powertools params see <a href="https://awslabs.github.io/aws-lambda-powertoo
     <span class="nb">id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">tracing_enabled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">state_machine_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">state_machine_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span>
-        <span class="s2">&quot;aws_cdk.aws_stepfunctions.StateMachineType&quot;</span>
-    <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">state_machine_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SfnType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -1599,28 +1597,31 @@ For powertools params see <a href="https://awslabs.github.io/aws-lambda-powertoo
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="kn">from</span> <span class="nn">aws_cdk</span> <span class="kn">import</span> <span class="n">aws_stepfunctions</span> <span class="k">as</span> <span class="n">sfn</span>
+    <span class="kn">from</span> <span class="nn">aws_cdk.aws_stepfunctions</span> <span class="kn">import</span> <span class="n">StateMachine</span><span class="p">,</span> <span class="n">StateMachineType</span>
 
     <span class="nb">id</span> <span class="o">=</span> <span class="nb">id</span> <span class="ow">or</span> <span class="n">_incremental_id</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">_sfn&quot;</span><span class="p">)</span>
 
-    <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
-        <span class="p">{</span>
-            <span class="n">k</span><span class="p">:</span> <span class="n">v</span>
-            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">state_machine_kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="p">}</span>
+    <span class="n">state_machine_kwargs</span> <span class="o">=</span> <span class="n">_coalesce</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_machine_kwargs</span><span class="p">,</span>
+        <span class="n">state_machine_name</span><span class="o">=</span><span class="n">state_machine_name</span><span class="p">,</span>
+        <span class="n">state_machine_type</span><span class="o">=</span><span class="n">state_machine_type</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="n">_cdk_patch</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">state_machine_type</span> <span class="o">=</span> <span class="n">state_machine_kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;state_machine_type&quot;</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">sfn</span><span class="o">.</span><span class="n">StateMachine</span><span class="p">(</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">state_machine_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+
+        <span class="n">state_machine_type</span> <span class="o">=</span> <span class="n">StateMachineType</span><span class="p">[</span><span class="n">state_machine_type</span><span class="p">]</span>
+
+        <span class="n">state_machine_kwargs</span><span class="p">[</span><span class="s2">&quot;state_machine_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">state_machine_type</span>
+
+    <span class="k">return</span> <span class="n">StateMachine</span><span class="p">(</span>
         <span class="n">scope</span><span class="p">,</span>
         <span class="nb">id</span><span class="p">,</span>
         <span class="n">definition</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">definition</span><span class="p">(</span><span class="n">scope</span><span class="p">),</span>
         <span class="n">tracing_enabled</span><span class="o">=</span><span class="n">tracing_enabled</span><span class="p">,</span>
-        <span class="n">state_machine_name</span><span class="o">=</span><span class="n">state_machine_name</span><span class="p">,</span>
-        <span class="n">state_machine_type</span><span class="o">=</span><span class="n">state_machine_type</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">state_machine_kwargs</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div>
         </details>
@@ -1665,9 +1666,7 @@ For powertools params see <a href="https://awslabs.github.io/aws-lambda-powertoo
 
         <span class="nb">id</span> <span class="o">=</span> <span class="nb">id</span> <span class="ow">or</span> <span class="n">_incremental_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
 
-        <span class="n">map_kwargs</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_job_kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="p">}</span>
+        <span class="n">map_kwargs</span> <span class="o">=</span> <span class="n">_coalesce</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">map_job_kwargs</span><span class="p">)</span>
 
         <span class="n">task</span> <span class="o">=</span> <span class="n">sfn</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="o">**</span><span class="n">map_kwargs</span><span class="p">)</span>
 
@@ -1676,20 +1675,12 @@ For powertools params see <a href="https://awslabs.github.io/aws-lambda-powertoo
             <span class="n">function_name</span><span class="o">=</span><span class="n">function_name</span><span class="p">,</span>
         <span class="p">)</span>
 
-        <span class="n">keyword_args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">keyword_args</span> <span class="o">=</span> <span class="n">_coalesce</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">lambda_invoke_kwargs</span><span class="p">,</span>
             <span class="n">lambda_function</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_fn</span><span class="p">,</span>
             <span class="n">payload_response_only</span><span class="o">=</span><span class="n">payload_response_only</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">)</span>
-
-        <span class="n">keyword_args</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
-            <span class="p">{</span>
-                <span class="n">k</span><span class="p">:</span> <span class="n">v</span>
-                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">lambda_invoke_kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-                <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-            <span class="p">}</span>
-        <span class="p">)</span>
-
-        <span class="n">_cdk_patch</span><span class="p">(</span><span class="n">keyword_args</span><span class="p">)</span>
 
         <span class="n">task_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;invoke_</span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s2">&quot;</span>
 
@@ -1724,22 +1715,12 @@ For powertools params see <a href="https://awslabs.github.io/aws-lambda-powertoo
 
             <span class="n">lambda_fn</span> <span class="o">=</span> <span class="n">fn</span><span class="o">.</span><span class="n">aws_lambda</span><span class="p">(</span><span class="n">scope</span><span class="p">)</span>
 
-            <span class="n">keyword_args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">keyword_args</span> <span class="o">=</span> <span class="n">_coalesce</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">lambda_invoke_kwargs</span><span class="p">,</span>
                 <span class="n">lambda_function</span><span class="o">=</span><span class="n">lambda_fn</span><span class="p">,</span>
                 <span class="n">payload_response_only</span><span class="o">=</span><span class="n">payload_response_only</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
             <span class="p">)</span>
-
-            <span class="n">keyword_args</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
-
-            <span class="n">keyword_args</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
-                <span class="p">{</span>
-                    <span class="n">k</span><span class="p">:</span> <span class="n">v</span>
-                    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">lambda_invoke_kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-                    <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-                <span class="p">}</span>
-            <span class="p">)</span>
-
-            <span class="n">_cdk_patch</span><span class="p">(</span><span class="n">keyword_args</span><span class="p">)</span>
 
             <span class="n">branch</span> <span class="o">=</span> <span class="n">sfn_tasks</span><span class="o">.</span><span class="n">LambdaInvoke</span><span class="p">(</span>
                 <span class="n">scope</span><span class="p">,</span>
@@ -1767,22 +1748,12 @@ For powertools params see <a href="https://awslabs.github.io/aws-lambda-powertoo
             <span class="n">function_name</span><span class="o">=</span><span class="n">function_name</span><span class="p">,</span>
         <span class="p">)</span>
 
-        <span class="n">keyword_args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">keyword_args</span> <span class="o">=</span> <span class="n">_coalesce</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">lambda_invoke_kwargs</span><span class="p">,</span>
             <span class="n">lambda_function</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_fn</span><span class="p">,</span>
             <span class="n">payload_response_only</span><span class="o">=</span><span class="n">payload_response_only</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">)</span>
-
-        <span class="n">keyword_args</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
-
-        <span class="n">keyword_args</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
-            <span class="p">{</span>
-                <span class="n">k</span><span class="p">:</span> <span class="n">v</span>
-                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">lambda_invoke_kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-                <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-            <span class="p">}</span>
-        <span class="p">)</span>
-
-        <span class="n">_cdk_patch</span><span class="p">(</span><span class="n">keyword_args</span><span class="p">)</span>
 
         <span class="n">task</span> <span class="o">=</span> <span class="n">sfn_tasks</span><span class="o">.</span><span class="n">LambdaInvoke</span><span class="p">(</span>
             <span class="n">scope</span><span class="p">,</span>
