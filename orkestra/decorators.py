@@ -9,13 +9,11 @@ from orkestra.interfaces import (
     LambdaInvocationType,
     IntegrationPattern,
     Tracing,
+    StateMachineType as SfnType,
 )
 from orkestra.utils import coerce, _coalesce
 from orkestra.exceptions import CompositionError
 
-StateMachineStr = Literal["EXPRESS", "STANDARD"]
-
-SfnType = Union[StateMachineStr, "aws_cdk.aws_stepfunctions.StateMachineType"]
 
 OptionalFn = Optional[Union[Callable, Iterable[Callable]]]
 
@@ -479,7 +477,9 @@ class Compose:
         id: Optional[str] = None,
         tracing_enabled: bool = True,
         state_machine_name: Optional[str] = None,
-        state_machine_type: Optional[SfnType] = None,
+        state_machine_type: Optional[
+            Union[SfnType, "aws_cdk.aws_stepfunctions.StateMachineType"]
+        ] = None,
         **kwargs,
     ):
         """
@@ -507,14 +507,6 @@ class Compose:
             state_machine_type=state_machine_type,
             **kwargs,
         )
-
-        state_machine_type = state_machine_kwargs.get("state_machine_type")
-
-        if isinstance(state_machine_type, str):
-
-            state_machine_type = StateMachineType[state_machine_type]
-
-            state_machine_kwargs["state_machine_type"] = state_machine_type
 
         return StateMachine(
             scope,

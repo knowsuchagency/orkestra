@@ -79,6 +79,17 @@ class Tracing(Enum):
         return getattr(Tracing, self.value)
 
 
+class StateMachineType(Enum):
+    STANDARD = "STANDARD"
+    EXPRESS = "EXPRESS"
+
+    @property
+    def cdk_construct(self):
+        from aws_cdk.aws_stepfunctions import StateMachineType as SfnType
+
+        return getattr(SfnType, self.value)
+
+
 @dataclass
 class Duration:
     unit: DurationMetric
