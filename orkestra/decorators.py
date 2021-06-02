@@ -60,6 +60,8 @@ class Compose:
         self,
         func: OptionalFn = None,
         enable_powertools: bool = False,
+        is_map_job: bool = False,
+        capture_map_errors: bool = False,
         log_event: Optional[bool] = None,
         capture_response: Optional[bool] = None,
         capture_error: Optional[bool] = None,
@@ -69,8 +71,6 @@ class Compose:
         model: Optional["pydantic.BaseModel"] = None,
         envelope: Optional["pydantic.BaseModel"] = None,
         timeout: Optional[Duration] = None,
-        is_map_job: bool = False,
-        capture_map_errors: bool = False,
         runtime: Optional[Runtime] = None,
         comment: Optional[str] = None,
         input_path: Optional[str] = None,
@@ -342,6 +342,7 @@ class Compose:
                 self.lambda_invoke_kwargs,
                 lambda_function=self.lambda_fn,
                 payload_response_only=payload_response_only,
+                **kwargs,
             )
 
             task_id = f"invoke_{id}"
@@ -381,6 +382,7 @@ class Compose:
                     self.lambda_invoke_kwargs,
                     lambda_function=lambda_fn,
                     payload_response_only=payload_response_only,
+                    **kwargs,
                 )
 
                 branch = sfn_tasks.LambdaInvoke(
@@ -413,6 +415,7 @@ class Compose:
                 self.lambda_invoke_kwargs,
                 lambda_function=self.lambda_fn,
                 payload_response_only=payload_response_only,
+                **kwargs,
             )
 
             task = sfn_tasks.LambdaInvoke(
