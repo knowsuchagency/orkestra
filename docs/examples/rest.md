@@ -188,7 +188,7 @@ In this example, we'll create a workflow that can be asynchronously triggered vi
     This file would exist in the same directory as your lambdas' module
 
     ```
-    orkestra[powertools]>=0.7.0
+    orkestra[powertools]>=0.8.0
     fastapi==0.65.1
     mangum==0.11.0
     boto3==1.17.18
