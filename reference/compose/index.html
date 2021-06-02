@@ -962,7 +962,7 @@
       </tr>
       <tr>
         <td><code>state_machine_type</code></td>
-        <td><code>Union[Literal[&#39;EXPRESS&#39;, &#39;STANDARD&#39;], aws_cdk.aws_stepfunctions.StateMachineType]</code></td>
+        <td><code>Optional[orkestra.interfaces.StateMachineType]</code></td>
         <td><p>Type of the state machine. Default: StateMachineType.STANDARD</p></td>
         <td><code>None</code></td>
       </tr>
@@ -1414,7 +1414,7 @@ For powertools params see <a href="https://awslabs.github.io/aws-lambda-powertoo
       </tr>
       <tr>
         <td><code>state_machine_type</code></td>
-        <td><code>Union[Literal[&#39;EXPRESS&#39;, &#39;STANDARD&#39;], aws_cdk.aws_stepfunctions.StateMachineType]</code></td>
+        <td><code>Optional[orkestra.interfaces.StateMachineType]</code></td>
         <td><p>type of state machine; express or standard</p></td>
         <td><code>None</code></td>
       </tr>
@@ -1559,7 +1559,7 @@ For powertools params see <a href="https://awslabs.github.io/aws-lambda-powertoo
       </tr>
       <tr>
         <td><code>state_machine_type</code></td>
-        <td><code>Union[Literal[&#39;EXPRESS&#39;, &#39;STANDARD&#39;], aws_cdk.aws_stepfunctions.StateMachineType]</code></td>
+        <td><code>Union[orkestra.interfaces.StateMachineType, aws_cdk.aws_stepfunctions.StateMachineType]</code></td>
         <td><p>express or standard</p></td>
         <td><code>None</code></td>
       </tr>
@@ -1579,7 +1579,9 @@ For powertools params see <a href="https://awslabs.github.io/aws-lambda-powertoo
     <span class="nb">id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">tracing_enabled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">state_machine_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">state_machine_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SfnType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">state_machine_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span>
+        <span class="n">Union</span><span class="p">[</span><span class="n">SfnType</span><span class="p">,</span> <span class="s2">&quot;aws_cdk.aws_stepfunctions.StateMachineType&quot;</span><span class="p">]</span>
+    <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -1607,14 +1609,6 @@ For powertools params see <a href="https://awslabs.github.io/aws-lambda-powertoo
         <span class="n">state_machine_type</span><span class="o">=</span><span class="n">state_machine_type</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span>
-
-    <span class="n">state_machine_type</span> <span class="o">=</span> <span class="n">state_machine_kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;state_machine_type&quot;</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">state_machine_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-
-        <span class="n">state_machine_type</span> <span class="o">=</span> <span class="n">StateMachineType</span><span class="p">[</span><span class="n">state_machine_type</span><span class="p">]</span>
-
-        <span class="n">state_machine_kwargs</span><span class="p">[</span><span class="s2">&quot;state_machine_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">state_machine_type</span>
 
     <span class="k">return</span> <span class="n">StateMachine</span><span class="p">(</span>
         <span class="n">scope</span><span class="p">,</span>
