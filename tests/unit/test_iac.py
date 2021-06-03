@@ -1,3 +1,4 @@
+import os
 from operator import methodcaller
 
 import pytest
@@ -10,7 +11,7 @@ from aws_cdk import (
 )
 from aws_cdk.cx_api import CloudAssembly
 
-from app import App
+from app import Stacks
 from examples.for_testing import (
     invalid_composition,
     hello_world,
@@ -67,7 +68,23 @@ class TestApplication:
     @pytest.fixture(scope="class")
     def app(self):
 
-        return App()
+        app = cdk.App()
+
+        account = os.getenv("CDK_DEFAULT_ACCOUNT", "")
+
+        region = os.getenv(
+            "AWS_DEFAULT_REGION",
+            "us-east-2",
+        )
+
+        env = cdk.Environment(
+            account=account,
+            region=region,
+        )
+
+        app.stacks = Stacks(app, "stacks", env=env)
+
+        return app
 
     @pytest.fixture(scope="class")
     def cloud_assembly(self, app) -> CloudAssembly:
@@ -77,23 +94,23 @@ class TestApplication:
     def test_lambda_defaults(self, app):
 
         assert (
-            app.single_lambda.lmb.runtime.to_string()
+            app.stacks.single_lambda.lmb.runtime.to_string()
             == aws_lambda.Runtime.PYTHON_3_8.to_string()
         )
 
     def test_single_lambda(self, app):
 
         assert isinstance(
-            app.single_lambda.lmb,
+            app.stacks.single_lambda.lmb,
             aws_lambda_python.PythonFunction,
         )
 
         assert isinstance(
-            app.single_lambda.state_machine,
+            app.stacks.single_lambda.state_machine,
             sfn.StateMachine,
         )
 
-        assert repr(app.single_lambda.lmb)
+        assert repr(app.stacks.single_lambda.lmb)
 
     def test_invalid_composition(self, app):
         class Invalid(cdk.Stack):
@@ -105,10 +122,8 @@ class TestApplication:
                 )
 
         with pytest.raises(CompositionError):
-            app.add(
-                Invalid,
-                "invalidStack",
-            )
+
+            Invalid(app, "invalidStack")
 
     def test_nextable(self, app):
         class HasPass(cdk.Stack):
@@ -119,7 +134,7 @@ class TestApplication:
                     "pass_me",
                 )
 
-        stack: HasPass = app.add(HasPass, "hasPass")
+        stack = HasPass(app, "hasPass")
 
         assert isinstance(
             stack.pass_,
@@ -133,10 +148,9 @@ class TestApplication:
                 super().__init__(scope, id, **kwargs)
                 self.lmb = hello_world.aws_lambda(self)
 
-        stack_name = "cdkPath"
+        stack_name = "cdkPatch"
 
-        stack: CdkPatch = app.add(CdkPatch, "cdkPatch", stack_name=stack_name)
-
+        stack = CdkPatch(app, stack_name, stack_name=stack_name)
         [
             tracing_config
         ] = stack.lmb.node.default_child.tracing_config._delegates
@@ -173,4 +187,4 @@ class TestApplication:
 
         stack_name = "stateMachinetest"
 
-        app.add(StateMachineTest, stack_name)
+        StateMachineTest(app, stack_name)
