@@ -40,6 +40,7 @@ class Environment(Enum):
     DEV = "DEV"
     QA = "QA"
     PROD = "PROD"
+    CODEBUILD = "CODEBUILD"
 
     @classmethod
     def from_env(cls):
@@ -424,6 +425,16 @@ class PipelineStack(cdk.Stack):
             branch="main",
         )
 
+        environment_variables = {
+            "POWERTOOLS_TRACE_DISABLED": 1,
+            "ENVIRONMENT": "CODEBUILD",
+        }
+
+        environment_variables = {
+            k: BuildEnvironmentVariable(value=v)
+            for k, v in environment_variables.items()
+        }
+
         pipeline = pipelines.CdkPipeline(
             self,
             namespace("cdkPipeline"),
@@ -448,11 +459,7 @@ class PipelineStack(cdk.Stack):
                     "pdm run unit-tests",
                 ],
                 synth_command="pdm run cdk synth",
-                environment_variables={
-                    "POWERTOOLS_TRACE_DISABLED": BuildEnvironmentVariable(
-                        value="1"
-                    ),
-                },
+                environment_variables=environment_variables,
                 environment={
                     "privileged": True,
                 },
