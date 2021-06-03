@@ -453,6 +453,7 @@ class PipelineStack(cdk.Stack):
                     "npm install -g aws-cdk",
                     "pyenv global 3.8.8",
                     "pip install pdm",
+                    "head -n 5 pdm.lock",
                     "pdm install -s :all",
                 ],
                 test_commands=[
