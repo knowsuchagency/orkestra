@@ -1,43 +1,39 @@
 [[package]]
 name = "appdirs"
-sections = ["dev"]
 version = "1.4.4"
 summary = "A small Python module for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
 
 [[package]]
 name = "asgiref"
-sections = ["dev"]
 version = "3.3.4"
+requires_python = ">=3.6"
 summary = "ASGI specs, helper code, and adapters"
 
 [[package]]
 name = "astunparse"
-sections = ["dev"]
 version = "1.6.3"
-marker = "python_version < '3.9'"
 summary = "An AST unparser for Python"
 dependencies = [
-    "wheel<1.0,>=0.23.0",
     "six<2.0,>=1.6.1",
+    "wheel<1.0,>=0.23.0",
 ]
 
 [[package]]
 name = "atomicwrites"
-sections = ["test"]
 version = "1.4.0"
-marker = "sys_platform == 'win32'"
+requires_python = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*"
 summary = "Atomic file writes."
 
 [[package]]
 name = "attrs"
-sections = ["cdk", "dev", "test"]
 version = "20.3.0"
+requires_python = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*"
 summary = "Classes Without Boilerplate"
 
 [[package]]
 name = "aws-cdk.assets"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "This module is deprecated. All types are now available under the core module"
 dependencies = [
     "aws-cdk.core==1.107.0",
@@ -49,8 +45,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-apigateway"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::ApiGateway"
 dependencies = [
     "aws-cdk.aws-certificatemanager==1.107.0",
@@ -72,8 +68,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-applicationautoscaling"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::ApplicationAutoScaling"
 dependencies = [
     "aws-cdk.aws-autoscaling-common==1.107.0",
@@ -87,8 +83,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-autoscaling"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::AutoScaling"
 dependencies = [
     "aws-cdk.aws-autoscaling-common==1.107.0",
@@ -106,8 +102,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-autoscaling-common"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "Common implementation package for @aws-cdk/aws-autoscaling and @aws-cdk/aws-applicationautoscaling"
 dependencies = [
     "aws-cdk.aws-iam==1.107.0",
@@ -119,8 +115,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-autoscaling-hooktargets"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "Lifecycle hook for AWS AutoScaling"
 dependencies = [
     "aws-cdk.aws-autoscaling==1.107.0",
@@ -138,8 +134,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-batch"
-sections = ["dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::Batch"
 dependencies = [
     "aws-cdk.aws-ec2==1.107.0",
@@ -156,8 +152,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-certificatemanager"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::CertificateManager"
 dependencies = [
     "aws-cdk.aws-iam==1.107.0",
@@ -171,8 +167,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-cloudformation"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::CloudFormation"
 dependencies = [
     "aws-cdk.aws-iam==1.107.0",
@@ -188,8 +184,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-cloudfront"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::CloudFront"
 dependencies = [
     "aws-cdk.aws-certificatemanager==1.107.0",
@@ -208,8 +204,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-cloudwatch"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::CloudWatch"
 dependencies = [
     "aws-cdk.aws-iam==1.107.0",
@@ -221,8 +217,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-codebuild"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::CodeBuild"
 dependencies = [
     "aws-cdk.assets==1.107.0",
@@ -247,8 +243,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-codecommit"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::CodeCommit"
 dependencies = [
     "aws-cdk.aws-events==1.107.0",
@@ -261,8 +257,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-codedeploy"
-sections = ["dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::CodeDeploy"
 dependencies = [
     "aws-cdk.aws-autoscaling==1.107.0",
@@ -282,8 +278,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-codeguruprofiler"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::CodeGuruProfiler"
 dependencies = [
     "aws-cdk.aws-iam==1.107.0",
@@ -295,8 +291,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-codepipeline"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "Better interface to AWS Code Pipeline"
 dependencies = [
     "aws-cdk.aws-events==1.107.0",
@@ -311,8 +307,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-codepipeline-actions"
-sections = ["dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "Concrete Actions for AWS Code Pipeline"
 dependencies = [
     "aws-cdk.aws-cloudformation==1.107.0",
@@ -340,8 +336,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-cognito"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::Cognito"
 dependencies = [
     "aws-cdk.aws-certificatemanager==1.107.0",
@@ -356,8 +352,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-dynamodb"
-sections = ["cdk"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::DynamoDB"
 dependencies = [
     "aws-cdk.aws-applicationautoscaling==1.107.0",
@@ -374,8 +370,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-ec2"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::EC2"
 dependencies = [
     "aws-cdk.aws-cloudwatch==1.107.0",
@@ -396,8 +392,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-ecr"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::ECR"
 dependencies = [
     "aws-cdk.aws-events==1.107.0",
@@ -410,8 +406,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-ecr-assets"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "Docker image assets deployed to ECR"
 dependencies = [
     "aws-cdk.assets==1.107.0",
@@ -427,8 +423,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-ecs"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::ECS"
 dependencies = [
     "aws-cdk.aws-applicationautoscaling==1.107.0",
@@ -463,8 +459,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-efs"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::EFS"
 dependencies = [
     "aws-cdk.aws-ec2==1.107.0",
@@ -479,8 +475,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-eks"
-sections = ["cdk"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::EKS"
 dependencies = [
     "aws-cdk.aws-autoscaling==1.107.0",
@@ -500,8 +496,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-elasticloadbalancing"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::ElasticLoadBalancing"
 dependencies = [
     "aws-cdk.aws-ec2==1.107.0",
@@ -513,8 +509,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-elasticloadbalancingv2"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::ElasticLoadBalancingV2"
 dependencies = [
     "aws-cdk.aws-certificatemanager==1.107.0",
@@ -534,8 +530,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-events"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "Amazon EventBridge Construct Library"
 dependencies = [
     "aws-cdk.aws-iam==1.107.0",
@@ -547,8 +543,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-events-targets"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "Event targets for Amazon EventBridge"
 dependencies = [
     "aws-cdk.aws-apigateway==1.107.0",
@@ -576,8 +572,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-globalaccelerator"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::GlobalAccelerator"
 dependencies = [
     "aws-cdk.aws-ec2==1.107.0",
@@ -590,8 +586,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-iam"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "CDK routines for easily assigning correct and minimal IAM permissions"
 dependencies = [
     "aws-cdk.core==1.107.0",
@@ -603,8 +599,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-kinesis"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::Kinesis"
 dependencies = [
     "aws-cdk.aws-cloudwatch==1.107.0",
@@ -619,8 +615,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-kinesisfirehose"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::KinesisFirehose"
 dependencies = [
     "aws-cdk.core==1.107.0",
@@ -631,8 +627,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-kms"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::KMS"
 dependencies = [
     "aws-cdk.aws-iam==1.107.0",
@@ -645,8 +641,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-lambda"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::Lambda"
 dependencies = [
     "aws-cdk.aws-applicationautoscaling==1.107.0",
@@ -673,8 +669,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-lambda-python"
-sections = ["cdk"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS Lambda in Python"
 dependencies = [
     "aws-cdk.aws-ec2==1.107.0",
@@ -687,8 +683,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-logs"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::Logs"
 dependencies = [
     "aws-cdk.aws-cloudwatch==1.107.0",
@@ -703,8 +699,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-route53"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::Route53"
 dependencies = [
     "aws-cdk.aws-ec2==1.107.0",
@@ -720,8 +716,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-route53-targets"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS Route53 Alias Targets"
 dependencies = [
     "aws-cdk.aws-apigateway==1.107.0",
@@ -743,8 +739,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-s3"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::S3"
 dependencies = [
     "aws-cdk.aws-events==1.107.0",
@@ -759,8 +755,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-s3-assets"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "Deploy local files and directories to S3"
 dependencies = [
     "aws-cdk.assets==1.107.0",
@@ -776,8 +772,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-s3-deployment"
-sections = ["dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "Constructs for deploying contents to S3 buckets"
 dependencies = [
     "aws-cdk.aws-cloudfront==1.107.0",
@@ -795,8 +791,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-sam"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for the AWS Serverless Application Model (SAM) resources"
 dependencies = [
     "aws-cdk.core==1.107.0",
@@ -807,8 +803,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-secretsmanager"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::SecretsManager"
 dependencies = [
     "aws-cdk.aws-ec2==1.107.0",
@@ -825,8 +821,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-servicediscovery"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::ServiceDiscovery"
 dependencies = [
     "aws-cdk.aws-ec2==1.107.0",
@@ -840,8 +836,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-signer"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::Signer"
 dependencies = [
     "aws-cdk.core==1.107.0",
@@ -852,8 +848,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-sns"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::SNS"
 dependencies = [
     "aws-cdk.aws-cloudwatch==1.107.0",
@@ -869,8 +865,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-sns-subscriptions"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "CDK Subscription Constructs for AWS SNS"
 dependencies = [
     "aws-cdk.aws-iam==1.107.0",
@@ -885,8 +881,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-sqs"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::SQS"
 dependencies = [
     "aws-cdk.aws-cloudwatch==1.107.0",
@@ -900,8 +896,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-ssm"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::SSM"
 dependencies = [
     "aws-cdk.aws-iam==1.107.0",
@@ -915,8 +911,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-stepfunctions"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "The CDK Construct Library for AWS::StepFunctions"
 dependencies = [
     "aws-cdk.aws-cloudwatch==1.107.0",
@@ -932,8 +928,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.aws-stepfunctions-tasks"
-sections = ["cdk"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "Task integrations for AWS StepFunctions"
 dependencies = [
     "aws-cdk.aws-apigateway==1.107.0",
@@ -960,8 +956,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.cloud-assembly-schema"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "Cloud Assembly Schema"
 dependencies = [
     "jsii<2.0.0,>=1.29.0",
@@ -970,8 +966,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.core"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "AWS Cloud Development Kit Core Library"
 dependencies = [
     "aws-cdk.cloud-assembly-schema==1.107.0",
@@ -984,8 +980,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.custom-resources"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "Constructs for implementing CDK custom resources"
 dependencies = [
     "aws-cdk.aws-cloudformation==1.107.0",
@@ -1002,8 +998,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.cx-api"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "Cloud executable protocol"
 dependencies = [
     "aws-cdk.cloud-assembly-schema==1.107.0",
@@ -1013,8 +1009,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.lambda-layer-awscli"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "An AWS Lambda layer that contains the AWS CLI"
 dependencies = [
     "aws-cdk.aws-lambda==1.107.0",
@@ -1026,8 +1022,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.lambda-layer-kubectl"
-sections = ["cdk"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "An AWS Lambda layer that contains the `kubectl` and `helm`"
 dependencies = [
     "aws-cdk.aws-lambda==1.107.0",
@@ -1039,8 +1035,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.pipelines"
-sections = ["dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "Continuous Delivery of CDK applications"
 dependencies = [
     "aws-cdk.aws-codebuild==1.107.0",
@@ -1060,8 +1056,8 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.region-info"
-sections = ["cdk", "dev"]
 version = "1.107.0"
+requires_python = ">=3.6"
 summary = "AWS region information, such as service principal names"
 dependencies = [
     "jsii<2.0.0,>=1.29.0",
@@ -1070,8 +1066,8 @@ dependencies = [
 
 [[package]]
 name = "aws-lambda-powertools"
-sections = ["powertools"]
 version = "1.16.1"
+requires_python = ">=3.6.1,<4.0"
 summary = "Python utilities for AWS Lambda functions including but not limited to tracing, logging and custom metric"
 dependencies = [
     "aws-xray-sdk<3.0.0,>=2.8.0",
@@ -1082,49 +1078,48 @@ dependencies = [
 
 [[package]]
 name = "aws-lambda-powertools"
-sections = ["powertools"]
 version = "1.16.1"
 extras = ["pydantic"]
+requires_python = ">=3.6.1,<4.0"
 summary = "Python utilities for AWS Lambda functions including but not limited to tracing, logging and custom metric"
 dependencies = [
+    "aws-lambda-powertools",
     "aws-xray-sdk<3.0.0,>=2.8.0",
     "boto3<2.0,>=1.12",
     "email-validator",
     "fastjsonschema<3.0.0,>=2.14.5",
     "jmespath<0.11.0,>=0.10.0",
     "pydantic<2.0.0,>=1.8.2",
-    "aws-lambda-powertools==1.16.1",
 ]
 
 [[package]]
 name = "aws-xray-sdk"
-sections = ["powertools"]
 version = "2.8.0"
 summary = "The AWS X-Ray SDK for Python (the SDK) enables Python developers to record and emit information from within their applications to the AWS X-Ray service."
 dependencies = [
-    "wrapt",
-    "future",
     "botocore>=1.11.3",
+    "future",
+    "wrapt",
 ]
 
 [[package]]
 name = "black"
-sections = ["dev"]
 version = "21.5b2"
+requires_python = ">=3.6.2"
 summary = "The uncompromising code formatter."
 dependencies = [
-    "click>=7.1.2",
     "appdirs",
-    "toml>=0.10.1",
-    "regex>=2020.1.8",
-    "pathspec<1,>=0.8.1",
+    "click>=7.1.2",
     "mypy-extensions>=0.4.3",
+    "pathspec<1,>=0.8.1",
+    "regex>=2020.1.8",
+    "toml>=0.10.1",
 ]
 
 [[package]]
 name = "bleach"
-sections = ["dev"]
 version = "3.3.0"
+requires_python = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*"
 summary = "An easy safelist-based HTML-sanitizing tool."
 dependencies = [
     "packaging",
@@ -1134,8 +1129,8 @@ dependencies = [
 
 [[package]]
 name = "boto3"
-sections = ["dev", "powertools", "test"]
 version = "1.17.86"
+requires_python = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*"
 summary = "The AWS SDK for Python"
 dependencies = [
     "botocore<1.21.0,>=1.20.86",
@@ -1145,8 +1140,8 @@ dependencies = [
 
 [[package]]
 name = "botocore"
-sections = ["dev", "powertools", "test"]
 version = "1.20.86"
+requires_python = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*"
 summary = "Low-level, data-driven core of boto 3."
 dependencies = [
     "jmespath<1.0.0,>=0.7.1",
@@ -1156,9 +1151,8 @@ dependencies = [
 
 [[package]]
 name = "cattrs"
-sections = ["cdk", "dev"]
 version = "1.5.0"
-marker = "python_version >= '3.7'"
+requires_python = ">=3.7,<4.0"
 summary = "Composable complex class support for attrs and dataclasses."
 dependencies = [
     "attrs>=20.1.0",
@@ -1166,15 +1160,12 @@ dependencies = [
 
 [[package]]
 name = "certifi"
-sections = ["dev"]
 version = "2021.5.30"
 summary = "Python package for providing Mozilla's CA Bundle."
 
 [[package]]
 name = "cffi"
-sections = ["dev"]
 version = "1.14.5"
-marker = "sys_platform == 'linux'"
 summary = "Foreign Function Interface for Python calling C code."
 dependencies = [
     "pycparser",
@@ -1182,20 +1173,20 @@ dependencies = [
 
 [[package]]
 name = "cfgv"
-sections = ["dev"]
 version = "3.3.0"
+requires_python = ">=3.6.1"
 summary = "Validate configuration and produce human readable error messages."
 
 [[package]]
 name = "chardet"
-sections = ["dev"]
 version = "4.0.0"
+requires_python = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*"
 summary = "Universal encoding detector for Python 2 and 3"
 
 [[package]]
 name = "click"
-sections = ["dev"]
 version = "8.0.1"
+requires_python = ">=3.6"
 summary = "Composable command line interface toolkit"
 dependencies = [
     "colorama; platform_system == \"Windows\"",
@@ -1203,14 +1194,14 @@ dependencies = [
 
 [[package]]
 name = "colorama"
-sections = ["dev", "test"]
 version = "0.4.4"
+requires_python = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*"
 summary = "Cross-platform colored terminal text."
 
 [[package]]
 name = "constructs"
-sections = ["cdk", "dev"]
 version = "3.3.75"
+requires_python = ">=3.6"
 summary = "A programming model for composable configuration"
 dependencies = [
     "jsii<2.0.0,>=1.28.0",
@@ -1219,15 +1210,14 @@ dependencies = [
 
 [[package]]
 name = "coverage"
-sections = ["test"]
 version = "5.5"
+requires_python = ">=2.7,<4.0,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*"
 summary = "Code coverage measurement for Python"
 
 [[package]]
 name = "cryptography"
-sections = ["dev"]
 version = "3.4.7"
-marker = "sys_platform == 'linux'"
+requires_python = ">=3.6"
 summary = "cryptography is a package which provides cryptographic recipes and primitives to Python developers."
 dependencies = [
     "cffi>=1.12",
@@ -1235,70 +1225,66 @@ dependencies = [
 
 [[package]]
 name = "distlib"
-sections = ["dev"]
 version = "0.3.2"
 summary = "Distribution utilities"
 
 [[package]]
 name = "dnspython"
-sections = ["powertools"]
 version = "2.1.0"
+requires_python = ">=3.6"
 summary = "DNS toolkit"
 
 [[package]]
 name = "docutils"
-sections = ["dev"]
 version = "0.17.1"
+requires_python = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*"
 summary = "Docutils -- Python Documentation Utilities"
 
 [[package]]
 name = "email-validator"
-sections = ["powertools"]
 version = "1.1.2"
 summary = "A robust email syntax and deliverability validation library for Python 2.x/3.x."
 dependencies = [
-    "idna>=2.0.0",
     "dnspython>=1.15.0",
+    "idna>=2.0.0",
 ]
 
 [[package]]
 name = "fastapi"
-sections = ["dev"]
 version = "0.65.1"
+requires_python = ">=3.6"
 summary = "FastAPI framework, high performance, easy to learn, fast to code, ready for production"
 dependencies = [
-    "starlette==0.14.2",
     "pydantic!=1.7,!=1.7.1,!=1.7.2,!=1.7.3,!=1.8,!=1.8.1,<2.0.0,>=1.6.2",
+    "starlette==0.14.2",
 ]
 
 [[package]]
 name = "fastjsonschema"
-sections = ["powertools"]
 version = "2.15.1"
 summary = "Fastest Python implementation of JSON schema"
 
 [[package]]
 name = "filelock"
-sections = ["dev"]
 version = "3.0.12"
 summary = "A platform independent file lock."
 
 [[package]]
 name = "future"
-sections = ["dev", "powertools"]
 version = "0.18.2"
+requires_python = ">=2.6,!=3.0.*,!=3.1.*,!=3.2.*"
 summary = "Clean single-source support for Python 3 and 2"
 
 [[package]]
 name = "h11"
-sections = ["dev"]
 version = "0.12.0"
+requires_python = ">=3.6"
 summary = "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1"
 
 [[package]]
 name = "hypothesis"
-sections = ["test"]
-version = "6.13.11"
+version = "6.13.12"
+requires_python = ">=3.6"
 summary = "A library for property-based testing"
 dependencies = [
     "attrs>=19.2.0",
@@ -1307,20 +1293,20 @@ dependencies = [
 
 [[package]]
 name = "identify"
-sections = ["dev"]
-version = "2.2.7"
+version = "2.2.8"
+requires_python = ">=3.6.1"
 summary = "File identification library for Python"
 
 [[package]]
 name = "idna"
-sections = ["dev", "powertools"]
 version = "2.10"
+requires_python = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*"
 summary = "Internationalized Domain Names in Applications (IDNA)"
 
 [[package]]
 name = "importlib-metadata"
-sections = ["dev"]
 version = "4.4.0"
+requires_python = ">=3.6"
 summary = "Read metadata from Python packages"
 dependencies = [
     "zipp>=0.5",
@@ -1328,21 +1314,19 @@ dependencies = [
 
 [[package]]
 name = "iniconfig"
-sections = ["test"]
 version = "1.1.1"
 summary = "iniconfig: brain-dead simple config-ini parsing"
 
 [[package]]
 name = "jeepney"
-sections = ["dev"]
 version = "0.6.0"
-marker = "sys_platform == 'linux'"
+requires_python = ">=3.6"
 summary = "Low-level, pure Python DBus protocol wrapper."
 
 [[package]]
 name = "Jinja2"
-sections = ["dev"]
 version = "3.0.1"
+requires_python = ">=3.6"
 summary = "A very fast and expressive template engine."
 dependencies = [
     "MarkupSafe>=2.0",
@@ -1350,45 +1334,44 @@ dependencies = [
 
 [[package]]
 name = "jmespath"
-sections = ["dev", "powertools", "test"]
 version = "0.10.0"
+requires_python = ">=2.6,!=3.0.*,!=3.1.*,!=3.2.*"
 summary = "JSON Matching Expressions"
 
 [[package]]
 name = "joblib"
-sections = ["dev"]
 version = "1.0.1"
-marker = "python_version >= '2.8'"
+requires_python = ">=3.6"
 summary = "Lightweight pipelining with Python functions"
 
 [[package]]
 name = "jsii"
-sections = ["cdk", "dev"]
 version = "1.30.0"
+requires_python = ">=3.6,<4.0"
 summary = "Python client for jsii runtime"
 dependencies = [
     "attrs~=20.1",
+    "cattrs~=1.5.0; python_version >= \"3.7\"",
     "python-dateutil",
     "typing-extensions~=3.7",
-    "cattrs~=1.5.0; python_version >= \"3.7\"",
 ]
 
 [[package]]
 name = "keyring"
-sections = ["dev"]
 version = "23.0.1"
+requires_python = ">=3.6"
 summary = "Store and access your passwords safely."
 dependencies = [
-    "importlib-metadata>=3.6",
     "SecretStorage>=3.2; sys_platform == \"linux\"",
+    "importlib-metadata>=3.6",
     "jeepney>=0.4.2; sys_platform == \"linux\"",
     "pywin32-ctypes!=0.1.0,!=0.1.1; sys_platform == \"win32\"",
 ]
 
 [[package]]
 name = "klaxon"
-sections = ["dev"]
 version = "1.1.1"
+requires_python = ">=3.6,<4.0"
 summary = "Use osascript to send notifications."
 dependencies = [
     "toml<0.11.0,>=0.10.0",
@@ -1396,7 +1379,6 @@ dependencies = [
 
 [[package]]
 name = "livereload"
-sections = ["dev"]
 version = "2.6.3"
 summary = "Python LiveReload is an awesome tool for web developers"
 dependencies = [
@@ -1406,7 +1388,6 @@ dependencies = [
 
 [[package]]
 name = "lunr"
-sections = ["dev"]
 version = "0.5.8"
 summary = "A Python implementation of Lunr.js"
 dependencies = [
@@ -1416,21 +1397,20 @@ dependencies = [
 
 [[package]]
 name = "lunr"
-sections = ["dev"]
 version = "0.5.8"
 extras = ["languages"]
 summary = "A Python implementation of Lunr.js"
 dependencies = [
     "future>=0.16.0",
-    "six>=1.11.0",
-    "nltk>=3.2.5; python_version > \"2.7\"",
     "lunr==0.5.8",
+    "nltk>=3.2.5; python_version > \"2.7\"",
+    "six>=1.11.0",
 ]
 
 [[package]]
 name = "mangum"
-sections = ["dev"]
 version = "0.11.0"
+requires_python = ">=3.6"
 summary = "AWS Lambda & API Gateway support for ASGI"
 dependencies = [
     "typing-extensions",
@@ -1438,35 +1418,35 @@ dependencies = [
 
 [[package]]
 name = "Markdown"
-sections = ["dev"]
 version = "3.3.4"
+requires_python = ">=3.6"
 summary = "Python implementation of Markdown."
 
 [[package]]
 name = "MarkupSafe"
-sections = ["dev"]
 version = "2.0.1"
+requires_python = ">=3.6"
 summary = "Safely add untrusted strings to HTML/XML markup."
 
 [[package]]
 name = "mkdocs"
-sections = ["dev"]
 version = "1.1.2"
+requires_python = ">=3.5"
 summary = "Project documentation with Markdown."
 dependencies = [
-    "click>=3.3",
     "Jinja2>=2.10.1",
-    "livereload>=2.5.1",
-    "lunr[languages]==0.5.8",
     "Markdown>=3.2.1",
     "PyYAML>=3.10",
+    "click>=3.3",
+    "livereload>=2.5.1",
+    "lunr[languages]==0.5.8",
     "tornado>=5.0",
 ]
 
 [[package]]
 name = "mkdocs-autorefs"
-sections = ["dev"]
 version = "0.2.1"
+requires_python = ">=3.6,<4.0"
 summary = "Automatically link across pages in MkDocs."
 dependencies = [
     "Markdown<4.0,>=3.3",
@@ -1475,21 +1455,20 @@ dependencies = [
 
 [[package]]
 name = "mkdocs-material"
-sections = ["dev"]
 version = "7.1.6"
 summary = "A Material Design theme for MkDocs"
 dependencies = [
-    "mkdocs>=1.1",
     "Pygments>=2.4",
     "markdown>=3.2",
-    "pymdown-extensions>=7.0",
     "mkdocs-material-extensions>=1.0",
+    "mkdocs>=1.1",
+    "pymdown-extensions>=7.0",
 ]
 
 [[package]]
 name = "mkdocs-material-extensions"
-sections = ["dev"]
 version = "1.0.1"
+requires_python = ">=3.5"
 summary = "Extension pack for Python Markdown."
 dependencies = [
     "mkdocs-material>=5.0.0",
@@ -1497,30 +1476,28 @@ dependencies = [
 
 [[package]]
 name = "mkdocstrings"
-sections = ["dev"]
 version = "0.15.1"
+requires_python = ">=3.6,<4.0"
 summary = "Automatic documentation from sources, for MkDocs."
 dependencies = [
     "Jinja2<4.0,>=2.11.1",
     "Markdown<4.0,>=3.3",
     "MarkupSafe<3.0,>=1.1",
-    "mkdocs<2.0,>=1.1",
     "mkdocs-autorefs<0.3,>=0.1",
+    "mkdocs<2.0,>=1.1",
     "pymdown-extensions<9.0,>=6.3",
     "pytkdocs<0.12.0,>=0.2.0",
 ]
 
 [[package]]
 name = "mypy-extensions"
-sections = ["dev"]
 version = "0.4.3"
 summary = "Experimental type system extensions for programs checked with the mypy typechecker."
 
 [[package]]
 name = "nltk"
-sections = ["dev"]
 version = "3.6.2"
-marker = "python_version >= '2.8'"
+requires_python = ">=3.5"
 summary = "Natural Language Toolkit"
 dependencies = [
     "click",
@@ -1531,14 +1508,13 @@ dependencies = [
 
 [[package]]
 name = "nodeenv"
-sections = ["dev"]
 version = "1.6.0"
 summary = "Node.js virtual environment builder"
 
 [[package]]
 name = "packaging"
-sections = ["dev", "test"]
 version = "20.9"
+requires_python = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*"
 summary = "Core utilities for Python packages"
 dependencies = [
     "pyparsing>=2.0.2",
@@ -1546,26 +1522,25 @@ dependencies = [
 
 [[package]]
 name = "pathspec"
-sections = ["dev"]
 version = "0.8.1"
+requires_python = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*"
 summary = "Utility library for gitignore style pattern matching of file paths."
 
 [[package]]
 name = "pkginfo"
-sections = ["dev"]
 version = "1.7.0"
 summary = "Query metadatdata from sdists / bdists / installed packages."
 
 [[package]]
 name = "pluggy"
-sections = ["test"]
 version = "0.13.1"
+requires_python = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*"
 summary = "plugin and hook calling mechanisms for python"
 
 [[package]]
 name = "pre-commit"
-sections = ["dev"]
 version = "2.13.0"
+requires_python = ">=3.6.1"
 summary = "A framework for managing and maintaining multi-language pre-commit hooks."
 dependencies = [
     "cfgv>=2.0.0",
@@ -1578,27 +1553,25 @@ dependencies = [
 
 [[package]]
 name = "publication"
-sections = ["cdk", "dev"]
 version = "0.0.3"
 summary = "Publication helps you maintain public-api-friendly modules by preventing unintentional access to private implementation details via introspection."
 
 [[package]]
 name = "py"
-sections = ["test"]
 version = "1.10.0"
+requires_python = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*"
 summary = "library with cross-python path, ini-parsing, io, code, log facilities"
 
 [[package]]
 name = "pycparser"
-sections = ["dev"]
 version = "2.20"
-marker = "sys_platform == 'linux'"
+requires_python = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*"
 summary = "C parser in Python"
 
 [[package]]
 name = "pydantic"
-sections = ["dev", "powertools"]
 version = "1.8.2"
+requires_python = ">=3.6.1"
 summary = "Data validation and settings management using python 3.6 type hinting"
 dependencies = [
     "typing-extensions>=3.7.4.3",
@@ -1606,26 +1579,26 @@ dependencies = [
 
 [[package]]
 name = "pydantic"
-sections = ["powertools"]
 version = "1.8.2"
 extras = ["email"]
+requires_python = ">=3.6.1"
 summary = "Data validation and settings management using python 3.6 type hinting"
 dependencies = [
-    "typing-extensions>=3.7.4.3",
     "email-validator>=1.0.3",
-    "pydantic==1.8.2",
+    "pydantic",
+    "typing-extensions>=3.7.4.3",
 ]
 
 [[package]]
 name = "Pygments"
-sections = ["dev"]
 version = "2.9.0"
+requires_python = ">=3.5"
 summary = "Pygments is a syntax highlighting package written in Python."
 
 [[package]]
 name = "pymdown-extensions"
-sections = ["dev"]
 version = "8.2"
+requires_python = ">=3.6"
 summary = "Extension pack for Python Markdown."
 dependencies = [
     "Markdown>=3.2",
@@ -1633,41 +1606,41 @@ dependencies = [
 
 [[package]]
 name = "pyparsing"
-sections = ["dev", "test"]
 version = "2.4.7"
+requires_python = ">=2.6,!=3.0.*,!=3.1.*,!=3.2.*"
 summary = "Python parsing module"
 
 [[package]]
 name = "pytest"
-sections = ["test"]
 version = "6.2.4"
+requires_python = ">=3.6"
 summary = "pytest: simple powerful testing with Python"
 dependencies = [
+    "atomicwrites>=1.0; sys_platform == \"win32\"",
     "attrs>=19.2.0",
+    "colorama; sys_platform == \"win32\"",
     "iniconfig",
     "packaging",
     "pluggy<1.0.0a1,>=0.12",
     "py>=1.8.2",
     "toml",
-    "atomicwrites>=1.0; sys_platform == \"win32\"",
-    "colorama; sys_platform == \"win32\"",
 ]
 
 [[package]]
 name = "pytest-cov"
-sections = ["test"]
 version = "2.12.1"
+requires_python = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*"
 summary = "Pytest plugin for measuring coverage."
 dependencies = [
-    "pytest>=4.6",
     "coverage>=5.2.1",
+    "pytest>=4.6",
     "toml",
 ]
 
 [[package]]
 name = "python-dateutil"
-sections = ["cdk", "dev", "powertools", "test"]
 version = "2.8.1"
+requires_python = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*"
 summary = "Extensions to the standard Python datetime module"
 dependencies = [
     "six>=1.5",
@@ -1675,8 +1648,8 @@ dependencies = [
 
 [[package]]
 name = "pytkdocs"
-sections = ["dev"]
 version = "0.11.1"
+requires_python = ">=3.6.1,<4.0"
 summary = "Load Python objects documentation."
 dependencies = [
     "astunparse<2.0.0,>=1.6.3; python_version < \"3.9\"",
@@ -1684,50 +1657,45 @@ dependencies = [
 
 [[package]]
 name = "pywin32-ctypes"
-sections = ["dev"]
 version = "0.2.0"
-marker = "sys_platform == 'win32'"
 summary = "UNKNOWN"
 
 [[package]]
 name = "PyYAML"
-sections = ["dev"]
 version = "5.4.1"
+requires_python = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*"
 summary = "YAML parser and emitter for Python"
 
 [[package]]
 name = "readme-renderer"
-sections = ["dev"]
 version = "29.0"
 summary = "readme_renderer is a library for rendering \"readme\" descriptions for Warehouse"
 dependencies = [
+    "Pygments>=2.5.1",
     "bleach>=2.1.0",
     "docutils>=0.13.1",
-    "Pygments>=2.5.1",
     "six",
 ]
 
 [[package]]
 name = "regex"
-sections = ["dev"]
 version = "2021.4.4"
 summary = "Alternative regular expression module, to replace re."
 
 [[package]]
 name = "requests"
-sections = ["dev"]
 version = "2.25.1"
+requires_python = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*"
 summary = "Python HTTP for Humans."
 dependencies = [
+    "certifi>=2017.4.17",
     "chardet<5,>=3.0.2",
     "idna<3,>=2.5",
     "urllib3<1.27,>=1.21.1",
-    "certifi>=2017.4.17",
 ]
 
 [[package]]
 name = "requests-toolbelt"
-sections = ["dev"]
 version = "0.9.1"
 summary = "A utility belt for advanced users of python-requests"
 dependencies = [
@@ -1736,13 +1704,11 @@ dependencies = [
 
 [[package]]
 name = "rfc3986"
-sections = ["dev"]
 version = "1.5.0"
 summary = "Validating URI References per RFC 3986"
 
 [[package]]
 name = "s3transfer"
-sections = ["dev", "powertools", "test"]
 version = "0.4.2"
 summary = "An Amazon S3 Transfer Manager"
 dependencies = [
@@ -1751,9 +1717,8 @@ dependencies = [
 
 [[package]]
 name = "SecretStorage"
-sections = ["dev"]
 version = "3.3.1"
-marker = "sys_platform == 'linux'"
+requires_python = ">=3.6"
 summary = "Python bindings to FreeDesktop.org Secret Service API"
 dependencies = [
     "cryptography>=2.0",
@@ -1762,72 +1727,69 @@ dependencies = [
 
 [[package]]
 name = "six"
-sections = ["cdk", "dev", "powertools", "test"]
 version = "1.16.0"
+requires_python = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*"
 summary = "Python 2 and 3 compatibility utilities"
 
 [[package]]
 name = "sortedcontainers"
-sections = ["test"]
 version = "2.4.0"
 summary = "Sorted Containers -- Sorted List, Sorted Dict, Sorted Set"
 
 [[package]]
 name = "starlette"
-sections = ["dev"]
 version = "0.14.2"
+requires_python = ">=3.6"
 summary = "The little ASGI library that shines."
 
 [[package]]
 name = "toml"
-sections = ["dev", "test"]
 version = "0.10.2"
+requires_python = ">=2.6,!=3.0.*,!=3.1.*,!=3.2.*"
 summary = "Python Library for Tom's Obvious, Minimal Language"
 
 [[package]]
 name = "tornado"
-sections = ["dev"]
 version = "6.1"
+requires_python = ">=3.5"
 summary = "Tornado is a Python web framework and asynchronous networking library, originally developed at FriendFeed."
 
 [[package]]
 name = "tqdm"
-sections = ["dev"]
 version = "4.61.0"
+requires_python = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*"
 summary = "Fast, Extensible Progress Meter"
 
 [[package]]
 name = "twine"
-sections = ["dev"]
 version = "3.4.1"
+requires_python = ">=3.6"
 summary = "Collection of utilities for publishing packages on PyPI"
 dependencies = [
-    "pkginfo>=1.4.2",
-    "readme-renderer>=21.0",
-    "requests>=2.20",
-    "requests-toolbelt!=0.9.0,>=0.8.0",
-    "tqdm>=4.14",
+    "colorama>=0.4.3",
     "importlib-metadata>=3.6",
     "keyring>=15.1",
+    "pkginfo>=1.4.2",
+    "readme-renderer>=21.0",
+    "requests-toolbelt!=0.9.0,>=0.8.0",
+    "requests>=2.20",
     "rfc3986>=1.4.0",
-    "colorama>=0.4.3",
+    "tqdm>=4.14",
 ]
 
 [[package]]
 name = "typing-extensions"
-sections = ["cdk", "dev", "powertools"]
 version = "3.10.0.0"
 summary = "Backported and Experimental Type Hints for Python 3.5+"
 
 [[package]]
 name = "urllib3"
-sections = ["dev", "powertools", "test"]
 version = "1.26.5"
+requires_python = ">=2.7,<4.0,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*"
 summary = "HTTP library with thread-safe connection pooling, file post, and more."
 
 [[package]]
 name = "uvicorn"
-sections = ["dev"]
 version = "0.14.0"
 summary = "The lightning-fast ASGI server."
 dependencies = [
@@ -1838,8 +1800,8 @@ dependencies = [
 
 [[package]]
 name = "virtualenv"
-sections = ["dev"]
 version = "20.4.7"
+requires_python = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*"
 summary = "Virtual Python Environment builder"
 dependencies = [
     "appdirs<2,>=1.4.3",
@@ -1850,31 +1812,28 @@ dependencies = [
 
 [[package]]
 name = "webencodings"
-sections = ["dev"]
 version = "0.5.1"
 summary = "Character encoding aliases for legacy web content"
 
 [[package]]
 name = "wheel"
-sections = ["dev"]
 version = "0.36.2"
-marker = "python_version < '3.9'"
+requires_python = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*"
 summary = "A built-package format for Python"
 
 [[package]]
 name = "wrapt"
-sections = ["powertools"]
 version = "1.12.1"
 summary = "Module for decorators, wrappers and monkey patching."
 
 [[package]]
 name = "zipp"
-sections = ["dev"]
 version = "3.4.1"
+requires_python = ">=3.6"
 summary = "Backport of pathlib-compatible object wrapper for zip files"
 
 [metadata]
-lock_version = "2"
+lock_version = "3"
 content_hash = "sha256:a45f65337471493952b29b3f920fa760b6abf0d2b7ac41630f51e057b0d4a0b6"
 
 [metadata.files]
@@ -2142,10 +2101,6 @@ content_hash = "sha256:a45f65337471493952b29b3f920fa760b6abf0d2b7ac41630f51e057b
     {file = "aws_lambda_powertools-1.16.1-py3-none-any.whl", hash = "sha256:0dc3b3487e00ea6c987c6387f1b7804be9a02aa3ecc183a1d25717578a9d4d75"},
     {file = "aws_lambda_powertools-1.16.1.tar.gz", hash = "sha256:c41ed40ccc4cd43257419d8298ab8b05ea4ede29ff185a596d1aa4480fed4f75"},
 ]
-"aws-lambda-powertools[pydantic] 1.16.1" = [
-    {file = "aws_lambda_powertools-1.16.1-py3-none-any.whl", hash = "sha256:0dc3b3487e00ea6c987c6387f1b7804be9a02aa3ecc183a1d25717578a9d4d75"},
-    {file = "aws_lambda_powertools-1.16.1.tar.gz", hash = "sha256:c41ed40ccc4cd43257419d8298ab8b05ea4ede29ff185a596d1aa4480fed4f75"},
-]
 "aws-xray-sdk 2.8.0" = [
     {file = "aws_xray_sdk-2.8.0-py2.py3-none-any.whl", hash = "sha256:487e44a2e0b2a5b994f7db5fad3a8115f1ea238249117a119bce8ca2750661bd"},
     {file = "aws-xray-sdk-2.8.0.tar.gz", hash = "sha256:90c2fcc982a770e86d009a4c3d2b5c3e372da91cb8284d982bae458e2c0bb268"},
@@ -2348,13 +2303,12 @@ content_hash = "sha256:a45f65337471493952b29b3f920fa760b6abf0d2b7ac41630f51e057b
     {file = "h11-0.12.0-py3-none-any.whl", hash = "sha256:36a3cb8c0a032f56e2da7084577878a035d3b61d104230d4bd49c0c6b555a9c6"},
     {file = "h11-0.12.0.tar.gz", hash = "sha256:47222cb6067e4a307d535814917cd98fd0a57b6788ce715755fa2b6c28b56042"},
 ]
-"hypothesis 6.13.11" = [
-    {file = "hypothesis-6.13.11-py3-none-any.whl", hash = "sha256:a4b1dbaff6ed1b2d5e5137014edf5d357e0d0c07daa7801fb7c18dbd74a36cd1"},
-    {file = "hypothesis-6.13.11.tar.gz", hash = "sha256:bc05fd13a3adcedaf73b6c1b1b1c06a92bc3f550aefb5d34432ef199f71efaaf"},
+"hypothesis 6.13.12" = [
+    {file = "hypothesis-6.13.12-py3-none-any.whl", hash = "sha256:cca0e54d769214849755f7a125a2f759615e0386844eb42bd30ca2633d249b61"},
 ]
-"identify 2.2.7" = [
-    {file = "identify-2.2.7-py2.py3-none-any.whl", hash = "sha256:92d6ad08eca19ceb17576733759944b94c0761277ddc3acf65e75e57ef190e32"},
-    {file = "identify-2.2.7.tar.gz", hash = "sha256:c29e74c3671fe9537715cb695148231d777170ca1498e1c30c675d4ea782afe9"},
+"identify 2.2.8" = [
+    {file = "identify-2.2.8-py2.py3-none-any.whl", hash = "sha256:3a74cf41f1a0bde21e2f196a1727a608629339d9897226bad07b22e0bbde6faa"},
+    {file = "identify-2.2.8.tar.gz", hash = "sha256:7d4a73d58869a484d4ba8892793c80e30aa699e77707f26c1049486ef9be415f"},
 ]
 "idna 2.10" = [
     {file = "idna-2.10-py2.py3-none-any.whl", hash = "sha256:b97d804b1e9b523befed77c48dacec60e6dcb0b5391d57af6a65a312a90648c0"},
@@ -2400,10 +2354,6 @@ content_hash = "sha256:a45f65337471493952b29b3f920fa760b6abf0d2b7ac41630f51e057b
     {file = "livereload-2.6.3.tar.gz", hash = "sha256:776f2f865e59fde56490a56bcc6773b6917366bce0c267c60ee8aaf1a0959869"},
 ]
 "lunr 0.5.8" = [
-    {file = "lunr-0.5.8-py2.py3-none-any.whl", hash = "sha256:aab3f489c4d4fab4c1294a257a30fec397db56f0a50273218ccc3efdbf01d6ca"},
-    {file = "lunr-0.5.8.tar.gz", hash = "sha256:c4fb063b98eff775dd638b3df380008ae85e6cb1d1a24d1cd81a10ef6391c26e"},
-]
-"lunr[languages] 0.5.8" = [
     {file = "lunr-0.5.8-py2.py3-none-any.whl", hash = "sha256:aab3f489c4d4fab4c1294a257a30fec397db56f0a50273218ccc3efdbf01d6ca"},
     {file = "lunr-0.5.8.tar.gz", hash = "sha256:c4fb063b98eff775dd638b3df380008ae85e6cb1d1a24d1cd81a10ef6391c26e"},
 ]
@@ -2516,30 +2466,6 @@ content_hash = "sha256:a45f65337471493952b29b3f920fa760b6abf0d2b7ac41630f51e057b
     {file = "pycparser-2.20.tar.gz", hash = "sha256:2d475327684562c3a96cc71adf7dc8c4f0565175cf86b6d7a404ff4c771f15f0"},
 ]
 "pydantic 1.8.2" = [
-    {file = "pydantic-1.8.2-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:05ddfd37c1720c392f4e0d43c484217b7521558302e7069ce8d318438d297739"},
-    {file = "pydantic-1.8.2-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:a7c6002203fe2c5a1b5cbb141bb85060cbff88c2d78eccbc72d97eb7022c43e4"},
-    {file = "pydantic-1.8.2-cp36-cp36m-manylinux2014_i686.whl", hash = "sha256:589eb6cd6361e8ac341db97602eb7f354551482368a37f4fd086c0733548308e"},
-    {file = "pydantic-1.8.2-cp36-cp36m-manylinux2014_x86_64.whl", hash = "sha256:10e5622224245941efc193ad1d159887872776df7a8fd592ed746aa25d071840"},
-    {file = "pydantic-1.8.2-cp36-cp36m-win_amd64.whl", hash = "sha256:99a9fc39470010c45c161a1dc584997f1feb13f689ecf645f59bb4ba623e586b"},
-    {file = "pydantic-1.8.2-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:a83db7205f60c6a86f2c44a61791d993dff4b73135df1973ecd9eed5ea0bda20"},
-    {file = "pydantic-1.8.2-cp37-cp37m-manylinux1_i686.whl", hash = "sha256:41b542c0b3c42dc17da70554bc6f38cbc30d7066d2c2815a94499b5684582ecb"},
-    {file = "pydantic-1.8.2-cp37-cp37m-manylinux2014_i686.whl", hash = "sha256:ea5cb40a3b23b3265f6325727ddfc45141b08ed665458be8c6285e7b85bd73a1"},
-    {file = "pydantic-1.8.2-cp37-cp37m-manylinux2014_x86_64.whl", hash = "sha256:18b5ea242dd3e62dbf89b2b0ec9ba6c7b5abaf6af85b95a97b00279f65845a23"},
-    {file = "pydantic-1.8.2-cp37-cp37m-win_amd64.whl", hash = "sha256:234a6c19f1c14e25e362cb05c68afb7f183eb931dd3cd4605eafff055ebbf287"},
-    {file = "pydantic-1.8.2-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:021ea0e4133e8c824775a0cfe098677acf6fa5a3cbf9206a376eed3fc09302cd"},
-    {file = "pydantic-1.8.2-cp38-cp38-manylinux1_i686.whl", hash = "sha256:e710876437bc07bd414ff453ac8ec63d219e7690128d925c6e82889d674bb505"},
-    {file = "pydantic-1.8.2-cp38-cp38-manylinux2014_i686.whl", hash = "sha256:ac8eed4ca3bd3aadc58a13c2aa93cd8a884bcf21cb019f8cfecaae3b6ce3746e"},
-    {file = "pydantic-1.8.2-cp38-cp38-manylinux2014_x86_64.whl", hash = "sha256:4a03cbbe743e9c7247ceae6f0d8898f7a64bb65800a45cbdc52d65e370570820"},
-    {file = "pydantic-1.8.2-cp38-cp38-win_amd64.whl", hash = "sha256:8621559dcf5afacf0069ed194278f35c255dc1a1385c28b32dd6c110fd6531b3"},
-    {file = "pydantic-1.8.2-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:8b223557f9510cf0bfd8b01316bf6dd281cf41826607eada99662f5e4963f316"},
-    {file = "pydantic-1.8.2-cp39-cp39-manylinux1_i686.whl", hash = "sha256:244ad78eeb388a43b0c927e74d3af78008e944074b7d0f4f696ddd5b2af43c62"},
-    {file = "pydantic-1.8.2-cp39-cp39-manylinux2014_i686.whl", hash = "sha256:05ef5246a7ffd2ce12a619cbb29f3307b7c4509307b1b49f456657b43529dc6f"},
-    {file = "pydantic-1.8.2-cp39-cp39-manylinux2014_x86_64.whl", hash = "sha256:54cd5121383f4a461ff7644c7ca20c0419d58052db70d8791eacbbe31528916b"},
-    {file = "pydantic-1.8.2-cp39-cp39-win_amd64.whl", hash = "sha256:4be75bebf676a5f0f87937c6ddb061fa39cbea067240d98e298508c1bda6f3f3"},
-    {file = "pydantic-1.8.2-py3-none-any.whl", hash = "sha256:fec866a0b59f372b7e776f2d7308511784dace622e0992a0b59ea3ccee0ae833"},
-    {file = "pydantic-1.8.2.tar.gz", hash = "sha256:26464e57ccaafe72b7ad156fdaa4e9b9ef051f69e175dbbb463283000c05ab7b"},
-]
-"pydantic[email] 1.8.2" = [
     {file = "pydantic-1.8.2-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:05ddfd37c1720c392f4e0d43c484217b7521558302e7069ce8d318438d297739"},
     {file = "pydantic-1.8.2-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:a7c6002203fe2c5a1b5cbb141bb85060cbff88c2d78eccbc72d97eb7022c43e4"},
     {file = "pydantic-1.8.2-cp36-cp36m-manylinux2014_i686.whl", hash = "sha256:589eb6cd6361e8ac341db97602eb7f354551482368a37f4fd086c0733548308e"},
