@@ -14,6 +14,7 @@ from aws_cdk import aws_stepfunctions as sfn
 from aws_cdk import aws_stepfunctions_tasks as sfn_tasks
 from aws_cdk import core as cdk
 from aws_cdk import pipelines
+from aws_cdk.aws_codebuild import BuildEnvironmentVariable
 
 from examples.batch_example import banana
 from examples.hello_orkestra import generate_item
@@ -436,17 +437,20 @@ class PipelineStack(cdk.Stack):
                 # build_command="pytest unittests",
                 # synth_command="cdk synth",
                 install_commands=[
-                    # "yum install -y amazon-linux-extras",
-                    # "amazon-linux-extras enable python3.8",
-                    # "yum install -y python3.8",
-                    # "npm install -g aws-cdk",
-                    "pip3.8 install pdm",
+                    "npm install -g aws-cdk",
+                    "pyenv global 3.8.8",
+                    "pip install pdm",
                     "pdm install -s :all",
                 ],
                 test_commands=[
                     "pdm run unit-tests",
                 ],
                 synth_command="pdm run cdk synth",
+                environment_variables={
+                    "POWERTOOLS_TRACE_DISABLED": BuildEnvironmentVariable(
+                        value="1"
+                    ),
+                },
             ),
         )
 
