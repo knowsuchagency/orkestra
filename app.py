@@ -417,7 +417,7 @@ class PipelineStack(cdk.Stack):
             self,
             namespace("cdkPipeline"),
             cloud_assembly_artifact=cloud_assembly_artifact,
-            pipeline_name="WebinarPipeline",
+            pipeline_name="OrkestraPipeline",
             source_action=cpactions.GitHubSourceAction(
                 action_name="GitHub",
                 output=source_artifact,
@@ -434,6 +434,7 @@ class PipelineStack(cdk.Stack):
                 # build_command="pytest unittests",
                 # synth_command="cdk synth",
                 install_commands=[
+                    "yum install -y amazon-linux-extras",
                     "amazon-linux-extras enable python3.8",
                     "yum install -y python3.8",
                     "npm install -g aws-cdk",
