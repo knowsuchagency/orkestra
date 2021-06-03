@@ -515,16 +515,18 @@ if __name__ == "__main__":
         account=CDK_DEFAULT_ACCOUNT,
     )
 
-    if PIPELINE_DEPLOYMENT:
+    # if PIPELINE_DEPLOYMENT:
+    #
+    #     PipelineStack(app, namespace("Pipeline"), env=env)
+    #
+    # elif ENVIRONMENT == Environment.LOCAL:
+    #
+    #     OrkestraDeployment(app, namespace("Orkestra"), env=env)
+    #
+    # else:
+    #
+    #     OrkestraDeployment(app, namespace("Orkestra"))
 
-        PipelineStack(app, namespace("Pipeline"), env=env)
-
-    elif ENVIRONMENT == Environment.LOCAL:
-
-        OrkestraDeployment(app, namespace("Orkestra"), env=env)
-
-    else:
-
-        OrkestraDeployment(app, namespace("Orkestra"))
+    PipelineStack(app, namespace("Pipeline"), env=env)
 
     app.synth()
