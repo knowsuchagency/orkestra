@@ -429,6 +429,7 @@ class PipelineStack(cdk.Stack):
             namespace("cdkPipeline"),
             cloud_assembly_artifact=cloud_assembly_artifact,
             pipeline_name="OrkestraPipeline",
+            support_docker_assets=True,
             source_action=source_action,
             synth_action=pipelines.SimpleSynthAction(
                 source_artifact=source_artifact,
@@ -437,6 +438,7 @@ class PipelineStack(cdk.Stack):
                 # build_command="pytest unittests",
                 # synth_command="cdk synth",
                 install_commands=[
+                    "docker run hello-world",
                     "npm install -g aws-cdk",
                     "pyenv global 3.8.8",
                     "pip install pdm",
