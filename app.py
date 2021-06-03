@@ -48,7 +48,7 @@ class Environment(Enum):
     @property
     @staticmethod
     def pipeline_deployment():
-        res = os.getenv("PIPELINE_DEPLOYMENT", "false")
+        res = os.getenv("NON_PIPELINE_DEPLOYMENT", "false")
 
         return res.lower().startswith("t") or res.strip() == "1"
 
@@ -57,9 +57,9 @@ CDK_DEFAULT_ACCOUNT = os.getenv("CDK_DEFAULT_ACCOUNT", "")
 
 ENVIRONMENT = Environment.from_env()
 
-_res = os.getenv("PIPELINE_DEPLOYMENT", "false")
+_res = os.getenv("NON_PIPELINE_DEPLOYMENT", "false")
 
-PIPELINE_DEPLOYMENT = _res.lower().startswith("t") or _res.strip() == "1"
+NON_PIPELINE_DEPLOYMENT = _res.lower().startswith("t") or _res.strip() == "1"
 
 
 def namespace(string: str, namespace=None, environment=None, add_env=False):
@@ -413,20 +413,22 @@ class PipelineStack(cdk.Stack):
 
         cloud_assembly_artifact = codepipeline.Artifact()
 
+        source_action = cpactions.GitHubSourceAction(
+            action_name="GitHub",
+            output=source_artifact,
+            oauth_token=cdk.SecretValue.secrets_manager("github-token"),
+            owner="knowsuchagency",
+            repo="orkestra",
+            trigger=cpactions.GitHubTrigger.POLL,
+            branch="main",
+        )
+
         pipeline = pipelines.CdkPipeline(
             self,
             namespace("cdkPipeline"),
             cloud_assembly_artifact=cloud_assembly_artifact,
             pipeline_name="OrkestraPipeline",
-            source_action=cpactions.GitHubSourceAction(
-                action_name="GitHub",
-                output=source_artifact,
-                oauth_token=cdk.SecretValue.secrets_manager("github-token"),
-                owner="knowsuchagency",
-                repo="orkestra",
-                trigger=cpactions.GitHubTrigger.POLL,
-                branch="main",
-            ),
+            source_action=source_action,
             synth_action=pipelines.SimpleSynthAction(
                 source_artifact=source_artifact,
                 cloud_assembly_artifact=cloud_assembly_artifact,
@@ -515,18 +517,10 @@ if __name__ == "__main__":
         account=CDK_DEFAULT_ACCOUNT,
     )
 
-    # if PIPELINE_DEPLOYMENT:
-    #
-    #     PipelineStack(app, namespace("Pipeline"), env=env)
-    #
-    # elif ENVIRONMENT == Environment.LOCAL:
-    #
-    #     OrkestraDeployment(app, namespace("Orkestra"), env=env)
-    #
-    # else:
-    #
-    #     OrkestraDeployment(app, namespace("Orkestra"))
-
     PipelineStack(app, namespace("Pipeline"), env=env)
+
+    if NON_PIPELINE_DEPLOYMENT:
+
+        OrkestraDeployment(app, namespace("Orkestra"), env=env)
 
     app.synth()

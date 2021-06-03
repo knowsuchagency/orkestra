@@ -775,6 +775,25 @@ dependencies = [
 ]
 
 [[package]]
+name = "aws-cdk.aws-s3-deployment"
+sections = ["dev"]
+version = "1.107.0"
+summary = "Constructs for deploying contents to S3 buckets"
+dependencies = [
+    "aws-cdk.aws-cloudfront==1.107.0",
+    "aws-cdk.aws-ec2==1.107.0",
+    "aws-cdk.aws-iam==1.107.0",
+    "aws-cdk.aws-lambda==1.107.0",
+    "aws-cdk.aws-s3-assets==1.107.0",
+    "aws-cdk.aws-s3==1.107.0",
+    "aws-cdk.core==1.107.0",
+    "aws-cdk.lambda-layer-awscli==1.107.0",
+    "constructs<4.0.0,>=3.3.69",
+    "jsii<2.0.0,>=1.29.0",
+    "publication>=0.0.3",
+]
+
+[[package]]
 name = "aws-cdk.aws-sam"
 sections = ["cdk", "dev"]
 version = "1.107.0"
@@ -994,7 +1013,7 @@ dependencies = [
 
 [[package]]
 name = "aws-cdk.lambda-layer-awscli"
-sections = ["cdk"]
+sections = ["cdk", "dev"]
 version = "1.107.0"
 summary = "An AWS Lambda layer that contains the AWS CLI"
 dependencies = [
@@ -1074,7 +1093,7 @@ dependencies = [
     "fastjsonschema<3.0.0,>=2.14.5",
     "jmespath<0.11.0,>=0.10.0",
     "pydantic<2.0.0,>=1.8.2",
-    "aws-lambda-powertools",
+    "aws-lambda-powertools==1.16.1",
 ]
 
 [[package]]
@@ -1594,7 +1613,7 @@ summary = "Data validation and settings management using python 3.6 type hinting
 dependencies = [
     "typing-extensions>=3.7.4.3",
     "email-validator>=1.0.3",
-    "pydantic",
+    "pydantic==1.8.2",
 ]
 
 [[package]]
@@ -1856,7 +1875,7 @@ summary = "Backport of pathlib-compatible object wrapper for zip files"
 
 [metadata]
 lock_version = "2"
-content_hash = "sha256:bd9524e1e0bd1910a2f3b49c1797e3e3c54b0f73bf2e8df74ada4dd461c126c3"
+content_hash = "sha256:a45f65337471493952b29b3f920fa760b6abf0d2b7ac41630f51e057b0d4a0b6"
 
 [metadata.files]
 "appdirs 1.4.4" = [
@@ -2042,6 +2061,10 @@ content_hash = "sha256:bd9524e1e0bd1910a2f3b49c1797e3e3c54b0f73bf2e8df74ada4dd46
 "aws-cdk.aws-s3-assets 1.107.0" = [
     {file = "aws_cdk.aws_s3_assets-1.107.0-py3-none-any.whl", hash = "sha256:0df0d7ba4053099d885157c9391a3c11c2c981cad347d1a0c926689079a6f24e"},
     {file = "aws-cdk.aws-s3-assets-1.107.0.tar.gz", hash = "sha256:6128b58c8bacf79bb0d1a7af8ac6287daf2dec0ff614dd9e0ff68e79e067cd01"},
+]
+"aws-cdk.aws-s3-deployment 1.107.0" = [
+    {file = "aws_cdk.aws_s3_deployment-1.107.0-py3-none-any.whl", hash = "sha256:f05bc77211c6cf50b47bb196881d9f1b1ff4bee16df4749f1d37aad838111b69"},
+    {file = "aws-cdk.aws-s3-deployment-1.107.0.tar.gz", hash = "sha256:db229a4b9de6cd254dc4a3cbe7f316304abeaf3696938a15244756c5e7502494"},
 ]
 "aws-cdk.aws-sam 1.107.0" = [
     {file = "aws_cdk.aws_sam-1.107.0-py3-none-any.whl", hash = "sha256:b88fd1cc85e8de39dc1bb01b100e614f7d69fa860e0af125803dc5cac4bbeae6"},

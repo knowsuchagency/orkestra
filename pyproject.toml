@@ -75,6 +75,7 @@ dev = [
     "mkdocstrings",
     "aws-cdk.aws_batch",
     "aws-cdk.pipelines",
+    "aws-cdk.aws_s3_deployment",
 ]
 test = [
     "pytest",
