@@ -434,15 +434,16 @@ class PipelineStack(cdk.Stack):
                 # build_command="pytest unittests",
                 # synth_command="cdk synth",
                 install_commands=[
+                    "amazon-linux-extras enable python3.8",
+                    "yum install -y python3.8",
                     "npm install -g aws-cdk",
-                    "python3 --version",
-                    "python3 -m pip install pdm",
-                    "python3 -m pdm install -s :all",
+                    "pip3.8 install pdm",
+                    "pdm install -s :all",
                 ],
                 test_commands=[
-                    "python3 -m pdm run unit-tests",
+                    "pdm run unit-tests",
                 ],
-                synth_command="python3 -m pdm run cdk synth",
+                synth_command="pdm run cdk synth",
             ),
         )
 
@@ -506,20 +507,18 @@ if __name__ == "__main__":
 
     app = cdk.App()
 
+    region = os.getenv("CDK_DEFAULT_REGION", "us-east-2")
+
+    env = cdk.Environment(
+        region=region,
+        account=CDK_DEFAULT_ACCOUNT,
+    )
+
     if PIPELINE_DEPLOYMENT:
 
-        PipelineStack(app, namespace("Pipeline"))
+        PipelineStack(app, namespace("Pipeline"), env=env)
 
     elif ENVIRONMENT == Environment.LOCAL:
-
-        region = os.getenv("CDK_DEFAULT_REGION", "us-east-2")
-
-        account = os.environ["CDK_DEFAULT_ACCOUNT"]
-
-        env = cdk.Environment(
-            region=region,
-            account=account,
-        )
 
         OrkestraDeployment(app, namespace("Orkestra"), env=env)
 
