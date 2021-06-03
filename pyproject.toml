@@ -74,6 +74,7 @@ dev = [
     "twine",
     "mkdocstrings",
     "aws-cdk.aws_batch",
+    "aws-cdk.pipelines",
 ]
 test = [
     "pytest",

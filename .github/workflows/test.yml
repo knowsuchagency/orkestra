@@ -8,7 +8,7 @@ jobs:
 
     env:
       POWERTOOLS_TRACE_DISABLED: 1
-      ENVIRONMENT: dev
+      ENVIRONMENT: GITHUB
 
     strategy:
       matrix:

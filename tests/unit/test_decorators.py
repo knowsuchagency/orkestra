@@ -1,6 +1,6 @@
-from orkestra.decorators import compose, powertools
-
 import pytest
+
+from orkestra.decorators import compose, powertools
 
 
 def test_call_list_raises_error(generic_event, generic_context):

@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 import os
-from typing import Type
+from enum import Enum
 
 from aws_cdk import aws_apigateway as apigw
 from aws_cdk import aws_batch as batch
+from aws_cdk import aws_codepipeline as codepipeline
+from aws_cdk import aws_codepipeline_actions as cpactions
 from aws_cdk import aws_ec2 as ec2
 from aws_cdk import aws_ecs as ecs
 from aws_cdk import aws_lambda
@@ -11,6 +13,7 @@ from aws_cdk import aws_lambda_python
 from aws_cdk import aws_stepfunctions as sfn
 from aws_cdk import aws_stepfunctions_tasks as sfn_tasks
 from aws_cdk import core as cdk
+from aws_cdk import pipelines
 
 from examples.batch_example import banana
 from examples.hello_orkestra import generate_item
@@ -27,11 +30,52 @@ from examples.powertools import generate_person, generate_numbers_2
 from examples.rest import handler, input_order
 from examples.single_lambda import handler
 from orkestra import coerce
+from orkestra.utils import _coalesce
+
+
+class Environment(Enum):
+    LOCAL = "LOCAL"
+    GITHUB = "GITHUB"
+    DEV = "DEV"
+    QA = "QA"
+    PROD = "PROD"
+
+    @classmethod
+    def from_env(cls):
+        env = os.getenv("ENVIRONMENT", "LOCAL")
+        return cls[env]
+
+    @property
+    @staticmethod
+    def pipeline_deployment():
+        res = os.getenv("PIPELINE_DEPLOYMENT", "false")
+
+        return res.lower().startswith("t") or res.strip() == "1"
 
 
 CDK_DEFAULT_ACCOUNT = os.getenv("CDK_DEFAULT_ACCOUNT", "")
 
-AWS_ACCESS = os.getenv("AWS_ACCESS", "false").lower().startswith("t")
+ENVIRONMENT = Environment.from_env()
+
+_res = os.getenv("PIPELINE_DEPLOYMENT", "false")
+
+PIPELINE_DEPLOYMENT = _res.lower().startswith("t") or _res.strip() == "1"
+
+
+def namespace(string: str, namespace=None, environment=None, add_env=False):
+    separator = "-"
+    namespace = (
+        namespace if namespace is not None else os.getenv("NAMESPACE", "")
+    )
+    environment = (
+        environment
+        if environment is not None
+        else os.getenv("ENVIRONMENT", "")
+    )
+    strings = [namespace, string]
+    if add_env:
+        strings.append(environment)
+    return separator.join(strings).strip(separator)
 
 
 class SingleLambda(cdk.Stack):
@@ -216,7 +260,9 @@ class BatchConstruct(cdk.Construct):
     def __init__(self, scope, id, **kwargs):
         super().__init__(scope, id, **kwargs)
 
-        assert AWS_ACCESS, "Access to AWS necessary to perform lookup"
+        assert (
+            ENVIRONMENT != Environment.GITHUB
+        ), "Access to AWS necessary to perform lookup"
 
         default_vpc = ec2.Vpc.from_lookup(
             self,
@@ -293,60 +339,192 @@ class MapJob(cdk.Stack):
         )
 
 
-class App:
-    def __init__(self):
+class Stacks(cdk.Construct):
+    """Our collection of stacks."""
 
-        self.app = cdk.App()
+    def __init__(self, scope, id, env=None, **kwargs):
 
-        self.env = cdk.Environment(
-            account=CDK_DEFAULT_ACCOUNT,
-            region=os.getenv(
-                "AWS_DEFAULT_REGION",
-                "us-east-2",
+        super().__init__(scope, id, **kwargs)
+
+        stack_kwargs = _coalesce({}, env=env)
+
+        self.hello_orkestra = HelloOrkestra(
+            self,
+            namespace("helloOrkestra"),
+            **stack_kwargs,
+        )
+
+        self.powertools = Powertools(
+            self,
+            namespace("powertools"),
+            **stack_kwargs,
+        )
+
+        self.single_lambda = SingleLambda(
+            self,
+            namespace("singleLambda"),
+            **stack_kwargs,
+        )
+
+        self.airflowish = Airflowish(
+            self,
+            namespace("airflowish"),
+            **stack_kwargs,
+        )
+
+        self.cdk_composition = CdkComposition(
+            self,
+            namespace("cdkComposition"),
+            **stack_kwargs,
+        )
+
+        self.rest = RestExample(
+            self,
+            namespace("rest"),
+            **stack_kwargs,
+        )
+
+        self.map_job = MapJob(
+            self,
+            namespace("map"),
+            **stack_kwargs,
+        )
+
+        if ENVIRONMENT != Environment.GITHUB:
+            self.batch = BatchExample(
+                self,
+                namespace("batch"),
+                **stack_kwargs,
+            )
+
+
+class OrkestraStage(cdk.Stage):
+    def __init__(self, scope, id, **kwargs):
+        super().__init__(scope, id, **kwargs)
+
+        self.stacks = Stacks(self, namespace("stacks"))
+
+
+class PipelineStack(cdk.Stack):
+    def __init__(self, scope, id, **kwargs):
+        super().__init__(scope, id, **kwargs)
+
+        source_artifact = codepipeline.Artifact()
+
+        cloud_assembly_artifact = codepipeline.Artifact()
+
+        pipeline = pipelines.CdkPipeline(
+            self,
+            namespace("cdkPipeline"),
+            cloud_assembly_artifact=cloud_assembly_artifact,
+            pipeline_name="WebinarPipeline",
+            source_action=cpactions.GitHubSourceAction(
+                action_name="GitHub",
+                output=source_artifact,
+                oauth_token=cdk.SecretValue.secrets_manager("github-token"),
+                owner="knowsuchagency",
+                repo="orkestra",
+                trigger=cpactions.GitHubTrigger.POLL,
+                branch="main",
+            ),
+            synth_action=pipelines.SimpleSynthAction(
+                source_artifact=source_artifact,
+                cloud_assembly_artifact=cloud_assembly_artifact,
+                # install_command="npm install -g aws-cdk && pip install -r requirements.txt",
+                # build_command="pytest unittests",
+                # synth_command="cdk synth",
+                install_commands=[
+                    "npm install -g aws-cdk",
+                    "python3 --version",
+                    "python3 -m pip install pdm",
+                    "python3 -m pdm install -s :all",
+                ],
+                test_commands=[
+                    "python3 -m pdm run unit-tests",
+                ],
+                synth_command="python3 -m pdm run cdk synth",
             ),
         )
 
-        self.hello_orkestra = HelloOrkestra(
-            self.app, "helloOrkestra", env=self.env
+        self.dev_app = OrkestraStage(
+            self,
+            "DEV",
+            env={
+                "account": "869241709189",
+                "region": "us-east-2",
+            },
         )
 
-        self.powertools = Powertools(self.app, "powertools", env=self.env)
+        dev_stage = pipeline.add_application_stage(self.dev_app)
 
-        self.single_lambda = SingleLambda(
-            self.app, "singleLambda", env=self.env
+        # dev_stage.add_actions(
+        #     pipelines.ShellScriptAction(
+        #         action_name="Integ",
+        #         run_order=dev_stage.next_sequential_run_order(),
+        #         additional_artifacts=[source_artifact],
+        #         commands=[
+        #             "pip install -r requirements.txt",
+        #             "pytest integtests",
+        #         ],
+        #         use_outputs={
+        #             "SERVICE_URL": pipeline.stack_output(dev_app.url_output)
+        #         },
+        #     )
+        # )
+
+        dev_stage.add_manual_approval_action()
+
+        pipeline.add_application_stage(
+            OrkestraStage(
+                self,
+                "QA",
+                env={
+                    "account": "191431834144",
+                    "region": "us-east-2",
+                },
+            )
         )
 
-        self.airflowish = Airflowish(self.app, "airflowish", env=self.env)
 
-        self.cdk_composition = CdkComposition(
-            self.app, "cdkComposition", env=self.env
+class OrkestraDeployment(cdk.Stack):
+    def __init__(self, scope, id, **kwargs):
+        super().__init__(scope, id, **kwargs)
+
+        stacks_kwargs = {}
+
+        if kwargs.get("env") is not None:
+            stacks_kwargs.update(env=kwargs["env"])
+
+        self.stacks = Stacks(
+            self,
+            namespace("stacks"),
+            **stacks_kwargs,
         )
-
-        self.rest = RestExample(self.app, "rest", env=self.env)
-
-        self.map_job = MapJob(self.app, "map", env=self.env)
-
-        if AWS_ACCESS:
-
-            self.batch = BatchExample(self.app, "batch", env=self.env)
-
-        self.added = {}
-
-    def add(self, stack: Type[cdk.Stack], id: str, **kwargs):
-
-        stack_instance = stack(self.app, id, env=self.env, **kwargs)
-
-        self.added[id] = stack_instance
-
-        return stack_instance
-
-    def synth(self):
-
-        return self.app.synth()
 
 
 if __name__ == "__main__":
 
-    app = App()
+    app = cdk.App()
+
+    if PIPELINE_DEPLOYMENT:
+
+        PipelineStack(app, namespace("Pipeline"))
+
+    elif ENVIRONMENT == Environment.LOCAL:
+
+        region = os.getenv("CDK_DEFAULT_REGION", "us-east-2")
+
+        account = os.environ["CDK_DEFAULT_ACCOUNT"]
+
+        env = cdk.Environment(
+            region=region,
+            account=account,
+        )
+
+        OrkestraDeployment(app, namespace("Orkestra"), env=env)
+
+    else:
+
+        OrkestraDeployment(app, namespace("Orkestra"))
 
     app.synth()
