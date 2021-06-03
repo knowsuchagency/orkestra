@@ -295,18 +295,12 @@ class Compose:
 
         """
 
-        if self._lambda_function is not None:
-
-            return self._lambda_function
-
-        self._lambda_function = self._render_lambda(
+        return self._render_lambda(
             self,
             scope,
             id=id,
             **kwargs,
         )
-
-        return self._lambda_function
 
     def task(
         self,
