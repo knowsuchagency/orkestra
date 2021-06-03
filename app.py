@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
+import logging
 import os
 from enum import Enum
+from typing import Optional
 
 from aws_cdk import aws_apigateway as apigw
 from aws_cdk import aws_batch as batch
@@ -47,12 +49,34 @@ class Environment(Enum):
         env = os.getenv("ENVIRONMENT", "LOCAL")
         return cls[env]
 
-    @property
-    @staticmethod
-    def pipeline_deployment():
-        res = os.getenv("NON_PIPELINE_DEPLOYMENT", "false")
+    @classmethod
+    def from_aws_account(cls, account: Optional[str]):
 
-        return res.lower().startswith("t") or res.strip() == "1"
+        if account == Account.DEV.value:
+
+            return cls.DEV
+
+        elif account == Account.QA.value:
+
+            return cls.QA
+
+        else:
+
+            logging.warning(f"no environment found for account: {account}")
+
+
+class Account(Enum):
+    """AWS account."""
+
+    DEV = "869241709189"
+    QA = "191431834144"
+
+
+class Vpc(Enum):
+    """By VPC ID."""
+
+    DEV = "vpc-d226b7b9"
+    QA = "vpc-b3ff6cd8"
 
 
 CDK_DEFAULT_ACCOUNT = os.getenv("CDK_DEFAULT_ACCOUNT", "")
@@ -259,21 +283,29 @@ class HelloOrkestra(cdk.Stack):
 
 
 class BatchConstruct(cdk.Construct):
-    def __init__(self, scope, id, **kwargs):
+    def __init__(
+        self, scope, id, environment: Optional[Environment] = None, **kwargs
+    ):
         super().__init__(scope, id, **kwargs)
 
-        assert (
-            ENVIRONMENT != Environment.GITHUB
-        ), "Access to AWS necessary to perform lookup"
+        if environment is not None:
 
-        default_vpc = ec2.Vpc.from_lookup(
-            self,
-            "default_vpc",
-            is_default=True,
-        )
+            vpc = ec2.Vpc.from_vpc_attributes(
+                self,
+                "default_vpc",
+                vpc_id=Vpc[environment.value].value,
+            )
+
+        else:
+
+            vpc = ec2.Vpc.from_lookup(
+                self,
+                "default_vpc",
+                is_default=True,
+            )
 
         compute_resources = batch.ComputeResources(
-            vpc=default_vpc,
+            vpc=vpc,
         )
 
         compute_environment = batch.ComputeEnvironment(
@@ -316,7 +348,21 @@ class BatchExample(cdk.Stack):
     def __init__(self, scope, id, **kwargs):
         super().__init__(scope, id, **kwargs)
 
-        batch_job = BatchConstruct(self, "batch_construct").batch_job
+        if "env" in kwargs:
+
+            account = kwargs["env"].account
+
+            environment = Environment.from_aws_account(account)
+
+        else:
+
+            environment = None
+
+        batch_job = BatchConstruct(
+            self,
+            "batch_construct",
+            environment=environment,
+        ).batch_job
 
         self.definition = (
             banana.task(self) >> batch_job >> sfn.Succeed(self, "Success!")
@@ -453,7 +499,6 @@ class PipelineStack(cdk.Stack):
                     "npm install -g aws-cdk",
                     "pyenv global 3.8.8",
                     "pip install pdm",
-                    "head -n 5 pdm.lock",
                     "pdm install -s :all",
                 ],
                 test_commands=[
@@ -471,7 +516,7 @@ class PipelineStack(cdk.Stack):
             self,
             "DEV",
             env={
-                "account": "869241709189",
+                "account": Account.DEV.value,
                 "region": "us-east-2",
             },
         )
@@ -500,7 +545,7 @@ class PipelineStack(cdk.Stack):
                 self,
                 "QA",
                 env={
-                    "account": "191431834144",
+                    "account": Account.QA.value,
                     "region": "us-east-2",
                 },
             )
