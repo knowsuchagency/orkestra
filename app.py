@@ -45,19 +45,36 @@ class Environment(Enum):
         env = os.getenv("ENVIRONMENT", "LOCAL")
         return cls[env]
 
+    @property
+    @staticmethod
+    def pipeline_deployment():
+        res = os.getenv("PIPELINE_DEPLOYMENT", "false")
+
+        return res.lower().startswith("t") or res.strip() == "1"
+
 
 CDK_DEFAULT_ACCOUNT = os.getenv("CDK_DEFAULT_ACCOUNT", "")
 
 ENVIRONMENT = Environment.from_env()
 
+_res = os.getenv("PIPELINE_DEPLOYMENT", "false")
 
-def namespace(string: str, add_env=False):
+PIPELINE_DEPLOYMENT = _res.lower().startswith("t") or _res.strip() == "1"
+
+
+def namespace(string: str, namespace=None, environment=None, add_env=False):
     separator = "-"
-    ns = os.getenv("NAMESPACE", "")
-    env = os.getenv("ENVIRONMENT", "")
-    strings = [ns, string]
+    namespace = (
+        namespace if namespace is not None else os.getenv("NAMESPACE", "")
+    )
+    environment = (
+        environment
+        if environment is not None
+        else os.getenv("ENVIRONMENT", "")
+    )
+    strings = [namespace, string]
     if add_env:
-        strings.append(env)
+        strings.append(environment)
     return separator.join(strings).strip(separator)
 
 
@@ -384,6 +401,7 @@ class Stacks(cdk.Construct):
 class OrkestraStage(cdk.Stage):
     def __init__(self, scope, id, **kwargs):
         super().__init__(scope, id, **kwargs)
+
         self.stacks = Stacks(self, namespace("stacks"))
 
 
@@ -468,8 +486,45 @@ class PipelineStack(cdk.Stack):
         )
 
 
+class OrkestraDeployment(cdk.Stack):
+    def __init__(self, scope, id, **kwargs):
+        super().__init__(scope, id, **kwargs)
+
+        stacks_kwargs = {}
+
+        if kwargs.get("env") is not None:
+            stacks_kwargs.update(env=kwargs["env"])
+
+        self.stacks = Stacks(
+            self,
+            namespace("stacks"),
+            **stacks_kwargs,
+        )
+
+
 if __name__ == "__main__":
 
     app = cdk.App()
 
-    pipeline = PipelineStack(app, namespace("pipeline"))
+    if PIPELINE_DEPLOYMENT:
+
+        PipelineStack(app, namespace("Pipeline"))
+
+    elif ENVIRONMENT == Environment.LOCAL:
+
+        region = os.getenv("CDK_DEFAULT_REGION", "us-east-2")
+
+        account = os.environ["CDK_DEFAULT_ACCOUNT"]
+
+        env = cdk.Environment(
+            region=region,
+            account=account,
+        )
+
+        OrkestraDeployment(app, namespace("Orkestra"), env=env)
+
+    else:
+
+        OrkestraDeployment(app, namespace("Orkestra"))
+
+    app.synth()
