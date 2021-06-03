@@ -453,6 +453,9 @@ class PipelineStack(cdk.Stack):
                         value="1"
                     ),
                 },
+                environment={
+                    "privileged": True,
+                },
             ),
         )
 
