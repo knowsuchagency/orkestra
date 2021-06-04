@@ -419,7 +419,7 @@ class PipelineStack(cdk.Stack):
             oauth_token=cdk.SecretValue.secrets_manager("orkestra-gh-token"),
             owner="knowsuchagency",
             repo="orkestra",
-            trigger=cpactions.GitHubTrigger.POLL,
+            trigger=cpactions.GitHubTrigger.WEBHOOK,
             branch="main",
         )
 
