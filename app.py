@@ -585,31 +585,31 @@ if __name__ == "__main__":
         },
     )
 
-    # Dev = OrkestraStage(
-    #     app,
-    #     namespace("Dev"),
-    #     env={
-    #         "region": region,
-    #         "account": Account.DEV.value,
-    #     },
-    # )
-    #
-    # Qa = OrkestraStage(
-    #     app,
-    #     namespace("QA"),
-    #     env={
-    #         "region": region,
-    #         "account": Account.QA.value,
-    #     },
-    # )
-    #
-    # Prod = OrkestraStage(
-    #     app,
-    #     namespace("PROD"),
-    #     env={
-    #         "region": region,
-    #         "account": Account.PROD.value,
-    #     },
-    # )
+    Dev = OrkestraStage(
+        app,
+        namespace("Dev"),
+        env={
+            "region": region,
+            "account": Account.DEV.value,
+        },
+    )
+
+    Qa = OrkestraStage(
+        app,
+        namespace("QA"),
+        env={
+            "region": region,
+            "account": Account.QA.value,
+        },
+    )
+
+    Prod = OrkestraStage(
+        app,
+        namespace("PROD"),
+        env={
+            "region": region,
+            "account": Account.PROD.value,
+        },
+    )
 
     app.synth()
