@@ -416,7 +416,7 @@ class PipelineStack(cdk.Stack):
         source_action = cpactions.GitHubSourceAction(
             action_name="GitHub",
             output=source_artifact,
-            oauth_token=cdk.SecretValue.secrets_manager("github-token"),
+            oauth_token=cdk.SecretValue.secrets_manager("orkestra-gh-token"),
             owner="knowsuchagency",
             repo="orkestra",
             trigger=cpactions.GitHubTrigger.POLL,
@@ -468,7 +468,7 @@ class PipelineStack(cdk.Stack):
             ),
         )
 
-        self.dev_app = OrkestraStage(
+        dev_app = OrkestraStage(
             self,
             "DEV",
             env={
@@ -477,11 +477,11 @@ class PipelineStack(cdk.Stack):
             },
         )
 
-        dev_stage = pipeline.add_application_stage(self.dev_app)
+        dev_stage = pipeline.add_application_stage(dev_app)
 
         dev_stage.add_actions(
             pipelines.ShellScriptAction(
-                action_name="Integration Tests",
+                action_name="Integration-Tests",
                 run_order=dev_stage.next_sequential_run_order(),
                 additional_artifacts=[source_artifact],
                 commands=[
@@ -489,20 +489,31 @@ class PipelineStack(cdk.Stack):
                 ],
                 use_outputs={
                     "SINGLE_LAMBDA_STATE_MACHINE_ARN": pipeline.stack_output(
-                        dev_stage.stacks.single_lambda.express_sfn_arn
+                        dev_app.stacks.single_lambda.express_sfn_arn
                     )
                 },
             )
         )
 
-        # dev_stage.add_manual_approval_action()
-
-        pipeline.add_application_stage(
+        qa_stage = pipeline.add_application_stage(
             OrkestraStage(
                 self,
                 "QA",
                 env={
                     "account": Account.QA.value,
+                    "region": "us-east-2",
+                },
+            )
+        )
+
+        qa_stage.add_manual_approval_action()
+
+        prod_stage = pipeline.add_application_stage(
+            OrkestraStage(
+                self,
+                "PROD",
+                env={
+                    "account": Account.PROD.value,
                     "region": "us-east-2",
                 },
             )
