@@ -48,13 +48,15 @@ class Environment(Enum):
         return cls[env]
 
 
+class Account(Enum):
+    DEV = "869241709189"
+    QA = "191431834144"
+    PROD = "876140266500"
+
+
 CDK_DEFAULT_ACCOUNT = os.getenv("CDK_DEFAULT_ACCOUNT", "")
 
 ENVIRONMENT = Environment.from_env()
-
-_res = os.getenv("NON_PIPELINE_DEPLOYMENT", "false")
-
-NON_PIPELINE_DEPLOYMENT = _res.lower().startswith("t") or _res.strip() == "1"
 
 
 def namespace(string: str, namespace=None, environment=None, add_env=False):
@@ -91,6 +93,10 @@ class SingleLambda(cdk.Stack):
         self.state_machine = handler.state_machine(
             self,
             state_machine_name="simple_express_state_machine_example",
+        )
+
+        self.express_sfn_arn = cdk.CfnOutput(
+            self, "expressSfnArn", value=self.state_machine.state_machine_arn
         )
 
         handler.state_machine(
@@ -454,7 +460,7 @@ class PipelineStack(cdk.Stack):
                 test_commands=[
                     "pdm run unit-tests",
                 ],
-                synth_command="pdm run cdk synth",
+                synth_command="pdm run cdk synth Pipeline",
                 environment_variables=environment_variables,
                 environment={
                     "privileged": True,
@@ -466,36 +472,37 @@ class PipelineStack(cdk.Stack):
             self,
             "DEV",
             env={
-                "account": "869241709189",
+                "account": Account.DEV.value,
                 "region": "us-east-2",
             },
         )
 
         dev_stage = pipeline.add_application_stage(self.dev_app)
 
-        # dev_stage.add_actions(
-        #     pipelines.ShellScriptAction(
-        #         action_name="Integ",
-        #         run_order=dev_stage.next_sequential_run_order(),
-        #         additional_artifacts=[source_artifact],
-        #         commands=[
-        #             "pip install -r requirements.txt",
-        #             "pytest integtests",
-        #         ],
-        #         use_outputs={
-        #             "SERVICE_URL": pipeline.stack_output(dev_app.url_output)
-        #         },
-        #     )
-        # )
+        dev_stage.add_actions(
+            pipelines.ShellScriptAction(
+                action_name="Integration Tests",
+                run_order=dev_stage.next_sequential_run_order(),
+                additional_artifacts=[source_artifact],
+                commands=[
+                    "pdm run integration-tests",
+                ],
+                use_outputs={
+                    "SINGLE_LAMBDA_STATE_MACHINE_ARN": pipeline.stack_output(
+                        dev_stage.stacks.single_lambda.express_sfn_arn
+                    )
+                },
+            )
+        )
 
-        dev_stage.add_manual_approval_action()
+        # dev_stage.add_manual_approval_action()
 
         pipeline.add_application_stage(
             OrkestraStage(
                 self,
                 "QA",
                 env={
-                    "account": "191431834144",
+                    "account": Account.QA.value,
                     "region": "us-east-2",
                 },
             )
@@ -524,29 +531,40 @@ if __name__ == "__main__":
 
     region = os.getenv("CDK_DEFAULT_REGION", "us-east-2")
 
-    env = {
-        "region": region,
-        "account": CDK_DEFAULT_ACCOUNT,
-    }
+    PipelineStack(
+        app,
+        namespace("Pipeline"),
+        env={
+            "region": region,
+            "account": Account.PROD.value,
+        },
+    )
 
-    PipelineStack(app, namespace("Pipeline"), env=env)
+    Dev = OrkestraStage(
+        app,
+        namespace("Dev"),
+        env={
+            "region": region,
+            "account": Account.DEV.value,
+        },
+    )
 
-    # Dev = OrkestraStage(
-    #     app,
-    #     namespace("Dev"),
-    #     env={
-    #         "region": region,
-    #         "account": "869241709189",
-    #     },
-    # )
-    #
-    # Qa = OrkestraStage(
-    #     app,
-    #     namespace("QA"),
-    #     env={
-    #         "region": region,
-    #         "account": "191431834144",
-    #     },
-    # )
+    Qa = OrkestraStage(
+        app,
+        namespace("QA"),
+        env={
+            "region": region,
+            "account": Account.QA.value,
+        },
+    )
+
+    Prod = OrkestraStage(
+        app,
+        namespace("PROD"),
+        env={
+            "region": region,
+            "account": Account.PROD.value,
+        },
+    )
 
     app.synth()
