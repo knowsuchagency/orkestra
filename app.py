@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
-import logging
 import os
 from enum import Enum
-from typing import Optional
 
 from aws_cdk import aws_apigateway as apigw
 from aws_cdk import aws_batch as batch
@@ -48,35 +46,6 @@ class Environment(Enum):
     def from_env(cls):
         env = os.getenv("ENVIRONMENT", "LOCAL")
         return cls[env]
-
-    @classmethod
-    def from_aws_account(cls, account: Optional[str]):
-
-        if account == Account.DEV.value:
-
-            return cls.DEV
-
-        elif account == Account.QA.value:
-
-            return cls.QA
-
-        else:
-
-            logging.warning(f"no environment found for account: {account}")
-
-
-class Account(Enum):
-    """AWS account."""
-
-    DEV = "869241709189"
-    QA = "191431834144"
-
-
-class Vpc(Enum):
-    """By VPC ID."""
-
-    DEV = "vpc-d226b7b9"
-    QA = "vpc-b3ff6cd8"
 
 
 CDK_DEFAULT_ACCOUNT = os.getenv("CDK_DEFAULT_ACCOUNT", "")
@@ -283,26 +252,14 @@ class HelloOrkestra(cdk.Stack):
 
 
 class BatchConstruct(cdk.Construct):
-    def __init__(
-        self, scope, id, environment: Optional[Environment] = None, **kwargs
-    ):
+    def __init__(self, scope, id, **kwargs):
         super().__init__(scope, id, **kwargs)
 
-        if environment is not None:
-
-            vpc = ec2.Vpc.from_vpc_attributes(
-                self,
-                "default_vpc",
-                vpc_id=Vpc[environment.value].value,
-            )
-
-        else:
-
-            vpc = ec2.Vpc.from_lookup(
-                self,
-                "default_vpc",
-                is_default=True,
-            )
+        vpc = ec2.Vpc.from_lookup(
+            self,
+            "default_vpc",
+            is_default=True,
+        )
 
         compute_resources = batch.ComputeResources(
             vpc=vpc,
@@ -348,20 +305,14 @@ class BatchExample(cdk.Stack):
     def __init__(self, scope, id, **kwargs):
         super().__init__(scope, id, **kwargs)
 
-        if "env" in kwargs:
-
-            account = kwargs["env"].account
-
-            environment = Environment.from_aws_account(account)
-
-        else:
-
-            environment = None
+        # account = kwargs["env"]["account"]
+        #
+        # environment = Environment.from_aws_account(account)
 
         batch_job = BatchConstruct(
             self,
             "batch_construct",
-            environment=environment,
+            # environment=environment,
         ).batch_job
 
         self.definition = (
@@ -450,7 +401,11 @@ class OrkestraStage(cdk.Stage):
     def __init__(self, scope, id, **kwargs):
         super().__init__(scope, id, **kwargs)
 
-        self.stacks = Stacks(self, namespace("stacks"))
+        self.stacks = Stacks(
+            self,
+            namespace("stacks"),
+            env=kwargs.get("env"),
+        )
 
 
 class PipelineStack(cdk.Stack):
@@ -491,9 +446,12 @@ class PipelineStack(cdk.Stack):
             synth_action=pipelines.SimpleSynthAction(
                 source_artifact=source_artifact,
                 cloud_assembly_artifact=cloud_assembly_artifact,
-                # install_command="npm install -g aws-cdk && pip install -r requirements.txt",
-                # build_command="pytest unittests",
-                # synth_command="cdk synth",
+                # build_commands=[
+                #     "aws secretsmanager get-secret-value "
+                #     "--secret-id orkestra-context "
+                #     "| jq -r '.SecretString' "
+                #     "| jq >> cdk.context.json",
+                # ],
                 install_commands=[
                     "docker run hello-world",
                     "npm install -g aws-cdk",
@@ -516,7 +474,7 @@ class PipelineStack(cdk.Stack):
             self,
             "DEV",
             env={
-                "account": Account.DEV.value,
+                "account": "869241709189",
                 "region": "us-east-2",
             },
         )
@@ -545,7 +503,7 @@ class PipelineStack(cdk.Stack):
                 self,
                 "QA",
                 env={
-                    "account": Account.QA.value,
+                    "account": "191431834144",
                     "region": "us-east-2",
                 },
             )
@@ -574,15 +532,11 @@ if __name__ == "__main__":
 
     region = os.getenv("CDK_DEFAULT_REGION", "us-east-2")
 
-    env = cdk.Environment(
-        region=region,
-        account=CDK_DEFAULT_ACCOUNT,
-    )
+    env = {
+        "region": region,
+        "account": CDK_DEFAULT_ACCOUNT,
+    }
 
     PipelineStack(app, namespace("Pipeline"), env=env)
-
-    if NON_PIPELINE_DEPLOYMENT:
-
-        OrkestraDeployment(app, namespace("Orkestra"), env=env)
 
     app.synth()
