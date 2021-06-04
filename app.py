@@ -305,14 +305,9 @@ class BatchExample(cdk.Stack):
     def __init__(self, scope, id, **kwargs):
         super().__init__(scope, id, **kwargs)
 
-        # account = kwargs["env"]["account"]
-        #
-        # environment = Environment.from_aws_account(account)
-
         batch_job = BatchConstruct(
             self,
             "batch_construct",
-            # environment=environment,
         ).batch_job
 
         self.definition = (
@@ -401,11 +396,7 @@ class OrkestraStage(cdk.Stage):
     def __init__(self, scope, id, **kwargs):
         super().__init__(scope, id, **kwargs)
 
-        self.stacks = Stacks(
-            self,
-            namespace("stacks"),
-            env=kwargs.get("env"),
-        )
+        self.stacks = Stacks(self, namespace("stacks"))
 
 
 class PipelineStack(cdk.Stack):
@@ -539,5 +530,23 @@ if __name__ == "__main__":
     }
 
     PipelineStack(app, namespace("Pipeline"), env=env)
+
+    # Dev = OrkestraStage(
+    #     app,
+    #     namespace("Dev"),
+    #     env={
+    #         "region": region,
+    #         "account": "869241709189",
+    #     },
+    # )
+    #
+    # Qa = OrkestraStage(
+    #     app,
+    #     namespace("QA"),
+    #     env={
+    #         "region": region,
+    #         "account": "191431834144",
+    #     },
+    # )
 
     app.synth()
