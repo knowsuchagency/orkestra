@@ -14,7 +14,10 @@ from aws_cdk import aws_stepfunctions as sfn
 from aws_cdk import aws_stepfunctions_tasks as sfn_tasks
 from aws_cdk import core as cdk
 from aws_cdk import pipelines
-from aws_cdk.aws_codebuild import BuildEnvironmentVariable
+from aws_cdk.aws_codebuild import (
+    BuildEnvironmentVariable,
+    BuildEnvironmentVariableType,
+)
 
 from examples.batch_example import banana
 from examples.hello_orkestra import generate_item
@@ -495,6 +498,16 @@ class PipelineStack(cdk.Stack):
                     "SINGLE_LAMBDA_STATE_MACHINE_ARN": pipeline.stack_output(
                         dev_app.stacks.single_lambda.express_sfn_arn
                     )
+                },
+                environment_variables={
+                    "AWS_ACCESS_KEY_ID": BuildEnvironmentVariable(
+                        value="dev-credentials:AWS_ACCESS_KEY_ID",
+                        type=BuildEnvironmentVariableType.SECRETS_MANAGER,
+                    ),
+                    "AWS_SECRET_ACCESS_KEY": BuildEnvironmentVariable(
+                        value="dev-credentials:AWS_ACCESS_KEY_ID",
+                        type=BuildEnvironmentVariableType.SECRETS_MANAGER,
+                    ),
                 },
             )
         )
