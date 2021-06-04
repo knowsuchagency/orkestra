@@ -437,12 +437,12 @@ class PipelineStack(cdk.Stack):
             synth_action=pipelines.SimpleSynthAction(
                 source_artifact=source_artifact,
                 cloud_assembly_artifact=cloud_assembly_artifact,
-                # build_commands=[
-                #     "aws secretsmanager get-secret-value "
-                #     "--secret-id orkestra-context "
-                #     "| jq -r '.SecretString' "
-                #     "| jq >> cdk.context.json",
-                # ],
+                build_commands=[
+                    "aws secretsmanager get-secret-value "
+                    "--secret-id orkestra-context "
+                    "| jq -r '.SecretString' "
+                    "| jq >> cdk.context.json",
+                ],
                 install_commands=[
                     "docker run hello-world",
                     "npm install -g aws-cdk",
