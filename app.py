@@ -505,7 +505,7 @@ class PipelineStack(cdk.Stack):
                         type=BuildEnvironmentVariableType.SECRETS_MANAGER,
                     ),
                     "AWS_SECRET_ACCESS_KEY": BuildEnvironmentVariable(
-                        value="dev-credentials:AWS_ACCESS_KEY_ID",
+                        value="dev-credentials:AWS_SECRET_ACCESS_KEY",
                         type=BuildEnvironmentVariableType.SECRETS_MANAGER,
                     ),
                 },
