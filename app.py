@@ -351,52 +351,69 @@ class Stacks(cdk.Construct):
 
         stack_kwargs = _coalesce({}, env=env)
 
+        hello_orkestra_stack_name = namespace("helloOrkestra")
+
         self.hello_orkestra = HelloOrkestra(
             self,
-            namespace("helloOrkestra"),
+            hello_orkestra_stack_name,
+            stack_name=hello_orkestra_stack_name,
             **stack_kwargs,
         )
 
+        powertools_stack_name = namespace("powertools")
         self.powertools = Powertools(
             self,
-            namespace("powertools"),
+            powertools_stack_name,
+            stack_name=powertools_stack_name,
             **stack_kwargs,
         )
 
+        single_lambda_stack_name = namespace("singleLambda")
         self.single_lambda = SingleLambda(
             self,
-            namespace("singleLambda"),
+            single_lambda_stack_name,
+            stack_name=single_lambda_stack_name,
             **stack_kwargs,
         )
 
+        airflowish_stack_name = namespace("airflowish")
         self.airflowish = Airflowish(
             self,
-            namespace("airflowish"),
+            airflowish_stack_name,
+            stack_name=airflowish_stack_name,
             **stack_kwargs,
         )
 
+        cdk_composition_stack_name = namespace("cdkComposition")
         self.cdk_composition = CdkComposition(
             self,
-            namespace("cdkComposition"),
+            cdk_composition_stack_name,
+            stack_name=cdk_composition_stack_name,
             **stack_kwargs,
         )
 
+        rest_stack_Name = namespace("rest")
         self.rest = RestExample(
             self,
-            namespace("rest"),
+            rest_stack_Name,
+            stack_name=rest_stack_Name,
             **stack_kwargs,
         )
 
+        map_job_stack_name = namespace("map")
         self.map_job = MapJob(
             self,
-            namespace("map"),
+            map_job_stack_name,
+            stack_name=map_job_stack_name,
             **stack_kwargs,
         )
 
         if ENVIRONMENT != Environment.GITHUB:
+            batch_example_stack_name = namespace("batch")
             self.batch = BatchExample(
                 self,
-                namespace("batch"),
+                batch_example_stack_name,
+                stack_name=batch_example_stack_name,
                 **stack_kwargs,
             )
 
@@ -568,31 +585,31 @@ if __name__ == "__main__":
         },
     )
 
-    Dev = OrkestraStage(
-        app,
-        namespace("Dev"),
-        env={
-            "region": region,
-            "account": Account.DEV.value,
-        },
-    )
-
-    Qa = OrkestraStage(
-        app,
-        namespace("QA"),
-        env={
-            "region": region,
-            "account": Account.QA.value,
-        },
-    )
-
-    Prod = OrkestraStage(
-        app,
-        namespace("PROD"),
-        env={
-            "region": region,
-            "account": Account.PROD.value,
-        },
-    )
+    # Dev = OrkestraStage(
+    #     app,
+    #     namespace("Dev"),
+    #     env={
+    #         "region": region,
+    #         "account": Account.DEV.value,
+    #     },
+    # )
+    #
+    # Qa = OrkestraStage(
+    #     app,
+    #     namespace("QA"),
+    #     env={
+    #         "region": region,
+    #         "account": Account.QA.value,
+    #     },
+    # )
+    #
+    # Prod = OrkestraStage(
+    #     app,
+    #     namespace("PROD"),
+    #     env={
+    #         "region": region,
+    #         "account": Account.PROD.value,
+    #     },
+    # )
 
     app.synth()
