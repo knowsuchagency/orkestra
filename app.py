@@ -455,6 +455,7 @@ class PipelineStack(cdk.Stack):
                 install_commands=[
                     "docker run hello-world",
                     "npm install -g aws-cdk",
+                    "npm i -g cdk-assume-role-credential-plugin",
                     "pyenv global 3.8.8",
                     "pip install pdm",
                     "pdm install -s :all",
