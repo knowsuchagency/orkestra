@@ -433,6 +433,14 @@ class PipelineStack(cdk.Stack):
             for k, v in environment_variables.items()
         }
 
+        install_commands = [
+            "npm install -g aws-cdk",
+            "npm i -g cdk-assume-role-credential-plugin",
+            "pyenv global 3.8.8",
+            "pip install pdm",
+            "pdm install -s :all",
+        ]
+
         pipeline = pipelines.CdkPipeline(
             self,
             namespace("cdkPipeline"),
@@ -449,15 +457,9 @@ class PipelineStack(cdk.Stack):
                     "| jq -r '.SecretString' "
                     "| jq >> cdk.context.json",
                 ],
-                install_commands=[
-                    "docker run hello-world",
-                    "npm install -g aws-cdk",
-                    "npm i -g cdk-assume-role-credential-plugin",
-                    "pyenv global 3.8.8",
-                    "pip install pdm",
-                    "pdm install -s :all",
-                ],
+                install_commands=install_commands,
                 test_commands=[
+                    "docker run hello-world",
                     "pdm run unit-tests",
                 ],
                 synth_command="pdm run cdk synth Pipeline",
@@ -479,14 +481,16 @@ class PipelineStack(cdk.Stack):
 
         dev_stage = pipeline.add_application_stage(dev_app)
 
+        integration_testing_commands = install_commands + [
+            "pdm run integration-tests",
+        ]
+
         dev_stage.add_actions(
             pipelines.ShellScriptAction(
                 action_name="Integration-Tests",
                 run_order=dev_stage.next_sequential_run_order(),
                 additional_artifacts=[source_artifact],
-                commands=[
-                    "pdm run integration-tests",
-                ],
+                commands=integration_testing_commands,
                 use_outputs={
                     "SINGLE_LAMBDA_STATE_MACHINE_ARN": pipeline.stack_output(
                         dev_app.stacks.single_lambda.express_sfn_arn
