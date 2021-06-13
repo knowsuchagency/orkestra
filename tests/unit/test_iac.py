@@ -15,6 +15,7 @@ from app import Stacks
 from examples.for_testing import (
     invalid_composition,
     hello_world,
+    fetch_layer,
 )
 from orkestra import interfaces
 from orkestra.exceptions import CompositionError
@@ -211,6 +212,8 @@ class TestApplication:
                     "layertestingfn",
                     layers=layers,
                 )
+
+                fetch_layer.aws_lambda(self, "fetchLayerTest")
 
         stack_name = "LayerTestStack"
 

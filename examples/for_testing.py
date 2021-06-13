@@ -21,6 +21,17 @@ def hello_world(event, context):
     return "hello, world"
 
 
+@compose(
+    layers=[
+        PythonLayerVersion.from_layer_version_arn(
+            "arn:aws:lambda:us-east-2:869241709189:layer:gdal-layer:1"
+        ),
+    ],
+)
+def fetch_layer(event, context):
+    ...
+
+
 @compose
 def invalid_composition(event, context):
     ...

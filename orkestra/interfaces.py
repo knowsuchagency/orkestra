@@ -131,28 +131,41 @@ class PythonLayerVersion:
 
     entry: str
     description: Optional[str] = None
+    _arn: Optional[str] = None
 
     def cdk_construct(
         self,
         scope,
         id,
         compatible_runtimes=None,
-        layer_version_name=None,
-        license=None,
-        removal_policy=None,
     ) -> "aws_cdk.aws_lambda_python.PythonLayerVersion":
         from aws_cdk.aws_lambda_python import PythonLayerVersion
 
-        return PythonLayerVersion(
-            scope,
-            id,
-            entry=self.entry,
-            description=self.description,
-            compatible_runtimes=compatible_runtimes,
-            layer_version_name=layer_version_name,
-            license=license,
-            removal_policy=removal_policy,
-        )
+        if self._arn is None:
+
+            return PythonLayerVersion(
+                scope,
+                id,
+                entry=self.entry,
+                description=self.description,
+                compatible_runtimes=compatible_runtimes,
+            )
+
+        else:
+
+            return PythonLayerVersion.from_layer_version_attributes(
+                scope,
+                id,
+                layer_version_arn=self._arn,
+                compatible_runtimes=compatible_runtimes,
+            )
+
+    @classmethod
+    def from_layer_version_arn(cls, layer_version_arn):
+        """
+        https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_lambda_python/PythonLayerVersion.html#aws_cdk.aws_lambda_python.PythonLayerVersion.from_layer_version_arn
+        """
+        return cls(entry="", _arn=layer_version_arn)
 
 
 @runtime_checkable
