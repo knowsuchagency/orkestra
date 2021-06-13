@@ -10,6 +10,7 @@
 ![PyPI - License](https://img.shields.io/pypi/l/orkestra)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/orkestra)
 ![GitHub issues](https://img.shields.io/github/issues/knowsuchagency/orkestra)
+[![Mentioned in Awesome CDK](https://awesome.re/mentioned-badge.svg)](https://github.com/kolomied/awesome-cdk)
 
 * *deploy lambdas, compose them into workflows, and trigger them on schedule or from cloud events with ease (at a tiny fraction of the cost of Airflow)*
 * *render your diagrams dynamically from code (like Airflow)*

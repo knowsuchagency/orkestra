@@ -12,6 +12,7 @@
 ![PyPI - License](https://img.shields.io/pypi/l/orkestra)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/orkestra)
 ![GitHub issues](https://img.shields.io/github/issues/knowsuchagency/orkestra)
+[![Mentioned in Awesome CDK](https://awesome.re/mentioned-badge.svg)](https://github.com/kolomied/awesome-cdk)
 
 [comment]: <> ([![codecov]&#40;https://codecov.io/gh/knowsuchagency/orkestra/branch/main/graph/badge.svg?token=DXFC1QP12O&#41;]&#40;https://codecov.io/gh/knowsuchagency/orkestra&#41;)
 
