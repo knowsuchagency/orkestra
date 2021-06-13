@@ -4,6 +4,7 @@
 [![Docs](https://img.shields.io/badge/Docs-mkdocs-blue?style=for-the-badge)](https://knowsuchagency.github.io/orkestra)
 [![Codecov](https://img.shields.io/codecov/c/github/knowsuchagency/orkestra?style=for-the-badge)](https://app.codecov.io/gh/knowsuchagency/orkestra/)
 
+[![Mentioned in Awesome CDK](https://awesome.re/mentioned-badge.svg)](https://github.com/kolomied/awesome-cdk)
 [![Discord](https://img.shields.io/discord/846930683872280638)](https://discord.com/channels/846930683872280638/846930684446638102)
 [![PyPI](https://img.shields.io/pypi/v/orkestra)](https://pypi.org/project/orkestra/)
 ![PyPI - Downloads](https://img.shields.io/pypi/dw/orkestra)
