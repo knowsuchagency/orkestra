@@ -266,7 +266,6 @@ class Compose:
     ):
 
         from aws_cdk.aws_lambda_python import PythonFunction
-        from aws_cdk.aws_lambda import Runtime
 
         id = id or _incremental_id(composable.func.__name__ + "_fn")
 
