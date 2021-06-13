@@ -10,6 +10,7 @@ from orkestra.interfaces import (
     IntegrationPattern,
     Tracing,
     StateMachineType as SfnType,
+    PythonLayerVersion,
 )
 from orkestra.utils import coerce, _coalesce
 from orkestra.exceptions import CompositionError
@@ -70,6 +71,7 @@ class Compose:
         envelope: Optional["pydantic.BaseModel"] = None,
         timeout: Optional[Duration] = None,
         runtime: Optional[Runtime] = None,
+        layers: Optional[Sequence[PythonLayerVersion]] = None,
         comment: Optional[str] = None,
         input_path: Optional[str] = None,
         items_path: Optional[str] = None,
@@ -107,6 +109,7 @@ class Compose:
             model: passed to aws_lambda_powertools.utilities.parser.event_parser
             envelope: passed to aws_lambda_powertools.utilities.parser.event_parser
             runtime: the python runtime to use for the lambda
+            layers: A list of layers to add to the function’s execution environment. You can configure your Lambda function to pull in additional code during initialization in the form of layers. Layers are packages of libraries or other dependencies that can be used by multiple functions. Default: - No layers.
             is_map_job: whether the lambda is a map job
             capture_map_errors: set true to add guarantee successful map job execution
             comment: An optional description for this state. Default: No comment
@@ -193,6 +196,7 @@ class Compose:
             timeout=timeout,
             runtime=runtime,
             tracing=tracing,
+            layers=layers,
         )
 
         self.enable_powertools = enable_powertools
@@ -264,6 +268,32 @@ class Compose:
         from aws_cdk.aws_lambda_python import PythonFunction
 
         id = id or _incremental_id(composable.func.__name__ + "_fn")
+
+        layers = composable.aws_lambda_constructor_kwargs.get("layers")
+
+        if layers is not None:
+
+            runtime = _coalesce(
+                composable._aws_lambda_defaults,
+                composable.aws_lambda_constructor_kwargs,
+            )["runtime"]
+
+            layers = [
+                l.cdk_construct(
+                    scope,
+                    _incremental_id(f"{id}_layer"),
+                    compatible_runtimes=[runtime],
+                )
+                for l in layers
+            ]
+
+            if kwargs.get("layers") is not None:
+
+                kwargs["layers"].extend(layers)
+
+            else:
+
+                kwargs["layers"] = layers
 
         kwargs = _coalesce(
             composable._aws_lambda_defaults,
