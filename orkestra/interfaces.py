@@ -1,9 +1,8 @@
 import abc
-import typing
 from dataclasses import dataclass
 from enum import Enum
 from operator import methodcaller
-from typing import Protocol, runtime_checkable, Union
+from typing import *
 
 Number = Union[int, float]
 
@@ -124,6 +123,38 @@ class Duration:
         return cls(unit=DurationMetric.seconds, amount=amount)
 
 
+@dataclass
+class PythonLayerVersion:
+    """
+    https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_lambda_python/PythonLayerVersion.html
+    """
+
+    entry: str
+    description: Optional[str] = None
+
+    def cdk_construct(
+        self,
+        scope,
+        id,
+        compatible_runtimes=None,
+        layer_version_name=None,
+        license=None,
+        removal_policy=None,
+    ) -> "aws_cdk.aws_lambda_python.PythonLayerVersion":
+        from aws_cdk.aws_lambda_python import PythonLayerVersion
+
+        return PythonLayerVersion(
+            scope,
+            id,
+            entry=self.entry,
+            description=self.description,
+            compatible_runtimes=compatible_runtimes,
+            layer_version_name=layer_version_name,
+            license=license,
+            removal_policy=removal_policy,
+        )
+
+
 @runtime_checkable
 class Composable(Protocol):
     @abc.abstractmethod
@@ -133,7 +164,7 @@ class Composable(Protocol):
 
 @runtime_checkable
 class AdjacencyList(Protocol):
-    downstream: typing.List[Composable]
+    downstream: List[Composable]
 
 
 @runtime_checkable

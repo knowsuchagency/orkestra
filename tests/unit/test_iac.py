@@ -188,3 +188,30 @@ class TestApplication:
         stack_name = "stateMachinetest"
 
         StateMachineTest(app, stack_name)
+
+    @staticmethod
+    def test_layers(app):
+        class StateMachineTest(cdk.Stack):
+            def __init__(self, scope, id, **kwargs):
+                super().__init__(scope, id, **kwargs)
+
+                layers = [
+                    aws_lambda_python.PythonLayerVersion(
+                        self,
+                        "exampleLayer",
+                        entry="./docs",
+                        compatible_runtimes=[
+                            aws_lambda.Runtime.PYTHON_3_8,
+                        ],
+                    )
+                ]
+
+                hello_world.aws_lambda(
+                    self,
+                    "layertestingfn",
+                    layers=layers,
+                )
+
+        stack_name = "LayerTestStack"
+
+        StateMachineTest(app, stack_name)
