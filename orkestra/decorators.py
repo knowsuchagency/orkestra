@@ -1,8 +1,10 @@
 import functools
 from collections import defaultdict
+from logging import getLogger
 from pathlib import Path
 from typing import *
 
+from orkestra.exceptions import CompositionError
 from orkestra.interfaces import (
     Duration,
     Runtime,
@@ -13,7 +15,8 @@ from orkestra.interfaces import (
     PythonLayerVersion,
 )
 from orkestra.utils import coerce, _coalesce
-from orkestra.exceptions import CompositionError
+
+logger = getLogger(__name__)
 
 
 OptionalFn = Optional[Union[Callable, Iterable[Callable]]]
@@ -521,7 +524,7 @@ class Compose:
 
         """
 
-        from aws_cdk.aws_stepfunctions import StateMachine, StateMachineType
+        from aws_cdk.aws_stepfunctions import StateMachine
 
         id = id or _incremental_id(f"{self.func.__name__}_sfn")
 
@@ -692,6 +695,8 @@ def powertools(
                 """
                 Exists because event_parser expects the function it wraps to be named "handler".
                 """
+
+                logger.debug(f"parsing {event = }")
 
                 parsed_event = parse(
                     event=event,
