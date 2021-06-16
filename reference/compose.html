@@ -1669,14 +1669,14 @@ For powertools params see <a href="https://awslabs.github.io/aws-lambda-powertoo
 
         <span class="n">task</span> <span class="o">=</span> <span class="n">sfn</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="o">**</span><span class="n">map_kwargs</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">lambda_fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aws_lambda</span><span class="p">(</span>
+        <span class="n">lambda_function</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aws_lambda</span><span class="p">(</span>
             <span class="n">scope</span><span class="p">,</span>
             <span class="n">function_name</span><span class="o">=</span><span class="n">function_name</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="n">keyword_args</span> <span class="o">=</span> <span class="n">_coalesce</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">lambda_invoke_kwargs</span><span class="p">,</span>
-            <span class="n">lambda_function</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_fn</span><span class="p">,</span>
+            <span class="n">lambda_function</span><span class="o">=</span><span class="n">lambda_function</span><span class="p">,</span>
             <span class="n">payload_response_only</span><span class="o">=</span><span class="n">payload_response_only</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">)</span>
@@ -1688,6 +1688,8 @@ For powertools params see <a href="https://awslabs.github.io/aws-lambda-powertoo
             <span class="n">task_id</span><span class="p">,</span>
             <span class="o">**</span><span class="n">keyword_args</span><span class="p">,</span>
         <span class="p">)</span>
+
+        <span class="n">invoke_lambda</span><span class="o">.</span><span class="n">lambda_function</span> <span class="o">=</span> <span class="n">lambda_function</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">capture_map_errors</span><span class="p">:</span>
             <span class="n">invoke_lambda</span><span class="o">.</span><span class="n">add_catch</span><span class="p">(</span>
@@ -1742,14 +1744,14 @@ For powertools params see <a href="https://awslabs.github.io/aws-lambda-powertoo
 
         <span class="nb">id</span> <span class="o">=</span> <span class="nb">id</span> <span class="ow">or</span> <span class="n">_incremental_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">lambda_fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aws_lambda</span><span class="p">(</span>
+        <span class="n">lambda_function</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aws_lambda</span><span class="p">(</span>
             <span class="n">scope</span><span class="p">,</span>
             <span class="n">function_name</span><span class="o">=</span><span class="n">function_name</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="n">keyword_args</span> <span class="o">=</span> <span class="n">_coalesce</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">lambda_invoke_kwargs</span><span class="p">,</span>
-            <span class="n">lambda_function</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_fn</span><span class="p">,</span>
+            <span class="n">lambda_function</span><span class="o">=</span><span class="n">lambda_function</span><span class="p">,</span>
             <span class="n">payload_response_only</span><span class="o">=</span><span class="n">payload_response_only</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">)</span>
@@ -1759,6 +1761,8 @@ For powertools params see <a href="https://awslabs.github.io/aws-lambda-powertoo
             <span class="nb">id</span><span class="p">,</span>
             <span class="o">**</span><span class="n">keyword_args</span><span class="p">,</span>
         <span class="p">)</span>
+
+        <span class="n">task</span><span class="o">.</span><span class="n">lambda_function</span> <span class="o">=</span> <span class="n">lambda_function</span>
 
     <span class="k">return</span> <span class="n">coerce</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
 </code></pre></div>
