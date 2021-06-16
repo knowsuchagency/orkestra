@@ -358,14 +358,14 @@ class Compose:
 
             task = sfn.Map(scope, id, **map_kwargs)
 
-            self.lambda_fn = self.aws_lambda(
+            lambda_function = self.aws_lambda(
                 scope,
                 function_name=function_name,
             )
 
             keyword_args = _coalesce(
                 self.lambda_invoke_kwargs,
-                lambda_function=self.lambda_fn,
+                lambda_function=lambda_function,
                 payload_response_only=payload_response_only,
                 **kwargs,
             )
@@ -377,6 +377,8 @@ class Compose:
                 task_id,
                 **keyword_args,
             )
+
+            invoke_lambda.lambda_function = lambda_function
 
             if self.capture_map_errors:
                 invoke_lambda.add_catch(
@@ -431,14 +433,14 @@ class Compose:
 
             id = id or _incremental_id(self.func.__name__)
 
-            self.lambda_fn = self.aws_lambda(
+            lambda_function = self.aws_lambda(
                 scope,
                 function_name=function_name,
             )
 
             keyword_args = _coalesce(
                 self.lambda_invoke_kwargs,
-                lambda_function=self.lambda_fn,
+                lambda_function=lambda_function,
                 payload_response_only=payload_response_only,
                 **kwargs,
             )
@@ -448,6 +450,8 @@ class Compose:
                 id,
                 **keyword_args,
             )
+
+            task.lambda_function = lambda_function
 
         return coerce(task)
 
